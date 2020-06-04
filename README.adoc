@@ -1,0 +1,8 @@
+# VTL Processing
+:gitplant: http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/statisticspoland/VTL-Processing/master/
+
+_VTL Processing_ is a .NET Core library for translation of validation and transformation rules written in the VTL language.
+The first translation target language available will be T-SQL (Microsoft SQL Server).
+
+It is still work in progress.
+However we aim at full VTL 2.0 specs coverage. 
