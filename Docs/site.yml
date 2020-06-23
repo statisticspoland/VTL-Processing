@@ -1,10 +1,10 @@
 site:
   title: VTL Processing Documentation
-  url: 
+  url: http://localhost/vtlprocessing
   start_page: vtl_arch::index.adoc 
 content:
   sources:
-  - url: .
+  - url: ..
     start_path: Docs/Architecture
     branches: HEAD
 ui:
