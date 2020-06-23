@@ -1,0 +1,3 @@
+== Wymagania jakościowe
+
+NOTE: todo: 10. Quality Requirements

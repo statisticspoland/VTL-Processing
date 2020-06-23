@@ -1,0 +1,662 @@
+:hardbreaks:
+== Koncepcje przekrojowe
+
+=== Język VTL
+
+Jako język zapisu reguł przekazywanych przez Eurostat zaproponowano VTL: https://sdmx.org/?page_id=5096[link]
+
+TODO: Krótki opis właściwości języka VTL.
+
+//RM 1147
+=== Domyślne zachowanie operatorów
+
+==== Operacje na skalarach
+
+Operator użyty na skalarach zwraca wartość skalarną.
+
+==== Operacje na zbiorach danych
+
+Operator użyty na zbiorach danych zwraca zbiór danych.
+
+Mając zbiór DS_1 oraz DS_2 operator działa na wszystkich wartościach miar (measures) zbiorów tworząc nowy zbiór DS_r o tych samych miarach. Aby móc użyc operatora na dwóch zestawach danych, zbiór identyfikatorów (identifiers) jednego z nich musi być podzbiorem drugiego oraz ich zestaw miar musi być jednakowy. Ponadto typy wszystkich wartości miar muszą być zgodne z typem zwracanym przez używany operator.
+
+Jeżeli typy wartości miar dwóch zestawów danych nie są zgodne, można użyć klauzuli membership lub keep, aby wybrać pasujące miary.
+
+:!hardbreaks:
+
+=== Operatory VTL
+
+[cols=6*, options="header"]
+|===
+|Nazwa operatora
+|Symbol(e) operatora
+|VtlProcessing.Core (basic)
+|VtlProcessing.Core (inside join operator)
+|VtlProcessing.Target.TSQL (basic)
+|VtlProcessing.Target.TSQL (inside join operator)
+
+|Parentheses
+|()
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Persistent assignment
+|$$<-$$
+|[lime]#Tak#
+|Nie dotyczy
+|[lime]#Tak#
+|Nie dotyczy
+
+|Non-persistent assignment
+|:=
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Membership
+|#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|User-definied operator call
+|
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|Evaluation of an external routine
+|eval
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|Type conversion
+|cast
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|Join
+|inner_join, left_join, full_join, cross_join
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|String concatenation
+|$$\|\|$$
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Whitespace removal
+|trim, rtrim, ltrim
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Character case conversion
+|upper/lower
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Sub-string extraction
+|substr
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|String pattern replacement
+|replace
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|String pattern location
+|instr
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|String length
+|length
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Unary plus
+|+
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Unary minus
+|-
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Addition
+|+
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Substraction
+|-
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Multiplication
+|*
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Division
+|/
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Modulo
+|mod
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Rounding
+|round
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Truncation
+|trunc
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Ceiling
+|ceil
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Floor
+|floor
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Absolute value
+|abs
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Exponential
+|exp
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Natural logarithm
+|ln
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Power
+|power
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Logarithm
+|log
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Square root
+|sqrt
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Equal to
+|=
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Not equal to
+|<>
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Greater than
+|> >=
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Less than
+|< $$<=$$
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Between
+|between
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Element of
+|in/not_in
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|match_characters
+|match_characters
+|[lime]#Tak#
+|[lime]#Tak#
+|[olive]#Wyrażenia regularne nieobsłużone#
+|[olive]#Wyrażenia regularne nieobsłużone#
+
+|isnull
+|isnull
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Exists in
+|exists_in
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Logical conjunction
+|and
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Logical disjunction
+|or
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Exclusive disjunction
+|xor
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Logical negation
+|not
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Period indicator
+|period_indicator
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Fill time series
+|fill_time_series
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Flow to stock
+|flow_to_stock
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Stock to flow
+|stock_to_flow
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Time shift
+|timeshift
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Time aggregation
+|time_agg
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Actual time
+|current_date
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Union
+|union
+|[lime]#Tak#
+|Nie dotyczy
+|[lime]#Tak#
+|Nie dotyczy
+
+|Intersection
+|intersect
+|[lime]#Tak#
+|Nie dotyczy
+|[lime]#Tak#
+|Nie dotyczy
+
+|Set difference
+|setdiff
+|[lime]#Tak#
+|Nie dotyczy
+|[lime]#Tak#
+|Nie dotyczy
+
+|Simmetric difference
+|symdiff
+|[lime]#Tak#
+|Nie dotyczy
+|[lime]#Tak#
+|Nie dotyczy
+
+|Hierarchical roll-up
+|hierarchy
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|Aggregate invocation
+|
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|Analytic invocation
+|
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|Counting the number of data points
+|count
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Minimum value
+|min
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Maximum value
+|max
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Median value
+|median
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Sum
+|sum
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Average value
+|avg
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Population standard deviation
+|stddev_pop
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Sample standard deviation
+|stddev_samp
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Population variance
+|var_pop
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Sample variance
+|var_samp
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|First value
+|first_value
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Last value
+|last_value
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Lag
+|lag
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Lead
+|lead
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Rank
+|rank
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Ratio to report
+|ratio_to_report
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|check_datapoint
+|check_datapoint
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|check_hierarchy
+|check_hierarchy
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|check
+|check
+|[red]#Nie#
+|
+|[red]#Nie#
+|
+
+|if-then-else
+|if
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Nvl
+|nvl
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Filtering Data Points
+|filter
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Calculation of a Component
+|calc
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Aggregation
+|aggr
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+|[red]#Nie#
+
+|Maintaining Components
+|keep
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Removal of Components
+|drop
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Change of Component name
+|rename
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|Pivoting
+|pivot
+|[lime]#Tak#
+|Nie dotyczy
+|[red]#Nie#
+|Nie dotyczy
+
+|Unpivoting
+|unpivot
+|[lime]#Tak#
+|Nie dotyczy
+|[red]#Nie#
+|Nie dotyczy
+
+|Subspace
+|sub
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+|[lime]#Tak#
+
+|===
+

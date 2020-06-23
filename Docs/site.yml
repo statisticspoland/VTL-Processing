@@ -1,0 +1,19 @@
+site:
+  title: VTL Processing Documentation
+  url: 
+  start_page: vtl_arch::index.adoc 
+content:
+  sources:
+  - url: .
+    start_path: Docs/Architecture
+    branches: HEAD
+ui:
+  bundle:
+    url: ./custom-ui-bundle-lunr.zip
+    snapshot: true
+asciidoc:
+  extensions:
+    - asciidoctor-plantuml
+  attributes:
+    plantuml-server-url: 'http://www.plantuml.com/plantuml'
+    plantuml-fetch-diagram: true

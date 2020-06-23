@@ -1,0 +1,33 @@
+== Zakres i kontekst
+
+Poniższy diagram określa granice VTL Processing.
+
+.kontekst VTL Processing
+[plantuml]
+----
+include::partial$diag/kontekst.pu[]
+----
+
+Zidentyfikowane zostały interfejsy z partnerami systemu: użytkownikami i systemami zewnętrznymi.
+Następująca tabela opisuje przedstawionych na diagramie partnerów systemu oraz interfejsy pozwalające na korzystanie z VTL Processing.
+
+.Partnerzy VTL Processing
+[%header, cols="1,3,2"]
+|===
+| partner | opis | interfejs
+
+| Aplikacja
+| Biblioteka (.NET) zapewnia proste API pozwalające wykorzystującej ją aplikacji na przeprowadzenie translacji z VTL do dowolnego z obsługiwanych języków docelowych (np. T-SQL).
+Translacja może przebiegać dwuetapowo: 
+wygenerowanie obiektu reprezentacji pośredniej z kodu VTL, 
+następnie wygenerowanie kodu wynikowego wybranego języka.
+| Interfejs publiczny bibliotek VtlProcessing.Core, VtlProcessing.
+
+| Deweloper
+| Osoba wykorzystująca aplikację GUI do testowania translatora i wyrażeń VTL wykonując walidację na danych testowych.
+| GUI VtlManagmentStudio
+
+|Baza Danych
+|Baza w któej za pośrednictwem aplikacji GUI jest wykonywany wynikowy kod T-SQL.
+|Bezpośrednie połączenie bazodanowe (ADO.NET).
+|===

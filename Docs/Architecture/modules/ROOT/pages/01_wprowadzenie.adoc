@@ -1,0 +1,79 @@
+== Wprowadzenie
+
+Niniejszy dokument stanowi dokumentację projektową biblioteki i zestawu narzędzi VTL Processing.
+Adresatami tej dokumentacji jest zespół projektowy Vtl Processing.
+
+=== Translacja języka VTL
+
+Istotnym założeniem architektury biznesowej walidacji ESS jest możliwość współdzielenia reguł walidacji danych przekazywanych do Eurostatu przez państwa członkowskie ESS.
+Dzięki temu te same reguły walidacji mogą zostać zastosowane przed wysyłką (strona krajowa) i po przekazaniu danych (Eurostat).
+
+.Stan docelowy architektury biznesowej walidacji ESS
+image::validation_target_process.png[architektura biznesowa]
+
+Szczegółowy opis architektury biznesowej walidacji ESS:
+https://ec.europa.eu/eurostat/cros/system/files/business_architecture_for_ess_validation_-_final.pdf[link]
+
+Jako język definiowania reguł walidacji ESS został zaproponowany VTL.
+
+Szczegółowy dotyczące języka VTL:
+https://sdmx.org/?page_id=5096[link]
+
+Wdrożenie scenariusza 1 _architektury_ wymaga interpretowania lub tłumaczenia wyrażeń VTL na język obsługiwany przez system krajowy.
+VTL Processing ma za zadanie umożliwić integrację języka VTL z systemami przetwarzania i walidowania danych statystycznych.
+
+=== Przegląd wymagań
+
+Główne elementy VTL Processing stanowią: biblioteka _Core_ oraz _targety_ translacji.
+_Target_ translacji jest komponentem specyficznym dla translacji do danego języka.
+Biblioteka powinna spełniać następujące wymagania funkcjonalne:
+
+. Analiza poprawności wyrażenia, również na zgodność z modelem danych
+. Ładowanie wymaganego do translacji modelu danych z pliku
+. Obsługiwać pełen standard VTL2.0 (docelowo - wszystkie operatory)
+. Kompilacja wyrażeń VTL do reprezentacji pośredniej
+. Translacja wyrażeń VTL do języka T-SQL (domyślny _target_ T-SQL)
+. Mapowanie artefaktów modelu danych na fizyczne struktury danych
+
+Funkcjonalność zestawu narzędzi towarzyszący bibliotece
+
+. Edycja wyrażeń VTL z kolorowaniem składni
+. Wykonywanie z poziomu GUI wyrażeń VTL na bazie danych SQL Server
+// . Wykonywanie translacji wyrażeń VTL z poziomu linii poleceń
+
+Backlog projektu: 
+https://zgloszenia.stat.intra/product_backlog/17
+
+=== Cele jakościowe
+
+Zidentyfikowano następujące wymagania/cele jakościowe:
+
+Poprawność :: Translacja wykonywana w sposób prawidłowy - zgodnie ze specyfikacją języka VTL 2.0
+Rozszerzalność :: Możliwość poszerzenia funkcjonalności, w szczególności o obsługę kolejnych języków docelowych 
+
+=== Udziałowcy
+
+Zidentyfikowano następujące strony zainteresowane architekturą biblioteki:
+
+.Udziałowcy
+[%header, cols="1,1,2"]
+|===
+|Nazwa | Kontakt | Opis udziału
+
+|Zespół utrzymania systemu SPDS
+|Marek Panfiłow
+|
+
+|Kierownik projektu
+|Mateusz Bobiński
+|
+
+|SDMX TWG - VTL Task Force
+|Maurizio Capaccioli
+|Grupa do spraw języka VTL. 
+Odpowiada za rozwój jego specyfikacji.
+
+|Eurostat
+|
+|Dostawca reguł walidacji danych w języku VTL i modelu wymaganych danych.
+|===
