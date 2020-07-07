@@ -1,0 +1,12 @@
+Docs/build/
+
+*.suo
+*.user
+
+debug/
+release/
+x64/
+bin/
+obj/
+
+*.nupkg
