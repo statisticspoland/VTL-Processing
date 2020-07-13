@@ -1,0 +1,55 @@
+== Dynamika systemu
+:source-highlighter: prettify
+
+=== Scenariusz 1: Wygenerowanie kodu wynikowego
+
+_Aplikacja_ konstruuje niezbędne obiekty i określa model danych oraz mapowanie nazw.
+Następnie metoda _TranslateVtlProgram_ generuje obiekt reprezentacji pośredniej.
+Ewentualne błędy translacji znajdują się w kolekcji _schema.Errors_.
+Kod wynikowy jest renderowany przez metodę _Render_.
+
+.Przykładowy kod 
+[source, c#]
+----
+ // fabryka obiektów
+ObjectFactory fac = new ObjectFactory();
+
+// będziemy generować kod SQL
+IRenderTarget target = new SqlRenderTarget();
+
+// przygotowanie obiektów procesora i renderera
+VtlProcessor processor = fac.GetVtlProcessor();
+Renderer renderer = fac.GetVtlRenderer(this.target);
+
+// model danych
+IDataModel model = new DataModel("model.xml");
+
+// translacja programu do postaci schematu transformacji
+ITransformationSchema schema = this.processor.TranslateVtlProgram(program, this.model);
+
+string result = this.renderer.Render(schema, this.mapper);
+----
+
+.Diagram
+[plantuml]
+----
+@startuml
+actor User
+boundary API
+control ITreeGenerator
+control VtlParser
+control ITreeTransformer
+entity TransformationSchema
+
+User -> API :UseSource(source)
+API -> ITreeGenerator: BuildTransformationSchema(source)
+ITreeGenerator -> VtlParser: Parse(source)
+VtlParser --> ITreeGenerator: parseTree
+ITreeGenerator -> ITreeTransformer: TransformToSchema(parseTree)
+ITreeTransformer -> TransformationSchema: Create()
+TransformationSchema --> ITreeTransformer: schema
+ITreeTransformer --> ITreeGenerator: shcema
+ITreeGenerator --> API: schema
+
+@enduml
+----

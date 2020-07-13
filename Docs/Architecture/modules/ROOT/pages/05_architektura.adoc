@@ -1,0 +1,161 @@
+:hardbreaks:
+== Architektura systemu
+
+.Legenda
+[source]
+----
+1. A - - - > B - Strzałka zwrócona w jednym kierunku oznacza, że dane uzyskane w komponencie A są używane w komponencie B
+2. A < - - - > B - Strzałka zwrócona w dwóch kierunkach oznacza, że pomiędzy komponentami A i B występuje wymiana danych
+----
+
+=== Zakres i kontekst systemu
+
+.Poziom 1: Zakres i kontekst systemu
+[plantuml]
+----
+@startuml
+skinparam monochrome true
+
+actor User as User
+actor Developer as Developer
+rectangle #silver "VtlProcessing" as System
+
+rectangle "External Apps" as Apps
+rectangle "External Targets" as Targets
+rectangle "SDMX Database" as SDMX
+
+User ..> Apps
+User .> System
+Developer ..> System
+Apps <..> Targets
+Apps <.> System
+System .> Targets
+System <. SDMX 
+
+@enduml
+----
+
+==== User
+Użytkownik systemu, wprowadzający kod VTL z dowolnego źródła, z którego chce otrzymać model reprezentacji pośredniej i/lub przetłumaczyć go na język docelowy.
+
+==== Developer
+Osoba biorąca udział w tworzeniu i/lub testowaniu systemu.
+
+==== VtlProcessing
+System przetwarzający kod VTL.
+
+==== SDMX Database
+Baza danych SDMX będąca źródłem modeli danych VTL.
+
+==== External Apps
+Zewnętrzne aplikacje pozwalające na komunikację z systemem.
+
+==== External Targets
+Zewnętrzne biblioteki generujące kod docelowy na podstawie danych otrzymanych z VtlProcessing.
+
+=== Dekompozycja systemu
+
+.Poziom 2: Dekompozycja systemu
+[plantuml]
+----
+@startuml
+skinparam monochrome true
+
+actor User as User
+actor Developer as Developer
+rectangle "VtlProcessing" as System {
+	rectangle #silver "VtlProcessing.Core" as Core
+	rectangle #silver "VtlProcessing.Core.App" as App
+	rectangle #silver "VtlProcessing.Target.PlantUML" as UML
+	rectangle #silver "VtlProcessing.Target.TSQL" as TSQL
+	rectangle #silver "Web API <b>(Planowane)</b>" as WebAPI
+}
+
+rectangle "External Apps" as Apps
+rectangle "External Targets" as Targets
+rectangle "SDMX Database" as SDMX
+
+WebAPI <. User
+WebAPI <.. Developer
+WebAPI <.. SDMX
+App <.. Developer
+Apps <. User
+Apps <.> Core
+Apps <.> UML
+Apps <.> TSQL
+Apps <..> Targets
+Core <.> App
+Core <.> WebAPI
+Core .> UML
+Core .> TSQL
+Targets <... Core
+
+UML <...> App
+TSQL <...> App
+UML <...> WebAPI
+TSQL <...> WebAPI
+
+App .[hidden] SDMX
+
+@enduml
+----
+
+==== VtlProcessing.Core
+Biblioteka walidująca otrzymany kod VTL oraz zwracająca jego model reprezentacji pośredniej.
+
+==== VtlProcessing.Core.App
+Aplikacja konsolowa do testowania funkcjonalności bibliotek systemu.
+
+==== Web API (Planowane)
+Aplikacja internetowa pozwalająca na korzystanie z funkcjonalności bibliotek systemu.
+
+==== VtlProcessing.Target.PlantUML
+Biblioteka generująca kod PlantUML na podstawie otrzymanego modelu reprezentacji pośredniej.
+
+==== VtlProcessing.Target.TSQL
+Biblioteka generująca kod TSQL na podstawie otrzymanego modelu reprezentacji pośredniej.
+
+=== Dekompozycja VtlProcessing.Core
+
+.Poziom 3: Dekompozycja VtlProcessing.Core
+[plantuml]
+----
+@startuml
+skinparam monochrome true
+
+rectangle "VtlProcessing.Core" as Core {
+	rectangle #silver "FrontEnd" as FrontEnd
+	rectangle #silver "MiddleEnd" as MiddleEnd
+}
+
+rectangle #gainsboro "VtlProcessing.Core.App" as App
+rectangle #gainsboro "VtlProcessing.Target.PlantUML" as UML
+rectangle #gainsboro "VtlProcessing.Target.TSQL" as TSQL
+rectangle #gainsboro "Web API <b>(Planowane)</b>" as WebAPI
+rectangle "External Apps" as Apps
+rectangle "External Targets" as Targets
+
+WebAPI <...> FrontEnd
+WebAPI <...> MiddleEnd
+App <...> FrontEnd
+App <...> MiddleEnd
+FrontEnd <...> Apps
+Apps <.> MiddleEnd
+Apps <.> Targets
+FrontEnd .> MiddleEnd
+MiddleEnd ..> Targets
+UML <.. MiddleEnd
+MiddleEnd ..> TSQL
+
+UML ..[hidden] TSQL
+
+@enduml
+----
+
+==== FrontEnd
+Moduł walidujący otrzymany kod VTL i generujący na jego podstawie bazowy model reprezentacji pośredniej.
+
+==== MiddleEnd
+Moduł modyfikujący bazowy model reprezentacji pośredniej, przygotowujący go do postaci użytecznej dla biblioteki Target.
+
+:!hardbreaks:

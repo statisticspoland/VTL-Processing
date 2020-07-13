@@ -1,0 +1,6 @@
+= Dokumentacja architektury VTL Processing
+Mateusz Bobiński <m.bobinski@stat.gov.pl>
+:toc-title: Spis treści
+:toc:
+:numbered:
+:source-highlighter: highlightjs
