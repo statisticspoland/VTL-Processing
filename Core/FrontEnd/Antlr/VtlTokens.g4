@@ -211,28 +211,22 @@ lexer grammar VtlTokens;
 
 INTEGER_CONSTANT
   :
-  POSITIVE_CONSTANT
-  |NEGATIVE_CONSTANT
-  ;
-
-POSITIVE_CONSTANT
- :
- ('0'..'9')+
- ;
-
-NEGATIVE_CONSTANT
- :
-  '-' ('0'..'9')+
+  ('0'..'9')+
+  |'+'? ('0'..'9')+
+  |'-'? ('0'..'9')+
+  |'+' '(' INTEGER_CONSTANT ')'
+  |'-' '(' INTEGER_CONSTANT ')'
   ;
   
 FLOAT_CONSTANT
   :
-  ('0'..'9')+ '.' ('0'..'9')* FLOATEXP?
-  | ('0'..'9')+ FLOATEXP
+  ('0'..'9')+ '.' ('0'..'9')+ FLOATEXP?
+  |'+'? ('0'..'9')+ '.' ('0'..'9')+ FLOATEXP?
+  |'-'? ('0'..'9')+ '.' ('0'..'9')+ FLOATEXP?
+  |'+' '(' FLOAT_CONSTANT ')'
+  |'-' '(' FLOAT_CONSTANT ')'
   ;
 
-
-fragment
 FLOATEXP
   :
   (
@@ -260,6 +254,11 @@ NULL_CONSTANT
 STRING_CONSTANT
   :
   '"' (~'"')* '"'
+  ;
+
+TIME_CONSTANT
+  :
+  't' '"' (~'"')* '"'
   ;
 
 IDENTIFIER
@@ -406,15 +405,14 @@ SL_COMMENT
   ('//' (.)*? '\n') ->skip;
   
   
-COMPARISON_OP
-  :
-  '='
-  | ('<')
-  | ('>')
-  | ('>=')
-  | ('<=')
-  | ('<>')
-  ;
+COMPARISON_OP:
+'='
+|'<'
+|'>'
+|'>='
+|'<='
+|'<>'
+;
   
 FREQUENCY
   :

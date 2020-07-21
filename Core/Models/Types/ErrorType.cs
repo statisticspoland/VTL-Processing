@@ -1,31 +1,28 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.Models.Types
 {
-    using System;
-
     /// <summary>
-    /// VTL error types.
+    /// VTL 2.0 error types.
     /// </summary>
-    [Flags]
     public enum ErrorType
     {
         /// <summary>
-        /// VTL Common error.
+        /// The VTL common error.
         /// </summary>
         Common = 1,
 
         /// <summary>
-        /// VTL Syntax error.
+        /// The VTL syntax error.
         /// </summary>
         Syntax = 2,
 
         /// <summary>
-        /// VTL Operator error.
+        /// The VTL operator error.
         /// </summary>
-        Operator = 4,
+        Operator = 3,
 
         /// <summary>
-        /// VTL Target error.
+        /// The VTL target error.
         /// </summary>
-        Target = 8,
+        Target = 4
     }
 }

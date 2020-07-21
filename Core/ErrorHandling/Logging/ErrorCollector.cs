@@ -1,17 +1,26 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Logging
+﻿namespace StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging
 {
     using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
 
-    public sealed class ErrorCollector : ILogger
+    /// <summary>
+    /// Performs logging and collecting errors.
+    /// </summary>
+    public class ErrorCollector : ILogger
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorCollector"/> class.
+        /// </summary>
         public ErrorCollector()
         {
             this.Errors = new List<Exception>();
         }
 
-        public List<Exception> Errors { get; set; }
+        /// <summary>
+        /// Gets the errors list.
+        /// </summary>
+        public List<Exception> Errors { get; }
 
         public bool IsEnabled(LogLevel logLevel)
         {

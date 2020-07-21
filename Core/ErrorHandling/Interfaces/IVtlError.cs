@@ -1,31 +1,25 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.ErrorHandling.Interfaces
 {
-    using StatisticsPoland.VtlProcessing.Core.Models;
+    using StatisticsPoland.VtlProcessing.Core.Models.Types;
 
+    /// <summary>
+    /// The VTL 2.0 error representation interface.
+    /// </summary>
     public interface IVtlError
     {
         /// <summary>
-        /// Gets the line number of error.
+        /// Gets the line number of the error.
         /// </summary>
-        /// <value>
-        /// The line number of error.
-        /// </value>
         int Line { get; }
 
         /// <summary>
-        /// Gets the message of error.
+        /// Gets the message of the error.
         /// </summary>
-        /// <value>
-        /// The message of error.
-        /// </value>
         string FullMessage { get; }
 
         /// <summary>
-        /// Gets the type of error.
+        /// Gets the type of the error.
         /// </summary>
-        /// <value>
-        /// The type of error.
-        /// </value>
         ErrorType TypeError { get; }
     }
 }
