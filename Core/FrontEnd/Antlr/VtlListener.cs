@@ -52,15 +52,105 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStatement([NotNull] VtlParser.StatementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.persistentAssignment"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.dataset"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPersistentAssignment([NotNull] VtlParser.PersistentAssignmentContext context);
+	void EnterDataset([NotNull] VtlParser.DatasetContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.persistentAssignment"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.dataset"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPersistentAssignment([NotNull] VtlParser.PersistentAssignmentContext context);
+	void ExitDataset([NotNull] VtlParser.DatasetContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.openedDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOpenedDataset([NotNull] VtlParser.OpenedDatasetContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.openedDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOpenedDataset([NotNull] VtlParser.OpenedDatasetContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.closedDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterClosedDataset([NotNull] VtlParser.ClosedDatasetContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.closedDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitClosedDataset([NotNull] VtlParser.ClosedDatasetContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.membershipDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMembershipDataset([NotNull] VtlParser.MembershipDatasetContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.membershipDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMembershipDataset([NotNull] VtlParser.MembershipDatasetContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.datasetComplex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDatasetComplex([NotNull] VtlParser.DatasetComplexContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.datasetComplex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDatasetComplex([NotNull] VtlParser.DatasetComplexContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.ifThenElseDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIfThenElseDataset([NotNull] VtlParser.IfThenElseDatasetContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.ifThenElseDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIfThenElseDataset([NotNull] VtlParser.IfThenElseDatasetContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.unopenedDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUnopenedDataset([NotNull] VtlParser.UnopenedDatasetContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.unopenedDataset"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUnopenedDataset([NotNull] VtlParser.UnopenedDatasetContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.component"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterComponent([NotNull] VtlParser.ComponentContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.component"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitComponent([NotNull] VtlParser.ComponentContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.scalar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterScalar([NotNull] VtlParser.ScalarContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.scalar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitScalar([NotNull] VtlParser.ScalarContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.ifThenElseScalar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIfThenElseScalar([NotNull] VtlParser.IfThenElseScalarContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.ifThenElseScalar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIfThenElseScalar([NotNull] VtlParser.IfThenElseScalarContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.optionalExpr"/>.
 	/// </summary>
@@ -72,875 +162,15 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitOptionalExpr([NotNull] VtlParser.OptionalExprContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.expr"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.setExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterExpr([NotNull] VtlParser.ExprContext context);
+	void EnterSetExpr([NotNull] VtlParser.SetExprContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.expr"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.setExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitExpr([NotNull] VtlParser.ExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>exprValidationExpr</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterExprValidationExpr([NotNull] VtlParser.ExprValidationExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>exprValidationExpr</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitExprValidationExpr([NotNull] VtlParser.ExprValidationExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>definitionExpressions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefinitionExpressions([NotNull] VtlParser.DefinitionExpressionsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>definitionExpressions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefinitionExpressions([NotNull] VtlParser.DefinitionExpressionsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>standaloneAggregateFunction</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterStandaloneAggregateFunction([NotNull] VtlParser.StandaloneAggregateFunctionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>standaloneAggregateFunction</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitStandaloneAggregateFunction([NotNull] VtlParser.StandaloneAggregateFunctionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>componentExpressionwithAggrClause</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterComponentExpressionwithAggrClause([NotNull] VtlParser.ComponentExpressionwithAggrClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>componentExpressionwithAggrClause</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitComponentExpressionwithAggrClause([NotNull] VtlParser.ComponentExpressionwithAggrClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>standaloneAnalyticFunction</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterStandaloneAnalyticFunction([NotNull] VtlParser.StandaloneAnalyticFunctionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>standaloneAnalyticFunction</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitStandaloneAnalyticFunction([NotNull] VtlParser.StandaloneAnalyticFunctionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>simpleaggregateFunctions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSimpleaggregateFunctions([NotNull] VtlParser.SimpleaggregateFunctionsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>simpleaggregateFunctions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSimpleaggregateFunctions([NotNull] VtlParser.SimpleaggregateFunctionsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>timeexpressions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTimeexpressions([NotNull] VtlParser.TimeexpressionsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>timeexpressions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTimeexpressions([NotNull] VtlParser.TimeexpressionsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>setExpressions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSetExpressions([NotNull] VtlParser.SetExpressionsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>setExpressions</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSetExpressions([NotNull] VtlParser.SetExpressionsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>callFunctionExpression</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCallFunctionExpression([NotNull] VtlParser.CallFunctionExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>callFunctionExpression</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCallFunctionExpression([NotNull] VtlParser.CallFunctionExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>joinExpression</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJoinExpression([NotNull] VtlParser.JoinExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>joinExpression</c>
-	/// labeled alternative in <see cref="VtlParser.exprComplex"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJoinExpression([NotNull] VtlParser.JoinExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.timeExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTimeExpr([NotNull] VtlParser.TimeExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.timeExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTimeExpr([NotNull] VtlParser.TimeExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefHierarchical([NotNull] VtlParser.DefHierarchicalContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefHierarchical([NotNull] VtlParser.DefHierarchicalContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.ruleClauseHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRuleClauseHierarchical([NotNull] VtlParser.RuleClauseHierarchicalContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.ruleClauseHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRuleClauseHierarchical([NotNull] VtlParser.RuleClauseHierarchicalContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.ruleItemHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRuleItemHierarchical([NotNull] VtlParser.RuleItemHierarchicalContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.ruleItemHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRuleItemHierarchical([NotNull] VtlParser.RuleItemHierarchicalContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.hierRuleSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHierRuleSignature([NotNull] VtlParser.HierRuleSignatureContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.hierRuleSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHierRuleSignature([NotNull] VtlParser.HierRuleSignatureContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.valueDomainSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValueDomainSignature([NotNull] VtlParser.ValueDomainSignatureContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.valueDomainSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValueDomainSignature([NotNull] VtlParser.ValueDomainSignatureContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.codeItemRelation"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCodeItemRelation([NotNull] VtlParser.CodeItemRelationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.codeItemRelation"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCodeItemRelation([NotNull] VtlParser.CodeItemRelationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.codeItemRelationClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCodeItemRelationClause([NotNull] VtlParser.CodeItemRelationClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.codeItemRelationClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCodeItemRelationClause([NotNull] VtlParser.CodeItemRelationClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.codeItemRef"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCodeItemRef([NotNull] VtlParser.CodeItemRefContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.codeItemRef"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCodeItemRef([NotNull] VtlParser.CodeItemRefContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefDatapoint([NotNull] VtlParser.DefDatapointContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefDatapoint([NotNull] VtlParser.DefDatapointContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.ruleClauseDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRuleClauseDatapoint([NotNull] VtlParser.RuleClauseDatapointContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.ruleClauseDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRuleClauseDatapoint([NotNull] VtlParser.RuleClauseDatapointContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.ruleItemDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.ruleItemDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.rulesetSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.rulesetSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.varSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterVarSignature([NotNull] VtlParser.VarSignatureContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.varSignature"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitVarSignature([NotNull] VtlParser.VarSignatureContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefExpr([NotNull] VtlParser.DefExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefExpr([NotNull] VtlParser.DefExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defOperator"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefOperator([NotNull] VtlParser.DefOperatorContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defOperator"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefOperator([NotNull] VtlParser.DefOperatorContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.parameterItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterParameterItem([NotNull] VtlParser.ParameterItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.parameterItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitParameterItem([NotNull] VtlParser.ParameterItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.callFunction"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCallFunction([NotNull] VtlParser.CallFunctionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.callFunction"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCallFunction([NotNull] VtlParser.CallFunctionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>roundAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRoundAtom([NotNull] VtlParser.RoundAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>roundAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRoundAtom([NotNull] VtlParser.RoundAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ceilAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCeilAtom([NotNull] VtlParser.CeilAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ceilAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCeilAtom([NotNull] VtlParser.CeilAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>floorAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFloorAtom([NotNull] VtlParser.FloorAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>floorAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFloorAtom([NotNull] VtlParser.FloorAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>minAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMinAtom([NotNull] VtlParser.MinAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>minAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMinAtom([NotNull] VtlParser.MinAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>expAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterExpAtom([NotNull] VtlParser.ExpAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>expAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitExpAtom([NotNull] VtlParser.ExpAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>lnAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLnAtom([NotNull] VtlParser.LnAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>lnAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLnAtom([NotNull] VtlParser.LnAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>logAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLogAtom([NotNull] VtlParser.LogAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>logAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLogAtom([NotNull] VtlParser.LogAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>powerAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterPowerAtom([NotNull] VtlParser.PowerAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>powerAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitPowerAtom([NotNull] VtlParser.PowerAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>sqrtAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSqrtAtom([NotNull] VtlParser.SqrtAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>sqrtAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSqrtAtom([NotNull] VtlParser.SqrtAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>lenAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLenAtom([NotNull] VtlParser.LenAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>lenAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLenAtom([NotNull] VtlParser.LenAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>betweenAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterBetweenAtom([NotNull] VtlParser.BetweenAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>betweenAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitBetweenAtom([NotNull] VtlParser.BetweenAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>trimAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTrimAtom([NotNull] VtlParser.TrimAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>trimAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTrimAtom([NotNull] VtlParser.TrimAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ltrimAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLtrimAtom([NotNull] VtlParser.LtrimAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ltrimAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLtrimAtom([NotNull] VtlParser.LtrimAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>rtrimAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRtrimAtom([NotNull] VtlParser.RtrimAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>rtrimAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRtrimAtom([NotNull] VtlParser.RtrimAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ucaseAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterUcaseAtom([NotNull] VtlParser.UcaseAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ucaseAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitUcaseAtom([NotNull] VtlParser.UcaseAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>lcaseAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLcaseAtom([NotNull] VtlParser.LcaseAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>lcaseAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLcaseAtom([NotNull] VtlParser.LcaseAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>substrAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSubstrAtom([NotNull] VtlParser.SubstrAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>substrAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSubstrAtom([NotNull] VtlParser.SubstrAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>instrAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterInstrAtom([NotNull] VtlParser.InstrAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>instrAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitInstrAtom([NotNull] VtlParser.InstrAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>replaceAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterReplaceAtom([NotNull] VtlParser.ReplaceAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>replaceAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitReplaceAtom([NotNull] VtlParser.ReplaceAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>charsetMatchAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCharsetMatchAtom([NotNull] VtlParser.CharsetMatchAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>charsetMatchAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCharsetMatchAtom([NotNull] VtlParser.CharsetMatchAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>isNullAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIsNullAtom([NotNull] VtlParser.IsNullAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>isNullAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIsNullAtom([NotNull] VtlParser.IsNullAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>nvlAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNvlAtom([NotNull] VtlParser.NvlAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>nvlAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNvlAtom([NotNull] VtlParser.NvlAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>modAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterModAtom([NotNull] VtlParser.ModAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>modAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitModAtom([NotNull] VtlParser.ModAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>refAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRefAtom([NotNull] VtlParser.RefAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>refAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRefAtom([NotNull] VtlParser.RefAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>evalExprAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterEvalExprAtom([NotNull] VtlParser.EvalExprAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>evalExprAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitEvalExprAtom([NotNull] VtlParser.EvalExprAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>castExprAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCastExprAtom([NotNull] VtlParser.CastExprAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>castExprAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCastExprAtom([NotNull] VtlParser.CastExprAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>hierarchyExprAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHierarchyExprAtom([NotNull] VtlParser.HierarchyExprAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>hierarchyExprAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHierarchyExprAtom([NotNull] VtlParser.HierarchyExprAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>flowToStockAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFlowToStockAtom([NotNull] VtlParser.FlowToStockAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>flowToStockAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFlowToStockAtom([NotNull] VtlParser.FlowToStockAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>stockToFlowAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterStockToFlowAtom([NotNull] VtlParser.StockToFlowAtomContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>stockToFlowAtom</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitStockToFlowAtom([NotNull] VtlParser.StockToFlowAtomContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>validateDPruleset</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValidateDPruleset([NotNull] VtlParser.ValidateDPrulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>validateDPruleset</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValidateDPruleset([NotNull] VtlParser.ValidateDPrulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>validateHRruleset</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValidateHRruleset([NotNull] VtlParser.ValidateHRrulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>validateHRruleset</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValidateHRruleset([NotNull] VtlParser.ValidateHRrulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>validationSimple</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValidationSimple([NotNull] VtlParser.ValidationSimpleContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>validationSimple</c>
-	/// labeled alternative in <see cref="VtlParser.exprAtom"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValidationSimple([NotNull] VtlParser.ValidationSimpleContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>parenthesisExprRef</c>
-	/// labeled alternative in <see cref="VtlParser.ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterParenthesisExprRef([NotNull] VtlParser.ParenthesisExprRefContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>parenthesisExprRef</c>
-	/// labeled alternative in <see cref="VtlParser.ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitParenthesisExprRef([NotNull] VtlParser.ParenthesisExprRefContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>varIdRef</c>
-	/// labeled alternative in <see cref="VtlParser.ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterVarIdRef([NotNull] VtlParser.VarIdRefContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>varIdRef</c>
-	/// labeled alternative in <see cref="VtlParser.ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitVarIdRef([NotNull] VtlParser.VarIdRefContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>constantRef</c>
-	/// labeled alternative in <see cref="VtlParser.ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterConstantRef([NotNull] VtlParser.ConstantRefContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>constantRef</c>
-	/// labeled alternative in <see cref="VtlParser.ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitConstantRef([NotNull] VtlParser.ConstantRefContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.identifierList"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIdentifierList([NotNull] VtlParser.IdentifierListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.identifierList"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIdentifierList([NotNull] VtlParser.IdentifierListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.lists"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLists([NotNull] VtlParser.ListsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.lists"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLists([NotNull] VtlParser.ListsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.evalExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterEvalExpr([NotNull] VtlParser.EvalExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.evalExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitEvalExpr([NotNull] VtlParser.EvalExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.castExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCastExpr([NotNull] VtlParser.CastExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.castExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCastExpr([NotNull] VtlParser.CastExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.periodExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterPeriodExpr([NotNull] VtlParser.PeriodExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.periodExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitPeriodExpr([NotNull] VtlParser.PeriodExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.timeShiftExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTimeShiftExpr([NotNull] VtlParser.TimeShiftExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.timeShiftExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTimeShiftExpr([NotNull] VtlParser.TimeShiftExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.timeSeriesExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTimeSeriesExpr([NotNull] VtlParser.TimeSeriesExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.timeSeriesExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTimeSeriesExpr([NotNull] VtlParser.TimeSeriesExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.timeAggExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTimeAggExpr([NotNull] VtlParser.TimeAggExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.timeAggExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTimeAggExpr([NotNull] VtlParser.TimeAggExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.validationExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValidationExpr([NotNull] VtlParser.ValidationExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.validationExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValidationExpr([NotNull] VtlParser.ValidationExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.validationDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValidationDatapoint([NotNull] VtlParser.ValidationDatapointContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.validationDatapoint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValidationDatapoint([NotNull] VtlParser.ValidationDatapointContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.validationHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValidationHierarchical([NotNull] VtlParser.ValidationHierarchicalContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.validationHierarchical"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValidationHierarchical([NotNull] VtlParser.ValidationHierarchicalContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.erCode"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterErCode([NotNull] VtlParser.ErCodeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.erCode"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitErCode([NotNull] VtlParser.ErCodeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.erLevel"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterErLevel([NotNull] VtlParser.ErLevelContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.erLevel"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitErLevel([NotNull] VtlParser.ErLevelContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.hierarchyExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHierarchyExpr([NotNull] VtlParser.HierarchyExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.hierarchyExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHierarchyExpr([NotNull] VtlParser.HierarchyExprContext context);
+	void ExitSetExpr([NotNull] VtlParser.SetExprContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.datasetClause"/>.
 	/// </summary>
@@ -952,55 +182,135 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDatasetClause([NotNull] VtlParser.DatasetClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.anFunctionClause"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.aggrClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAnFunctionClause([NotNull] VtlParser.AnFunctionClauseContext context);
+	void EnterAggrClause([NotNull] VtlParser.AggrClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.anFunctionClause"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.aggrClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAnFunctionClause([NotNull] VtlParser.AnFunctionClauseContext context);
+	void ExitAggrClause([NotNull] VtlParser.AggrClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.partitionByClause"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.aggrExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPartitionByClause([NotNull] VtlParser.PartitionByClauseContext context);
+	void EnterAggrExpr([NotNull] VtlParser.AggrExprContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.partitionByClause"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.aggrExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPartitionByClause([NotNull] VtlParser.PartitionByClauseContext context);
+	void ExitAggrExpr([NotNull] VtlParser.AggrExprContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.orderByClause"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.filterClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterOrderByClause([NotNull] VtlParser.OrderByClauseContext context);
+	void EnterFilterClause([NotNull] VtlParser.FilterClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.orderByClause"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.filterClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitOrderByClause([NotNull] VtlParser.OrderByClauseContext context);
+	void ExitFilterClause([NotNull] VtlParser.FilterClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.windowingClause"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.renameClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterWindowingClause([NotNull] VtlParser.WindowingClauseContext context);
+	void EnterRenameClause([NotNull] VtlParser.RenameClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.windowingClause"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.renameClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitWindowingClause([NotNull] VtlParser.WindowingClauseContext context);
+	void ExitRenameClause([NotNull] VtlParser.RenameClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.limitClauseItem"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.renameExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLimitClauseItem([NotNull] VtlParser.LimitClauseItemContext context);
+	void EnterRenameExpr([NotNull] VtlParser.RenameExprContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.limitClauseItem"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.renameExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLimitClauseItem([NotNull] VtlParser.LimitClauseItemContext context);
+	void ExitRenameExpr([NotNull] VtlParser.RenameExprContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.calcClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCalcClause([NotNull] VtlParser.CalcClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.calcClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCalcClause([NotNull] VtlParser.CalcClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.calcExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCalcExpr([NotNull] VtlParser.CalcExprContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.calcExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCalcExpr([NotNull] VtlParser.CalcExprContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.keepClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterKeepClause([NotNull] VtlParser.KeepClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.keepClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitKeepClause([NotNull] VtlParser.KeepClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.dropClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDropClause([NotNull] VtlParser.DropClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.dropClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDropClause([NotNull] VtlParser.DropClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.pivotClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPivotClause([NotNull] VtlParser.PivotClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.pivotClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPivotClause([NotNull] VtlParser.PivotClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.unpivotClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUnpivotClause([NotNull] VtlParser.UnpivotClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.unpivotClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUnpivotClause([NotNull] VtlParser.UnpivotClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.subspaceClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSubspaceClause([NotNull] VtlParser.SubspaceClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.subspaceClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSubspaceClause([NotNull] VtlParser.SubspaceClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.subspaceExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.subspaceExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.joinExpr"/>.
 	/// </summary>
@@ -1032,6 +342,36 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJoinBody([NotNull] VtlParser.JoinBodyContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.joinAliasesClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJoinAliasesClause([NotNull] VtlParser.JoinAliasesClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.joinAliasesClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJoinAliasesClause([NotNull] VtlParser.JoinAliasesClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.joinAliasExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJoinAliasExpr([NotNull] VtlParser.JoinAliasExprContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.joinAliasExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJoinAliasExpr([NotNull] VtlParser.JoinAliasExprContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.joinUsingClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJoinUsingClause([NotNull] VtlParser.JoinUsingClauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.joinUsingClause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJoinUsingClause([NotNull] VtlParser.JoinUsingClauseContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.joinCalcClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1042,55 +382,15 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJoinCalcClause([NotNull] VtlParser.JoinCalcClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.joinCalcClauseItem"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.joinAggrClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJoinCalcClauseItem([NotNull] VtlParser.JoinCalcClauseItemContext context);
+	void EnterJoinAggrClause([NotNull] VtlParser.JoinAggrClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.joinCalcClauseItem"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.joinAggrClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJoinCalcClauseItem([NotNull] VtlParser.JoinCalcClauseItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.joinCalcExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJoinCalcExpr([NotNull] VtlParser.JoinCalcExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.joinCalcExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJoinCalcExpr([NotNull] VtlParser.JoinCalcExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.joinAggClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJoinAggClause([NotNull] VtlParser.JoinAggClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.joinAggClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJoinAggClause([NotNull] VtlParser.JoinAggClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.joinAggClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJoinAggClauseItem([NotNull] VtlParser.JoinAggClauseItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.joinAggClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJoinAggClauseItem([NotNull] VtlParser.JoinAggClauseItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.joinAggExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJoinAggExpr([NotNull] VtlParser.JoinAggExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.joinAggExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJoinAggExpr([NotNull] VtlParser.JoinAggExprContext context);
+	void ExitJoinAggrClause([NotNull] VtlParser.JoinAggrClauseContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.joinKeepClause"/>.
 	/// </summary>
@@ -1142,226 +442,6 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJoinApplyClause([NotNull] VtlParser.JoinApplyClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.anFunction"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAnFunction([NotNull] VtlParser.AnFunctionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.anFunction"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAnFunction([NotNull] VtlParser.AnFunctionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.aggregateClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAggregateClause([NotNull] VtlParser.AggregateClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.aggregateClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAggregateClause([NotNull] VtlParser.AggregateClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.aggrFunctionClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAggrFunctionClause([NotNull] VtlParser.AggrFunctionClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.aggrFunctionClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAggrFunctionClause([NotNull] VtlParser.AggrFunctionClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.getFiltersClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterGetFiltersClause([NotNull] VtlParser.GetFiltersClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.getFiltersClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitGetFiltersClause([NotNull] VtlParser.GetFiltersClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.getFilterClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterGetFilterClause([NotNull] VtlParser.GetFilterClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.getFilterClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitGetFilterClause([NotNull] VtlParser.GetFilterClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.aggrClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAggrClause([NotNull] VtlParser.AggrClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.aggrClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAggrClause([NotNull] VtlParser.AggrClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.filterClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFilterClause([NotNull] VtlParser.FilterClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.filterClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFilterClause([NotNull] VtlParser.FilterClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.renameClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRenameClause([NotNull] VtlParser.RenameClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.renameClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRenameClause([NotNull] VtlParser.RenameClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.aggrFunction"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAggrFunction([NotNull] VtlParser.AggrFunctionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.aggrFunction"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAggrFunction([NotNull] VtlParser.AggrFunctionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.calcClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCalcClause([NotNull] VtlParser.CalcClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.calcClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCalcClause([NotNull] VtlParser.CalcClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.calcClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCalcClauseItem([NotNull] VtlParser.CalcClauseItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.calcClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCalcClauseItem([NotNull] VtlParser.CalcClauseItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.calcExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCalcExpr([NotNull] VtlParser.CalcExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.calcExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCalcExpr([NotNull] VtlParser.CalcExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.dropClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDropClause([NotNull] VtlParser.DropClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.dropClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDropClause([NotNull] VtlParser.DropClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.dropClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDropClauseItem([NotNull] VtlParser.DropClauseItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.dropClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDropClauseItem([NotNull] VtlParser.DropClauseItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.keepClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterKeepClause([NotNull] VtlParser.KeepClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.keepClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitKeepClause([NotNull] VtlParser.KeepClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.keepClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterKeepClauseItem([NotNull] VtlParser.KeepClauseItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.keepClauseItem"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitKeepClauseItem([NotNull] VtlParser.KeepClauseItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.unpivotExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterUnpivotExpr([NotNull] VtlParser.UnpivotExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.unpivotExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitUnpivotExpr([NotNull] VtlParser.UnpivotExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.pivotExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterPivotExpr([NotNull] VtlParser.PivotExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.pivotExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitPivotExpr([NotNull] VtlParser.PivotExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.subspaceExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.subspaceExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.inBetweenClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterInBetweenClause([NotNull] VtlParser.InBetweenClauseContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.inBetweenClause"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitInBetweenClause([NotNull] VtlParser.InBetweenClauseContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.setExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSetExpr([NotNull] VtlParser.SetExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.setExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSetExpr([NotNull] VtlParser.SetExprContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.subscriptExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSubscriptExpr([NotNull] VtlParser.SubscriptExprContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.subscriptExpr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSubscriptExpr([NotNull] VtlParser.SubscriptExprContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.aggrInvocation"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1372,15 +452,15 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAggrInvocation([NotNull] VtlParser.AggrInvocationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.aggrInvocationCompExpr"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.aggrFunction"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAggrInvocationCompExpr([NotNull] VtlParser.AggrInvocationCompExprContext context);
+	void EnterAggrFunction([NotNull] VtlParser.AggrFunctionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.aggrInvocationCompExpr"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.aggrFunction"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAggrInvocationCompExpr([NotNull] VtlParser.AggrInvocationCompExprContext context);
+	void ExitAggrFunction([NotNull] VtlParser.AggrFunctionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.aggrFunctionName"/>.
 	/// </summary>
@@ -1412,85 +492,125 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitHavingClause([NotNull] VtlParser.HavingClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.returnAll"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.havingExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterReturnAll([NotNull] VtlParser.ReturnAllContext context);
+	void EnterHavingExpr([NotNull] VtlParser.HavingExprContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.returnAll"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.havingExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitReturnAll([NotNull] VtlParser.ReturnAllContext context);
+	void ExitHavingExpr([NotNull] VtlParser.HavingExprContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.componentRole"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.analyticInvocation"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterComponentRole([NotNull] VtlParser.ComponentRoleContext context);
+	void EnterAnalyticInvocation([NotNull] VtlParser.AnalyticInvocationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.componentRole"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.analyticInvocation"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitComponentRole([NotNull] VtlParser.ComponentRoleContext context);
+	void ExitAnalyticInvocation([NotNull] VtlParser.AnalyticInvocationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.viralAttribute"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.analyticFunction"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterViralAttribute([NotNull] VtlParser.ViralAttributeContext context);
+	void EnterAnalyticFunction([NotNull] VtlParser.AnalyticFunctionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.viralAttribute"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.analyticFunction"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitViralAttribute([NotNull] VtlParser.ViralAttributeContext context);
+	void ExitAnalyticFunction([NotNull] VtlParser.AnalyticFunctionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.logBase"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.analyticClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLogBase([NotNull] VtlParser.LogBaseContext context);
+	void EnterAnalyticClause([NotNull] VtlParser.AnalyticClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.logBase"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.analyticClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLogBase([NotNull] VtlParser.LogBaseContext context);
+	void ExitAnalyticClause([NotNull] VtlParser.AnalyticClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.exponent"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.partitionClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterExponent([NotNull] VtlParser.ExponentContext context);
+	void EnterPartitionClause([NotNull] VtlParser.PartitionClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.exponent"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.partitionClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitExponent([NotNull] VtlParser.ExponentContext context);
+	void ExitPartitionClause([NotNull] VtlParser.PartitionClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.persistentDatasetID"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.orderClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPersistentDatasetID([NotNull] VtlParser.PersistentDatasetIDContext context);
+	void EnterOrderClause([NotNull] VtlParser.OrderClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.persistentDatasetID"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.orderClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPersistentDatasetID([NotNull] VtlParser.PersistentDatasetIDContext context);
+	void ExitOrderClause([NotNull] VtlParser.OrderClauseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.datasetID"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.orderExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterDatasetID([NotNull] VtlParser.DatasetIDContext context);
+	void EnterOrderExpr([NotNull] VtlParser.OrderExprContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.datasetID"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.orderExpr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitDatasetID([NotNull] VtlParser.DatasetIDContext context);
+	void ExitOrderExpr([NotNull] VtlParser.OrderExprContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.rulesetID"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.windowingClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterRulesetID([NotNull] VtlParser.RulesetIDContext context);
+	void EnterWindowingClause([NotNull] VtlParser.WindowingClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.rulesetID"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.windowingClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitRulesetID([NotNull] VtlParser.RulesetIDContext context);
+	void ExitWindowingClause([NotNull] VtlParser.WindowingClauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.firstWindowLimit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFirstWindowLimit([NotNull] VtlParser.FirstWindowLimitContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.firstWindowLimit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFirstWindowLimit([NotNull] VtlParser.FirstWindowLimitContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.secondWindowLimit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSecondWindowLimit([NotNull] VtlParser.SecondWindowLimitContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.secondWindowLimit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSecondWindowLimit([NotNull] VtlParser.SecondWindowLimitContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.analyticFunctionName"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnalyticFunctionName([NotNull] VtlParser.AnalyticFunctionNameContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.analyticFunctionName"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnalyticFunctionName([NotNull] VtlParser.AnalyticFunctionNameContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterList([NotNull] VtlParser.ListContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitList([NotNull] VtlParser.ListContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.varID"/>.
 	/// </summary>
@@ -1502,6 +622,16 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVarID([NotNull] VtlParser.VarIDContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.datasetID"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDatasetID([NotNull] VtlParser.DatasetIDContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.datasetID"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDatasetID([NotNull] VtlParser.DatasetIDContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.componentID"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1511,26 +641,6 @@ public interface IVtlListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitComponentID([NotNull] VtlParser.ComponentIDContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.operatorID"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOperatorID([NotNull] VtlParser.OperatorIDContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.operatorID"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOperatorID([NotNull] VtlParser.OperatorIDContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.routineName"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRoutineName([NotNull] VtlParser.RoutineNameContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.routineName"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRoutineName([NotNull] VtlParser.RoutineNameContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.joinKeyword"/>.
 	/// </summary>
@@ -1562,35 +672,15 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] VtlParser.ConstantContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.componentType2"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.componentRole"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterComponentType2([NotNull] VtlParser.ComponentType2Context context);
+	void EnterComponentRole([NotNull] VtlParser.ComponentRoleContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.componentType2"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.componentRole"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitComponentType2([NotNull] VtlParser.ComponentType2Context context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.scalarType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterScalarType([NotNull] VtlParser.ScalarTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.scalarType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitScalarType([NotNull] VtlParser.ScalarTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.basicScalarType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterBasicScalarType([NotNull] VtlParser.BasicScalarTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.basicScalarType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitBasicScalarType([NotNull] VtlParser.BasicScalarTypeContext context);
+	void ExitComponentRole([NotNull] VtlParser.ComponentRoleContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.valueDomainName"/>.
 	/// </summary>
@@ -1602,166 +692,6 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitValueDomainName([NotNull] VtlParser.ValueDomainNameContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.setName"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSetName([NotNull] VtlParser.SetNameContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.setName"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSetName([NotNull] VtlParser.SetNameContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.scalarTypeConstraint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterScalarTypeConstraint([NotNull] VtlParser.ScalarTypeConstraintContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.scalarTypeConstraint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitScalarTypeConstraint([NotNull] VtlParser.ScalarTypeConstraintContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.dataType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDataType([NotNull] VtlParser.DataTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.dataType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDataType([NotNull] VtlParser.DataTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.componentType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterComponentType([NotNull] VtlParser.ComponentTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.componentType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitComponentType([NotNull] VtlParser.ComponentTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.datasetType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDatasetType([NotNull] VtlParser.DatasetTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.datasetType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDatasetType([NotNull] VtlParser.DatasetTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.compConstraint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCompConstraint([NotNull] VtlParser.CompConstraintContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.compConstraint"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCompConstraint([NotNull] VtlParser.CompConstraintContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.multModifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMultModifier([NotNull] VtlParser.MultModifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.multModifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMultModifier([NotNull] VtlParser.MultModifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.rulesetType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRulesetType([NotNull] VtlParser.RulesetTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.rulesetType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRulesetType([NotNull] VtlParser.RulesetTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.dpRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDpRuleset([NotNull] VtlParser.DpRulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.dpRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDpRuleset([NotNull] VtlParser.DpRulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.hrRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHrRuleset([NotNull] VtlParser.HrRulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.hrRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHrRuleset([NotNull] VtlParser.HrRulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.prodValueDomains"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterProdValueDomains([NotNull] VtlParser.ProdValueDomainsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.prodValueDomains"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitProdValueDomains([NotNull] VtlParser.ProdValueDomainsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.prodVariables"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterProdVariables([NotNull] VtlParser.ProdVariablesContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.prodVariables"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitProdVariables([NotNull] VtlParser.ProdVariablesContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.operatorType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOperatorType([NotNull] VtlParser.OperatorTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.operatorType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOperatorType([NotNull] VtlParser.OperatorTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.inputParameterType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterInputParameterType([NotNull] VtlParser.InputParameterTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.inputParameterType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitInputParameterType([NotNull] VtlParser.InputParameterTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.outputParameterType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOutputParameterType([NotNull] VtlParser.OutputParameterTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.outputParameterType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOutputParameterType([NotNull] VtlParser.OutputParameterTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.scalarSetType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterScalarSetType([NotNull] VtlParser.ScalarSetTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.scalarSetType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitScalarSetType([NotNull] VtlParser.ScalarSetTypeContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="VtlParser.retainType"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1772,54 +702,14 @@ public interface IVtlListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitRetainType([NotNull] VtlParser.RetainTypeContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defineDatapointRuleset"/>.
+	/// Enter a parse tree produced by <see cref="VtlParser.limitsMethod"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterDefineDatapointRuleset([NotNull] VtlParser.DefineDatapointRulesetContext context);
+	void EnterLimitsMethod([NotNull] VtlParser.LimitsMethodContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defineDatapointRuleset"/>.
+	/// Exit a parse tree produced by <see cref="VtlParser.limitsMethod"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitDefineDatapointRuleset([NotNull] VtlParser.DefineDatapointRulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defineHierarchicalRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefineHierarchicalRuleset([NotNull] VtlParser.DefineHierarchicalRulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defineHierarchicalRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefineHierarchicalRuleset([NotNull] VtlParser.DefineHierarchicalRulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.endDatapointRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterEndDatapointRuleset([NotNull] VtlParser.EndDatapointRulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.endDatapointRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitEndDatapointRuleset([NotNull] VtlParser.EndDatapointRulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.endHierarchicalRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterEndHierarchicalRuleset([NotNull] VtlParser.EndHierarchicalRulesetContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.endHierarchicalRuleset"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitEndHierarchicalRuleset([NotNull] VtlParser.EndHierarchicalRulesetContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VtlParser.defineDataStructure"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDefineDataStructure([NotNull] VtlParser.DefineDataStructureContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VtlParser.defineDataStructure"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDefineDataStructure([NotNull] VtlParser.DefineDataStructureContext context);
+	void ExitLimitsMethod([NotNull] VtlParser.LimitsMethodContext context);
 }
 } // namespace StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr

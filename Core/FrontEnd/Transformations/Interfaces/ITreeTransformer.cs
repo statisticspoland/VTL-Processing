@@ -12,7 +12,7 @@
         /// Transform a CST tree into a transformation schema structure.
         /// </summary>
         /// <param name="tree">The input tree.</param>
-        /// <returns>Transformation schema.</returns>
+        /// <returns>The transformation schema.</returns>
         ITransformationSchema TransformToSchema(IParseTree tree);
     }
 }

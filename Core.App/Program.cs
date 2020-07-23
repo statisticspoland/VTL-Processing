@@ -3,8 +3,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Logging;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System;
     using System.Linq;

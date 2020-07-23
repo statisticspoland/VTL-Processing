@@ -1,57 +1,455 @@
 grammar Vtl;
 import VtlTokens;
 
-start: (statement? (ML_COMMENT)* (SL_COMMENT)* EOL)* statement? EOF
-      | ML_COMMENT
-      | SL_COMMENT
-      ;
+start: 
+(statement? (ML_COMMENT)* (SL_COMMENT)* EOL)* statement? EOF
+|ML_COMMENT
+|SL_COMMENT
+;
 
-/* Assignment */
-statement: ((varID ASSIGN)? expr) | persistentAssignment;
+statement: 
+(varID ASSIGN)? (dataset|scalar)
+|varID PUT_SYMBOL dataset;
 
-persistentAssignment
-  : 
-  varID PUT_SYMBOL expr
-  ;
+dataset:
+closedDataset
+|membershipDataset
+|openedDataset
+;
 
-/* Conditional */
+openedDataset:
+ifThenElseDataset
+|opSymbol=NOT dataset
+|unopenedDataset opSymbol=('+'|'-') (openedDataset|closedDataset|membershipDataset|scalar)
+|unopenedDataset opSymbol=('*'|'/') (closedDataset|membershipDataset|constant|scalar|openedDataset)
+|unopenedDataset opSymbol=(AND|OR|XOR|CONCAT) (openedDataset|closedDataset|membershipDataset|scalar)
+|unopenedDataset opSymbol=('>'|'<'|'<='|'>='|'='|'<>') (closedDataset|membershipDataset|constant|scalar|openedDataset)
+|unopenedDataset opSymbol=(IN|NOT_IN) (list|valueDomainName)
+|openedDatasetLeft=openedDataset opSymbol=('+'|'-') (openedDataset|closedDataset|membershipDataset|scalar)
+|openedDatasetLeft=openedDataset opSymbol=('*'|'/') (closedDataset|membershipDataset|constant|scalar|openedDataset)
+|openedDatasetLeft=openedDataset opSymbol=(AND|OR|XOR|CONCAT) (openedDataset|closedDataset|membershipDataset|scalar)
+|openedDatasetLeft=openedDataset opSymbol=('>'|'<'|'<='|'>='|'='|'<>') (closedDataset|membershipDataset|constant|scalar|openedDataset)
+|openedDatasetLeft=openedDataset opSymbol=(IN|NOT_IN) (list|valueDomainName)
+|(constant|scalar) opSymbol=('+'|'-') (openedDataset|closedDataset|membershipDataset)
+|(constant|scalar) opSymbol=('*'|'/') (closedDataset|membershipDataset|openedDataset)
+|(constant|scalar) opSymbol=(AND|OR|XOR|CONCAT) (openedDataset|closedDataset|membershipDataset)
+|(constant|scalar) opSymbol=('>'|'<'|'<='|'>='|'='|'<>') (closedDataset|membershipDataset|openedDataset)
+;
 
-optionalExpr
- : expr | OPTIONAL
- ;
+closedDataset:
+datasetID
+|datasetComplex
+|closedDataset '[' datasetClause ']'
+|'(' datasetID ')'
+|'(' closedDataset ')'
+|'(' membershipDataset ')'
+|'(' openedDataset ')'
+|opSymbol=('+'|'-') dataset
+|opSymbol=ROUND '(' dataset (',' optionalExpr)? ')'
+|opSymbol=CEIL '(' dataset ')'                           
+|opSymbol=FLOOR '(' dataset ')'                    
+|opSymbol=ABS '(' dataset ')'               
+|opSymbol=EXP '(' dataset ')'          
+|opSymbol=LN '(' dataset ')'           
+|opSymbol=LOG '(' dataset ',' scalar ')'						
+|opSymbol=TRUNC '(' dataset (',' optionalExpr)? ')'	
+|opSymbol=POWER '(' dataset ',' scalar ')'					
+|opSymbol=SQRT '(' dataset ')'		
+|opSymbol=LEN '(' dataset ')'							
+|opSymbol=BETWEEN '(' dataset ',' scalar ',' scalar ')'			
+|opSymbol=TRIM '(' dataset ')'
+|opSymbol=LTRIM '(' dataset ')'    
+|opSymbol=RTRIM '(' dataset ')'				    
+|opSymbol=UCASE '(' dataset ')'				    
+|opSymbol=LCASE '(' dataset ')'			    
+|opSymbol=SUBSTR '(' dataset (',' optionalExpr)? (',' optionalExpr)? ')'
+|opSymbol=INSTR '(' dataset ',' scalar (',' optionalExpr)? (',' optionalExpr)? ')'
+|opSymbol=REPLACE '(' dataset ',' scalar (',' optionalExpr)? ')'			
+|opSymbol=CHARSET_MATCH '(' dataset ',' scalar ')'
+|opSymbol=ISNULL '(' dataset ')'		
+|opSymbol=NVL '(' dataset ',' (dataset | scalar) ')'
+|opSymbol=MOD '(' dataset ',' (dataset | scalar) ')'			
+|opSymbol=EXISTS_IN '(' dataset ',' dataset (',' retainType)? ')'
+|opSymbol=FLOW_TO_STOCK '(' dataset ')'
+|opSymbol=STOCK_TO_FLOW '(' dataset ')'             
+|opSymbol=PERIOD_INDICATOR '(' dataset ')'	
+|opSymbol=TIMESHIFT '(' dataset ',' scalar ')'
+|opSymbol=FILL_TIME_SERIES '(' dataset (',' (limitsMethod))? ')'
+;
+
+membershipDataset:
+closedDataset MEMBERSHIP componentID
+;
+
+datasetComplex:
+aggrInvocation
+|analyticInvocation
+|setExpr
+|joinExpr
+;
+
+ifThenElseDataset:
+IF ifDataset=dataset THEN (thenDataset=dataset|thenScalar=scalar) ELSE (elseDataset=dataset|elseScalar=scalar)
+|IF (ifDataset=dataset|ifScalar=scalar) THEN thenDataset=dataset ELSE (elseDataset=dataset|elseScalar=scalar)
+|IF (ifDataset=dataset|ifScalar=scalar) THEN (thenDataset=dataset|thenScalar=scalar) ELSE elseDataset=dataset
+;
+
+unopenedDataset:
+closedDataset
+|membershipDataset
+;
+
+component:
+(closedDataset MEMBERSHIP)? componentID
+;
+
+scalar:
+(constant|component)
+|'(' scalar ')'
+|ifThenElseScalar
+|opSymbol=('+'|'-') component
+|opSymbol=NOT scalar
+|scalar opSymbol=('*'|'/') scalar
+|scalar opSymbol=('+'|'-') scalar
+|scalar opSymbol=('>'|'<'|'<='|'>='|'='|'<>') scalar
+|scalar opSymbol=(AND|OR|XOR|CONCAT) scalar
+|scalar opSymbol=(IN|NOT_IN) (list|valueDomainName)
+|opSymbol=ROUND '(' scalar (',' optionalExpr)? ')'
+|opSymbol=CEIL '(' scalar ')'                           
+|opSymbol=FLOOR '(' scalar ')'                    
+|opSymbol=ABS '(' scalar ')'               
+|opSymbol=EXP '(' scalar ')'          
+|opSymbol=LN '(' scalar ')'           
+|opSymbol=LOG '(' scalar ',' scalar ')'						
+|opSymbol=TRUNC '(' scalar (',' optionalExpr)? ')'	
+|opSymbol=POWER '(' scalar ',' scalar ')'					
+|opSymbol=SQRT '(' scalar ')'		
+|opSymbol=LEN '(' scalar ')'							
+|opSymbol=BETWEEN '(' scalar ',' scalar ',' scalar ')'			
+|opSymbol=TRIM '(' scalar ')'
+|opSymbol=LTRIM '(' scalar ')'    
+|opSymbol=RTRIM '(' scalar ')'				    
+|opSymbol=UCASE '(' scalar ')'				    
+|opSymbol=LCASE '(' scalar ')'			    
+|opSymbol=SUBSTR '(' scalar (',' optionalExpr)? (',' optionalExpr)? ')'
+|opSymbol=INSTR '(' scalar ',' scalar (',' optionalExpr)? (',' optionalExpr)? ')'
+|opSymbol=REPLACE '(' scalar ',' scalar (',' optionalExpr)? ')'			
+|opSymbol=CHARSET_MATCH '(' scalar ',' scalar ')'
+|opSymbol=ISNULL '(' scalar ')'		
+|opSymbol=NVL '(' scalar ',' scalar ')'
+|opSymbol=MOD '(' scalar ',' scalar ')'			
+|opSymbol=PERIOD_INDICATOR '(' scalar? ')'
+|opSymbol=CURRENT_DATE
+;
+
+ifThenElseScalar:
+IF scalar THEN scalar ELSE scalar
+;
+
+optionalExpr: 
+scalar
+|OPTIONAL
+;
+
+setExpr:
+opSymbol=UNION '(' dataset (',' dataset)* ')'		
+|opSymbol=SYMDIFF '(' dataset ',' dataset ')' 
+|opSymbol=SETDIFF '(' dataset ',' dataset ')'
+|opSymbol=INTERSECT '(' dataset (',' dataset)* ')'
+;
+
+datasetClause:
+aggrClause
+|analyticClause
+|filterClause
+|renameClause
+|calcClause
+|keepClause
+|dropClause
+|pivotClause
+|unpivotClause
+|subspaceClause
+;
+
+aggrClause : 
+AGGREGATE aggrExpr (',' aggrExpr)* groupingClause? havingClause?
+;
+
+aggrExpr:
+componentRole? componentID ':=' aggrFunction
+;
+
+filterClause:
+FILTER scalar 
+;
+
+renameClause:
+RENAME renameExpr (',' renameExpr)* 
+;
+
+renameExpr:
+component TO componentID
+;
+
+calcClause:
+CALC calcExpr (',' calcExpr)*
+;
+
+calcExpr:
+componentRole? componentID ':=' (scalar|analyticFunction)
+;
+
+keepClause:
+KEEP component (',' component)*
+;
+
+dropClause:
+DROP component (',' component)*
+;
+
+pivotClause:
+PIVOT componentID ',' componentID
+;
+
+unpivotClause
+:
+UNPIVOT componentID ',' componentID
+;
+
+subspaceClause:
+SUBSPACE subspaceExpr (',' subspaceExpr)*
+;
+
+subspaceExpr:
+component '=' constant
+;
+
+joinExpr:
+joinKeyword '(' joinClause joinBody? ')'
+;
+
+joinClause:
+joinAliasesClause joinUsingClause?
+;
+
+joinBody:
+joinFilterClause? (joinCalcClause|joinApplyClause|(joinAggrClause groupingClause havingClause?))? (joinKeepClause|joinDropClause)? joinRenameClause?
+;
+
+joinAliasesClause:
+joinAliasExpr (',' joinAliasExpr)*
+;
+
+joinAliasExpr:
+dataset (AS varID)?
+;
+
+joinUsingClause:
+USING componentID (',' componentID)*
+;
+
+joinCalcClause:
+calcClause
+;
+
+joinAggrClause:
+aggrClause
+;
+  
+joinKeepClause:
+keepClause
+;
+
+joinDropClause:
+dropClause
+;
+
+joinFilterClause:
+filterClause
+;
+
+joinRenameClause:
+renameClause
+;
+  
+joinApplyClause:
+APPLY scalar
+; 
+
+aggrInvocation:
+opSymbol=aggrFunctionName '(' dataset groupingClause havingClause? ')'
+;
+
+aggrFunction:
+opSymbol=SUM '(' component ')'
+|opSymbol=AVG '(' component ')'
+|opSymbol=COUNT '(' component? ')'
+|opSymbol=MEDIAN '(' component ')'
+|opSymbol=MIN '(' component ')'
+|opSymbol=MAX '(' component ')'
+|opSymbol=RANK '(' component ')'
+|opSymbol=STDDEV_POP '(' component ')'
+|opSymbol=STDDEV_SAMP '(' component ')'
+|opSymbol=VAR_POP '(' component ')'
+|opSymbol=VAR_SAMP '(' component ')'
+;
+
+aggrFunctionName:
+SUM 
+|AVG 
+|COUNT 
+|MEDIAN 
+|MIN 
+|MAX
+|STDDEV_POP 
+|STDDEV_SAMP
+|VAR_POP 
+|VAR_SAMP
+;
+
+groupingClause:
+groupKeyword component (',' component)*
+;
+   
+havingClause:
+HAVING havingExpr
+|HAVING '(' havingExpr ')'
+;
+
+havingExpr:
+leftScalar=scalar opSymbol=('>'|'<'|'<='|'>='|'='|'<>') aggrFunction
+|leftAggrFunction=aggrFunction opSymbol=('>'|'<'|'<='|'>='|'='|'<>') scalar
+|havingExpr opSymbol=(AND|OR|XOR) havingExpr
+;
+
+analyticInvocation:
+aggrOpSymbol=aggrFunctionName '(' dataset OVER '(' analyticClause ')' ')'
+|opSymbol=(FIRST_VALUE|LAST_VALUE) '(' dataset OVER '(' analyticClause ')' ')'
+|opSymbol=RATIO_TO_REPORT '(' dataset OVER '(' partitionClause ')' ')'
+|opSymbol=(LAG|LEAD) '(' dataset ',' scalar (',' scalar)? OVER '(' partitionClause? orderClause ')' ')'
+;
+
+analyticFunction:
+aggrFunctionName '(' component OVER '(' analyticClause ')' ')'
+|opSymbol=(FIRST_VALUE|LAST_VALUE) '(' component OVER '(' analyticClause ')' ')'
+|opSymbol=RANK '(' OVER '(' partitionClause? orderClause ')' ')'
+|opSymbol=RATIO_TO_REPORT '(' component OVER '(' partitionClause ')' ')'
+|opSymbol=(LAG|LEAD) '(' component ',' scalar (',' scalar)? OVER '(' partitionClause? orderClause ')' ')'
+;
+
+analyticClause:
+partitionClause orderClause? windowingClause?
+|partitionClause? orderClause windowingClause?
+|partitionClause? orderClause? windowingClause
+;
+
+partitionClause:
+PARTITION BY component (',' component)*
+;
+  
+orderClause:
+ORDER BY orderExpr (',' orderExpr)* 
+;
+
+orderExpr:
+component (ASC|DESC)?
+;
+  
+windowingClause:
+((DATA POINTS)|RANGE) BETWEEN firstWindowLimit AND secondWindowLimit
+;
+  
+firstWindowLimit:
+INTEGER_CONSTANT PRECEDING
+|CURRENT DATA POINT
+|UNBOUNDED PRECEDING
+;   
+
+secondWindowLimit:
+INTEGER_CONSTANT FOLLOWING
+|CURRENT DATA POINT
+|UNBOUNDED FOLLOWING
+;
+
+analyticFunctionName:
+FIRST_VALUE 
+|LAST_VALUE 
+|LAG 
+|RANK 
+|RATIO_TO_REPORT 
+|LEAD 
+;
+
+list:
+'{' scalar (',' scalar)* '}'
+;
+
+varID:
+IDENTIFIER
+;
+
+datasetID: 
+IDENTIFIER
+|IDENTIFIER '\\' IDENTIFIER
+;
+  
+componentID:
+IDENTIFIER
+;
+
+joinKeyword:
+INNER_JOIN
+|LEFT_JOIN
+|FULL_JOIN
+|CROSS_JOIN
+;
+
+groupKeyword:
+GROUP BY
+|GROUP EXCEPT
+|GROUP ALL
+;
+
+constant:
+FLOAT_CONSTANT
+|INTEGER_CONSTANT
+|BOOLEAN_CONSTANT
+|STRING_CONSTANT
+|TIME_CONSTANT
+|NULL_CONSTANT
+;
+
+componentRole:
+MEASURE
+|DIMENSION
+|ATTRIBUTE
+|VIRAL ATTRIBUTE
+;
+
+valueDomainName:
+IDENTIFIER
+;
+
+retainType:
+BOOLEAN_CONSTANT
+|ALL
+;
+
+limitsMethod:
+ALL
+|SINGLE
+;
+
+// ------------
+ 
+/*
 
 expr: 
-    exprAtom ('[' (datasetClause|(expr ASSIGN expr)) ']')*(MEMBERSHIP componentID)?
-    |('+'|'-'|NOT) expr
-    |expr ('*'|'/') expr
-	|expr ('+'|'-') expr
-	|expr ('>'|'<'|'<='|'>='|'='|'<>') expr
-	|expr (IN|NOT_IN)(lists|IDENTIFIER)
-	|expr EXISTS_IN expr ALL?
-	|EXISTS_IN '(' expr ',' expr (',' retainType)? ')'
-	|expr ('='|'<>') expr
-	|expr AND expr
-	|expr (OR|XOR) expr										 
-    |IF expr THEN expr ELSE expr	
-    |exprComplex	
-    |exprAtom
-    |expr CONCAT expr
-    |constant
-  	|IDENTIFIER
-    ;
- 
+dataset
+;
+
 exprComplex:
-    validationExpr #exprValidationExpr
-    |defExpr #definitionExpressions
-	|aggrInvocation #standaloneAggregateFunction
-	|aggrInvocationCompExpr #componentExpressionwithAggrClause
-	|anFunctionClause #standaloneAnalyticFunction
-	|aggrFunction #simpleaggregateFunctions
-	|timeExpr #timeexpressions
-	|setExpr #setExpressions 
-	|callFunction #callFunctionExpression
-	|joinExpr #joinExpression
-	;
+;
 
 timeExpr
  :timeSeriesExpr
@@ -59,9 +457,7 @@ timeExpr
  |timeShiftExpr
  |timeAggExpr
  |CURRENT_DATE
- ; 
-
-/* Rulesets Definition */       
+ ;      
     
 defHierarchical
   :
@@ -123,7 +519,6 @@ varSignature
   varID (AS IDENTIFIER)?
   ;  
 
-/* Artefacts Definition */
 defExpr
   :
   defOperator
@@ -146,7 +541,6 @@ callFunction
   operatorID '(' ((constant|'_') (',' (constant|'_'))*)? ')'
   ;   
 
-/* Functions */
 exprAtom
   :
   ROUND '(' expr (',' optionalExpr)? ')'							# roundAtom
@@ -184,63 +578,46 @@ exprAtom
   | validationExpr													#validationSimple
   ;
 
-
-/* Parentheses */
 ref: '(' expr ')'													# parenthesisExprRef
   | varID															# varIdRef
   | constant														# constantRef
-  ; 
-
-/* identifier list*/		
+  ; 		
   
 identifierList
   :
   '[' IDENTIFIER (',' IDENTIFIER)* ']'
-  ;			 
-  
-lists
- :
- '{' constant (',' constant)* '}'
- ;  
+  ;			   
 
-/* eval */
 evalExpr
   :
   EVAL '(' routineName '(' (componentID|constant)? (',' (componentID|constant))* ')' (LANGUAGE STRING_CONSTANT)? (RETURNS outputParameterType)? ')'
   ;
   
-/* cast */
 castExpr
   :  
   CAST '(' expr ',' (basicScalarType|valueDomainName) (',' STRING_CONSTANT)? ')'
   ;
-
-/* Time operators */
 
 periodExpr
   :
   PERIOD_INDICATOR '(' expr? ')'
   ;
 
-/* timeshift */
 timeShiftExpr
   :
   TIMESHIFT '(' expr ',' INTEGER_CONSTANT ')'
   ;
 
-/* fill time series */
 timeSeriesExpr
   :
   FILL_TIME_SERIES '(' expr (',' (SINGLE|ALL))? ')'
   ;  
   
-/* time period agg */
 timeAggExpr
   :
   TIME_AGG '(' STRING_CONSTANT (',' (STRING_CONSTANT|'_'))? (',' (expr|'_'))? (',' (FIRST|LAST))? ')' 
   ;
 
-/* check */
 validationExpr
   : CHECK '(' expr (erCode)? (erLevel)? (IMBALANCE expr)?  (INVALID|ALL)? ')'  
   ;
@@ -265,160 +642,9 @@ erLevel
   ERRORLEVEL  constant
   ;
 
-/* hierarchy */
 hierarchyExpr
   : 
   HIERARCHY '(' expr ',' IDENTIFIER (CONDITION componentID (',' componentID)*)? (RULE IDENTIFIER)? ((NON_NULL|NON_ZERO|PARTIAL_NULL|PARTIAL_ZERO|ALWAYS_NULL|ALWAYS_ZERO)|'_')? ((RULE|DATASET|RULE_PRIORITY)|'_')? ((COMPUTED|ALL)|'_')? ')'
-  ;
-
-/* Clauses. */
-datasetClause
-  :
-  RENAME renameClause
-  | aggrClause
-  | filterClause
-  | calcClause
-  | keepClause
-  | dropClause
-  | pivotExpr
-  | unpivotExpr
-  | subspaceExpr
-  ;
-
-
-
-anFunctionClause
-  :
-  (aggrFunctionName|anFunction)? '(' expr? (',' expr)* OVER '(' (partitionByClause)? (orderByClause)? (windowingClause)? ')' ')'
-  ;  
-
-partitionByClause
-  :
-  PARTITION BY IDENTIFIER (',' IDENTIFIER)*
-  ;
-  
-orderByClause
-  :
-  ORDER BY componentID (ASC|DESC)? (',' componentID (ASC|DESC)?)* 
-  ;
-  
-windowingClause
-  :
-  ((DATA POINTS)|RANGE) BETWEEN limitClauseItem AND limitClauseItem
-  ;
-  
-limitClauseItem
-  :
-  (INTEGER_CONSTANT PRECEDING)
-  | (INTEGER_CONSTANT FOLLOWING)
-  | (CURRENT DATA POINT)
-  | (UNBOUNDED PRECEDING) 
-  | (UNBOUNDED FOLLOWING)
-  ;   
-
-/* Join Expressions*/
-
-joinExpr
-  :
-  joinKeyword '(' joinClause (joinBody)? ')'
-  ;
-
-joinClause
-  :
-  expr (AS IDENTIFIER)? (',' expr (AS IDENTIFIER)?)* (USING componentID (',' componentID)*)?
-  ;
-
-joinBody
-  :
-  joinFilterClause? (joinCalcClause|joinApplyClause|joinAggClause)? (joinKeepClause|joinDropClause)?   joinRenameClause?
-  ;
-
-joinCalcClause
-  :
-  componentRole? joinCalcClauseItem (',' joinCalcClauseItem)*
-  ;
-
-joinCalcClauseItem
-  :
-  CALC (componentRole)? joinCalcExpr (',' (componentRole)? joinCalcExpr)*
-  ;
-
-joinCalcExpr
-  :
-  componentID ':='  expr
-  ;
-  
-joinAggClause
-  :
-  componentRole? AGGREGATE joinAggClauseItem (',' joinAggClauseItem)* groupingClause? havingClause?
-  ;
-
-joinAggClauseItem
-  :
-   (componentRole)? joinAggExpr (',' joinAggExpr)*
-  ;
-
-joinAggExpr
-  :
-  componentID ':=' aggrFunction 
-  ;
-  
-joinKeepClause
-  :
-  KEEP keepClauseItem (',' keepClauseItem)* 
-  ;
-
-joinDropClause
-  :
-  DROP dropClauseItem (',' dropClauseItem)* 
-  ;
-
-joinFilterClause
-  :
-  FILTER expr|rulesetID
-  ;
-
-joinRenameClause
-  :
-  RENAME (componentID MEMBERSHIP)? varID  TO (componentID MEMBERSHIP)? varID (',' (componentID MEMBERSHIP)? varID TO (componentID MEMBERSHIP)? varID)*?
-  ;
-  
-joinApplyClause
-  :
-  APPLY expr
-  ; 
-
-
-/* Analytic Functions
-anFunction
-  :
-  FIRST_VALUE '(' expr ')'
-  | LAG '(' expr ',' INTEGER_CONSTANT ',' INTEGER_CONSTANT ')'
-  | LAST_VALUE '(' expr ')'
-  | RANK '(' expr ')'
-  | RATIO_TO_REPORT '(' expr ')'
-  |LEAD '(' expr ')'
-  ; */
-
-
-anFunction
-  :
-  FIRST_VALUE 
-  | LAG 
-  | LAST_VALUE 
-  | RANK 
-  | RATIO_TO_REPORT 
-  |LEAD 
-  ;
-
-aggregateClause
-  :
-  aggrFunctionClause (',' aggrFunctionClause)*
-  ;
-
-aggrFunctionClause
-  :
-  (componentRole)? componentID ':=' aggrFunction
   ;
 
 getFiltersClause
@@ -431,170 +657,22 @@ getFilterClause
     (FILTER? expr)
   ;
 
-aggrClause 
-  : 
-  AGGREGATE aggregateClause groupingClause? havingClause?
-  ;
-
-filterClause
-  :
-  FILTER expr 
-  ;
-
-renameClause
-  :
-  varID TO varID (',' varID TO varID)* 
-  ;
-
-aggrFunction
-  :
-  SUM '(' expr ')'
-  | AVG '(' expr ')'
-  | COUNT '(' expr? ')'
-  | MEDIAN '(' expr ')'
-  | MIN '(' expr ')'
-  | MAX '(' expr ')'
-  | RANK '(' expr ')'
-  | STDDEV_POP '(' expr ')'
-  | STDDEV_SAMP '(' expr ')'
-  | VAR_POP '(' expr ')'
-  | VAR_SAMP '(' expr ')'
-  ;
-
-calcClause
-  :
-  CALC calcClauseItem (',' calcClauseItem)*
-  ;
-
-calcClauseItem
-  :
-  (componentRole)? componentID ':=' calcExpr
-  ;
-
-calcExpr
-  :
-  aggrFunction '(' expr ')'
-  | expr
-  ;
-
-dropClause
-  :
-  DROP dropClauseItem (',' dropClauseItem)*
-  ;
-
-dropClauseItem
-  :
-  componentID
-  | (datasetID MEMBERSHIP componentID)
-  ;
-
-keepClause
-  :
-  KEEP keepClauseItem (',' keepClauseItem)*
-  ;
-
-keepClauseItem
-  :
-  componentID
-  | (datasetID MEMBERSHIP componentID)
-  ;
-
-/* pivot/unpivot/subspace expressions */
-
-unpivotExpr
-:
-UNPIVOT varID ',' varID
-;
-
-pivotExpr
- :
-  PIVOT varID ',' varID
- ;
-
-subspaceExpr
-  : SUBSPACE varID '=' constant (',' varID '=' constant)*
-  ;
-
 inBetweenClause
   :
   IN (setExpr|IDENTIFIER)
   | NOT_IN (setExpr|IDENTIFIER)
   ;
 
-/* Set expressions */
-setExpr
-  :
-  UNION '(' expr (',' expr)* ')'		
-  | SYMDIFF '(' expr ',' expr ')' 
-  | SETDIFF '(' expr ',' expr ')'
-  | INTERSECT '(' expr (',' expr)* ')'
-  ;
-  
-
-/* subscript expression*/
 subscriptExpr
   :
   persistentDatasetID '[' componentID '=' constant ( ',' componentID '=' constant)? ']' 
   ;
-
-/*Aggregation operators invocation*/
-aggrInvocation
-  :
-  aggrFunctionName '(' IDENTIFIER (MEMBERSHIP componentID)? (',' IDENTIFIER(MEMBERSHIP componentID)?)* (groupingClause)? (havingClause)? ')'
-  ;
-  
-aggrInvocationCompExpr
-  :
-  aggrFunctionName '(' IDENTIFIER (MEMBERSHIP componentID)? (',' IDENTIFIER(MEMBERSHIP componentID)?)* ')' (groupingClause)? (havingClause)?
-  ;  
-
-aggrFunctionName
-  :
-  SUM 
-  | AVG 
-  | COUNT 
-  | MEDIAN 
-  | MIN 
-  | MAX
-  | STDDEV_POP 
-  | STDDEV_SAMP
-  | VAR_POP 
-  | VAR_SAMP
-  ;
-
-groupingClause
-  :
-  groupKeyword ((IDENTIFIER (',' IDENTIFIER)*)|(expr))
-  ;
-   
-havingClause   
-  :
-  HAVING '('? aggrFunction? expr ')'?
-  ;
-  
-/* aggregate sequences */
   
 returnAll
   :
   RETURN ALL DATA POINTS
   ;
 
-/* Role name*/
-componentRole
-  :
-  MEASURE
-  |COMPONENT
-  |DIMENSION
-  |ATTRIBUTE
-  |viralAttribute
-  ;
-  
- viralAttribute
-  : 
-  VIRAL ATTRIBUTE
-  ; 
-
-/* Arithmetic */
 logBase
   :
   expr
@@ -605,28 +683,12 @@ exponent
   INTEGER_CONSTANT|FLOAT_CONSTANT
   ;
 
-/* Variable, identifiers, constants */
 persistentDatasetID
   : 
   STRING_CONSTANT
   ;
-  
- datasetID
-  : 
-  IDENTIFIER
-  ;
 
  rulesetID
-  :
-  IDENTIFIER
-  ;
-
-varID
-  :
-  IDENTIFIER
-  ;
-  
-componentID
   :
   IDENTIFIER
   ;
@@ -641,30 +703,6 @@ componentID
   :
   IDENTIFIER
   ; 
-  
- joinKeyword
-  :
-  INNER_JOIN
-  |LEFT_JOIN
-  |FULL_JOIN
-  |CROSS_JOIN
-  ;
-
- groupKeyword
-  :
-  (GROUP BY)
-  |(GROUP EXCEPT)
-  |(GROUP ALL)
-  ;
-
-constant
-  :
-  INTEGER_CONSTANT
-  | FLOAT_CONSTANT
-  | BOOLEAN_CONSTANT
-  | STRING_CONSTANT
-  | NULL_CONSTANT
-  ;
  
   componentType2
   :
@@ -691,11 +729,6 @@ constant
   | DURATION
   | SCALAR
   | TIME
-  ;
-  
-  valueDomainName
-  :
-  IDENTIFIER
   ;
   
   setName
@@ -794,12 +827,6 @@ constant
   scalarSetType
   :
   SET ('<' scalarType '>')?
-  ;
-  
-  retainType
-  :
-  BOOLEAN_CONSTANT
-  | ALL
   ;
   
  defineDatapointRuleset

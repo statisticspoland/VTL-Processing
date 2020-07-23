@@ -1,17 +1,26 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Logging
+﻿namespace StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging
 {
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
     using System.Linq;
 
-    public sealed class ErrorCollectorProvider : ILoggerProvider
+    /// <summary>
+    /// Creates and stores instances of <see cref="ErrorCollector"/> - <see cref="ILogger"/> representation.
+    /// </summary>
+    public class ErrorCollectorProvider : ILoggerProvider
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorCollectorProvider"/> class.
+        /// </summary>
         public ErrorCollectorProvider()
         {
             this.ErrorCollectors = new List<ErrorCollector>();
         }
 
-        public List<ErrorCollector> ErrorCollectors { get; set; }
+        /// <summary>
+        /// Gets the list of <see cref="ErrorCollector"/> instances.
+        /// </summary>
+        public List<ErrorCollector> ErrorCollectors { get; }
 
         public IEnumerable<TResult> GetOfType<TResult>()
         {

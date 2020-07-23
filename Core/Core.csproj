@@ -7,21 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Infrastructure\DependencyInjection\Provider.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="FrontEnd\Antlr\Vtl.interp" />
-    <None Remove="FrontEnd\Antlr\Vtl.tokens" />
-    <None Remove="FrontEnd\Antlr\VtlLexer.interp" />
-    <None Remove="FrontEnd\Antlr\VtlLexer.tokens" />
-    <None Remove="FrontEnd\Vtl.interp" />
-    <None Remove="FrontEnd\Vtl.tokens" />
-    <None Remove="FrontEnd\VtlLexer.interp" />
-    <None Remove="FrontEnd\VtlLexer.tokens" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0" />
