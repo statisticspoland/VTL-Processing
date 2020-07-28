@@ -32,4 +32,4 @@ jobs:
     env:
       SONAR_TOKEN: 8784854f6b0cc1faec30dd20d476ace9af8a740e
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      LANG: en_US.UTF-8
+      LANG: pl_PL.UTF-8
