@@ -28,7 +28,7 @@ jobs:
         beginArguments: >
             /d:sonar.verbose="true"
             /d:sonar.cs.opencover.reportsPaths='"./coverage.xml"'
-            /d:sonar.coverage.exclusions='"**/*.adoc"'
+            /d:sonar.coverage.exclusions='"**/*.adoc", Docs/**/*'
     env:
       SONAR_TOKEN: 8784854f6b0cc1faec30dd20d476ace9af8a740e
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
