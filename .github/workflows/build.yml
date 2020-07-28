@@ -16,13 +16,11 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
-    - name: Install dependencies
-      run: dotnet restore    
+        dotnet-version: 3.1.301 
     - name: Sonarscanner for dotnet
       uses: Secbyte/dotnet-sonarscanner@v2.3
       with:
-        buildCommand: dotnet build --configuration Release --no-restore
+        buildCommand: dotnet build --configuration Release
         testCommand: dotnet test --no-restore --verbosity normal
         projectKey: StatisticsPoland.VtlProcessing.Core
         projectName: StatisticsPoland.VtlProcessing.Core
