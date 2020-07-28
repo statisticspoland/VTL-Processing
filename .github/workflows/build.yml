@@ -17,13 +17,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301 
-    - name: Setup encoding
-      run: |
-           sudo apt-get update 
-           sudo apt-get install -y locales
-           sudo locale-gen "pl_PL.UTF-8"
-           sudo update-locale LC_ALL="pl_PL.UTF-8"
-           export LANG="pl_PL.UTF-8"
     - name: Sonarscanner for dotnet
       uses: Secbyte/dotnet-sonarscanner@v2.3
       with:
