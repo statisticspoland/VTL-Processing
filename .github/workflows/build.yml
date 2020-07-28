@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -32,6 +32,6 @@ jobs:
             /d:sonar.cs.opencover.reportsPaths='"./coverage.xml"
             /d:sonar.coverage.exclusions='"**/*.adoc"'
     env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_TOKEN: 8784854f6b0cc1faec30dd20d476ace9af8a740e
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
