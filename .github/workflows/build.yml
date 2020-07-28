@@ -19,10 +19,19 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: dotnet restore    
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v1.3
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+    - name: Sonarscanner for dotnet
+      uses: Secbyte/dotnet-sonarscanner@v2.3
+      with:
+        buildCommand: dotnet build --configuration Release --no-restore
+        testCommand: dotnet test --no-restore --verbosity normal
+        projectKey: StatisticsPoland.VtlProcessing.Core
+        projectName: StatisticsPoland.VtlProcessing.Core
+        sonarOrganisation: vtl-processing
+        beginArguments: >
+            /d:sonar.verbose="true"
+            /d:sonar.cs.opencover.reportsPaths='"./coverage.xml"
+            /d:sonar.coverage.exclusions='"**/*.adoc"'
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
