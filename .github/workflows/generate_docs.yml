@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  SITE_DIR: 'site'
+  SITE_DIR: 'docs'
 jobs:
   build_site:
     name: "Build site with Antora"
