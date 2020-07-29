@@ -2,8 +2,9 @@ name: Generate Docs
 
 on:
   push:
-    branches: 
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 env:
   SITE_DIR: 'site'
 jobs:
