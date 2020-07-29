@@ -3,18 +3,16 @@ name: Generate Docs
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 env:
   SITE_DIR: 'site'
 jobs:
   build_site:
-    name: "Build site with Antora"
+    name: Build site with Antora
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: run script
+      - name: Run Antora
         uses: ./docs-source/antora-action-env
       - name: 'create .nojekyll'
         run: touch ${{ github.workspace }}/docs-source/build/${{ env.SITE_DIR }}/.nojekyll
