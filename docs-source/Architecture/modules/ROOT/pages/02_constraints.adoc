@@ -1,0 +1,36 @@
+== Ograniczenia
+
+Zidentyfikowano następujące ograniczenia wpływającym na zastosowane rozwiązania:
+
+.Ograniczenia zewnętrzne
+[%header, cols="1,2"]
+|===
+|przyczyna 
+|skutek
+
+|Zainteresowanie translatorem przez zewnętrzne instytucje.
+|Potrzeba upublicznienie kodu źródłowego na GitHibie. 
+
+|===
+
+.Ograniczenia wewnętrzne
+[%header, cols="1,2"]
+|===
+|przyczyna 
+|skutek
+
+|Brak w zespole projektowym znajomości języków i platform innych niż .NET. 
+|Wybór bibliotek i narzędzi wspierających środowisko .NET.
+
+|===
+
+.Ograniczenia techniczne
+[%header, cols="1,2"]
+|===
+|przyczyna 
+|skutek
+
+|Przyszłe wykorzystanie przez SPDS, którego głównym językiem walidacji jest T-SQL.
+|T-SQL domyślnym _targetem_ translacji.
+
+|===

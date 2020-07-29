@@ -1,0 +1,3 @@
+== Ryzyka i dług techniczny
+
+NOTE: todo: 11. Risks and Technical Debt

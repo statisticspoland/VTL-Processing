@@ -1,0 +1,12 @@
+== Strategia rozwiązania
+
+Dla realizacji systemu przyjęto następujące decyzje strategiczne:
+
+Translacja offline :: 
+    Translacja może się odbywać bez potrzeby nazwiązania połączenia z bazą danych.
+    Wymagane jest jedynie dostarczenie kodu VTL, modelu danych i potrzebnych mapowań nazw.
+
+Zgodność ze standardem VTL 2.0 ::
+    Należy dążyć do uzyskania zgodności translatora z VTL 2.0.
+
+    
