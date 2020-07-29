@@ -1,5 +1,0 @@
-== Wdrożenie systemu
-
-TODO
-//.Infrastruktura wdrożeniowa VTL Processing
-//plantuml::diag/wdrożenie.pu[]
