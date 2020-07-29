@@ -1,4 +1,3 @@
-Docs/build/
 
 *.suo
 *.user
@@ -13,3 +12,4 @@ obj/
 
 .vscode/
 .vs
+docs-source/build/

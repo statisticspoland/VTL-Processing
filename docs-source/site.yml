@@ -5,7 +5,7 @@ site:
 content:
   sources:
   - url: ..
-    start_path: Docs/Architecture
+    start_path: docs-source/Architecture
     branches: HEAD
 ui:
   bundle:
