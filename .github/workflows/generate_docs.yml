@@ -17,7 +17,7 @@ jobs:
       - name: run script
         uses: ./docs-source/antora-action-env
       - name: 'create .nojekyll'
-        run: touch build/site/.nojekyll
+        run: "touch ${{ github.workspace }}/build/${{ env.SITE_DIR }}/.nojekyll"
       - name: "Upload generated site"
         uses: actions/upload-artifact@v1.0.0
         with:
