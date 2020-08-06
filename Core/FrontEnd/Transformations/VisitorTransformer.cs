@@ -129,7 +129,7 @@
 
         public override IExpression VisitClosedDataset([NotNull] VtlParser.ClosedDatasetContext context)
         {
-            IExpression datasetExpr = null;
+            IExpression datasetExpr;
             if (context.opSymbol == null)
             {
                 if (context.datasetID() != null) return this.Visit(context.datasetID());
@@ -143,6 +143,7 @@
                     datasetExpr.AddOperand("ds_1", this.Visit(context.closedDataset()));
                     datasetExpr.AddOperand("ds_2", this.Visit(context.datasetClause()));
                 }
+                else throw new Exception("Missing context in ClosedDatasetContext.");
             }
             else
             {
