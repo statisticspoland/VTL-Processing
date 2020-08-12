@@ -440,5 +440,71 @@ public interface IVtlVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLimitsMethod([NotNull] VtlParser.LimitsMethodContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.checkDatapoint"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCheckDatapoint([NotNull] VtlParser.CheckDatapointContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.defExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDefExpr([NotNull] VtlParser.DefExprContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.defDatapoint"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDefDatapoint([NotNull] VtlParser.DefDatapointContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.rulesetSignature"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.ruleClauseDatapoint"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRuleClauseDatapoint([NotNull] VtlParser.RuleClauseDatapointContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.ruleItemDatapoint"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.varSignature"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVarSignature([NotNull] VtlParser.VarSignatureContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.errorCode"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitErrorCode([NotNull] VtlParser.ErrorCodeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.errorLevel"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitErrorLevel([NotNull] VtlParser.ErrorLevelContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.rulesetID"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRulesetID([NotNull] VtlParser.RulesetIDContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VtlParser.ruleID"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRuleID([NotNull] VtlParser.RuleIDContext context);
 }
 } // namespace StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr

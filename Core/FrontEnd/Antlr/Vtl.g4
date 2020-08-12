@@ -8,8 +8,10 @@ start:
 ;
 
 statement: 
-(varID ASSIGN)? (dataset|scalar)
-|varID PUT_SYMBOL dataset;
+(datasetID ASSIGN)? (dataset|scalar)
+|datasetID PUT_SYMBOL dataset
+|defExpr
+;
 
 dataset:
 closedDataset
@@ -75,6 +77,7 @@ datasetID
 |opSymbol=PERIOD_INDICATOR '(' dataset ')'	
 |opSymbol=TIMESHIFT '(' dataset ',' scalar ')'
 |opSymbol=FILL_TIME_SERIES '(' dataset (',' (limitsMethod))? ')'
+|opSymbol=TIME_AGG '(' scalar ',' dataset ')'
 ;
 
 membershipDataset:
@@ -86,6 +89,7 @@ aggrInvocation
 |analyticInvocation
 |setExpr
 |joinExpr
+|checkDatapoint
 ;
 
 ifThenElseDataset:
@@ -139,6 +143,7 @@ scalar:
 |opSymbol=NVL '(' scalar ',' scalar ')'
 |opSymbol=MOD '(' scalar ',' scalar ')'			
 |opSymbol=PERIOD_INDICATOR '(' scalar? ')'
+|opSymbol=TIME_AGG '(' scalar ',' scalar ')'
 |opSymbol=CURRENT_DATE
 ;
 
@@ -440,6 +445,54 @@ ALL
 |SINGLE
 ;
 
+checkDatapoint:
+CHECK_DATAPOINT '(' dataset ',' rulesetID (COMPONENTS componentID (',' componentID)*)? output=(INVALID|ALL|ALL_MEASURES)? ')'
+;
+
+// --- RULESETS:
+
+defExpr:
+defDatapoint
+//|defHierarchical
+//|defOperator
+;
+
+defDatapoint:
+DEFINE DATAPOINT RULESET rulesetID '(' rulesetSignature ')' IS ruleClauseDatapoint END DATAPOINT RULESET
+;
+
+rulesetSignature:
+signatureType=(VALUE_DOMAIN|VARIABLE) varSignature (',' varSignature)*
+;
+
+ruleClauseDatapoint:
+ruleItemDatapoint (';' ruleItemDatapoint)*
+;
+
+ruleItemDatapoint:
+(ruleID ':')? ( WHEN scalar THEN )? scalar errorCode? errorLevel?
+;
+
+varSignature:
+varID (AS IDENTIFIER)?
+;  
+
+errorCode :
+ERRORCODE constant
+;
+  
+errorLevel:
+ERRORLEVEL constant
+;
+
+rulesetID:
+IDENTIFIER
+;
+
+ruleID:
+IDENTIFIER
+;
+
 // ------------
  
 /*
@@ -496,35 +549,7 @@ codeItemRef
   :
   IDENTIFIER (opComp=('='|'>'|'<'|'>='|'<='))?
   ;
-  
-defDatapoint
-  :
-  defineDatapointRuleset rulesetID '(' rulesetSignature ')' IS ruleClauseDatapoint endDatapointRuleset
-  ;
-ruleClauseDatapoint
-  :
-  ruleItemDatapoint (';' ruleItemDatapoint)*
-  ;
-ruleItemDatapoint
-  :
-  (IDENTIFIER ':')? ( WHEN expr THEN )? expr (erCode)? (erLevel)?
-  ;
-  
-rulesetSignature
-  :
-  (VALUE_DOMAIN|VARIABLE) varSignature (',' varSignature)*
-  ;
-varSignature
-  :
-  varID (AS IDENTIFIER)?
-  ;  
 
-defExpr
-  :
-  defOperator
-  |defDatapoint
-  |defHierarchical
-  ; 
   
 defOperator
   :
@@ -621,25 +646,10 @@ timeAggExpr
 validationExpr
   : CHECK '(' expr (erCode)? (erLevel)? (IMBALANCE expr)?  (INVALID|ALL)? ')'  
   ;
-
-validationDatapoint
-  :
-   CHECK_DATAPOINT '(' expr ',' IDENTIFIER (COMPONENTS componentID (',' componentID)*)? (INVALID|ALL_MEASURES|ALL)? ')'
-  ;
   
 validationHierarchical
   :
   CHECK_HIERARCHY '(' expr',' IDENTIFIER (CONDITION componentID (',' componentID)*)? (RULE IDENTIFIER)? (NON_NULL|NON_ZERO|PARTIAL_NULL|PARTIAL_ZERO|ALWAYS_NULL|ALWAYS_ZERO)? (DATASET|DATASET_PRIORITY)? (INVALID|ALL|ALL_MEASURES)? ')'
-  ;
-
-erCode 
-  :
-  ERRORCODE  constant
-  ;
-  
-erLevel
-  :
-  ERRORLEVEL  constant
   ;
 
 hierarchyExpr
@@ -686,11 +696,6 @@ exponent
 persistentDatasetID
   : 
   STRING_CONSTANT
-  ;
-
- rulesetID
-  :
-  IDENTIFIER
   ;
   
  operatorID
@@ -837,11 +842,6 @@ persistentDatasetID
  defineHierarchicalRuleset
    :
    DEFINE HIERARCHICAL RULESET
-   ;
-   
- endDatapointRuleset
-   :
-   END DATAPOINT RULESET
    ;
    
  endHierarchicalRuleset

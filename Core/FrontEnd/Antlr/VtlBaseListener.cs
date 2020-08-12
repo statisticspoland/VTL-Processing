@@ -851,6 +851,138 @@ public partial class VtlBaseListener : IVtlListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLimitsMethod([NotNull] VtlParser.LimitsMethodContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.checkDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCheckDatapoint([NotNull] VtlParser.CheckDatapointContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.checkDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCheckDatapoint([NotNull] VtlParser.CheckDatapointContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.defExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDefExpr([NotNull] VtlParser.DefExprContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.defExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDefExpr([NotNull] VtlParser.DefExprContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.defDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDefDatapoint([NotNull] VtlParser.DefDatapointContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.defDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDefDatapoint([NotNull] VtlParser.DefDatapointContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.rulesetSignature"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.rulesetSignature"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.ruleClauseDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRuleClauseDatapoint([NotNull] VtlParser.RuleClauseDatapointContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.ruleClauseDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRuleClauseDatapoint([NotNull] VtlParser.RuleClauseDatapointContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.ruleItemDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.ruleItemDatapoint"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.varSignature"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVarSignature([NotNull] VtlParser.VarSignatureContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.varSignature"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVarSignature([NotNull] VtlParser.VarSignatureContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.errorCode"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterErrorCode([NotNull] VtlParser.ErrorCodeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.errorCode"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitErrorCode([NotNull] VtlParser.ErrorCodeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.errorLevel"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterErrorLevel([NotNull] VtlParser.ErrorLevelContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.errorLevel"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitErrorLevel([NotNull] VtlParser.ErrorLevelContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.rulesetID"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRulesetID([NotNull] VtlParser.RulesetIDContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.rulesetID"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRulesetID([NotNull] VtlParser.RulesetIDContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VtlParser.ruleID"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRuleID([NotNull] VtlParser.RuleIDContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VtlParser.ruleID"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRuleID([NotNull] VtlParser.RuleIDContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

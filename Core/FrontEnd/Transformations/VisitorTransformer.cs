@@ -80,7 +80,7 @@
             IExpression statementExpr;
             if (context.dataset() != null) statementExpr = this.Visit(context.dataset());
             else statementExpr = this.Visit(context.scalar());
-            statementExpr.ResultName = context.varID().GetText();
+            statementExpr.ResultName = context.datasetID()?.GetText();
             statementExpr.ParamSignature = "<root>";
             statementExpr.LineNumber = context.Start.Line;
             statementExpr.SetContainingSchema(this.schema);
