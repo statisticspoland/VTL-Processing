@@ -1,5 +1,6 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Models.Logical
 {
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System;
@@ -119,6 +120,65 @@
             if (copyName) copy.DatasetName = this.DatasetName;
 
             return copy;
+        }
+
+        public IDataStructure WithAttributesOf(IDataStructure dataStructure, int errorsNumberIn, out int errorNumberOut)
+        {
+            errorNumberOut = errorsNumberIn;
+            if (dataStructure != null)
+            {
+                StructureComponent existingAttribute;
+                foreach (StructureComponent attribute in dataStructure.NonViralAttributes)
+                {
+                    if ((existingAttribute = this.nonViralAttributes.FirstOrDefault(at => at.ComponentName == attribute.ComponentName)) == null)
+                        this.nonViralAttributes.Add(attribute);
+                    else if (existingAttribute.ComponentType != attribute.ComponentType) ; // TODO: Warning
+                }
+
+                foreach (StructureComponent attribute in dataStructure.ViralAttributes)
+                {
+                    if ((existingAttribute = this.viralAttributes.FirstOrDefault(at => at.ComponentName == attribute.ComponentName)) == null)
+                        this.viralAttributes.Add(attribute);
+                    else if (existingAttribute.ValueDomain.DataType != attribute.ValueDomain.DataType) errorNumberOut++;
+                }
+            }
+
+            return this;
+        }
+
+        public bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false)
+        {
+            StructureComponent[] supersetComponents = this.Identifiers.ToArray();
+            StructureComponent[] subsetComponents = structure.Identifiers.ToArray();
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (checkMeasures && i == 1)
+                {
+                    if (this.Measures.Count != structure.Measures.Count) 
+                        return false;
+
+                    supersetComponents = this.Measures.ToArray();
+                    subsetComponents = structure.Measures.ToArray();
+                }
+                else if (checkAttributes && i == 2)
+                {
+                    if (this.ViralAttributes.Count != structure.ViralAttributes.Count) 
+                        return false;
+
+                    supersetComponents = this.ViralAttributes.ToArray();
+                    subsetComponents = structure.ViralAttributes.ToArray();
+                }
+
+                foreach (StructureComponent subsetComponent in subsetComponents)
+                {
+                    if (supersetComponents.FirstOrDefault(comp => comp.ComponentName == subsetComponent.ComponentName && 
+                            comp.ValueDomain.DataType.EqualsObj(subsetComponent.ValueDomain.DataType, i != 0, i != 0 && allowNulls)) == null)
+                        return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>

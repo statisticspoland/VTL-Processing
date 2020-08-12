@@ -1,5 +1,6 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Models
 {
+    using Newtonsoft.Json;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
 
@@ -18,6 +19,29 @@
             this.DataType = dataType;
             this.Signature = signature ?? dataType.GetName().ToLower();
             if (this.Signature == "none") this.Signature = "null";
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValueDomain"/> class <b>for value domains of basic data types.</b>.
+        /// </summary>
+        /// <param name="signature">The domain signature.</param>
+        [JsonConstructor]
+        public ValueDomain(string signature)
+        {
+            this.Signature = signature;
+            switch (signature)
+            {
+                case "integer_default": this.DataType = BasicDataType.Integer; break;
+                case "number_default": this.DataType = BasicDataType.Number; break;
+                case "string_default": this.DataType = BasicDataType.String; break;
+                case "boolean_default": this.DataType = BasicDataType.Boolean; break;
+                case "time_default": this.DataType = BasicDataType.Time; break;
+                case "date_default": this.DataType = BasicDataType.Date; break;
+                case "timeperdiod_default": this.DataType = BasicDataType.TimePeriod; break;
+                case "duration_default": this.DataType = BasicDataType.Duration; break;
+                case "null_default": this.DataType = BasicDataType.None; break;
+                default: break;
+            }
         }
 
         /// <summary>

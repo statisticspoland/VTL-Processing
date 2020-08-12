@@ -54,5 +54,24 @@
         /// <param name="copyName">Specifies if copy the name of the data structure.</param>
         /// <returns>The copy of this data structure.</returns>
         IDataStructure GetCopy(bool copyName = false);
+
+        /// <summary>
+        /// Adds attributes of a given data structure and returns a new instance.
+        /// </summary>
+        /// <param name="dataStructure">The structure with attributes to add.</param>
+        /// <param name="errorsNumberIn">The current number of errors.</param>
+        /// <param name="errorsNumberOut">The number of errors after merging attributes.</param>
+        /// <returns>The datastructure.</returns>
+        IDataStructure WithAttributesOf(IDataStructure dataStructure, int errorsNumberIn, out int errorsNumberOut);
+
+        /// <summary>
+        /// Checks if this dataset is a superset of a given dataset.
+        /// </summary>
+        /// <param name="structure">The dataset to compare.</param>
+        /// <param name="checkMeasures">Specifies if measures should be checked.</param>
+        /// <param name="checkAttributes">Specifies if viral attributes should be checked.</param>
+        /// <param name="allowNulls">Specifies if null values are equal to every type.</param>
+        /// <returns>The value specyfing if it's a superset.</returns>
+        bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false);
     }
 }

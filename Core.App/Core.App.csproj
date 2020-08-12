@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DataModel\DataModel.csproj" />
     <ProjectReference Include="..\Target.PlantUML\Target.PlantUML.csproj" />
   </ItemGroup>
 
