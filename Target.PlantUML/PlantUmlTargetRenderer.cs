@@ -1,7 +1,9 @@
 ﻿namespace Target.PlantUML
 {
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
+    using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -159,6 +161,82 @@
             if(this.conf.ShowNumberLine) sb.AppendLine($"{space}  {size}LineNumber = {expr.LineNumber}");
             sb.AppendLine($"{space}  {size}ParamSignature = '{expr.ParamSignature}'");
             sb.AppendLine($"{space}{"}"}");
+
+            if (expr.Structure != null && this.conf.ShowDataStructure)
+            {
+                sb.AppendLine();
+                sb.Append(RenderDataStructureObject(expr.Structure, $"{name}_ds", name, space));
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Renders PlantUML code based on a given VTL 2.0 data structure.
+        /// </summary>
+        /// <param name="structure">The VTL 2.0 data structure.</param>
+        /// <param name="name">The name of PlantUML object to render.</param>
+        /// <param name="parentName">The name of PlantUML object's parent to render.</param>
+        /// <param name="space">The left margin of PlantUML object in the rendered code.</param>
+        /// <returns>The PlantUML code.</returns>
+        private string RenderDataStructureObject(IDataStructure structure, string name, string parentName, string space)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string color = structure.Identifiers.Count == 0 ? "#PowderBlue" : "#LightCyan";
+            color = structure.IsSingleComponent ? "#PaleTurquoise" : color;
+
+            sb.AppendLine($"{space}object \"Data Structure {structure.DatasetName}\" as {name} {color}{"{"}");
+            if (structure.Identifiers.Count != 0)
+            {
+                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>Identifiers:");
+                sb.Append(this.RenderDataStructureElements(structure.Identifiers, space));
+            }
+
+            if (structure.Measures.Count != 0)
+            {
+                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>Measures:");
+                sb.Append(this.RenderDataStructureElements(structure.Measures, space));
+            }
+
+            if (structure.NonViralAttributes.Count != 0)
+            {
+                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>NonViralAttributes:");
+                sb.Append(this.RenderDataStructureElements(structure.NonViralAttributes, space));
+            }
+
+            if (structure.ViralAttributes.Count != 0)
+            {
+                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>ViralAttributes:");
+                sb.Append(this.RenderDataStructureElements(structure.ViralAttributes, space));
+            }
+
+            sb.AppendLine($"{space}{"}"}");
+
+            sb.AppendLine();
+            sb.AppendLine($"{space}{parentName} {this.conf.Arrow} {name}");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Renders PlantUML code based on a given VTL 2.0 structure component collection.
+        /// </summary>
+        /// <param name="components">The VTL 2.0 structure components collectione.</param>
+        /// <param name="space">The left margin of PlantUML object in the rendered code.</param>
+        /// <returns>The PlantUML code.</returns>
+        private string RenderDataStructureElements(IEnumerable<StructureComponent> components, string space)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (StructureComponent component in components)
+            {
+                string dataType = Enum.GetName(component.ValueDomain.DataType.GetType(), component.ValueDomain.DataType);
+                string baseName = string.Empty;
+
+                if (component.BaseComponentName != component.ComponentName) baseName = $" ({component.BaseComponentName})";
+                sb.AppendLine($"{space}    **{dataType}** {component.ComponentName}{baseName}");
+            }
 
             return sb.ToString();
         }

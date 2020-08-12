@@ -1,12 +1,15 @@
 ﻿namespace Core.App
 {
+    using Core.App.VtlSources;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.DataModel;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Target.PlantUML;
@@ -21,12 +24,14 @@
 
         private static async Task VtlProgram()
         {
-            string source = "DS1 := A + B; DS2 := A#Me_1 * -B#Me_2;";
+            string source = Example.Source;
             
             IServiceCollection services = new ServiceCollection();
             services.AddVtlProcessing((configure) =>
             {
-                configure.Empty();
+                configure.DefaultNamespace = "Json";
+                configure.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
+                configure.AddRegularModel(RegularModel.ModelConfiguration);
             });
 
             services.AddPlantUmlTarget((configure) =>
@@ -49,6 +54,8 @@
             ErrorCollectorProvider errColector = provider.GetService<ILoggerProvider>() as ErrorCollectorProvider;
 
             ITransformationSchema schema = provider.GetFrontEnd().BuildTransformationSchema(source); // front-end
+
+            provider.GetMiddleEnd().Process(schema); // middle-end
 
             ITargetRenderer plantUml = provider.GetService<PlantUmlTargetRenderer>();
 

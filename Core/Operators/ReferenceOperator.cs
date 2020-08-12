@@ -4,11 +4,9 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
-    using System;
-    using System.Linq;
 
     /// <summary>
-    /// Reference operator definition class.
+    /// The "Reference" operator definition.
     /// </summary>
     [OperatorSymbol("ref")]
     public class ReferenceOperator : IOperatorDefinition
@@ -21,7 +19,9 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            throw new NotImplementedException();
+            if (expression.IsScalar) throw new VtlOperatorError(expression, this.Name, $"Wrong use of scalar reference operator expression: {expression.ExpressionText}");
+
+            return expression.ReferenceExpression?.Structure.GetCopy(true);
         }
     }
 }

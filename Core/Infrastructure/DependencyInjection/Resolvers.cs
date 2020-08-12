@@ -37,12 +37,12 @@
     public delegate IOperatorDefinition OperatorResolver(string key);
 
     /// <summary>
-    /// The DI resolvers class.
+    /// The dependency injection resolvers class.
     /// </summary>
     public static class Resolvers
     {
         /// <summary>
-        /// Adds a resolvers to the specified <see cref="IServiceCollection"/>.
+        /// Adds resolvers to the specified <see cref="IServiceCollection"/>.
         /// </summary>
         /// <param name="services">The services collection.</param>
         /// <returns>The services collection.</returns>
