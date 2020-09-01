@@ -6,7 +6,7 @@
     /// <summary>
     /// Class with all-purpose methods and fields.
     /// </summary>
-    public static class Tools
+    public static class Utilities
     {
         /// <summary>
         /// Checks if instance is equal to any of params objects.

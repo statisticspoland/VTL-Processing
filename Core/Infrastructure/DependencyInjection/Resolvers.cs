@@ -70,8 +70,8 @@
                 Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
                 
                 if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(key);
-                if (type == typeof(NumericOperator)) return new NumericOperator(key);
-                if (type == typeof(StringOperator)) return new StringOperator(key);
+                if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(StringOperator)) return new StringOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(UnaryArithmeticOperator)) return new UnaryArithmeticOperator(key);
                 if (type == null) throw new NotImplementedException($"Operator {key} is not implemented.");
                 return (IOperatorDefinition)ServiceProvider.GetService(type);

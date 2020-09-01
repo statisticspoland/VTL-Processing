@@ -18,7 +18,6 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ArithmeticOperator"/> class.
         /// </summary>
-        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="symbol">The symbol of the operator.</param>
         public ArithmeticOperator(string symbol)
         {
