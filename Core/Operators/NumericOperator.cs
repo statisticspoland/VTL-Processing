@@ -4,7 +4,7 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Tools;
+    using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
@@ -75,7 +75,7 @@
             if (ds1.IsSingleComponent)
             {
                 if (this.Symbol.In("ceil", "floor")) return this.dsResolver("int_var", ComponentType.Measure, BasicDataType.Integer);
-                return this.dsResolver("number_var", ComponentType.Measure, BasicDataType.Number);
+                return this.dsResolver("num_var", ComponentType.Measure, BasicDataType.Number);
             }
             else
             {

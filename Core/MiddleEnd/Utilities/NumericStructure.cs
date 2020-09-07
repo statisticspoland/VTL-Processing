@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.MiddleEnd.Tools
+﻿namespace StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities
 {
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Models;

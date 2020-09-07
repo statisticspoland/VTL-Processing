@@ -3,7 +3,7 @@
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
-    using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Tools;
+    using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
