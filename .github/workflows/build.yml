@@ -23,15 +23,15 @@ jobs:
       uses: Secbyte/dotnet-sonarscanner@v2.3
       with:
         buildCommand: dotnet build --configuration Release
-        testCommand: >
+        testCommand: |
           dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results
-          powershell Copy-Item -Path "results/*/coverage.opencover.xml" -Destination coverage.xml -Force
+          cp results/*/coverage.opencover.xml .
         projectKey: StatisticsPoland.VtlProcessing.Core
         projectName: StatisticsPoland.VtlProcessing.Core
         sonarOrganisation: vtl-processing
         beginArguments: >
             /d:sonar.verbose="true"
-            /d:sonar.cs.opencover.reportsPaths='"./coverage.xml"'
+            /d:sonar.cs.opencover.reportsPaths='"./coverage.opencover.xml"'
             /d:sonar.coverage.exclusions='"**/*.adoc", Docs/**/*'
     env:
       SONAR_TOKEN: 8784854f6b0cc1faec30dd20d476ace9af8a740e
