@@ -24,7 +24,7 @@ jobs:
       with:
         buildCommand: dotnet build --configuration Release
         testCommand: |
-          dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results
+          dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results ; 
           cp results/*/coverage.opencover.xml .
         projectKey: StatisticsPoland.VtlProcessing.Core
         projectName: StatisticsPoland.VtlProcessing.Core
