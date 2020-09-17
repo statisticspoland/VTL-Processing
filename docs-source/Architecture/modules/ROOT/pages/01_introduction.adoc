@@ -65,7 +65,7 @@ Zidentyfikowano następujące strony zainteresowane architekturą biblioteki:
 |
 
 |Kierownik projektu
-|Mateusz Bobiński
+|Wojciech Wasilewski
 |
 
 |SDMX TWG - VTL Task Force
