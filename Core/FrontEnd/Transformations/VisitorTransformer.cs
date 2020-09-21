@@ -4,10 +4,12 @@
     using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;
     using Microsoft.Extensions.Logging;
+    using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
@@ -23,6 +25,7 @@
     {
         private readonly TransformationSchemaResolver schemaResolver;
         private readonly IExpressionFactory exprFactory;
+        private readonly IJoinBuilder joinBuilder;
         private readonly ILogger<VisitorTransformer> logger;
         private List<string> currentRefs;
         private ITransformationSchema schema;
@@ -32,11 +35,17 @@
         /// </summary>
         /// <param name="schemaResolver">The transformation schema resolver.</param>
         /// <param name="exprFactory">The expressions factory.</param>
+        /// <param name="joinBuilder">The "join" operator expressions builder.</param>
         /// <param name="logger">The errors logger.</param>
-        public VisitorTransformer(TransformationSchemaResolver schemaResolver, IExpressionFactory exprFactory, ILogger<VisitorTransformer> logger = null)
+        public VisitorTransformer(
+            TransformationSchemaResolver schemaResolver,
+            IExpressionFactory exprFactory,
+            IJoinBuilder joinBuilder,
+            ILogger<VisitorTransformer> logger = null)
         {
             this.schemaResolver = schemaResolver;
             this.exprFactory = exprFactory;
+            this.joinBuilder = joinBuilder;
             this.logger = logger;
         }
 
@@ -254,6 +263,158 @@
             optionalExpr.ExpressionText = this.GetOriginalText(context);
             optionalExpr.LineNumber = context.Start.Line;
             return optionalExpr;
+        }
+
+        public override IExpression VisitJoinExpr([NotNull] VtlParser.JoinExprContext context)
+        {
+            IExpression joinExpr = this.exprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);
+            joinExpr.ExpressionText = this.GetOriginalText(context);
+            joinExpr.LineNumber = context.Start.Line;
+            joinExpr.OperatorDefinition.Keyword = context.joinKeyword().GetText().Split('_')[0];
+
+            this.Visit(context.joinClause());
+            this.Visit(context.joinBody());
+
+            joinExpr = this.joinBuilder
+                .AddMainExpr(joinExpr)
+                .Build();
+
+            foreach (IExpression membershipExpr in joinExpr.GetDescendantExprs("Membership"))
+            {
+                if (membershipExpr.GetFirstAncestorExpr("Alias") == null) membershipExpr.OperatorDefinition.Keyword = "Component";
+            }
+
+            this.joinBuilder.Clear();
+            return joinExpr;
+        }
+
+        public override IExpression VisitJoinAliasesClause([NotNull] VtlParser.JoinAliasesClauseContext context)
+        {
+            IExpression dsBranch = this.exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+            dsBranch.ExpressionText = this.GetOriginalText(context);
+            dsBranch.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.joinAliasExpr().Length; i++)
+            {
+                IExpression aliasExpr = this.Visit(context.joinAliasExpr()[i]);
+                if (aliasExpr.ParamSignature == "ds") aliasExpr.ParamSignature = $"ds{i + 1}";
+
+                dsBranch.AddOperand(aliasExpr.ParamSignature, aliasExpr);
+                dsBranch.Operands[aliasExpr.ParamSignature].ExpressionText = dsBranch.Operands[aliasExpr.ParamSignature].ExpressionText.Split(" as")[0];
+            }
+
+            this.joinBuilder.AddBranch("ds", dsBranch);
+            return dsBranch;
+        }
+
+        public override IExpression VisitJoinAliasExpr([NotNull] VtlParser.JoinAliasExprContext context)
+        {
+            IExpression aliasExpr = this.Visit(context.dataset());
+            aliasExpr.ExpressionText = this.GetOriginalText(context);
+            aliasExpr.LineNumber = context.Start.Line;
+            aliasExpr.ParamSignature = context.varID()?.GetText();
+
+            if (aliasExpr.ParamSignature == null) aliasExpr.ParamSignature = "ds";
+
+            return aliasExpr;
+        }
+
+        public override IExpression VisitJoinUsingClause([NotNull] VtlParser.JoinUsingClauseContext context)
+        {
+            IExpression usingBranch = this.exprFactory.GetExpression("Using", ExpressionFactoryNameTarget.ResultName);
+            usingBranch.ExpressionText = this.GetOriginalText(context);
+            usingBranch.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.componentID().Length; i++)
+            {
+                usingBranch.AddOperand(context.componentID()[i].GetText(), this.Visit(context.componentID()[i]));
+            }
+
+            this.joinBuilder.AddBranch("using", usingBranch);
+            return usingBranch;
+        }
+
+        public override IExpression VisitJoinCalcClause([NotNull] VtlParser.JoinCalcClauseContext context)
+        {
+            IExpression calcBranch = this.Visit(context.calcClause());
+
+            this.joinBuilder.AddBranch("calc", calcBranch);
+            return calcBranch;
+        }
+
+        public override IExpression VisitJoinAggrClause([NotNull] VtlParser.JoinAggrClauseContext context)
+        {
+            IExpression aggrBranch = this.Visit(context.aggrClause());
+
+            this.joinBuilder.AddBranch("aggr", aggrBranch);
+            return aggrBranch;
+        }
+
+        public override IExpression VisitJoinKeepClause([NotNull] VtlParser.JoinKeepClauseContext context)
+        {
+            IExpression keepBranch = this.Visit(context.keepClause());
+
+            this.joinBuilder.AddBranch("keep", keepBranch);
+            return keepBranch;
+        }
+
+        public override IExpression VisitJoinDropClause([NotNull] VtlParser.JoinDropClauseContext context)
+        {
+            IExpression dropBranch = this.Visit(context.dropClause());
+
+            this.joinBuilder.AddBranch("drop", dropBranch);
+            return dropBranch;
+        }
+
+        public override IExpression VisitJoinFilterClause([NotNull] VtlParser.JoinFilterClauseContext context)
+        {
+            IExpression filterBranch = this.Visit(context.filterClause());
+
+            this.joinBuilder.AddBranch("filter", filterBranch);
+            return filterBranch;
+        }
+
+        public override IExpression VisitJoinRenameClause([NotNull] VtlParser.JoinRenameClauseContext context)
+        {
+            IExpression renameBranch = this.Visit(context.renameClause());
+
+            this.joinBuilder.AddBranch("rename", renameBranch);
+            return renameBranch;
+        }
+
+        public override IExpression VisitJoinApplyClause([NotNull] VtlParser.JoinApplyClauseContext context)
+        {
+            IExpression applyBranch = this.Visit(context.scalar());
+            applyBranch.ResultName = "Apply";
+
+            if (applyBranch.GetDescendantExprs("Membership").Count > 0)
+                throw new VtlOperatorError(applyBranch, "apply", "Operator membership (#) can not be used in join apply operator.");
+
+            bool aliasFound = false;
+            foreach (IExpression expr in applyBranch.GetDescendantExprs("Component"))
+            {
+                expr.OperatorDefinition = this.exprFactory.OperatorResolver("ref");
+                expr.ReferenceExpression = this.joinBuilder.Branches["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expr.ExpressionText);
+                if (expr.ReferenceExpression == null)
+                {
+                    if (this.schema.AssignmentObjects.FirstOrDefault(ao => ao.Name == expr.ExpressionText) != null)
+                    {
+                        expr.ReferenceExpression = this.schema.AssignmentObjects[expr.ExpressionText].Expression;
+                        expr.ResultName = "Reference";
+                    }
+                    else throw new VtlOperatorError(applyBranch, "apply", $"Alias {expr.ExpressionText} has been not found.");
+                }
+                else
+                {
+                    expr.ResultName = "Alias";
+                    aliasFound = true;
+                }
+            }
+
+            if (!aliasFound) throw new VtlOperatorError(applyBranch, "apply", "Expected alias reference in apply operator expression.");
+
+            this.joinBuilder.AddBranch("apply", applyBranch);
+            return applyBranch;
         }
 
         public override IExpression VisitDatasetID([NotNull] VtlParser.DatasetIDContext context)

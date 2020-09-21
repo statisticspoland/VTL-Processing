@@ -8,6 +8,8 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -32,17 +34,21 @@
                 });
             exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
 
-            opResolverMock.Setup(o => o("mod")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "mod"); });
-            opResolverMock.Setup(o => o("round")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "round"); });
-            opResolverMock.Setup(o => o("trunc")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "trunc"); });
-            opResolverMock.Setup(o => o("ceil")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "ceil"); });
-            opResolverMock.Setup(o => o("floor")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "floor"); });
-            opResolverMock.Setup(o => o("abs")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "abs"); });
-            opResolverMock.Setup(o => o("exp")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "exp"); });
-            opResolverMock.Setup(o => o("ln")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "ln"); });
-            opResolverMock.Setup(o => o("power")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "power"); });
-            opResolverMock.Setup(o => o("log")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "log"); });
-            opResolverMock.Setup(o => o("sqrt")).Returns(() => { return new NumericOperator(ModelResolvers.DsResolver, "sqrt"); });
+            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
+                exprFacMock.Object,
+                ModelResolvers.DsResolver);
+
+            opResolverMock.Setup(o => o("mod")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "mod"); });
+            opResolverMock.Setup(o => o("round")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "round"); });
+            opResolverMock.Setup(o => o("trunc")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "trunc"); });
+            opResolverMock.Setup(o => o("ceil")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "ceil"); });
+            opResolverMock.Setup(o => o("floor")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "floor"); });
+            opResolverMock.Setup(o => o("abs")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "abs"); });
+            opResolverMock.Setup(o => o("exp")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "exp"); });
+            opResolverMock.Setup(o => o("ln")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "ln"); });
+            opResolverMock.Setup(o => o("power")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "power"); });
+            opResolverMock.Setup(o => o("log")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "log"); });
+            opResolverMock.Setup(o => o("sqrt")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "sqrt"); });
 
             this.opResolver = opResolverMock.Object;
         }

@@ -9,6 +9,8 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Linq;
@@ -33,7 +35,11 @@
                 });
             exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
 
-            opResolverMock.Setup(o => o("between")).Returns(() => { return new BetweenOperator(ModelResolvers.DsResolver); });
+            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
+                exprFacMock.Object,
+                ModelResolvers.DsResolver);
+
+            opResolverMock.Setup(o => o("between")).Returns(() => { return new BetweenOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver); });
 
             this.opResolver = opResolverMock.Object;
         }

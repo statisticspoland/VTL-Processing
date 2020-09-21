@@ -32,6 +32,10 @@
 
         public bool IsScalar => this.Structure?.IsSingleComponent == true;
 
+        public bool IsApplyComponent =>
+            (this.ResultName == "Apply" || this.GetFirstAncestorExpr("Apply") != null) &&
+            (this.ResultName == "Alias" || this.GetDescendantExprs("Alias").Count != 0);
+
         public int LineNumber { get; set; }
 
         public ITransformationSchema ContainingSchema { get; set; }
@@ -124,6 +128,40 @@
             {
                 operand.SetContainingSchema(schema);
             }
+        }
+
+        public IExpression GetFirstAncestorExpr()
+        {
+            IExpression ancestorExpr = this.ParentExpression;
+            while (ancestorExpr?.ParentExpression != null)
+            {
+                ancestorExpr = ancestorExpr.ParentExpression;
+            }
+
+            return ancestorExpr;
+        }
+
+        public IExpression GetFirstAncestorExpr(string resultName)
+        {
+            IExpression ancestorExpr = this.ParentExpression;
+            while (ancestorExpr != null && ancestorExpr.ResultName != resultName)
+            {
+                ancestorExpr = ancestorExpr.ParentExpression;
+            }
+
+            return ancestorExpr;
+        }
+
+        public ICollection<IExpression> GetDescendantExprs(string resultName)
+        {
+            List<IExpression> descendantExprs = new List<IExpression>();
+            foreach (IExpression expr in this.OperandsCollection)
+            {
+                if (expr.ResultName == resultName) descendantExprs.Add(expr);
+                descendantExprs.AddRange(expr.GetDescendantExprs(resultName));
+            }
+
+            return descendantExprs;
         }
     }
 }

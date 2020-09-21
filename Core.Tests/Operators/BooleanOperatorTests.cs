@@ -8,6 +8,8 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -34,9 +36,13 @@
                 });
             exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
 
-            opResolverMock.Setup(o => o("and")).Returns(() => { return new BooleanOperator(ModelResolvers.DsResolver, "and"); });
-            opResolverMock.Setup(o => o("or")).Returns(() => { return new BooleanOperator(ModelResolvers.DsResolver, "or"); });
-            opResolverMock.Setup(o => o("xor")).Returns(() => { return new BooleanOperator(ModelResolvers.DsResolver, "xor"); });
+            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
+                exprFacMock.Object,
+                ModelResolvers.DsResolver);
+
+            opResolverMock.Setup(o => o("and")).Returns(() => { return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "and"); });
+            opResolverMock.Setup(o => o("or")).Returns(() => { return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "or"); });
+            opResolverMock.Setup(o => o("xor")).Returns(() => { return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "xor"); });
 
             this.opResolver = opResolverMock.Object;
 

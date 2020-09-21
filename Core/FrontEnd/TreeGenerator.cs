@@ -14,14 +14,14 @@
     public sealed class TreeGenerator : ITreeGenerator
     {
         private readonly ITreeTransformer transformer;
-        private readonly ILogger<TreeGenerator> logger;
+        private readonly ILogger<ITreeGenerator> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TreeGenerator"/> class.
         /// </summary>
         /// <param name="transformer">The transformer of CST tree to a transformation schema.</param>
         /// <param name="logger">The syntax errors logger.</param>
-        public TreeGenerator(ITreeTransformer transformer, ILogger<TreeGenerator> logger = null)
+        public TreeGenerator(ITreeTransformer transformer, ILogger<ITreeGenerator> logger = null)
         {
             this.logger = logger;
             this.transformer = transformer;

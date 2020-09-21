@@ -9,6 +9,8 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -35,10 +37,14 @@
                 });
             exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
 
-            opResolverMock.Setup(o => o("+")).Returns(() => { return new ArithmeticOperator("+"); });
-            opResolverMock.Setup(o => o("-")).Returns(() => { return new ArithmeticOperator("-"); });
-            opResolverMock.Setup(o => o("*")).Returns(() => { return new ArithmeticOperator("*"); });
-            opResolverMock.Setup(o => o("/")).Returns(() => { return new ArithmeticOperator("/"); });
+            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
+                exprFacMock.Object,
+                ModelResolvers.DsResolver);
+
+            opResolverMock.Setup(o => o("+")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "+"); });
+            opResolverMock.Setup(o => o("-")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "-"); });
+            opResolverMock.Setup(o => o("*")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "*"); });
+            opResolverMock.Setup(o => o("/")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "/"); });
 
             this.opResolver = opResolverMock.Object;
 

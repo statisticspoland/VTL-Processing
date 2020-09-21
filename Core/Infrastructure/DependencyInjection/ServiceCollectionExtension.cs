@@ -4,8 +4,11 @@
     using StatisticsPoland.VtlProcessing.Core.FrontEnd;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Transformations;
     using StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces;
@@ -23,6 +26,9 @@
             services.AddSingleton<IExpressionFactory, ExpressionFactory>();
             services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(null, null));
 
+            services.AddSingleton<IJoinBuilder, JoinBuilder>();
+            services.AddSingleton<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
+
             services.AddResolvers();
 
             IEnumerable<Type> Operators =
@@ -39,7 +45,7 @@
             services.AddSingleton<ISchemaModifiersApplier, SchemaModifiersApplier>();
 
             // middle end schema modifier chain
-            services.AddSingleton<ISchemaModifier, DeadCodeModifier>();
+            // services.AddSingleton<ISchemaModifier, DeadCodeModifier>(); - turned off for testing
             services.AddSingleton<ISchemaModifier, TypeInferenceModifier>();
 
             //additional configuration (e.g. register data model)

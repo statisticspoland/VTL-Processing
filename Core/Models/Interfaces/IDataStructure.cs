@@ -59,10 +59,8 @@
         /// Adds attributes of a given data structure and returns a new instance.
         /// </summary>
         /// <param name="dataStructure">The structure with attributes to add.</param>
-        /// <param name="errorsNumberIn">The current number of errors.</param>
-        /// <param name="errorsNumberOut">The number of errors after merging attributes.</param>
         /// <returns>The datastructure.</returns>
-        IDataStructure WithAttributesOf(IDataStructure dataStructure, int errorsNumberIn, out int errorsNumberOut);
+        IDataStructure WithAttributesOf(IDataStructure dataStructure);
 
         /// <summary>
         /// Checks if this dataset is a superset of a given dataset.
@@ -73,5 +71,22 @@
         /// <param name="allowNulls">Specifies if null values are equal to every type.</param>
         /// <returns>The value specyfing if it's a superset.</returns>
         bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false);
+
+        /// <summary>
+        /// Adds a structure to this data structure.
+        /// </summary>
+        /// <param name="structure">The structure to add.</param>
+        void AddStructure(IDataStructure structure);
+
+        /// <summary>
+        /// Removes component duplicates of the same type with the same names.
+        /// </summary>
+        void RemoveComponentDuplicates();
+
+        /// <summary>
+        /// Removes component duplicates of different types with the same names.
+        /// </summary>
+        /// <param name="duplicatesDataStructure">The source of component duplicates</param>
+        void RemoveComponentDuplicates(IDataStructure duplicatesDataStructure);
     }
 }

@@ -16,15 +16,18 @@
     [OperatorSymbol("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")]
     public class StringOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
         private readonly DataStructureResolver dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="StringOperator"/> class.
         /// </summary>
+        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public StringOperator(DataStructureResolver dsResolver, string symbol)
+        public StringOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver, string symbol)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
             this.Symbol = symbol;
         }
@@ -37,6 +40,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             int attributeErrors = 0;
             IDataStructure structure = null;
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
@@ -71,8 +76,8 @@
                             IDataStructure ds1 = expr1.Structure.GetCopy();
                             IDataStructure ds2 = expr2.Structure.GetCopy();
 
-                            if (ds1.IsSupersetOf(ds2, true, false, true)) structure = ds1.WithAttributesOf(ds2, attributeErrors, out attributeErrors);
-                            else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = ds2.WithAttributesOf(ds1, attributeErrors, out attributeErrors);
+                            if (ds1.IsSupersetOf(ds2, true, false, true)) structure = ds1.WithAttributesOf(ds2);
+                            else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = ds2.WithAttributesOf(ds1);
                             else throw new VtlOperatorError(expression, this.Name, "Structures of datasets don't match.");
                         }
                     }
@@ -96,8 +101,8 @@
                 }
             }
 
-            if (structure == null) structure = expr1.Structure.GetCopy().WithAttributesOf(expr2?.Structure, attributeErrors, out attributeErrors);
-
+            if (structure == null) structure = expr1.Structure.GetCopy().WithAttributesOf(expr2?.Structure);
+            
             if (this.Symbol.In("instr", "length"))
             {
                 if (expr1.Structure.Measures.Count > 1) throw new VtlOperatorError(expression, this.Name, "Expected structure with only one measure.");
@@ -114,7 +119,6 @@
             }
             else return this.dsResolver("string_var", ComponentType.Measure, BasicDataType.String);
 
-            VtlOperatorError.ProcessAttributeErrors(attributeErrors, expression, this.Name);
             return structure;
         }
 
@@ -127,14 +131,14 @@
         {
             if (structure.IsSingleComponent)
             {
-                if (!structure.Components.First().ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None))
+                if (!structure.Components.First().ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None)) 
                     throw new VtlOperatorError(expr, this.Name, $"Expected string components");
             }
             else
             {
                 foreach (StructureComponent measure in structure.Measures)
                 {
-                    if (!measure.ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None))
+                    if (!measure.ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None)) 
                         throw new VtlOperatorError(expr, this.Name, $"Expected string components");
                 }
             }

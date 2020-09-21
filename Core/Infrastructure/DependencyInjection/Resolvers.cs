@@ -26,6 +26,12 @@
     public delegate IExpression ExpressionResolver(IExpression parentExpr = null);
 
     /// <summary>
+    /// Initialises a new instance of the <see cref="IJoinExpression"/> interface.
+    /// </summary>
+    /// <param name="expression">The base expression with a "join" operator.</param>
+    public delegate IJoinExpression JoinExpressionResolver(IExpression expression);
+
+    /// <summary>
     /// Initialises a new instance of the <see cref="ITransformationSchema"/> interface.
     /// </summary>
     public delegate ITransformationSchema TransformationSchemaResolver();
@@ -60,6 +66,11 @@
                 return new Expression(parentExpr);
             });
 
+            services.AddTransient<JoinExpressionResolver>(ServiceProvider => expression =>
+            {
+                return new JoinExpression(expression);
+            });
+
             services.AddTransient<TransformationSchemaResolver>(ServiceProvider => () =>
             {
                 return new TransformationSchema();
@@ -69,10 +80,12 @@
             {
                 Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
                 
-                if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(key);
-                if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(StringOperator)) return new StringOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(UnaryArithmeticOperator)) return new UnaryArithmeticOperator(key);
+                if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
+                if (type == typeof(BooleanOperator)) return new BooleanOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(ComparisonOperator)) return new ComparisonOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(StringOperator)) return new StringOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(UnaryArithmeticOperator)) return new UnaryArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
                 if (type == null) throw new NotImplementedException($"Operator {key} is not implemented.");
                 return (IOperatorDefinition)ServiceProvider.GetService(type);
             });

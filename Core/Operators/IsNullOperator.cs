@@ -15,14 +15,17 @@
     [OperatorSymbol("isnull")]
     public class IsNullOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
         private readonly DataStructureResolver dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="IsNullOperator"/> class.
         /// </summary>
+        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
-        public IsNullOperator(DataStructureResolver dsResolver)
+        public IsNullOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
         }
 
@@ -34,6 +37,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             IExpression expr = expression.OperandsCollection.ToArray()[0];
 
             if (expr.IsScalar) return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
