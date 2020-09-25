@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary
+﻿namespace StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;

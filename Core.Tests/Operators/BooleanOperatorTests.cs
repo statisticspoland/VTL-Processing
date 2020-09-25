@@ -8,7 +8,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;

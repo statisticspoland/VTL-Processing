@@ -59,6 +59,11 @@
         IExpression ParentExpression { get; }
 
         /// <summary>
+        /// Gets the "join" expression that this expression is inside it.
+        /// </summary>
+        IJoinExpression CurrentJoinExpr { get; }
+
+        /// <summary>
         /// Gets the expression that this expression is reference to.
         /// </summary>
         IExpression ReferenceExpression { get; set; }

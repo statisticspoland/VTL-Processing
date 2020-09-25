@@ -3,8 +3,10 @@
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// The "join" operator expressions builder.
@@ -12,16 +14,19 @@
     public sealed class JoinBuilder : IJoinBuilder
     {
         private readonly JoinExpressionResolver joinExprResolver;
+        private readonly IEnumerable<IJoinBranch> joinBranches;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JoinBuilder"/> class.
         /// </summary>
         /// <param name="joinExprResolver">The join expression resolver.</param>
-        public JoinBuilder(JoinExpressionResolver joinExprResolver)
+        /// <param name="joinBranches">The join branches preparers.</param>
+        public JoinBuilder(JoinExpressionResolver joinExprResolver, IEnumerable<IJoinBranch> joinBranches)
         {
             this.joinExprResolver = joinExprResolver;
             this.Branches = new Dictionary<string, IExpression>();
             this.IsCleared = true;
+            this.joinBranches = joinBranches;
         }
 
         public IExpression this[string key] => this.Branches[key];
@@ -89,7 +94,18 @@
 
             if (this.Branches.ContainsKey("keep")) mainExpr.AddOperand("keep", this.Branches["keep"]);
             if (this.Branches.ContainsKey("drop")) mainExpr.AddOperand("drop", this.Branches["drop"]);
-            if (this.Branches.ContainsKey("rename")) mainExpr.AddOperand("rename", this.Branches["rename"]);
+            if (this.Branches.ContainsKey("rename"))
+            {
+                mainExpr.AddOperand("rename", this.Branches["rename"]);
+                this.Branches["rename"].SetContainingSchema(mainExpr.ContainingSchema);
+
+                if (this.Branches["rename"].OperatorDefinition.Keyword == "Variable")
+                {
+                    this.ReinferTypes(this.Branches["rename"]);
+                    this.Branches["rename"].OperatorDefinition.Keyword = null;
+                }
+            }
+
             if (this.Branches.ContainsKey("aggr")) mainExpr.AddOperand("aggr", this.Branches["aggr"]);
 
             mainExpr.SetContainingSchema(mainExpr.ContainingSchema);
@@ -100,6 +116,29 @@
             }
 
             return (IJoinExpression)mainExpr;
+        }
+
+        public IExpression BuildBranch(string key, IExpression datasetExpr)
+        {
+            this.Branches.Remove(key);
+            this.Branches.Add(key, this.joinBranches.FirstOrDefault(jb => jb.Signature == key).Build(datasetExpr));
+
+            this.IsCleared = false;
+            return this.Branches[key];
+        }
+
+        /// <summary>
+        /// Reinfers types of a given expression.
+        /// </summary>
+        /// <param name="expression">The expression to reinfer types of.</param>
+        private void ReinferTypes(IExpression expression)
+        {
+            foreach (IExpression expr in expression.OperandsCollection)
+            {
+                this.ReinferTypes(expr);
+            }
+
+            expression.Structure = expression.OperatorDefinition.GetOutputStructure(expression);
         }
     }
 }

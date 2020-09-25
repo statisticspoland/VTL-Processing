@@ -15,6 +15,11 @@
         public ExpressionResolver ExprResolver { get; }
 
         /// <summary>
+        /// Gets the join expression resolver.
+        /// </summary>
+        JoinExpressionResolver JoinExprResolver { get; }
+
+        /// <summary>
         /// Gets operator resolver.
         /// </summary>
         OperatorResolver OperatorResolver { get; }

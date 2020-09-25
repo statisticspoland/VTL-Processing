@@ -83,6 +83,7 @@
                 if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
                 if (type == typeof(BooleanOperator)) return new BooleanOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(ComparisonOperator)) return new ComparisonOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(KeepDropOperator)) return new KeepDropOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(StringOperator)) return new StringOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(UnaryArithmeticOperator)) return new UnaryArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);

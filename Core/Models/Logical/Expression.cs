@@ -42,6 +42,8 @@
 
         public IExpression ParentExpression { get; private set; }
 
+        public IJoinExpression CurrentJoinExpr => this.GetCurrentJoinExpr(this);
+
         public IExpression ReferenceExpression { get; set; }
 
         public IDataStructure Structure { get; set; }
@@ -162,6 +164,18 @@
             }
 
             return descendantExprs;
+        }
+
+        /// <summary>
+        /// Gets the "join" expression that a given expression is inside it.
+        /// </summary>
+        /// <param name="expr">The expression.</param>
+        /// <returns>The "join" expression.</returns>
+        private IJoinExpression GetCurrentJoinExpr(IExpression expr)
+        {
+            if (expr == null) return null;
+            if (expr.ParentExpression?.OperatorSymbol == "join") return (IJoinExpression)expr.ParentExpression;
+            else return this.GetCurrentJoinExpr(expr.ParentExpression);
         }
     }
 }

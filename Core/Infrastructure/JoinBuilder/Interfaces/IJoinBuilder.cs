@@ -50,5 +50,13 @@
         /// </summary>
         /// <returns>The join expression.</returns>
         IJoinExpression Build();
+
+        /// <summary>
+        /// Builds a branch by a given dataset expression and a branch signature.
+        /// </summary>
+        /// <param name="key">The branch signature key.</param>
+        /// <param name="datasetExpr">The dataset expression.</param>
+        /// <returns>The "ds" branch expression.</returns>
+        IExpression BuildBranch(string key, IExpression datasetExpr);
     }
 }

@@ -5,7 +5,12 @@
     public static class Example
     {
         public static string Source = new StringBuilder()
-            .AppendLine("DS_1 := inner_join(X as ds1, Y as ds2 apply isnull(ds1) or ds1 * ds2 > 5);")
+            .AppendLine("X2 := inner_join(X calc Me1 := true drop Me2 rename Me1 to bool_var);")
+            .AppendLine("Y2 := inner_join(X as ds1, Y as ds2 filter ds1#Me1 > 2 keep ds2#Me2);")
+            .AppendLine("Y3 := isnull(Y2);")
+            .AppendLine("DS_1 := not X2 = Y3;")
+            .AppendLine("DS_2 := X2 and false or DS_1 < Y3;")
+            .AppendLine("DS_3 := X#Id1 = 5 <> Y3;")
             .ToString();
 
         //public static string Source = new StringBuilder()

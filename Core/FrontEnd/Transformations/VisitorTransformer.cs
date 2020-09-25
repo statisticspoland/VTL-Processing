@@ -265,6 +265,100 @@
             return optionalExpr;
         }
 
+        public override IExpression VisitFilterClause([NotNull] VtlParser.FilterClauseContext context)
+        {
+            IExpression filterExpr = this.Visit(context.scalar());
+            filterExpr.ResultName = "Filter";
+            filterExpr.ExpressionText = this.GetOriginalText(context);
+            filterExpr.LineNumber = context.Start.Line;
+
+            return filterExpr;
+        }
+
+        public override IExpression VisitRenameClause([NotNull] VtlParser.RenameClauseContext context)
+        {
+            IExpression renameClauseExpr = this.exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
+            renameClauseExpr.ExpressionText = this.GetOriginalText(context);
+            renameClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.renameExpr().Length; i++)
+            {
+                renameClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.renameExpr()[i]));
+            }
+
+            return renameClauseExpr;
+        }
+
+        public override IExpression VisitRenameExpr([NotNull] VtlParser.RenameExprContext context)
+        {
+            IExpression renameExpr = this.exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            renameExpr.ExpressionText = this.GetOriginalText(context);
+            renameExpr.LineNumber = context.Start.Line;
+            renameExpr.AddOperand("ds_1", this.Visit(context.component()));
+            renameExpr.AddOperand("ds_2", this.Visit(context.componentID()));
+
+            return renameExpr;
+        }
+
+        public override IExpression VisitCalcClause([NotNull] VtlParser.CalcClauseContext context)
+        {
+            IExpression calcClauseExpr = this.exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
+            calcClauseExpr.ExpressionText = this.GetOriginalText(context);
+            calcClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.calcExpr().Length; i++)
+            {
+                calcClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.calcExpr()[i]));
+            }
+
+            return calcClauseExpr;
+        }
+
+        public override IExpression VisitCalcExpr([NotNull] VtlParser.CalcExprContext context)
+        {
+            IExpression calcExpr = this.exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            calcExpr.ExpressionText = this.GetOriginalText(context);
+            calcExpr.LineNumber = context.Start.Line;
+
+            calcExpr.OperatorDefinition.Keyword = "measure";
+            if (context.componentRole() != null) calcExpr.OperatorDefinition.Keyword = context.componentRole().GetText().Replace("viral", "viral ");
+
+            calcExpr.AddOperand("ds_1", this.Visit(context.componentID()));
+            calcExpr.AddOperand("ds_2", this.Visit((IParseTree)context.scalar() ?? (IParseTree)context.analyticFunction()));
+
+            return calcExpr;
+        }
+
+        public override IExpression VisitKeepClause([NotNull] VtlParser.KeepClauseContext context)
+        {
+            IExpression keepClauseExpr = this.exprFactory.GetExpression("keep", ExpressionFactoryNameTarget.OperatorSymbol);
+            keepClauseExpr.ResultName = "Keep";
+            keepClauseExpr.ExpressionText = this.GetOriginalText(context);
+            keepClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.component().Length; i++)
+            {
+                keepClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.component()[i]));
+            }
+
+            return keepClauseExpr;
+        }
+
+        public override IExpression VisitDropClause([NotNull] VtlParser.DropClauseContext context)
+        {
+            IExpression dropClauseExpr = this.exprFactory.GetExpression("drop", ExpressionFactoryNameTarget.OperatorSymbol);
+            dropClauseExpr.ResultName = "Drop";
+            dropClauseExpr.ExpressionText = this.GetOriginalText(context);
+            dropClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.component().Length; i++)
+            {
+                dropClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.component()[i]));
+            }
+
+            return dropClauseExpr;
+        }
+
         public override IExpression VisitJoinExpr([NotNull] VtlParser.JoinExprContext context)
         {
             IExpression joinExpr = this.exprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);
