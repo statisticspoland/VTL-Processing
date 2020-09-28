@@ -1,5 +1,8 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Models.Logical
 {
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
+    using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
@@ -12,14 +15,16 @@
     /// </summary>
     public class DataStructure : IDataStructure
     {
+        private readonly ILogger<IDataStructure> logger;
         private IList<StructureComponent> identifiers;
         private IList<StructureComponent> measures;
         private IList<StructureComponent> nonViralAttributes;
         private IList<StructureComponent> viralAttributes;
 
         /// <summary>
-        /// Initializes new instance of the <see cref="DataStructure"/> class.
+        /// Initializes a new instance of the <see cref="DataStructure"/> class.
         /// </summary>
+        [JsonConstructor]
         public DataStructure()
         {
             this.DatasetName = string.Empty;
@@ -30,13 +35,24 @@
         }
 
         /// <summary>
-        /// Initializes new instance of the <see cref="DataStructure"/> class <b>for a single component structure.</b>.
+        /// Initializes a new instance of the <see cref="DataStructure"/> class.
+        /// </summary>
+        /// <param name="logger">The errors logger.</param>
+        public DataStructure(ILogger<IDataStructure> logger = null)
+            : this()
+        {
+            this.logger = logger;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataStructure"/> class <b>for a single component structure.</b>.
         /// </summary>
         /// <param name="compName">The name of the component.</param>
         /// <param name="compType">The component type.</param>
         /// <param name="dataType">The data type of the component.</param>
-        public DataStructure(string compName, ComponentType compType, BasicDataType dataType)
-            : this()
+        /// <param name="logger">The errors logger.</param>
+        public DataStructure(string compName, ComponentType compType, BasicDataType dataType, ILogger<IDataStructure> logger = null)
+            : this(logger)
         {
             switch (compType)
             {
@@ -122,9 +138,8 @@
             return copy;
         }
 
-        public IDataStructure WithAttributesOf(IDataStructure dataStructure, int errorsNumberIn, out int errorNumberOut)
+        public IDataStructure WithAttributesOf(IDataStructure dataStructure)
         {
-            errorNumberOut = errorsNumberIn;
             if (dataStructure != null)
             {
                 StructureComponent existingAttribute;
@@ -132,18 +147,23 @@
                 {
                     if ((existingAttribute = this.nonViralAttributes.FirstOrDefault(at => at.ComponentName == attribute.ComponentName)) == null)
                         this.nonViralAttributes.Add(attribute);
-                    else if (existingAttribute.ComponentType != attribute.ComponentType) ; // TODO: Warning
+                    else if (existingAttribute.ValueDomain.DataType != attribute.ValueDomain.DataType)
+                    {
+                        VtlError warning = new VtlError(null, $"Data type of the non-viral attribute \"{attribute.ComponentName} has been ovverided.\"");
+                        this.logger?.LogWarning(warning.Message, warning);
+                    }
                 }
 
                 foreach (StructureComponent attribute in dataStructure.ViralAttributes)
                 {
                     if ((existingAttribute = this.viralAttributes.FirstOrDefault(at => at.ComponentName == attribute.ComponentName)) == null)
                         this.viralAttributes.Add(attribute);
-                    else if (existingAttribute.ValueDomain.DataType != attribute.ValueDomain.DataType) errorNumberOut++;
+                    else if (existingAttribute.ValueDomain.DataType != attribute.ValueDomain.DataType)
+                        throw new VtlError(null, $"Data type of the viral attribute \"{attribute.ComponentName} has been ovverided.\"");
                 }
             }
 
-            return this;
+            return this.GetCopy();
         }
 
         public bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false)
@@ -179,6 +199,45 @@
             }
 
             return true;
+        }
+
+        public void AddStructure(IDataStructure structure)
+        {
+            (this.Identifiers as List<StructureComponent>).AddRange(structure.Identifiers);
+            (this.Measures as List<StructureComponent>).AddRange(structure.Measures);
+            (this.NonViralAttributes as List<StructureComponent>).AddRange(structure.NonViralAttributes);
+            (this.ViralAttributes as List<StructureComponent>).AddRange(structure.ViralAttributes);
+
+            this.DatasetName = string.Empty;
+            this.RemoveComponentDuplicates();
+            this.RemoveComponentDuplicates(structure);
+        }
+
+        public void RemoveComponentDuplicates()
+        {
+            this.Identifiers = (this.Identifiers as List<StructureComponent>).GroupBy(g => g.ComponentName).Select(s => s.LastOrDefault(c => c.ValueDomain.DataType != BasicDataType.None) ?? s.Last()).ToList();
+            this.Measures = (this.Measures as List<StructureComponent>).GroupBy(g => g.ComponentName).Select(s => s.LastOrDefault(c => c.ValueDomain.DataType != BasicDataType.None) ?? s.Last()).ToList();
+            this.NonViralAttributes = (this.NonViralAttributes as List<StructureComponent>).GroupBy(g => g.ComponentName).Select(s => s.LastOrDefault(c => c.ValueDomain.DataType != BasicDataType.None) ?? s.Last()).ToList();
+            this.ViralAttributes = (this.ViralAttributes as List<StructureComponent>).GroupBy(g => g.ComponentName).Select(s => s.LastOrDefault(c => c.ValueDomain.DataType != BasicDataType.None) ?? s.Last()).ToList();
+        }
+
+        public void RemoveComponentDuplicates(IDataStructure duplicatesDataStructure)
+        {
+            (this.Identifiers as List<StructureComponent>).RemoveAll(identifier =>
+                duplicatesDataStructure.Components.FirstOrDefault(component =>
+                    component.ComponentName == identifier.ComponentName && component.ComponentType != identifier.ComponentType) != null);
+
+            (this.Measures as List<StructureComponent>).RemoveAll(measure =>
+                duplicatesDataStructure.Components.FirstOrDefault(component =>
+                    component.ComponentName == measure.ComponentName && component.ComponentType != measure.ComponentType) != null);
+
+            (this.NonViralAttributes as List<StructureComponent>).RemoveAll(attribute =>
+                duplicatesDataStructure.Components.FirstOrDefault(component =>
+                    component.ComponentName == attribute.ComponentName && component.ComponentType != attribute.ComponentType) != null);
+
+            (this.ViralAttributes as List<StructureComponent>).RemoveAll(attribute =>
+                duplicatesDataStructure.Components.FirstOrDefault(component =>
+                    component.ComponentName == attribute.ComponentName && component.ComponentType != attribute.ComponentType) != null);
         }
 
         /// <summary>

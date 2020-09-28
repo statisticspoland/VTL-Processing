@@ -9,6 +9,8 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -33,16 +35,20 @@
                 });
             exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
 
-            opResolverMock.Setup(o => o("||")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "||"); });
-            opResolverMock.Setup(o => o("trim")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "trim"); });
-            opResolverMock.Setup(o => o("rtrim")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "rtrim"); });
-            opResolverMock.Setup(o => o("ltrim")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "ltrim"); });
-            opResolverMock.Setup(o => o("upper")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "upper"); });
-            opResolverMock.Setup(o => o("lower")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "lower"); });
-            opResolverMock.Setup(o => o("substr")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "substr"); });
-            opResolverMock.Setup(o => o("replace")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "replace"); });
-            opResolverMock.Setup(o => o("instr")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "instr"); });
-            opResolverMock.Setup(o => o("length")).Returns(() => { return new StringOperator(ModelResolvers.DsResolver, "length"); });
+            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
+                exprFacMock.Object,
+                ModelResolvers.DsResolver);
+
+            opResolverMock.Setup(o => o("||")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "||"); });
+            opResolverMock.Setup(o => o("trim")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "trim"); });
+            opResolverMock.Setup(o => o("rtrim")).Returns(() => { return new StringOperator(joinApplyMeasuresOp,ModelResolvers.DsResolver, "rtrim"); });
+            opResolverMock.Setup(o => o("ltrim")).Returns(() => { return new StringOperator(joinApplyMeasuresOp,ModelResolvers.DsResolver, "ltrim"); });
+            opResolverMock.Setup(o => o("upper")).Returns(() => { return new StringOperator(joinApplyMeasuresOp,ModelResolvers.DsResolver, "upper"); });
+            opResolverMock.Setup(o => o("lower")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "lower"); });
+            opResolverMock.Setup(o => o("substr")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "substr"); });
+            opResolverMock.Setup(o => o("replace")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "replace"); });
+            opResolverMock.Setup(o => o("instr")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "instr"); });
+            opResolverMock.Setup(o => o("length")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "length"); });
 
             this.opResolver = opResolverMock.Object;
         }

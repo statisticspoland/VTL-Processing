@@ -14,15 +14,19 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpressionFactory"/> class.
         /// </summary>
-        /// <param name="exprResolver">Expression resolver.</param>
-        /// <param name="opResolver">Operator resolver.</param>
-        public ExpressionFactory(ExpressionResolver exprResolver, OperatorResolver opResolver)
+        /// <param name="exprResolver">The expression resolver.</param>
+        /// <param name="joinExprResolver">The join expression resolver.</param>
+        /// <param name="opResolver">The operator resolver.</param>
+        public ExpressionFactory(ExpressionResolver exprResolver, JoinExpressionResolver joinExprResolver, OperatorResolver opResolver)
         {
             this.ExprResolver = exprResolver;
             this.OperatorResolver = opResolver;
+            this.JoinExprResolver = joinExprResolver;
         }
 
         public ExpressionResolver ExprResolver { get; }
+
+        public JoinExpressionResolver JoinExprResolver { get; }
 
         public OperatorResolver OperatorResolver { get; }
 

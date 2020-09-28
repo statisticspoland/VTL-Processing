@@ -39,6 +39,11 @@
         bool IsScalar { get; }
 
         /// <summary>
+        /// Gets the value indicating whether this instance is a component of the "apply" branch of a "join" operator.
+        /// </summary>
+        bool IsApplyComponent { get; }
+
+        /// <summary>
         /// Gets or sets the expression line number.
         /// </summary>
         int LineNumber { get; set; }
@@ -52,6 +57,11 @@
         /// Gets the parent expression of this expression.
         /// </summary>
         IExpression ParentExpression { get; }
+
+        /// <summary>
+        /// Gets the "join" expression that this expression is inside it.
+        /// </summary>
+        IJoinExpression CurrentJoinExpr { get; }
 
         /// <summary>
         /// Gets the expression that this expression is reference to.
@@ -91,5 +101,25 @@
         /// </summary>
         /// <param name="schema">The schema instance.</param>
         void SetContainingSchema(ITransformationSchema schema);
+
+        /// <summary>
+        /// Gets the first ancestor expression.
+        /// </summary>
+        /// <returns>The first ancestor expression.</returns>
+        IExpression GetFirstAncestorExpr();
+
+        /// <summary>
+        /// Gets the first ancestor expression with a given result name.
+        /// </summary>
+        /// <param name="resultName">The result name of the ancestor expression to get.</param>
+        /// <returns>The first ancestor expression with a given result name.</returns>
+        IExpression GetFirstAncestorExpr(string resultName);
+
+        /// <summary>
+        /// Gets the collection of descendant expressions with a given result name.
+        /// </summary>
+        /// <param name="resultName">The result name of descendant expressions to get.</param>
+        /// <returns>The collection of descendant expressions with a given result name.</returns>
+        ICollection<IExpression> GetDescendantExprs(string resultName);
     }
 }

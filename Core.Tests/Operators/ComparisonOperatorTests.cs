@@ -9,6 +9,8 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -35,12 +37,16 @@
                 });
             exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
 
-            opResolverMock.Setup(o => o("=")).Returns(() => { return new ComparisonOperator(ModelResolvers.DsResolver, "="); });
-            opResolverMock.Setup(o => o("<>")).Returns(() => { return new ComparisonOperator(ModelResolvers.DsResolver, "<>"); });
-            opResolverMock.Setup(o => o("<")).Returns(() => { return new ComparisonOperator(ModelResolvers.DsResolver, "<"); });
-            opResolverMock.Setup(o => o("<=")).Returns(() => { return new ComparisonOperator(ModelResolvers.DsResolver, "<="); });
-            opResolverMock.Setup(o => o(">")).Returns(() => { return new ComparisonOperator(ModelResolvers.DsResolver, ">"); });
-            opResolverMock.Setup(o => o(">=")).Returns(() => { return new ComparisonOperator(ModelResolvers.DsResolver, ">="); });
+            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
+                exprFacMock.Object,
+                ModelResolvers.DsResolver);
+
+            opResolverMock.Setup(o => o("=")).Returns(() => { return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "="); });
+            opResolverMock.Setup(o => o("<>")).Returns(() => { return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "<>"); });
+            opResolverMock.Setup(o => o("<")).Returns(() => { return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "<"); });
+            opResolverMock.Setup(o => o("<=")).Returns(() => { return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "<="); });
+            opResolverMock.Setup(o => o(">")).Returns(() => { return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, ">"); });
+            opResolverMock.Setup(o => o(">=")).Returns(() => { return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, ">="); });
 
             this.opResolver = opResolverMock.Object;
 

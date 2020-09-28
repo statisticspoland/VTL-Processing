@@ -16,6 +16,7 @@
     [OperatorSymbol("=", "<>", "<", "<=", ">", ">=")]
     public class ComparisonOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
         private readonly DataStructureResolver dsResolver;
 
         /// <summary>
@@ -24,8 +25,9 @@
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public ComparisonOperator(DataStructureResolver dsResolver, string symbol)
+        public ComparisonOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver, string symbol)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
             this.Symbol = symbol;
         }
@@ -38,7 +40,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            int attributeErrors = 0;
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 = expression.OperandsCollection.ToArray()[1];
 
@@ -67,14 +70,14 @@
             IDataStructure ds2 = expr2.Structure.GetCopy();
 
             if (expr1.IsScalar && expr2.IsScalar) return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
-            if (!expr1.IsScalar && expr2.IsScalar) structure = ds1.WithAttributesOf(ds2, attributeErrors, out attributeErrors);
-            else if (expr1.IsScalar && !expr2.IsScalar) structure = ds2.WithAttributesOf(ds1, attributeErrors, out attributeErrors);
+            if (!expr1.IsScalar && expr2.IsScalar) structure = ds1.WithAttributesOf(ds2);
+            else if (expr1.IsScalar && !expr2.IsScalar) structure = ds2.WithAttributesOf(ds1);
             else
             {
                 if (ds1.Measures[0].ComponentName != ds2.Measures[0].ComponentName) throw new VtlOperatorError(expression, this.Name, "Datasets doesn't fit.");
 
-                if (ds1.IsSupersetOf(ds2, true, false, true)) structure = ds1.WithAttributesOf(ds2, attributeErrors, out attributeErrors);
-                else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = ds2.WithAttributesOf(ds1, attributeErrors, out attributeErrors);
+                if (ds1.IsSupersetOf(ds2, true, false, true)) structure = ds1.WithAttributesOf(ds2);
+                else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = ds2.WithAttributesOf(ds1);
                 else throw new VtlOperatorError(expression, this.Name, "Datasets doesn't fit.");
             }
 
@@ -82,7 +85,6 @@
             structure.Measures.Add(new StructureComponent(BasicDataType.Boolean, "bool_var"));
             structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].BaseComponentName;
 
-            VtlOperatorError.ProcessAttributeErrors(attributeErrors, expression, this.Name);
             return structure;
         }
     }

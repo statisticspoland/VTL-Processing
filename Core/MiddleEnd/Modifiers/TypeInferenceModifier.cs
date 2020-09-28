@@ -5,6 +5,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System;
+    using System.Linq;
 
     /// <summary>
     /// Modifier performing type inference.
@@ -47,6 +48,13 @@
             foreach (IExpression op in expr.OperandsCollection)
             {
                 this.Infer(op);
+            }
+
+            if (expr.OperatorSymbol == "get" && expr.CurrentJoinExpr != null && expr.GetFirstAncestorExpr("Alias") == null)
+            {
+                expr.ResultName = "Reference";
+                expr.OperatorDefinition = this.opResolver("ref");
+                expr.ReferenceExpression = expr.CurrentJoinExpr.Operands["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expr.ExpressionText);
             }
 
             if (expr.OperatorSymbol != null && expr.Structure == null)

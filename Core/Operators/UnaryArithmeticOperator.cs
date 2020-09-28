@@ -13,12 +13,16 @@
     [OperatorSymbol("minus", "plus")]
     public class UnaryArithmeticOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
+
         /// <summary>
         /// Initialises a new instance of the <see cref="UnaryArithmeticOperator"/> class.
         /// </summary>
+        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public UnaryArithmeticOperator(string symbol)
+        public UnaryArithmeticOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, string symbol)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.Symbol = symbol;
         }
 
@@ -30,9 +34,11 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             IExpression expr = expression.OperandsCollection.ToArray()[0];
 
-            if (!NumericStructure.IsNumericStructure(expr.Structure, true)) throw new VtlOperatorError(expression, this.Name, "Excpected numeric expression.");
+            if (!expr.Structure.IsNumericStructure(true)) throw new VtlOperatorError(expression, this.Name, "Excpected numeric expression.");
 
             return expr.Structure.GetCopy();
         }

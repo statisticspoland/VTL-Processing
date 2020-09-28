@@ -15,12 +15,16 @@
     [OperatorSymbol("+", "-", "*", "/")]
     public class ArithmeticOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
+
         /// <summary>
         /// Initialises a new instance of the <see cref="ArithmeticOperator"/> class.
         /// </summary>
+        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public ArithmeticOperator(string symbol)
+        public ArithmeticOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, string symbol)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.Symbol = symbol;
         }
 
@@ -32,6 +36,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             IDataStructure ds1 = expression.OperandsCollection.ToArray()[0].Structure;
             IDataStructure ds2 = expression.OperandsCollection.ToArray()[1].Structure;
 
@@ -41,14 +47,12 @@
             else if (ds1.IsSingleComponent && !ds2.IsSingleComponent) return NumericStructure.GetDatasetScalarMixedStructure(ds2, ds1);
             else if (!ds1.IsSingleComponent && !ds2.IsSingleComponent)
             {
-                int attributeErrors = 0;
                 IDataStructure structure;
 
-                if (ds1.IsSupersetOf(ds2, true, false, true)) structure = NumericStructure.GetDatasetsMixedStructure(ds1.WithAttributesOf(ds2, attributeErrors, out attributeErrors), ds2);
-                else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = NumericStructure.GetDatasetsMixedStructure(ds2.WithAttributesOf(ds1, attributeErrors, out attributeErrors), ds1);
+                if (ds1.IsSupersetOf(ds2, true, false, true)) structure = NumericStructure.GetDatasetsMixedStructure(ds1.WithAttributesOf(ds2), ds2);
+                else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = NumericStructure.GetDatasetsMixedStructure(ds2.WithAttributesOf(ds1), ds1);
                 else throw new VtlOperatorError(expression, this.Name, "Structures of datasets don't match.");
                 
-                VtlOperatorError.ProcessAttributeErrors(attributeErrors, expression, this.Name);
                 return structure;
             }
 

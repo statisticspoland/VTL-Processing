@@ -40,17 +40,6 @@
             this.opName = @operator;
         }
 
-        /// <summary>
-        /// Checks an errors number of an expression and throws exception if number is greater than 0.
-        /// </summary>
-        /// <param name="errorsNumber">The errors number.</param>
-        /// <param name="expression">The expression errors are from.</param>
-        /// <param name="operator">The operator errors occured in.</param>
-        public static void ProcessAttributeErrors(int errorsNumber, IExpression expression, string @operator)
-        {
-            if (errorsNumber > 0) throw new VtlOperatorError(expression, @operator, "Viral attributes don't match.");
-        }
-
         public int Line { get; private set; }
 
         public string FullMessage => this.ToString();

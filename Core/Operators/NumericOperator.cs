@@ -18,15 +18,18 @@
     [OperatorSymbol("ceil", "floor", "abs", "exp", "ln", "sqrt", "mod", "round", "power", "log", "trunc")]
     public class NumericOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
         private readonly DataStructureResolver dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="NumericOperator"/> class.
         /// </summary>
+        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public NumericOperator(DataStructureResolver dsResolver, string symbol)
+        public NumericOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver, string symbol)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
             this.Symbol = symbol;
         }
@@ -39,6 +42,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 =
                 expression.OperandsCollection.ToArray().Length > 1 ?
@@ -62,20 +67,17 @@
 
                 if (!ds2.IsSingleComponent)
                 {
-                    int attributeErrors = 0;
-                    if (ds1.IsSupersetOf(ds2, true, false, true)) ds1 = NumericStructure.GetDatasetsMixedStructure(ds1.WithAttributesOf(ds2, attributeErrors, out attributeErrors), ds2);
-                    else if (ds2.IsSupersetOf(ds1, true, false, true)) ds1 = NumericStructure.GetDatasetsMixedStructure(ds2.WithAttributesOf(ds1, attributeErrors, out attributeErrors), ds1);
-                    else if (ds1.IsSingleComponent) ds1 = NumericStructure.GetDatasetScalarMixedStructure(ds2.WithAttributesOf(ds1, attributeErrors, out attributeErrors), ds1);
+                    if (ds1.IsSupersetOf(ds2, true, false, true)) ds1 = NumericStructure.GetDatasetsMixedStructure(ds1.WithAttributesOf(ds2), ds2);
+                    else if (ds2.IsSupersetOf(ds1, true, false, true)) ds1 = NumericStructure.GetDatasetsMixedStructure(ds2.WithAttributesOf(ds1), ds1);
+                    else if (ds1.IsSingleComponent) ds1 = NumericStructure.GetDatasetScalarMixedStructure(ds2.WithAttributesOf(ds1), ds1);
                     else throw new VtlOperatorError(expression, this.Name, "Structures of datasets don't match.");
-
-                    VtlOperatorError.ProcessAttributeErrors(attributeErrors, expression, this.Name);
                 }
             }
 
             if (ds1.IsSingleComponent)
             {
                 if (this.Symbol.In("ceil", "floor")) return this.dsResolver("int_var", ComponentType.Measure, BasicDataType.Integer);
-                return this.dsResolver("num_var", ComponentType.Measure, BasicDataType.Number);
+                return this.dsResolver("number_var", ComponentType.Measure, BasicDataType.Number);
             }
             else
             {

@@ -13,13 +13,13 @@
     public class SchemaModifiersApplier : ISchemaModifiersApplier
     {
         private readonly IEnumerable<ISchemaModifier> modifiers;
-        private readonly ILogger<SchemaModifiersApplier> logger;
+        private readonly ILogger<ISchemaModifiersApplier> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SchemaModifiersApplier"/> class.
         /// </summary>
         /// <param name="mods">Collection of modifiers to apply.</param>
-        public SchemaModifiersApplier(IEnumerable<ISchemaModifier> mods, ILogger<SchemaModifiersApplier> logger = null)
+        public SchemaModifiersApplier(IEnumerable<ISchemaModifier> mods, ILogger<ISchemaModifiersApplier> logger = null)
         {
             this.logger = logger;
             this.modifiers = mods;

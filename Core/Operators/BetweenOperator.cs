@@ -16,14 +16,17 @@
     [OperatorSymbol("between")]
     public class BetweenOperator : IOperatorDefinition
     {
+        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
         private readonly DataStructureResolver dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BetweenOperator"/> class.
         /// </summary>
+        /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
-        public BetweenOperator(DataStructureResolver dsResolver)
+        public BetweenOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
+            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
         }
 
@@ -35,6 +38,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
+            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 = expression.OperandsCollection.ToArray()[1];
             IExpression expr3 = expression.OperandsCollection.ToArray()[2];
