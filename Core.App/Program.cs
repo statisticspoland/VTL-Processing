@@ -19,13 +19,8 @@
     {
         public static void Main(string[] args)
         {
-            VtlProgram().Wait();
-        }
-
-        private static async Task VtlProgram()
-        {
             string source = Example.Source;
-            
+
             IServiceCollection services = new ServiceCollection();
             services.AddVtlProcessing((configure) =>
             {
@@ -57,17 +52,20 @@
 
             provider.GetMiddleEnd().Process(schema); // middle-end
 
-            ITargetRenderer plantUml = provider.GetService<PlantUmlTargetRenderer>();
-
             bool areErrors = errColector.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
-            
+
             // back-end:
-            string result = await PlantUmlVisualizer.PlantUmlPostAsync(plantUml.Render(schema), !areErrors);
-            //string result = await PlantUmlVisualizer.PlantUmlPostAsync(schema.RenderToTarget("PlantUML", schema.AssignmentObjects.ToArray()[0].Expression), !areErrors);
+            ITargetRenderer plantUmlRenderer = provider.GetTargetRenderer("PlantUML");
+            string plantUmlResult = plantUmlRenderer.Render(schema);
+            PlantUmlUrlConverter converter = new PlantUmlUrlConverter(plantUmlResult);
 
-            FilesManager.ResultToFile(provider.GetTargetRenderer("PlantUML").Render(schema), "result.plantuml");
+            Debug.WriteLine($"\n\n{converter.SVGUrl}\n\n");
 
-            Debug.WriteLine($"\n\n{result}\n\n");
+            if (!areErrors)
+            {
+                Process.Start("cmd.exe", $"/C start {converter.SVGUrl}");
+                FilesManager.ResultToFile(plantUmlResult, "result.plantuml");
+            }
         }
     }
 }
