@@ -1,16 +1,10 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
-    using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -20,34 +14,9 @@
     public class ArithmeticOperatorTests
     {
         private readonly List<string> operators;
-        private readonly OperatorResolver opResolver;
 
         public ArithmeticOperatorTests()
         {
-            Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            Mock<IExpressionFactory> exprFacMock = new Mock<IExpressionFactory>();
-
-            exprFacMock.Setup(o => o.GetExpression(It.IsAny<string>(), It.IsAny<ExpressionFactoryNameTarget>()))
-                .Returns((string name, ExpressionFactoryNameTarget field) =>
-                {
-                    IExpression expr = ModelResolvers.ExprResolver();
-                    if (field == ExpressionFactoryNameTarget.ResultName) expr.ResultName = name;
-                    else expr.OperatorDefinition = opResolverMock.Object(name);
-                    return expr;
-                });
-            exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
-
-            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
-                exprFacMock.Object,
-                ModelResolvers.DsResolver);
-
-            opResolverMock.Setup(o => o("+")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "+"); });
-            opResolverMock.Setup(o => o("-")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "-"); });
-            opResolverMock.Setup(o => o("*")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "*"); });
-            opResolverMock.Setup(o => o("/")).Returns(() => { return new ArithmeticOperator(joinApplyMeasuresOp, "/"); });
-
-            this.opResolver = opResolverMock.Object;
-
             this.operators = new List<string>() { "+", "-", "*", "/" };
         }
 
@@ -93,7 +62,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 arithmeticExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id2"));
 
@@ -154,7 +123,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 arithmeticExpr.Operands["ds_2"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id2"));
 
@@ -215,7 +184,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 arithmeticExpr.Operands["ds_1"].Structure.Measures.Add(new StructureComponent(BasicDataType.Integer, "Me3"));
 
@@ -265,7 +234,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 IExpression expected = TestExprFactory.GetExpression(types[2]);
 
@@ -299,7 +268,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 IExpression expected = TestExprFactory.GetExpression(types[2]);
 
@@ -321,7 +290,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 IExpression expected = TestExprFactory.GetExpression(types[2]);
 
@@ -343,7 +312,7 @@
             foreach (string opSymbol in this.operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
-                arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 IDataStructure expectedStructure = arithmeticExpr.Operands["ds_2"].Structure.GetCopy();
                 if (types[0] == TestExprType.Number)
@@ -453,7 +422,7 @@
                 foreach (TestExprType[] wrongComb in wrongCombs)
                 {
                     IExpression arithmeticExpr = TestExprFactory.GetExpression(wrongComb);
-                    arithmeticExpr.OperatorDefinition = this.opResolver(opSymbol);
+                    arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                     // Debug condition example: wrongComb[0] == TestExprType.Integer && wrongComb[1] == TestExprType.Integer
                     Assert.ThrowsAny<VtlOperatorError>(() => { arithmeticExpr.OperatorDefinition.GetOutputStructure(arithmeticExpr); });

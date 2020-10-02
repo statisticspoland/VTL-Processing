@@ -1,27 +1,13 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
-    using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
-    using System;
     using Xunit;
 
     public class ConstantOperatorTests
     {
-        private readonly OperatorResolver opResolver;
-
-        public ConstantOperatorTests()
-        {
-            Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            opResolverMock.Setup(o => o("const")).Returns(() => { return new ConstantOperator(ModelResolvers.DsResolver); });
-
-            this.opResolver = opResolverMock.Object;
-        }
-
         [Theory]
         [InlineData(TestExprType.Integer, "1")]
         [InlineData(TestExprType.Number, "1.0")]
@@ -37,7 +23,7 @@
             IExpression constExpr = ModelResolvers.ExprResolver();
             constExpr.ExpressionText = exprText;
 
-            constExpr.OperatorDefinition = this.opResolver("const");
+            constExpr.OperatorDefinition = ModelResolvers.OperatorResolver("const");
 
             IDataStructure dataStructure = constExpr.OperatorDefinition.GetOutputStructure(constExpr);
 
@@ -55,7 +41,7 @@
             IExpression constExpr = ModelResolvers.ExprResolver();
             constExpr.ExpressionText = exprText;
 
-            constExpr.OperatorDefinition = this.opResolver("const");
+            constExpr.OperatorDefinition = ModelResolvers.OperatorResolver("const");
 
             Assert.ThrowsAny<VtlOperatorError>(() => { constExpr.OperatorDefinition.GetOutputStructure(constExpr); });
         }

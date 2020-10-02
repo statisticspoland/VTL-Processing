@@ -1,16 +1,10 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
-    using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Linq;
@@ -18,32 +12,6 @@
 
     public class IsNullOperatorTests
     {
-        private readonly OperatorResolver opResolver;
-
-        public IsNullOperatorTests()
-        {
-            Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            Mock<IExpressionFactory> exprFacMock = new Mock<IExpressionFactory>();
-
-            exprFacMock.Setup(o => o.GetExpression(It.IsAny<string>(), It.IsAny<ExpressionFactoryNameTarget>()))
-                .Returns((string name, ExpressionFactoryNameTarget field) =>
-                {
-                    IExpression expr = ModelResolvers.ExprResolver();
-                    if (field == ExpressionFactoryNameTarget.ResultName) expr.ResultName = name;
-                    else expr.OperatorDefinition = opResolverMock.Object(name);
-                    return expr;
-                });
-            exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
-
-            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
-                exprFacMock.Object,
-                ModelResolvers.DsResolver);
-
-            opResolverMock.Setup(o => o("isnull")).Returns(() => { return new IsNullOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver); });
-
-            this.opResolver = opResolverMock.Object;
-        }
-
         [Theory]
         [InlineData(TestExprType.Integer)]
         [InlineData(TestExprType.Number)]
@@ -57,7 +25,7 @@
         public void GetOutputStructure_ScalarExpr_BoolScalarStructure(TestExprType type)
         {
             IExpression isNullExpr = TestExprFactory.GetExpression(new TestExprType[] { type });
-            isNullExpr.OperatorDefinition = this.opResolver("isnull");
+            isNullExpr.OperatorDefinition = ModelResolvers.OperatorResolver("isnull");
 
             IDataStructure dataStructure = isNullExpr.OperatorDefinition.GetOutputStructure(isNullExpr);
 
@@ -87,7 +55,7 @@
         public void GetOutputStructure_OneMeasureDatasetExpr_OneMeasureBoolStructure(TestExprType type)
         {
             IExpression isNullExpr = TestExprFactory.GetExpression(new TestExprType[] { type });
-            isNullExpr.OperatorDefinition = this.opResolver("isnull");
+            isNullExpr.OperatorDefinition = ModelResolvers.OperatorResolver("isnull");
             isNullExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 
             IDataStructure expectedStructure = isNullExpr.Operands["ds_1"].Structure.GetCopy();
@@ -120,7 +88,7 @@
             foreach (TestExprType[] dataset in datasets)
             {
                 IExpression isNullExpr = TestExprFactory.GetExpression(dataset);
-                isNullExpr.OperatorDefinition = this.opResolver("isnull");
+                isNullExpr.OperatorDefinition = ModelResolvers.OperatorResolver("isnull");
 
                 // Debug condition example: dataset[0] == TestExprType.IntsDataset
                 Assert.ThrowsAny<VtlOperatorError>(() => { isNullExpr.OperatorDefinition.GetOutputStructure(isNullExpr); });
