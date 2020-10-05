@@ -32,7 +32,7 @@
         /// <param name="expression">The expression an error is from.</param>
         /// <param name="operator">The operator an error occured in.</param>
         /// <param name="message">The error message.</param>
-        /// <param name="innerException">The exception that is the cause of the current exception.</param>
+        /// <param name="innerException">The exception that is the cause of the current error.</param>
         public VtlOperatorError(IExpression expression, string @operator, string message, Exception innerException) : base(message, innerException)
         {
             this.Line = expression.LineNumber;
@@ -48,7 +48,7 @@
 
         public override string ToString()
         {
-            string result = $"{opName} operator error at line {this.Line} | {this.msg}";
+            string result = $"{this.opName} operator error at line {this.Line} | {this.msg}";
 
             #if DEBUG
                 result = $"{this.StackTrace}\n{result}";

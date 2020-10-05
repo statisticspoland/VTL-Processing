@@ -25,7 +25,7 @@
         /// </summary>
         /// <param name="message">The error message.</param>
         /// <param name="line">The line of the error.</param>
-        /// <param name="innerException">The exception that is the cause of the current exception.</param>
+        /// <param name="innerException">The exception that is the cause of the current error.</param>
         public VtlSyntaxError(string message, int line, Exception innerException) : base(message, innerException)
         {
             this.Line = line;
