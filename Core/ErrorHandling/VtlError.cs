@@ -17,7 +17,7 @@
         /// <param name="message">The error message.</param>
         public VtlError(IExpression expression, string message) : base(message)
         {
-            this.Line = expression.LineNumber;
+            this.Line = expression?.LineNumber ?? 0;
         }
 
         /// <summary>

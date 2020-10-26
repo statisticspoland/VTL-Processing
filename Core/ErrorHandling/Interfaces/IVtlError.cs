@@ -3,7 +3,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
 
     /// <summary>
-    /// The VTL 2.0 error representation interface.
+    /// Interface of a VTL 2.0 error representation.
     /// </summary>
     public interface IVtlError
     {

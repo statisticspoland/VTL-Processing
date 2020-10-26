@@ -7,10 +7,19 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// The single VTL 2.0 "join" operator expression representation.
+    /// </summary>
     public class JoinExpression : Expression, IJoinExpression
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="JoinExpression"/> class.
+        /// </summary>
+        /// <param name="expression">The base expression with a "join" operator.</param>
         public JoinExpression(IExpression expression) : base(expression.ParentExpression)
         {
+            if (expression.OperatorSymbol != "join") throw new Exception("Expected \"join\" operator symbol when creating \"join\" expression.");
+
             this.ContainingSchema = expression.ContainingSchema;
             this.ExpressionText = expression.ExpressionText;
             this.LineNumber = expression.LineNumber;
@@ -20,7 +29,10 @@
             this.ReferenceExpression = expression.ReferenceExpression;
             this.ResultName = expression.ResultName;
             this.Structure = expression.Structure;
+            this.BasicStructure = (expression as IJoinExpression)?.BasicStructure;
         }
+
+        public IDataStructure BasicStructure { get; set; }
 
         /// <summary>
         /// Gets the alias expression, whose structure is a subset of others.

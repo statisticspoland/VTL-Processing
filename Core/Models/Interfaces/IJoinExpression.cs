@@ -6,6 +6,11 @@
     public interface IJoinExpression : IExpression
     {
         /// <summary>
+        /// Gets or sets the basic structure.
+        /// </summary>
+        IDataStructure BasicStructure { get; set; }
+
+        /// <summary>
         /// Gets the structure of the alias, whose structure is a superset of others.
         /// </summary>
         /// <returns>The structure of the alias, whose structure is a superset of others.</returns>

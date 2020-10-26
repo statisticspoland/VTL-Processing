@@ -45,6 +45,8 @@
             this.ProcessDsBranch(joinExpr, mergedStructure);
             if (joinExpr.Operands.ContainsKey("apply")) mergedStructure = this.ProcessApplyBranch(joinExpr, mergedStructure);
 
+            joinExpr.BasicStructure = this.ProcessDsBranch(joinExpr, this.dsResolver());
+
             if (joinExpr.Operands.ContainsKey("keep") ||
                 joinExpr.Operands.ContainsKey("drop")) mergedStructure = this.ProcessKeepDropBranch(joinExpr, mergedStructure);
             if (joinExpr.Operands.ContainsKey("calc")) mergedStructure = this.ProcessCalcBranch(joinExpr, mergedStructure);
