@@ -58,6 +58,7 @@
             // middle end schema modifier chain
             // services.AddSingleton<ISchemaModifier, DeadCodeModifier>(); - turned off for testing
             services.AddSingleton<ISchemaModifier, TypeInferenceModifier>();
+            services.AddSingleton<ISchemaModifier, JoinUsingFillingModifier>();
             services.AddSingleton<ISchemaModifier, DsOperatorsToJoinsModifier>();
 
             //additional configuration (e.g. register data model)

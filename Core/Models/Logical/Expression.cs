@@ -10,6 +10,8 @@
     /// </summary>
     public class Expression : IExpression
     {
+        private string expressionText;
+
         /// <summary>
         /// Initialises a new instance of the <see cref="Expression"/> class.
         /// </summary>
@@ -17,10 +19,26 @@
         public Expression(IExpression parentExpr = null)
         {
             this.ParentExpression = parentExpr;
+            this.ContainingSchema = parentExpr?.ContainingSchema;
             this.Operands = new Dictionary<string, IExpression>();
         }
 
-        public string ExpressionText { get; set; }
+        public string ExpressionText 
+        {   
+            get
+            {
+                return this.expressionText;
+            }
+            set
+            {
+                this.expressionText = value;
+                this.expressionText = this.expressionText?.Replace(Environment.NewLine, " ");
+                while (this.expressionText?.StartsWith(' ') == true)
+                {
+                    this.expressionText = this.expressionText.Remove(0, 1);
+                }
+            }
+        }
 
         public string ResultName { get; set; }
 
@@ -30,7 +48,7 @@
 
         public string ParamSignature { get; set; }
 
-        public bool IsScalar => this.Structure?.IsSingleComponent == true;
+        public bool IsScalar => this.Structure?.IsSingleComponent == true || this.IsApplyComponent;
 
         public bool IsApplyComponent =>
             (this.ResultName == "Apply" || this.GetFirstAncestorExpr("Apply") != null) &&
@@ -116,11 +134,10 @@
             }
 
             (expression as Expression).ParentExpression = this;
-            if (!this.Operands.ContainsKey(signature))
-            {
-                expression.ParamSignature = signature;
-                this.Operands[signature] = expression;
-            }
+            expression.ParamSignature = signature;
+            expression.ContainingSchema = this.ContainingSchema;
+            if (!this.Operands.ContainsKey(signature)) this.Operands.Add(signature, expression);
+            else this.Operands[signature] = expression;
         }
 
         public void SetContainingSchema(ITransformationSchema schema)

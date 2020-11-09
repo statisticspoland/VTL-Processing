@@ -22,7 +22,12 @@
         /// </summary>
         public List<ErrorCollector> ErrorCollectors { get; }
 
-        public IEnumerable<TResult> GetOfType<TResult>()
+        /// <summary>
+        /// Gets errors of a given type from <see cref="ErrorCollector"/> instances.
+        /// </summary>
+        /// <typeparam name="TResult">The type of errors.</typeparam>
+        /// <returns>The error enumerator.</returns>
+        public IEnumerable<TResult> GetErrorsOfType<TResult>()
         {
             return this.ErrorCollectors.SelectMany(s => s.Errors).ToList().OfType<TResult>();
         }
