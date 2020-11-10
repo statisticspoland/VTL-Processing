@@ -47,7 +47,7 @@
 
 
             if (expr.ParamSignature != "filter" &&
-                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not"))))
+                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && expr.ParentExpression.ParamSignature != "if")))
             {
                 result = $"IIF({op1} IS NULL OR {op2} IS NULL, NULL,\nIIF({result}, 1, 0))";
             }

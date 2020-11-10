@@ -5,9 +5,10 @@
     public static class Example
     {
         public static string Source = new StringBuilder()
-            .AppendLine("DS1 := 3 in { 4, 5, 6 };")
-            .AppendLine("DS3 := inner_join(X as ds1, Y as ds2 calc Me3 := ds2#At_string in {\"123\", \"dfefe\" });")
-            .AppendLine("DS4 := inner_join(X as ds1, Y as ds2 apply ds1 in { 1, 3, 4 } or true);")
+            .AppendLine("DS1 := if 5 > 4 then 3.0 else 5;")
+            .AppendLine("DS2 := if X#Me1 = 4 then true else false;")
+            .AppendLine("DS3 := if true then X else Y;")
+            .AppendLine("DS4 := inner_join(X as ds1, Y as ds2 apply if ds1 <> ds2 then 1 else 3)")
             .ToString();
 
         //public static string Source = new StringBuilder()

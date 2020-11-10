@@ -198,6 +198,42 @@
             return membershipExpr;
         }
 
+        public override IExpression VisitIfThenElseDataset([NotNull] VtlParser.IfThenElseDatasetContext context)
+        {
+            IExpression ifThenElseExpr = this.exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
+            ifThenElseExpr.ExpressionText = this.GetOriginalText(context);
+            ifThenElseExpr.LineNumber = context.Start.Line;
+
+            IExpression ifExpr = this.exprFactory.ExprResolver();
+            IExpression thenExpr = this.exprFactory.ExprResolver();
+            IExpression elseExpr = this.exprFactory.ExprResolver();
+
+            if (context.ifDataset != null) ifExpr.AddOperand("ds_1", this.Visit(context.ifDataset));
+            else ifExpr.AddOperand("ds_1", this.Visit(context.ifScalar));
+
+            if (context.thenDataset != null) thenExpr.AddOperand("ds_1", this.Visit(context.thenDataset));
+            else thenExpr.AddOperand("ds_1", this.Visit(context.thenScalar));
+
+            if (context.elseDataset != null) elseExpr.AddOperand("ds_1", this.Visit(context.elseDataset));
+            else elseExpr.AddOperand("ds_1", this.Visit(context.elseScalar));
+
+            ifExpr.ResultName = "If";
+            thenExpr.ResultName = "Then";
+            elseExpr.ResultName = "Else";
+            ifExpr.ExpressionText = $"if {ifExpr.Operands["ds_1"].ExpressionText}";
+            thenExpr.ExpressionText = $"then {thenExpr.Operands["ds_1"].ExpressionText}";
+            elseExpr.ExpressionText = $"else {elseExpr.Operands["ds_1"].ExpressionText}";
+            ifExpr.LineNumber = ifThenElseExpr.LineNumber;
+            thenExpr.LineNumber = ifThenElseExpr.LineNumber;
+            elseExpr.LineNumber = ifThenElseExpr.LineNumber;
+
+            ifThenElseExpr.AddOperand("if", ifExpr);
+            ifThenElseExpr.AddOperand("then", thenExpr);
+            ifThenElseExpr.AddOperand("else", elseExpr);
+
+            return ifThenElseExpr;
+        }
+
         public override IExpression VisitComponent([NotNull] VtlParser.ComponentContext context)
         {
             IExpression componentExpr;
@@ -252,6 +288,37 @@
             scalarExpr.ExpressionText = this.GetOriginalText(context);
             scalarExpr.LineNumber = context.Start.Line;
             return scalarExpr;
+        }
+
+        public override IExpression VisitIfThenElseScalar([NotNull] VtlParser.IfThenElseScalarContext context)
+        {
+            IExpression ifThenElseExpr = this.exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
+            ifThenElseExpr.ExpressionText = this.GetOriginalText(context);
+            ifThenElseExpr.LineNumber = context.Start.Line;
+
+            IExpression ifExpr = this.exprFactory.ExprResolver();
+            IExpression thenExpr = this.exprFactory.ExprResolver();
+            IExpression elseExpr = this.exprFactory.ExprResolver();
+
+            ifExpr.AddOperand("ds_1", this.Visit(context.scalar()[0]));
+            thenExpr.AddOperand("ds_1", this.Visit(context.scalar()[1]));
+            elseExpr.AddOperand("ds_1", this.Visit(context.scalar()[2]));
+
+            ifExpr.ResultName = "If";
+            thenExpr.ResultName = "Then";
+            elseExpr.ResultName = "Else";
+            ifExpr.ExpressionText = $"if {ifExpr.Operands["ds_1"].ExpressionText}";
+            thenExpr.ExpressionText = $"then {thenExpr.Operands["ds_1"].ExpressionText}";
+            elseExpr.ExpressionText = $"else {elseExpr.Operands["ds_1"].ExpressionText}";
+            ifExpr.LineNumber = ifThenElseExpr.LineNumber;
+            thenExpr.LineNumber = ifThenElseExpr.LineNumber;
+            elseExpr.LineNumber = ifThenElseExpr.LineNumber;
+
+            ifThenElseExpr.AddOperand("if", ifExpr);
+            ifThenElseExpr.AddOperand("then", thenExpr);
+            ifThenElseExpr.AddOperand("else", elseExpr);
+
+            return ifThenElseExpr;
         }
 
         public override IExpression VisitOptionalExpr([NotNull] VtlParser.OptionalExprContext context)

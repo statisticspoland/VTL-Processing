@@ -62,8 +62,20 @@
                         expression.Operands["ds"].Operands[dsAliases[i].ParamSignature] = this.TransformDatasets(dsAliases[i]);
                     }
                 }
+                else
+                {
+                    if (expression.OperatorSymbol == "#" && !expression.OperandsCollection.ToArray()[0].IsScalar)
+                        expression.Operands["ds_1"] = this.TransformDatasets(expression.Operands["ds_1"]);
 
-                if (this.IsJoinDatasetOperator(expression)) return this.TransformToJoin(expression);
+                    for (int i = 0; i < expression.OperandsCollection.Count; i++)
+                    {
+                        if (expression.OperandsCollection.ToArray()[i].OperatorSymbol == "#")
+                            expression.Operands[$"ds_{i + 1}"] = this.TransformDatasets(expression.Operands[$"ds_{i + 1}"]);
+                    }
+                }
+
+                if (this.IsJoinIfThenElse(expression) || this.IsJoinDatasetOperator(expression))
+                    return this.TransformToJoin(expression);
             }
 
             return expression;
@@ -103,13 +115,26 @@
         }
 
         /// <summary>
+        /// Checks if an expression is an "if-then-else" operator expression convertaile to a "join" operator expression.
+        /// </summary>
+        /// <param name="expression">The expression to check.</param>
+        /// <returns>The value specyfing if an expression is an "if-then-else" operator expression convertible to a "join" operator expression.</returns>
+        private bool IsJoinIfThenElse(IExpression expression)
+        {
+            if (expression.OperatorSymbol == "if" &&
+                    (!expression.Operands["if"].IsScalar || !expression.Operands["then"].IsScalar || !expression.Operands["else"].IsScalar))
+                return true;
+            return false;
+        }
+
+        /// <summary>
         /// Checks if an expression is a dataset expression convertible to a "join" operator expression.
         /// </summary>
         /// <param name="expression">The expression to check.</param>
         /// <returns>The value specyfing if an expression is a dataset expression convertible to a "join" operator expression.</returns>
         private bool IsJoinDatasetOperator(IExpression expression)
         {
-            if (!expression.OperatorSymbol.In("join", "#") && !expression.Operands["ds_1"].IsScalar && !expression.Operands["ds_2"].IsScalar)
+            if (!expression.OperatorSymbol.In("join", "#", "if") && (expression.Operands.ContainsKey("group") || expression.Operands.ContainsKey("over") || (!expression.Operands["ds_1"].IsScalar && !expression.Operands["ds_2"].IsScalar)))
                 return true;
             return false;
         }
