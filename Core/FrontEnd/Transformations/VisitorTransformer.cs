@@ -511,6 +511,20 @@
             return applyBranch;
         }
 
+        public override IExpression VisitList([NotNull] VtlParser.ListContext context)
+        {
+            IExpression listExpr = this.exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
+            listExpr.ExpressionText = this.GetOriginalText(context);
+            listExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.scalar().Length; i++)
+            {
+                listExpr.AddOperand($"ds_{i + 1}", this.Visit(context.scalar()[i]));
+            }
+
+            return listExpr;
+        }
+
         public override IExpression VisitDatasetID([NotNull] VtlParser.DatasetIDContext context)
         {
             IExpression datasetExpr;
