@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataModel\DataModel.csproj" />
     <ProjectReference Include="..\Target.PlantUML\Target.PlantUML.csproj" />
+    <ProjectReference Include="..\Target.TSQL\Target.TSQL.csproj" />
   </ItemGroup>
 
 </Project>

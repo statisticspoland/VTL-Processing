@@ -5,13 +5,20 @@
     public static class Example
     {
         public static string Source = new StringBuilder()
-            .AppendLine("X2 := inner_join(X calc Me1 := true drop Me2 rename Me1 to bool_var);")
-            .AppendLine("Y2 := inner_join(X as ds1, Y as ds2 filter ds1#Me1 > 2 keep ds2#Me2);")
-            .AppendLine("Y3 := isnull(Y2);")
-            .AppendLine("DS_1 := not X2 = Y3;")
-            .AppendLine("DS_2 := X2 and false or DS_1 < Y3;")
-            .AppendLine("DS_3 := X#Id1 = 5 <> Y3;")
+            .AppendLine("DS1 := if 5 > 4 then 3.0 else 5;")
+            .AppendLine("DS2 := if X#Me1 = 4 then true else false;")
+            .AppendLine("DS3 := if true then X else Y;")
+            .AppendLine("DS4 := inner_join(X as ds1, Y as ds2 apply if ds1 <> ds2 then 1 else 3)")
             .ToString();
+
+        //public static string Source = new StringBuilder()
+        //    .AppendLine("X2 := inner_join(X calc Me1 := true drop Me2 rename Me1 to bool_var);")
+        //    .AppendLine("Y2 := inner_join(X as ds1, Y as ds2 filter ds1#Me1 > 2 keep ds2#Me2);")
+        //    .AppendLine("Y3 := isnull(Y2);")
+        //    .AppendLine("DS_1 := not X2 = Y3;")
+        //    .AppendLine("DS_2 := X2 and false or DS_1 < Y3;")
+        //    .AppendLine("DS_3 := X#Id1 = 5 <> Y3;")
+        //    .ToString();
 
         //public static string Source = new StringBuilder()
         //    .AppendLine(@"DS1 := 10 / 2.5;")

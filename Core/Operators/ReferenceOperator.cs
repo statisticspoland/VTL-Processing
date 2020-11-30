@@ -4,6 +4,7 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
+    using System.Linq;
 
     /// <summary>
     /// The "Reference" operator definition.
@@ -19,9 +20,24 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsScalar) throw new VtlOperatorError(expression, this.Name, $"Wrong use of scalar reference operator expression: {expression.ExpressionText}");
+            IExpression joinExpr = expression.CurrentJoinExpr;
 
-            return expression.ReferenceExpression?.Structure.GetCopy(true);
+            if (expression.IsScalar &&
+                expression.GetFirstAncestorExpr("Apply") != null &&
+                joinExpr.Operands["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expression.ExpressionText) == null)
+                throw new VtlOperatorError(expression, this.Name, $"Wrong use of scalar reference operator expression: {expression.ExpressionText}");
+
+            IDataStructure structure = expression.ReferenceExpression?.Structure.GetCopy(true);
+
+            if (expression.GetFirstAncestorExpr("Apply") != null)
+            {
+                structure.DatasetName = null;
+                structure.Identifiers.Clear();
+                structure.ViralAttributes.Clear();
+                structure.NonViralAttributes.Clear();
+            }
+
+            return structure;
         }
     }
 }

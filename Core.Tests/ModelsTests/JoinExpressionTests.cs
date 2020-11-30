@@ -35,6 +35,7 @@
             Assert.Equal(expr.ReferenceExpression, joinExpr.ReferenceExpression);
             Assert.Equal(expr.ResultName, joinExpr.ResultName);
             Assert.Equal(expr.Structure, joinExpr.Structure);
+            Assert.Null(joinExpr.BasicStructure);
         }
 
         [Fact]
@@ -49,6 +50,7 @@
             expr.ReferenceExpression = refExpr;
 
             IJoinExpression joinExpr2 = ModelResolvers.JoinExprResolver(expr);
+            joinExpr2.BasicStructure = ModelResolvers.DsResolver();
 
             JoinExpression joinExpr = new JoinExpression(joinExpr2);
 
@@ -62,6 +64,7 @@
             Assert.Equal(expr.ReferenceExpression, joinExpr.ReferenceExpression);
             Assert.Equal(expr.ResultName, joinExpr.ResultName);
             Assert.Equal(expr.Structure, joinExpr.Structure);
+            Assert.Equal(joinExpr2.BasicStructure, joinExpr.BasicStructure);
         }
 
         [Fact]

@@ -94,10 +94,13 @@
                     else if (key == "between") return new BetweenOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("and", "or", "xor", "not")) return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "calc") return new CalcOperator(ModelResolvers.DsResolver);
+                    else if (key == "collection") return new CollectionOperator(ModelResolvers.DsResolver);
                     else if (key.In("=", "<>", "<", "<=", ">", ">=")) return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "comp") return new ComponentOperator(ModelResolvers.DsResolver, new ComponentTypeInference(ModelResolvers.DsResolver));
                     else if (key == "const") return new ConstantOperator(ModelResolvers.DsResolver);
                     else if (key == "get") return new GetOperator(new Mock<IDataModel>().Object); // operator tests should mock IDataModel implementation
+                    else if (key == "if") return new IfThenElseOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
+                    else if (key.In("in", "not_in")) return new InOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "isnull") return new IsNullOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key == "join") return new JoinOperator(ModelResolvers.DsResolver);
                     else if (key.In("keep", "drop")) return new KeepDropOperator(ModelResolvers.DsResolver, key);

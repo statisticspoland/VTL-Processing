@@ -74,6 +74,18 @@
                     operatorExpr.AddOperand($"ds_{j + 1}", operand);
                 }
 
+                if (operatorExpr.OperatorSymbol == "if")
+                {
+                    IExpression[] ifThenElseExprs = operatorExpr.OperandsCollection.ToArray();
+                    operatorExpr.Operands.Clear();
+                    operatorExpr.AddOperand("if", ifThenElseExprs[0]);
+                    operatorExpr.AddOperand("then", ifThenElseExprs[1]);
+                    operatorExpr.AddOperand("else", ifThenElseExprs[2]);
+                    if (operatorExpr.Operands["if"].ResultName != "If") operatorExpr.Operands["if"].AddOperand("ds_1", ifThenElseExprs[0]);
+                    if (operatorExpr.Operands["then"].ResultName != "Then") operatorExpr.Operands["then"].AddOperand("ds_1", ifThenElseExprs[1]);
+                    if (operatorExpr.Operands["else"].ResultName != "Else") operatorExpr.Operands["else"].AddOperand("ds_1", ifThenElseExprs[2]);
+                }
+
                 IDataStructure operatorStructure = operatorExpr.OperatorDefinition.GetOutputStructure(operatorExpr);
                 operatorStructure.Measures[0].BaseComponentName = measuresExprList[i].Structure.Measures[0].BaseComponentName;
                 operatorStructure.Measures[0].ComponentName = measuresExprList[i].Structure.Measures[0].ComponentName;

@@ -33,6 +33,17 @@
             }
             else if (expr.OperatorSymbol == "calcExpr") expr.ExpressionText = $"{expr.Operands["ds_1"].ExpressionText} := {expr.Operands["ds_2"].ExpressionText}";
             else if (expr.OperatorSymbol == "renameExpr") expr.ExpressionText = $"{expr.Operands["ds_1"].ExpressionText} to {expr.Operands["ds_2"].ExpressionText}";
+            else if (expr.OperatorSymbol == "if")
+            {
+                string elseExpr = expr.Operands.ContainsKey("else") ? $" {expr.Operands["else"].ExpressionText}" : string.Empty;
+                expr.ExpressionText = $"{expr.Operands["if"].ExpressionText} {expr.Operands["then"].ExpressionText}{elseExpr}";
+            }
+            else if (expr.OperatorSymbol == null)
+            {
+                if (expr.ResultName == "If") expr.ExpressionText = $"if {expr.Operands["ds_1"].ExpressionText}";
+                else if (expr.ResultName == "Then") expr.ExpressionText = $"then {expr.Operands["ds_1"].ExpressionText}";
+                else if (expr.ResultName == "Else") expr.ExpressionText = $"else {expr.Operands["ds_1"].ExpressionText}";
+            }
             else if (!expr.OperatorSymbol.In("get", "ref", "const", "comp", "join"))
             {
                 expr.ExpressionText = $"{expr.OperatorSymbol}(";

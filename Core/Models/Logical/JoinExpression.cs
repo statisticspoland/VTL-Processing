@@ -29,7 +29,10 @@
             this.ReferenceExpression = expression.ReferenceExpression;
             this.ResultName = expression.ResultName;
             this.Structure = expression.Structure;
+            this.BasicStructure = (expression as IJoinExpression)?.BasicStructure;
         }
+
+        public IDataStructure BasicStructure { get; set; }
 
         /// <summary>
         /// Gets the alias expression, whose structure is a subset of others.

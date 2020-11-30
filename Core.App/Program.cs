@@ -6,20 +6,31 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.DataModel;
+    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Target.PlantUML;
     using Target.PlantUML.Infrastructure;
+    using Target.TSQL.Infrastructure;
 
     public sealed class Program
     {
         public static void Main(string[] args)
         {
             string source = Example.Source;
+
+            IEnvironmentMapper envMapper = new DictionaryEnvMapper(
+                new Dictionary<string, string>()
+                {
+                    { "Json", string.Empty },
+                    { "Regular", string.Empty }
+                });
 
             IServiceCollection services = new ServiceCollection();
             services.AddVtlProcessing((configure) =>
@@ -36,6 +47,13 @@
                 configure.ShowNumberLine();
                 //configure.UseArrowLastToFirst();
                 //configure.UseHorizontalView();
+            });
+
+            services.AddTsqlTarget((configure) =>
+            {
+                configure.AddEnvMapper(envMapper);
+                configure.AddComments();
+                //configure.SetAttributePropagationAlgorithm(new AttributePropagationAlgorithm());
             });
 
             services.AddLogging((configure) =>
@@ -59,13 +77,16 @@
             string plantUmlResult = plantUmlRenderer.Render(schema);
             PlantUmlUrlConverter converter = new PlantUmlUrlConverter(plantUmlResult);
 
-            Debug.WriteLine($"\n\n{converter.SVGUrl}\n\n");
-
             if (!areErrors)
             {
+                ITargetRenderer tsqlRenderer = provider.GetTargetRenderer("TSQL");
+
                 Process.Start("cmd.exe", $"/C start {converter.SVGUrl}");
+
                 FilesManager.ResultToFile(plantUmlResult, "result.plantuml");
+                FilesManager.ResultToFile(tsqlRenderer.Render(schema), "result.sql");
             }
+            else Debug.WriteLine($"\n\n{converter.SVGUrl}\n\n");
         }
     }
 }

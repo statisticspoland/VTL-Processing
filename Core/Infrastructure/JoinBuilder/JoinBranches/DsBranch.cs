@@ -38,7 +38,7 @@
             dsBranch.ExpressionText = string.Empty;
             foreach (IExpression op in datasetExpr.OperandsCollection)
             {
-                this.MoveNamesToAliases(op, dsBranch); // przeniesienie operandów z operatorami get, ref i join do gałęzi ds i zastąpienie ich sygnaturami
+                this.MoveNamesToAliases(op, dsBranch);  // przeniesienie operandów z operatorami get, ref, # i join do gałęzi ds i zastąpienie ich sygnaturami
             }
 
             foreach (IExpression alias in dsBranch.OperandsCollection)
@@ -52,7 +52,7 @@
         }
 
         /// <summary>
-        /// Moves expression with get, reference or "join" operator and replaces it with alias expression.
+        /// Moves expression with "get", "ref", "#" or "join" operator and replaces it with alias expression.
         /// </summary>
         /// <param name="expr">Expression to move.</param>
         /// <param name="ds">Ds branch.</param>
