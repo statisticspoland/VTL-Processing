@@ -27,9 +27,35 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
-	
+
   <ItemGroup>
-    <Folder Include="Operators\" />
+    <Compile Update="InfrastructureTests/JoinBuilder/ExpressionTextGeneratorTests.Init.cs">
+      <DependentUpon>ExpressionTextGeneratorTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InfrastructureTests/JoinBuilder/JoinBuilderTests.Init.cs">
+      <DependentUpon>JoinBuilderTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InfrastructureTests/JoinBuilder/JoinBranches/ApplyBranchTests.Init.cs">
+      <DependentUpon>ApplyBranchTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InfrastructureTests/JoinBuilder/JoinBranches/CalcBranchTests.Init.cs">
+      <DependentUpon>CalcBranchTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InfrastructureTests/JoinBuilder/JoinBranches/DsBranchTests.Init.cs">
+      <DependentUpon>DsBranchTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InfrastructureTests/JoinBuilder/JoinBranches/RenameBranchTests.Init.cs">
+      <DependentUpon>RenameBranchTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InfrastructureTests/JoinBuilder/JoinBranches/UsingBranchTests.Init.cs">
+      <DependentUpon>UsingBranchTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="ModelsTests/DatapointRulesetTests.Init.cs">
+      <DependentUpon>DatapointRulesetTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MiddleEndTests\DeadCodeModifierTests.Init.cs">
+      <DependentUpon>DeadCodeModifierTests.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

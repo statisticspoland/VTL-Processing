@@ -29,6 +29,11 @@
 
         public IExpression Build(IExpression datasetExpr)
         {
+            /*
+            This method is using mainly for dataset "comparison" operators. Example: DS_r := X = Y;
+            The method can be used to generate "rename" operator expression renaming given dataset expression's single measure name to "bool_var".
+            */
+
             IExpression renameBranch = this.exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
             IExpression renameExpr = this.exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
             IExpression compExpr1 = this.exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
