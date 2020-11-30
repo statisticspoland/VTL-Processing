@@ -85,10 +85,8 @@
 
                 FilesManager.ResultToFile(plantUmlResult, "result.plantuml");
                 FilesManager.ResultToFile(tsqlRenderer.Render(schema), "result.sql");
-
-                Debug.WriteLine($"\n\n{plantUmlResult}\n\n");
             }
-            else FilesManager.ResultToFile(string.Empty, "result.sql");
+            else Debug.WriteLine($"\n\n{converter.SVGUrl}\n\n");
         }
     }
 }

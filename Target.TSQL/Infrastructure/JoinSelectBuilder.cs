@@ -105,15 +105,19 @@
                     if (source == null && identifiers[i].BaseComponentName.Split('#').Length == 2) source = identifiers[i].BaseComponentName.Split('#')[0];
                     if (source != null) source += ".";
 
-                    if (this.joinExpr.OperatorDefinition.Keyword != "full")
-                    {
-                        if (baseName != identifiers[i].ComponentName.GetNameWithoutAlias()) sb.AppendLine($"{source}{baseName} AS {identifiers[i].ComponentName},");
-                        else sb.AppendLine($"{source}{baseName},");
-                    }
+                    if (i == 0 && this.ifThenElse) sb.AppendLine(this.RenderIfThenElseIdentifier(identifiers[i]));
                     else
                     {
-                        string[] aliases = this.joinExpr.GetAliasesSignatures(baseName);
-                        sb.AppendLine($"CASE WHEN NOT {aliases[0]}.{baseName} IS NULL THEN {aliases[0]}.{baseName} ELSE {aliases[1]}.{baseName} END AS {identifiers[i].ComponentName},");
+                        if (this.joinExpr.OperatorDefinition.Keyword != "full")
+                        {
+                            if (baseName != identifiers[i].ComponentName.GetNameWithoutAlias()) sb.AppendLine($"{source}{baseName} AS {identifiers[i].ComponentName},");
+                            else sb.AppendLine($"{source}{baseName},");
+                        }
+                        else
+                        {
+                            string[] aliases = this.joinExpr.GetAliasesSignatures(baseName);
+                            sb.AppendLine($"CASE WHEN NOT {aliases[0]}.{baseName} IS NULL THEN {aliases[0]}.{baseName} ELSE {aliases[1]}.{baseName} END AS {identifiers[i].ComponentName},");
+                        }
                     }
                 }
             }
@@ -373,6 +377,41 @@
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Renders a TSQL translated code for an "if-then-else" operator identifier.
+        /// </summary>
+        /// <param name="identifier">The idenfitier.</param>
+        /// <returns>The TSQL translated code.</returns>
+        private string RenderIfThenElseIdentifier(StructureComponent identifier)
+        {
+            // Get aliases of every if-then-else branch:
+            IExpression[] ifExprAliases = this.joinExpr.Operands["ds"].OperandsCollection
+                .Where(alias => alias.ParamSignature.In(this.joinExpr.Operands["apply"].Operands["if"].GetDescendantExprs("Alias").Select(a => a.ExpressionText).ToArray())).ToArray();
+            IExpression[] thenExprAliases = this.joinExpr.Operands["ds"].OperandsCollection
+                .Where(alias => alias.ParamSignature.In(this.joinExpr.Operands["apply"].Operands["then"].GetDescendantExprs("Alias").Select(a => a.ExpressionText).ToArray())).ToArray();
+            IExpression[] elseExprAliases = this.joinExpr.Operands["ds"].OperandsCollection
+                .Where(alias => alias.ParamSignature.In(this.joinExpr.Operands["apply"].Operands["else"].GetDescendantExprs("Alias").Select(a => a.ExpressionText).ToArray())).ToArray();
+
+            // Get subset alias of every if-then-else branch:
+            IExpression ifExprAlias = JoinExpression.GetSubsetAlias(ifExprAliases);
+            IExpression thenExprAlias = JoinExpression.GetSubsetAlias(thenExprAliases);
+            IExpression elseExprAlias = JoinExpression.GetSubsetAlias(elseExprAliases);
+
+            if (thenExprAlias != null && elseExprAlias != null)
+            {
+                IExpression ifSubExpr = this.joinExpr.Operands["apply"].Operands["if"].Operands["ds_1"];
+                string suffix = ifSubExpr.OperatorSymbol.In("ref", "const") ? " = 1" : string.Empty;
+
+                return
+                    $"IIF({this.opRendererResolver(ifSubExpr.OperatorSymbol).Render(ifSubExpr, ifExprAlias?.Structure.Measures[0] ?? this.joinExpr.Operands["apply"].Operands["then"].Structure.Measures[0])}{suffix}, " +
+                    $"{thenExprAlias.ParamSignature}.{identifier.ComponentName}, " +
+                    $"{elseExprAlias.ParamSignature}.{identifier.ComponentName}) AS {identifier.ComponentName},";
+            }
+            else if (thenExprAlias != null) return $"{thenExprAlias.ParamSignature}.{identifier.ComponentName},";
+            else if (elseExprAlias != null) return $"{elseExprAlias.ParamSignature}.{identifier.ComponentName},";
+            else return $"{ifExprAlias.ParamSignature}.{identifier.ComponentName},";
         }
 
         /// <summary>
