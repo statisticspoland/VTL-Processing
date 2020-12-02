@@ -104,8 +104,10 @@
                     else if (key == "isnull") return new IsNullOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key == "join") return new JoinOperator(ModelResolvers.DsResolver);
                     else if (key.In("keep", "drop")) return new KeepDropOperator(ModelResolvers.DsResolver, key);
+                    else if (key == "match_characters") return new MatchCharactersOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key == "#") return new MembershipOperator();
                     else if (key.In("ceil", "floor", "abs", "exp", "ln", "sqrt", "mod", "round", "power", "log", "trunc")) return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
+                    else if (key == "nvl") return new NvlOperator(joinApplyMeasuresOp);
                     else if (key == "opt") return new OptionalOperator(ModelResolvers.DsResolver);
                     else if (key == "ref") return new ReferenceOperator();
                     else if (key == "rename") return new RenameOperator(ModelResolvers.DsResolver);
