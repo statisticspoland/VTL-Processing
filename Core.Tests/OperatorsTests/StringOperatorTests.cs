@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
     using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
@@ -10,7 +10,6 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -19,40 +18,6 @@
 
     public partial class StringOperatorTests
     {
-        private readonly OperatorResolver opResolver;
-        public StringOperatorTests()
-        {
-            Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            Mock<IExpressionFactory> exprFacMock = new Mock<IExpressionFactory>();
-
-            exprFacMock.Setup(o => o.GetExpression(It.IsAny<string>(), It.IsAny<ExpressionFactoryNameTarget>()))
-                .Returns((string name, ExpressionFactoryNameTarget field) =>
-                {
-                    IExpression expr = ModelResolvers.ExprResolver();
-                    if (field == ExpressionFactoryNameTarget.ResultName) expr.ResultName = name;
-                    else expr.OperatorDefinition = opResolverMock.Object(name);
-                    return expr;
-                });
-            exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
-
-            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
-                exprFacMock.Object,
-                ModelResolvers.DsResolver);
-
-            opResolverMock.Setup(o => o("||")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "||"); });
-            opResolverMock.Setup(o => o("trim")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "trim"); });
-            opResolverMock.Setup(o => o("rtrim")).Returns(() => { return new StringOperator(joinApplyMeasuresOp,ModelResolvers.DsResolver, "rtrim"); });
-            opResolverMock.Setup(o => o("ltrim")).Returns(() => { return new StringOperator(joinApplyMeasuresOp,ModelResolvers.DsResolver, "ltrim"); });
-            opResolverMock.Setup(o => o("upper")).Returns(() => { return new StringOperator(joinApplyMeasuresOp,ModelResolvers.DsResolver, "upper"); });
-            opResolverMock.Setup(o => o("lower")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "lower"); });
-            opResolverMock.Setup(o => o("substr")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "substr"); });
-            opResolverMock.Setup(o => o("replace")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "replace"); });
-            opResolverMock.Setup(o => o("instr")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "instr"); });
-            opResolverMock.Setup(o => o("length")).Returns(() => { return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "length"); });
-
-            this.opResolver = opResolverMock.Object;
-        }
-
         [Theory]
         // OneArg
         [InlineData("trim", TestExprType.String)]
@@ -100,7 +65,7 @@
         public void GetOutputStructure_CorrectScalarsExpr_StringScalarStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = stringExpr.OperatorDefinition.GetOutputStructure(stringExpr);
 
@@ -145,7 +110,7 @@
         public void GetOutputStructure_CorrectScalarsExpr_IntScalarStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = stringExpr.OperatorDefinition.GetOutputStructure(stringExpr);
 
@@ -219,7 +184,7 @@
         public void GetOutputStructure_CorrectDatasetNScalarsExpr_StringsDatasetStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = stringExpr.OperatorDefinition.GetOutputStructure(stringExpr);
 
@@ -236,7 +201,7 @@
         public void GetOutputStructure_ScalarDatasetExpr_StringsDatasetStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = stringExpr.OperatorDefinition.GetOutputStructure(stringExpr);
 
@@ -256,7 +221,7 @@
         public void GetOutputStructure_2DatasetsExpr_StringsSupersetStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure expected = stringExpr.Operands["ds_1"].Structure;
             expected.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id2"));
@@ -321,7 +286,7 @@
         public void GetOutputStructure_OneMeasureDatasetNScalarsExpr_OneMeasureIntStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
             stringExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 
             IDataStructure expected = stringExpr.Operands["ds_1"].Structure.GetCopy();
@@ -386,7 +351,7 @@
         public void GetOutputStructure_MultiMeasuresDatasetNScalarsExpr_ThrowsException(string opSymbol, params TestExprType[] types)
         {
             IExpression stringExpr = TestExprFactory.GetExpression(types);
-            stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+            stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             Assert.ThrowsAny<VtlOperatorError>(() => { stringExpr.OperatorDefinition.GetOutputStructure(stringExpr); });
         }
@@ -415,7 +380,7 @@
             foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18)) // No mixed datasets
             {
                 IExpression stringExpr = TestExprFactory.GetExpression(new TestExprType[] { wrongComb[0] });
-                stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+                stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
                 if (opSymbol.In("length", "instr") && stringExpr.Operands["ds_1"].Structure.Measures.Count > 1)
                     stringExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 
@@ -501,7 +466,7 @@
             foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18 && (int)wrongComb[1] < 18)) // No mixed datasets
             {
                 IExpression stringExpr = TestExprFactory.GetExpression(wrongComb);
-                stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+                stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
                 if (opSymbol.In("length", "instr") && stringExpr.Operands["ds_1"].Structure.Measures.Count > 1)
                     stringExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 
@@ -600,7 +565,7 @@
             foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18 && (int)wrongComb[1] < 18 && (int)wrongComb[2] < 18)) // No mixed datasets
             {
                 IExpression stringExpr = TestExprFactory.GetExpression(wrongComb);
-                stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+                stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
                 if (opSymbol.In("length", "instr") && stringExpr.Operands["ds_1"].Structure.Measures.Count > 1)
                     stringExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 
@@ -662,7 +627,7 @@
             foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18 && (int)wrongComb[1] < 18 && (int)wrongComb[2] < 18 && (int)wrongComb[3] < 18)) // No mixed datasets)
             {
                 IExpression stringExpr = TestExprFactory.GetExpression(wrongComb);
-                stringExpr.OperatorDefinition = this.opResolver(opSymbol);
+                stringExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
                 if (opSymbol.In("length", "instr") && stringExpr.Operands["ds_1"].Structure.Measures.Count > 1)
                     stringExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 

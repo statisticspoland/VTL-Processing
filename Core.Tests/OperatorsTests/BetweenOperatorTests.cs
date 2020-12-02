@@ -1,16 +1,10 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
-    using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Linq;
@@ -18,32 +12,6 @@
 
     public class BetweenOperatorTests
     {
-        private readonly OperatorResolver opResolver;
-
-        public BetweenOperatorTests()
-        {
-            Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            Mock<IExpressionFactory> exprFacMock = new Mock<IExpressionFactory>();
-
-            exprFacMock.Setup(o => o.GetExpression(It.IsAny<string>(), It.IsAny<ExpressionFactoryNameTarget>()))
-                .Returns((string name, ExpressionFactoryNameTarget field) =>
-                {
-                    IExpression expr = ModelResolvers.ExprResolver();
-                    if (field == ExpressionFactoryNameTarget.ResultName) expr.ResultName = name;
-                    else expr.OperatorDefinition = opResolverMock.Object(name);
-                    return expr;
-                });
-            exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
-
-            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
-                exprFacMock.Object,
-                ModelResolvers.DsResolver);
-
-            opResolverMock.Setup(o => o("between")).Returns(() => { return new BetweenOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver); });
-
-            this.opResolver = opResolverMock.Object;
-        }
-
         [Theory]
         [InlineData(TestExprType.Integer, TestExprType.Integer, TestExprType.Integer)]
         [InlineData(TestExprType.Integer, TestExprType.Integer, TestExprType.None)]
@@ -117,7 +85,7 @@
         public void GetOutputStructure_Correct3ScalarsArgsExpr_BoolScalarStructure(params TestExprType[] types)
         {
             IExpression betweenExpr = TestExprFactory.GetExpression(types);
-            betweenExpr.OperatorDefinition = this.opResolver("between");
+            betweenExpr.OperatorDefinition = ModelResolvers.OperatorResolver("between");
 
             IDataStructure dataStructure = betweenExpr.OperatorDefinition.GetOutputStructure(betweenExpr);
 
@@ -197,7 +165,7 @@
         public void GetOutputStructure_1OneMeasureDataset2CorrectScalarsArgsExpr_OneMeasureBoolStructure(params TestExprType[] types)
         {
             IExpression betweenExpr = TestExprFactory.GetExpression(types);
-            betweenExpr.OperatorDefinition = this.opResolver("between");
+            betweenExpr.OperatorDefinition = ModelResolvers.OperatorResolver("between");
             betweenExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 
             IDataStructure expectedStructure = betweenExpr.Operands["ds_1"].Structure.GetCopy();
@@ -282,7 +250,7 @@
         public void GetOutputStructure_1MultiMeasuresDataset2CorrectScalarsArgsExpr_ThrowsException(params TestExprType[] types)
         {
             IExpression betweenExpr = TestExprFactory.GetExpression(types);
-            betweenExpr.OperatorDefinition = this.opResolver("between");
+            betweenExpr.OperatorDefinition = ModelResolvers.OperatorResolver("between");
 
             Assert.ThrowsAny<VtlOperatorError>(() => { betweenExpr.OperatorDefinition.GetOutputStructure(betweenExpr); });
         }
@@ -440,7 +408,7 @@
             foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18)) // No mixed datasets
             {
                 IExpression betweenExpr = TestExprFactory.GetExpression(wrongComb);
-                betweenExpr.OperatorDefinition = this.opResolver("between");
+                betweenExpr.OperatorDefinition = ModelResolvers.OperatorResolver("between");
                 if (betweenExpr.Operands["ds_1"].Structure.Measures.Count > 1)
                     betweenExpr.Operands["ds_1"].Structure.Measures.RemoveAt(1);
 

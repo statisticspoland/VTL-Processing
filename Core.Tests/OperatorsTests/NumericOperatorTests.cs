@@ -1,15 +1,8 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
-    using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Collections.Generic;
@@ -18,41 +11,6 @@
 
     public partial class NumericOperatorTests
     {
-        private readonly OperatorResolver opResolver;
-        public NumericOperatorTests()
-        {
-            Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            Mock<IExpressionFactory> exprFacMock = new Mock<IExpressionFactory>();
-
-            exprFacMock.Setup(o => o.GetExpression(It.IsAny<string>(), It.IsAny<ExpressionFactoryNameTarget>()))
-                .Returns((string name, ExpressionFactoryNameTarget field) =>
-                {
-                    IExpression expr = ModelResolvers.ExprResolver();
-                    if (field == ExpressionFactoryNameTarget.ResultName) expr.ResultName = name;
-                    else expr.OperatorDefinition = opResolverMock.Object(name);
-                    return expr;
-                });
-            exprFacMock.Setup(o => o.OperatorResolver).Returns(opResolverMock.Object);
-
-            IJoinApplyMeasuresOperator joinApplyMeasuresOp = new JoinApplyMeasuresOperator(
-                exprFacMock.Object,
-                ModelResolvers.DsResolver);
-
-            opResolverMock.Setup(o => o("mod")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "mod"); });
-            opResolverMock.Setup(o => o("round")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "round"); });
-            opResolverMock.Setup(o => o("trunc")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "trunc"); });
-            opResolverMock.Setup(o => o("ceil")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "ceil"); });
-            opResolverMock.Setup(o => o("floor")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "floor"); });
-            opResolverMock.Setup(o => o("abs")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "abs"); });
-            opResolverMock.Setup(o => o("exp")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "exp"); });
-            opResolverMock.Setup(o => o("ln")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "ln"); });
-            opResolverMock.Setup(o => o("power")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "power"); });
-            opResolverMock.Setup(o => o("log")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "log"); });
-            opResolverMock.Setup(o => o("sqrt")).Returns(() => { return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, "sqrt"); });
-
-            this.opResolver = opResolverMock.Object;
-        }
-
         [Theory]
         [InlineData("ceil", TestExprType.Integer)]
         [InlineData("ceil", TestExprType.Number)]
@@ -61,7 +19,7 @@
         public void GetOutputStructure_CorrectScalarsExpr_IntScalarStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression numericExpr = TestExprFactory.GetExpression(types);
-            numericExpr.OperatorDefinition = this.opResolver(opSymbol);
+            numericExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = numericExpr.OperatorDefinition.GetOutputStructure(numericExpr);
 
@@ -128,7 +86,7 @@
         public void GetOutputStructure_CorrectScalarsExpr_NumberScalarStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression numericExpr = TestExprFactory.GetExpression(types);
-            numericExpr.OperatorDefinition = this.opResolver(opSymbol);
+            numericExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = numericExpr.OperatorDefinition.GetOutputStructure(numericExpr);
 
@@ -207,7 +165,7 @@
         public void GetOutputStructure_CorrectDatasetsExpr_CorrectDatasetStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression numericExpr = TestExprFactory.GetExpression(types);
-            numericExpr.OperatorDefinition = this.opResolver(opSymbol);
+            numericExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = numericExpr.OperatorDefinition.GetOutputStructure(numericExpr);
             
@@ -293,7 +251,7 @@
         public void GetOutputStructure_CorrectDatasetScalarExpr_NumbersDatasetStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression numericExpr = TestExprFactory.GetExpression(types);
-            numericExpr.OperatorDefinition = this.opResolver(opSymbol);
+            numericExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = numericExpr.OperatorDefinition.GetOutputStructure(numericExpr);
 
@@ -322,7 +280,7 @@
         public void GetOutputStructure_CorrectScalarDatasetExpr_NumbersDatasetStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression numericExpr = TestExprFactory.GetExpression(types);
-            numericExpr.OperatorDefinition = this.opResolver(opSymbol);
+            numericExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
             IDataStructure dataStructure = numericExpr.OperatorDefinition.GetOutputStructure(numericExpr);
 
@@ -483,7 +441,7 @@
                 else
                     numericExpr = TestExprFactory.GetExpression(wrongComb[0], wrongComb[1]);
 
-                numericExpr.OperatorDefinition = this.opResolver(opSymbol);
+                numericExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
 
                 // Debug condition example: wrongComb[0] == TestExprType.Integer && wrongComb[1] == TestExprType.Integer
                 Assert.ThrowsAny<VtlOperatorError>(() => { numericExpr.OperatorDefinition.GetOutputStructure(numericExpr); });

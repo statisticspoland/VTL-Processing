@@ -1,5 +1,6 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Utilities
 {
+    using Moq;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
@@ -13,6 +14,45 @@
     /// </summary>
     public static class TestExprFactory
     {
+        private static readonly IExpressionFactory exprFactory;
+
+        /// <summary>
+        /// Initializes expression factory.
+        /// </summary>
+        static TestExprFactory()
+        {
+            Mock<IExpressionFactory> exprFactoryMock = new Mock<IExpressionFactory>();
+            exprFactoryMock.Setup(o => o.GetExpression(It.IsAny<string>(), ExpressionFactoryNameTarget.ResultName))
+                .Returns((string name, ExpressionFactoryNameTarget field) =>
+                {
+                    IExpression expr = ModelResolvers.ExprResolver();
+                    expr.ResultName = name;
+                    return expr;
+                });
+
+            exprFactoryMock.Setup(o => o.GetExpression(It.IsAny<string>(), ExpressionFactoryNameTarget.OperatorSymbol))
+                .Returns((string name, ExpressionFactoryNameTarget field) =>
+                {
+                    IExpression expr = ModelResolvers.ExprResolver();
+                    expr.OperatorDefinition = ModelResolvers.OperatorResolver(name);
+                    expr.ResultName = expr.OperatorDefinition.Name;
+                    return expr;
+                });
+
+            TestExprFactory.exprFactory = exprFactoryMock.Object;
+        }
+
+        /// <summary>
+        /// Gets the expression with an assigned field.
+        /// </summary>
+        /// <param name="name">The value to assign.</param>
+        /// <param name="field">The field to assign the value to.</param>
+        /// <returns>The expression.</returns>
+        public static IExpression GetExpression(string name, ExpressionFactoryNameTarget field)
+        {
+            return TestExprFactory.exprFactory.GetExpression(name, field);
+        }
+
         /// <summary>
         /// Gets the expression by testing data type.
         /// </summary>
@@ -31,38 +71,6 @@
         public static IExpression GetExpression(params TestExprType[] types)
         {
             return TestExprFactory.GetExpression(false, types);
-        }
-
-        /// <summary>
-        /// Gets the arithmetic operator expression with a given numeric testing data type.
-        /// </summary>
-        /// <param name="exprFactory">The expression factory.</param>
-        /// <param name="type">The numeric testing data type.</param>
-        /// <returns>The expression.</returns>
-        public static IExpression GetArithmeticExpr(IExpressionFactory exprFactory, TestExprType type)
-        {
-            IExpression arithmeticExpr = exprFactory.GetExpression("+", ExpressionFactoryNameTarget.OperatorSymbol);
-
-            switch (type)
-            {
-                case TestExprType.Integer:
-                    arithmeticExpr.AddOperand("ds_1", TestExprFactory.GetExpression(TestExprType.Integer));
-                    arithmeticExpr.AddOperand("ds_2", TestExprFactory.GetExpression(TestExprType.Integer));
-                    break;
-                case TestExprType.Number:
-                    arithmeticExpr.AddOperand("ds_1", TestExprFactory.GetExpression(TestExprType.Number));
-                    arithmeticExpr.AddOperand("ds_2", TestExprFactory.GetExpression(TestExprType.Number));
-                    break;
-                case TestExprType.MixedIntNumDataset:
-                    arithmeticExpr.AddOperand("ds_1", TestExprFactory.GetExpression(TestExprType.Integer));
-                    arithmeticExpr.AddOperand("ds_2", TestExprFactory.GetExpression(TestExprType.Number));
-                    break;
-                default: throw new Exception();
-            }
-
-            arithmeticExpr.Structure = arithmeticExpr.OperatorDefinition.GetOutputStructure(arithmeticExpr);
-
-            return arithmeticExpr;
         }
 
         /// <summary>

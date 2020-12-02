@@ -4,6 +4,7 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System.Collections.Generic;
     using System.Linq;
@@ -38,7 +39,10 @@
         public IJoinBuilder AddMainExpr(IExpression mainExpr)
         {
             this.Branches.Remove("main");
-            this.Branches.Add("main", mainExpr);
+
+            if (!mainExpr.IsScalar && mainExpr.OperatorSymbol.In(JoinOperators.Operators))
+                this.Branches.Add("main", mainExpr);
+            else this.Branches.Add("main", this.joinExprResolver(mainExpr));
 
             this.IsCleared = false;
             return this;
@@ -63,6 +67,9 @@
         public IJoinExpression Build()
         {
             IExpression mainExpr = this.Branches["main"];
+
+            if (!this.Branches.ContainsKey("ds"))
+                throw new VtlOperatorError(mainExpr, "join", "\"Join\" expression expects a \"ds\" branch.");
 
             mainExpr.AddOperand("ds", this.Branches["ds"]);
             mainExpr = this.joinExprResolver(mainExpr);
@@ -115,6 +122,7 @@
                 branch.LineNumber = mainExpr.LineNumber;
             }
 
+            this.Branches["main"] = mainExpr;
             return (IJoinExpression)mainExpr;
         }
 

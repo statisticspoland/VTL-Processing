@@ -1,7 +1,6 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Operators
+﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.OperatorsTests
 {
     using Moq;
-    using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
@@ -13,17 +12,14 @@
     public class GetOperatorTests
     {
         private readonly OperatorResolver opResolver;
-        private readonly IDataModel dataModel;
 
         public GetOperatorTests()
         {
             Mock<IDataModel> dataModelMock = new Mock<IDataModel>();
             dataModelMock.Setup(o => o.GetDatasetStructure(It.IsAny<string>())).Returns((string dsName) => this.GetDataStructure(dsName));
 
-            this.dataModel = dataModelMock.Object;
-
             Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
-            opResolverMock.Setup(o => o("get")).Returns(() => { return new GetOperator(this.dataModel); });
+            opResolverMock.Setup(o => o("get")).Returns(() => { return new GetOperator(dataModelMock.Object); });
 
             this.opResolver = opResolverMock.Object;
         }
