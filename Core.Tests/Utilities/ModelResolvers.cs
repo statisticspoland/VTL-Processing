@@ -98,18 +98,23 @@
                     else if (key.In("=", "<>", "<", "<=", ">", ">=")) return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "comp") return new ComponentOperator(ModelResolvers.DsResolver, new ComponentTypeInference(ModelResolvers.DsResolver));
                     else if (key == "const") return new ConstantOperator(ModelResolvers.DsResolver);
+                    else if (key == "current_date") return new CurrentDateOperator(ModelResolvers.DsResolver);
                     else if (key == "get") return new GetOperator(new Mock<IDataModel>().Object); // operator tests should mock IDataModel implementation
                     else if (key == "if") return new IfThenElseOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("in", "not_in")) return new InOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "isnull") return new IsNullOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key == "join") return new JoinOperator(ModelResolvers.DsResolver);
                     else if (key.In("keep", "drop")) return new KeepDropOperator(ModelResolvers.DsResolver, key);
+                    else if (key == "match_characters") return new MatchCharactersOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key == "#") return new MembershipOperator();
                     else if (key.In("ceil", "floor", "abs", "exp", "ln", "sqrt", "mod", "round", "power", "log", "trunc")) return new NumericOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
+                    else if (key == "nvl") return new NvlOperator(joinApplyMeasuresOp);
                     else if (key == "opt") return new OptionalOperator(ModelResolvers.DsResolver);
+                    else if (key == "period_indicator") return new PeriodIndicatorOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, exprFactory);
                     else if (key == "ref") return new ReferenceOperator();
                     else if (key == "rename") return new RenameOperator(ModelResolvers.DsResolver);
                     else if (key.In("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")) return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
+                    else if (key.In("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")) return new TimeOperator(key);
                     else if (key.In("plus", "minus")) return new UnaryArithmeticOperator(joinApplyMeasuresOp, key);
                     // ---
                     else if (key == "calcExpr") return new CalcExprOperator(ModelResolvers.DsResolver);
