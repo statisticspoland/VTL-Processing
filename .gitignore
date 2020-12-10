@@ -12,4 +12,7 @@ obj/
 
 .vscode/
 .vs
-docs-source/build/
+/docs-source/build/
+/Core.Tests/TestResults
+/results
+/coverage.xml
