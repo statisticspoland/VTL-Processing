@@ -20,7 +20,7 @@ namespace Service
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var port = Environment.GetEnvironmentVariable("PORT");
+                    var port = Environment.GetEnvironmentVariable("PORT")??"5000";
 
                     webBuilder
                     .UseStartup<Startup>()
