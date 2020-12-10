@@ -1,0 +1,21 @@
+name: BuildAndDeployDemo
+
+on:
+  push:
+    branches: [ service_project ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x 
+    - run: dotnet build --configuration Release
+    
