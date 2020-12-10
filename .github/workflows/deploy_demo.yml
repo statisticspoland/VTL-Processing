@@ -19,3 +19,4 @@ jobs:
         heroku_app_name: "vtl-processing-demo"
         heroku_email: "bobinski.mateusz@gmail.com"
         usedocker: true
+        appdir: "Service"
