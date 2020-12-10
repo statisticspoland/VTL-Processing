@@ -2,7 +2,7 @@ name: BuildAndDeployDemo
 
 on:
   push:
-    branches: [ service_project ]
+    branches: [ master ]
 
 jobs:
   build:
