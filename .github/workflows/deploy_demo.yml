@@ -17,6 +17,6 @@ jobs:
       with:
         heroku_api_key: 1c021755-ff5e-46cb-9a7a-63341da2d5fc
         heroku_app_name: "vtl-processing-demo"
-        heroku_email: "bobinski.mateusz@gmail.com"
+        heroku_email: "m.bobinski@stat.gov.pl"
         usedocker: true
         appdir: "Service"
