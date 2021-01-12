@@ -113,7 +113,7 @@
                 }
             }
 
-            if (this.Branches.ContainsKey("aggr")) mainExpr.AddOperand("aggr", this.Branches["aggr"]);
+            if (this.Branches.ContainsKey("subspace")) mainExpr.AddOperand("subspace", this.Branches["subspace"]);
 
             mainExpr.SetContainingSchema(mainExpr.ContainingSchema);
 

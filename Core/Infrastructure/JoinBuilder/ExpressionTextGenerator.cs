@@ -21,7 +21,7 @@
                 string symbol = expr.OperatorSymbol == "plus" ? "+" : "-";
                 expr.ExpressionText = $"{symbol}{expr.OperandsCollection.ToArray()[0].ExpressionText}";
             }
-            else if (expr.OperatorSymbol.In("calc", "keep", "drop", "rename"))
+            else if (expr.OperatorSymbol.In("calc", "keep", "drop", "rename", "sub"))
             {
                 expr.ExpressionText = expr.OperatorSymbol;
                 foreach (IExpression clauseExpr in expr.OperandsCollection)
@@ -44,7 +44,7 @@
                 else if (expr.ResultName == "Then") expr.ExpressionText = $"then {expr.Operands["ds_1"].ExpressionText}";
                 else if (expr.ResultName == "Else") expr.ExpressionText = $"else {expr.Operands["ds_1"].ExpressionText}";
             }
-            else if (!expr.OperatorSymbol.In("get", "ref", "const", "comp", "join", "collection", "datasetClause"))
+            else if (!expr.OperatorSymbol.In("get", "ref", "const", "comp", "join", "collection", "datasetClause", "subExpr"))
             {
                 expr.ExpressionText = $"{expr.OperatorSymbol}(";
                 foreach (IExpression op in expr.OperandsCollection)

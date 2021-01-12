@@ -29,13 +29,17 @@
                 new Dictionary<string, string>()
                 {
                     { "Json", string.Empty },
-                    { "Regular", string.Empty }
+                    { "Regular", string.Empty },
+                    { "Subspace", "[VtlProcessingTests].[Subspace]." },
                 });
 
+
+            string connectionString = @"Server=...;Trusted_Connection=True;";
             IServiceCollection services = new ServiceCollection();
             services.AddVtlProcessing((configure) =>
             {
                 configure.DefaultNamespace = "Json";
+                configure.AddSqlServerModel(connectionString, envMapper.Mapping);
                 configure.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
                 configure.AddRegularModel(RegularModel.ModelConfiguration);
             });

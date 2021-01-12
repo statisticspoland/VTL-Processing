@@ -126,7 +126,8 @@
         /// <param name="subExpr">The subspace expression.</param>
         private void ProcessSubspaceClause(IDataStructure structure, IExpression subExpr)
         {
-            throw new NotImplementedException();
+            string[] toRemove = subExpr.Structure.Identifiers.Select(s => s.ComponentName).ToArray();
+            (structure.Identifiers as List<StructureComponent>).RemoveAll(r => r.ComponentName.In(toRemove));
         }
     }
 }

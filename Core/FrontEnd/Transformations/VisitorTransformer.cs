@@ -438,6 +438,31 @@
             return dropClauseExpr;
         }
 
+        public override IExpression VisitSubspaceClause([NotNull] VtlParser.SubspaceClauseContext context)
+        {
+            IExpression subspaceClauseExpr = this.exprFactory.GetExpression("sub", ExpressionFactoryNameTarget.OperatorSymbol);
+            subspaceClauseExpr.ExpressionText = this.GetOriginalText(context);
+            subspaceClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.subspaceExpr().Length; i++)
+            {
+                subspaceClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.subspaceExpr()[i]));
+            }
+
+            return subspaceClauseExpr;
+        }
+
+        public override IExpression VisitSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context)
+        {
+            IExpression subspaceExpr = this.exprFactory.GetExpression("subExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            subspaceExpr.ExpressionText = this.GetOriginalText(context);
+            subspaceExpr.LineNumber = context.Start.Line;
+            subspaceExpr.AddOperand("ds_1", this.Visit(context.component()));
+            subspaceExpr.AddOperand("ds_2", this.Visit(context.constant()));
+
+            return subspaceExpr;
+        }
+
         public override IExpression VisitJoinExpr([NotNull] VtlParser.JoinExprContext context)
         {
             IExpression joinExpr = this.exprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);

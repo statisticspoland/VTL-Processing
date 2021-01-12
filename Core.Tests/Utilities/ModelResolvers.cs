@@ -94,12 +94,10 @@
                     else if (key == "between") return new BetweenOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("and", "or", "xor", "not")) return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "calc") return new CalcOperator(ModelResolvers.DsResolver);
-                    else if (key == "collection") return new CollectionOperator(ModelResolvers.DsResolver);
                     else if (key.In("=", "<>", "<", "<=", ">", ">=")) return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "comp") return new ComponentOperator(ModelResolvers.DsResolver, new ComponentTypeInference(ModelResolvers.DsResolver));
                     else if (key == "const") return new ConstantOperator(ModelResolvers.DsResolver);
                     else if (key == "current_date") return new CurrentDateOperator(ModelResolvers.DsResolver);
-                    else if (key == "datasetClause") return new DatasetClauseOperator();
                     else if (key == "get") return new GetOperator(new Mock<IDataModel>().Object); // operator tests should mock IDataModel implementation
                     else if (key == "if") return new IfThenElseOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("in", "not_in")) return new InOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
@@ -115,12 +113,16 @@
                     else if (key == "ref") return new ReferenceOperator();
                     else if (key == "rename") return new RenameOperator(ModelResolvers.DsResolver);
                     else if (key.In("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")) return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
+                    else if (key == "sub") return new SubspaceOperator(ModelResolvers.DsResolver);
                     else if (key.In("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")) return new TimeOperator(key);
                     else if (key.In("plus", "minus")) return new UnaryArithmeticOperator(joinApplyMeasuresOp, key);
                     // ---
                     else if (key == "calcExpr") return new CalcExprOperator(ModelResolvers.DsResolver);
+                    else if (key == "collection") return new CollectionOperator(ModelResolvers.DsResolver);
+                    else if (key == "datasetClause") return new DatasetClauseOperator();
                     else if (key == "renameExpr") return new RenameExprOperator(ModelResolvers.DsResolver);
-                    
+                    else if (key == "subExpr") return new SubspaceExprOperator();
+
                     throw new Exception("Operator not found");
                 });
 

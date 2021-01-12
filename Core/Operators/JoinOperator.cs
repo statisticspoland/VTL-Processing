@@ -1,6 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Operators
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
@@ -57,6 +58,9 @@
             {
                 throw new VtlOperatorError(joinExpr, this.Name, "Expected boolean single component expression as filter branch.");
             }
+
+            if (joinExpr.Operands.ContainsKey("subspace"))
+                (mergedStructure.Identifiers as List<StructureComponent>).RemoveAll(id => id.ComponentName.In(joinExpr.Operands["subspace"].Structure.Identifiers.Select(id => id.ComponentName).ToArray()));
 
             return mergedStructure;
         }

@@ -5,7 +5,7 @@
     public static class Example
     {
         public static string Source = new StringBuilder()
-            .AppendLine("DS1 := period_indicator(t\"2010Q1\");")
+            .AppendLine("DS_r := Subspace\\DS_1[sub Id_1 = 1, Id_2 = \"A\"]")
             .ToString();
 
         //public static string Source = new StringBuilder()

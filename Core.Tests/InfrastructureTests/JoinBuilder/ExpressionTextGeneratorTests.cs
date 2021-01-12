@@ -64,6 +64,7 @@
         [InlineData("keep")]
         [InlineData("drop")]
         [InlineData("rename")]
+        [InlineData("sub")]
         public void Generate_DatasetClauseOperator_CorrectText(string opSymbol)
         {
             IExpression expr = this.GetExpr(opSymbol);
@@ -143,6 +144,7 @@
         [InlineData("join")]
         [InlineData("collection")]
         [InlineData("datasetClause")]
+        [InlineData("subExpr")]
         [InlineData(null)]
         public void Generate_DoingNothingOperator_CorrectText(string opSymbol)
         {
