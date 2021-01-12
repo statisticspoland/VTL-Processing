@@ -99,6 +99,7 @@
                     else if (key == "comp") return new ComponentOperator(ModelResolvers.DsResolver, new ComponentTypeInference(ModelResolvers.DsResolver));
                     else if (key == "const") return new ConstantOperator(ModelResolvers.DsResolver);
                     else if (key == "current_date") return new CurrentDateOperator(ModelResolvers.DsResolver);
+                    else if (key == "datasetClause") return new DatasetClauseOperator();
                     else if (key == "get") return new GetOperator(new Mock<IDataModel>().Object); // operator tests should mock IDataModel implementation
                     else if (key == "if") return new IfThenElseOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("in", "not_in")) return new InOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);

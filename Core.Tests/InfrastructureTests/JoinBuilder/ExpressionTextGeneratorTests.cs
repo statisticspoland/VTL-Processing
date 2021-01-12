@@ -141,6 +141,8 @@
         [InlineData("const")]
         [InlineData("comp")]
         [InlineData("join")]
+        [InlineData("collection")]
+        [InlineData("datasetClause")]
         [InlineData(null)]
         public void Generate_DoingNothingOperator_CorrectText(string opSymbol)
         {

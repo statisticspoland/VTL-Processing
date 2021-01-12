@@ -331,6 +331,19 @@
             return optionalExpr;
         }
 
+        public override IExpression VisitDatasetClause([NotNull] VtlParser.DatasetClauseContext context)
+        {
+            if (context.calcClause() != null) return this.Visit(context.calcClause());
+            if (context.filterClause() != null) return this.Visit(context.filterClause());
+            if (context.keepClause() != null) return this.Visit(context.keepClause());
+            if (context.dropClause() != null) return this.Visit(context.dropClause());
+            if (context.renameClause() != null) return this.Visit(context.renameClause());
+            if (context.aggrClause() != null) return this.Visit(context.aggrClause());
+            if (context.pivotClause() != null) return this.Visit(context.pivotClause());
+            if (context.unpivotClause() != null) return this.Visit(context.unpivotClause());
+            return this.Visit(context.subspaceClause());
+        }
+
         public override IExpression VisitFilterClause([NotNull] VtlParser.FilterClauseContext context)
         {
             IExpression filterExpr = this.Visit(context.scalar());

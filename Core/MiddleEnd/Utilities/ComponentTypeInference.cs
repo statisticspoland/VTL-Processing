@@ -5,6 +5,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using System.Linq;
 
     /// <summary>
@@ -25,7 +26,9 @@
 
         public BasicDataType InferTypeOfComponent(IExpression expr, ComponentType? componentType = null)
         {
-            BasicDataType? dataType = this.InferByJoinDsBranch(expr, componentType);
+            BasicDataType? dataType =
+               this.InferByJoinDsBranch(expr, componentType) ??
+               this.InferByDatasetClauseOperator(expr, componentType);
 
             if (dataType != null) return (BasicDataType)dataType;
 
@@ -50,6 +53,37 @@
                     if (dataType != null)
                     {
                         componentType = alias.Structure.Components.First(comp => comp.ComponentName == expr.ExpressionText && (comp.ComponentType == componentType || componentType == null)).ComponentType;
+                        expr.Structure = this.dsResolver(expr.ExpressionText, (ComponentType)componentType, (BasicDataType)dataType);
+
+                        return dataType;
+                    }
+                }
+            }
+
+            return dataType;
+        }
+
+        /// <summary>
+        /// Infers a basic data type of a component by a "datasetClause" operator expression.
+        /// </summary>
+        /// <param name="expr">The component expression.</param>
+        /// <param name="componentType">The type of a component.</param>
+        /// <returns>The basic data type type of a component.</returns>
+        private BasicDataType? InferByDatasetClauseOperator(IExpression expr, ComponentType? componentType)
+        {
+            BasicDataType? dataType = null;
+            string[] datasetClauseNames = DatasetClauseOperator.ClauseNames;
+
+            foreach (string name in datasetClauseNames)
+            {
+                IExpression clauseExpr = expr.GetFirstAncestorExpr(name);
+                if (clauseExpr != null && clauseExpr.ParentExpression.OperandsCollection.ToArray()[0].Structure != null)
+                {
+                    IExpression sourceExpr = clauseExpr.ParentExpression.OperandsCollection.ToArray()[0];
+                    dataType = sourceExpr.Structure.Components.FirstOrDefault(comp => comp.ComponentName == expr.ExpressionText && (comp.ComponentType == componentType || componentType == null))?.ValueDomain.DataType;
+                    if (dataType != null)
+                    {
+                        componentType = sourceExpr.Structure.Components.First(comp => comp.ComponentName == expr.ExpressionText && (comp.ComponentType == componentType || componentType == null)).ComponentType;
                         expr.Structure = this.dsResolver(expr.ExpressionText, (ComponentType)componentType, (BasicDataType)dataType);
 
                         return dataType;

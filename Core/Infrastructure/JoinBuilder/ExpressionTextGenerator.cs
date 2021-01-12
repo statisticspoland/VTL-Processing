@@ -44,7 +44,7 @@
                 else if (expr.ResultName == "Then") expr.ExpressionText = $"then {expr.Operands["ds_1"].ExpressionText}";
                 else if (expr.ResultName == "Else") expr.ExpressionText = $"else {expr.Operands["ds_1"].ExpressionText}";
             }
-            else if (!expr.OperatorSymbol.In("get", "ref", "const", "comp", "join"))
+            else if (!expr.OperatorSymbol.In("get", "ref", "const", "comp", "join", "collection", "datasetClause"))
             {
                 expr.ExpressionText = $"{expr.OperatorSymbol}(";
                 foreach (IExpression op in expr.OperandsCollection)

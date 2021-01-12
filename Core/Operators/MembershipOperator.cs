@@ -38,7 +38,7 @@
 
             IDataStructure structure = expr1.Structure.GetCopy();
 
-            if (this.Keyword == "Standard")
+            if (this.Keyword == "Standard" || (this.Keyword == "DatasetClause" && expression.ParentExpression?.OperatorSymbol == "datasetClause"))
             {
                 StructureComponent component = expr2.Structure.Components[0];
 
