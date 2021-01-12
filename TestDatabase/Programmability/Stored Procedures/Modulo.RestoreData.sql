@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [Modulo].RestoreData AS
+	DELETE FROM [Modulo].DS_1
+	DELETE FROM [Modulo].DS_2
+
+	INSERT INTO [Modulo].DS_1 VALUES (10, 'A', 100, 0.7545)
+	INSERT INTO [Modulo].DS_1 VALUES (10, 'B', 10, 18.45)
+	INSERT INTO [Modulo].DS_1 VALUES (11, 'A', 20, 1.87)
+	INSERT INTO [Modulo].DS_1 VALUES (11, 'B', 9, 12.3)
+
+	INSERT INTO [Modulo].DS_2 VALUES (10, 'A', 1, 0.25)
+	INSERT INTO [Modulo].DS_2 VALUES (10, 'C', 5, 3.0)
+	INSERT INTO [Modulo].DS_2 VALUES (11, 'B', 2, 2.0)
+GO

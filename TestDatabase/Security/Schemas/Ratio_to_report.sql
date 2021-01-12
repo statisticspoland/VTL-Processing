@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Ratio_to_report]

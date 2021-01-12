@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Change_of_Component_name]

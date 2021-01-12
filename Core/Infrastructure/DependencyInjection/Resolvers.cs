@@ -87,7 +87,6 @@
                 if (type == typeof(KeepDropOperator)) return new KeepDropOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(StringOperator)) return new StringOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(TimeOperator)) return new TimeOperator(key);
                 if (type == typeof(UnaryArithmeticOperator)) return new UnaryArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
                 if (type == null) throw new NotImplementedException($"Operator {key} is not implemented.");
                 return (IOperatorDefinition)ServiceProvider.GetService(type);

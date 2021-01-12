@@ -1,0 +1,12 @@
+﻿CREATE PROCEDURE [Rank].RestoreData AS
+	DELETE FROM [Rank].DS_1
+
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'XX', 2000, 3, 1)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'XX', 2001, 4, 9)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'XX', 2002, 7, 5)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'XX', 2003, 6, 8)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'YY', 2000, 9, 3)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'YY', 2001, 5, 4)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'YY', 2002, 10, 2)
+	INSERT INTO [Rank].DS_1 VALUES ('A', 'YY', 2003, 5, 7)
+GO

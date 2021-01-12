@@ -27,10 +27,10 @@
         }
 
         /// <summary>
-        /// Adds dataset to the model.
+        /// Adds a dataset to the model.
         /// </summary>
-        /// <param name="namespace">Name of namespace.</param>
-        /// <param name="datasetName">Name of dataset.</param>
+        /// <param name="namespace">The name of namespace.</param>
+        /// <param name="datasetName">The name of dataset.</param>
         /// <param name="componentSettings">Tuple defining the element of structure of the dataset (Component Type, VTL data type, Component name).</param>
         public IRegularModelConfiguration AddDataSet(string @namespace, string datasetName, params (ComponentType, BasicDataType, string)[] componentSettings)
         {

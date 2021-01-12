@@ -72,9 +72,8 @@
         /// <returns>The temporary expression object whose operands are the correct VTL 2.0 expressions.</returns>
         public override IExpression VisitStart(VtlParser.StartContext context)
         {
-            IExpression startExpr = this.exprFactory.ExprResolver();
-            startExpr.OperandsCollection = context.statement().Select(op => this.Visit(op)).ToList();
-            return startExpr;
+            context.statement().Select(op => this.Visit(op)).Where(op => op != null).ToList();
+            return null;
         }
 
         /// <summary>

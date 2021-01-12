@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Calculation_of_a_Component]

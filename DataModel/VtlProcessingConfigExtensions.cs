@@ -2,6 +2,7 @@
 {
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Models.Logical;
     using StatisticsPoland.VtlProcessing.DataModel.Infrastructure;
     using StatisticsPoland.VtlProcessing.DataModel.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.DataModel.Models;
@@ -21,6 +22,23 @@
         public static IVtlProcessingConfig AddJsonModel(this IVtlProcessingConfig config, string filePath)
         {
             IDataModel dataModel = new DataModelJson(config.DefaultNamespace, filePath);
+            return config.AddModel(dataModel);
+        }
+
+        /// <summary>
+        /// Adds a data model from a SQL Server to the translator configuration.
+        /// </summary>
+        /// <param name="config">The translator configuration.</param>
+        /// <param name="connectionString">The SQL Server connection string.</param>
+        /// <param name="mapping">The dictionary of mapped names.</param>
+        public static IVtlProcessingConfig AddSqlServerModel(this IVtlProcessingConfig config, string connectionString, Dictionary<string, string> mapping)
+        {
+            IDataModel dataModel = new DataModelSqlServer(
+                (compName, compType, dataType) => { return new DataStructure(); },
+                config.DefaultNamespace,
+                connectionString, 
+                mapping);
+
             return config.AddModel(dataModel);
         }
 

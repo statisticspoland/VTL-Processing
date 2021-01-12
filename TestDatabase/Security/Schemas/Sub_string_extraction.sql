@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Sub_string_extraction]
