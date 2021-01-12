@@ -106,7 +106,14 @@
         /// <param name="pivotExpr">The pivot expression.</param>
         private void ProcessPivotClause(IDataStructure structure, IExpression pivotExpr)
         {
-            throw new NotImplementedException();
+            IExpression compToRemove = pivotExpr.OperandsCollection.First();
+            (structure.Identifiers as List<StructureComponent>).RemoveAll(r => r.ComponentName == compToRemove.Structure.Components.First().ComponentName);
+            (structure.Measures as List<StructureComponent>).Clear();
+            (structure.NonViralAttributes as List<StructureComponent>).Clear();
+            (structure.ViralAttributes as List<StructureComponent>).Clear();
+            structure.AddStructure(pivotExpr.Structure);
+            structure.DatasetType = DatasetType.Pivoted;
+            structure = structure.GetCopy();
         }
 
         /// <summary>
@@ -116,7 +123,11 @@
         /// <param name="unpivotExpr">The unpivot expression.</param>
         private void ProcessUnpivotClause(IDataStructure structure, IExpression unpivotExpr)
         {
-            throw new NotImplementedException();
+            (structure.Measures as List<StructureComponent>).Clear();
+            (structure.NonViralAttributes as List<StructureComponent>).Clear();
+            (structure.ViralAttributes as List<StructureComponent>).Clear();
+            structure.AddStructure(unpivotExpr.Structure);
+            structure = structure.GetCopy();
         }
 
         /// <summary>

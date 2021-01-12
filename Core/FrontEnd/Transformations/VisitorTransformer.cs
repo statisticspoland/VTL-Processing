@@ -438,6 +438,34 @@
             return dropClauseExpr;
         }
 
+        public override IExpression VisitPivotClause([NotNull] VtlParser.PivotClauseContext context)
+        {
+            IExpression pivotClauseExpr = this.exprFactory.GetExpression("pivot", ExpressionFactoryNameTarget.OperatorSymbol);
+            pivotClauseExpr.ExpressionText = this.GetOriginalText(context);
+            pivotClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.componentID().Length; i++)
+            {
+                pivotClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.componentID()[i]));
+            }
+
+            return pivotClauseExpr;
+        }
+
+        public override IExpression VisitUnpivotClause([NotNull] VtlParser.UnpivotClauseContext context)
+        {
+            IExpression unpivotClauseExpr = this.exprFactory.GetExpression("unpivot", ExpressionFactoryNameTarget.OperatorSymbol);
+            unpivotClauseExpr.ExpressionText = this.GetOriginalText(context);
+            unpivotClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.componentID().Length; i++)
+            {
+                unpivotClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.componentID()[i]));
+            }
+
+            return unpivotClauseExpr;
+        }
+
         public override IExpression VisitSubspaceClause([NotNull] VtlParser.SubspaceClauseContext context)
         {
             IExpression subspaceClauseExpr = this.exprFactory.GetExpression("sub", ExpressionFactoryNameTarget.OperatorSymbol);

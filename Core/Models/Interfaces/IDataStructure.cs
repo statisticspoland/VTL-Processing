@@ -1,5 +1,6 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Models.Interfaces
 {
+    using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System.Collections.Generic;
 
     /// <summary>
@@ -11,6 +12,11 @@
         /// Gets or sets the dataset name.
         /// </summary>
         string DatasetName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dataset type.
+        /// </summary>
+        DatasetType DatasetType { get; set; }
 
         /// <summary>
         /// Gets the value specyfing if the data structure is a single component.

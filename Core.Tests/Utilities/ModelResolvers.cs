@@ -110,12 +110,14 @@
                     else if (key == "nvl") return new NvlOperator(joinApplyMeasuresOp);
                     else if (key == "opt") return new OptionalOperator(ModelResolvers.DsResolver);
                     else if (key == "period_indicator") return new PeriodIndicatorOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, exprFactory);
+                    else if (key == "pivot") return new PivotOperator(ModelResolvers.DsResolver);
                     else if (key == "ref") return new ReferenceOperator();
                     else if (key == "rename") return new RenameOperator(ModelResolvers.DsResolver);
                     else if (key.In("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")) return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "sub") return new SubspaceOperator(ModelResolvers.DsResolver);
                     else if (key.In("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")) return new TimeOperator(key);
                     else if (key.In("plus", "minus")) return new UnaryArithmeticOperator(joinApplyMeasuresOp, key);
+                    else if (key == "unpivot") return new UnpivotOperator(ModelResolvers.DsResolver);
                     // ---
                     else if (key == "calcExpr") return new CalcExprOperator(ModelResolvers.DsResolver);
                     else if (key == "collection") return new CollectionOperator(ModelResolvers.DsResolver);

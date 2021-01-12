@@ -49,6 +49,23 @@
 
                 structure = this.dsResolver(component.ComponentName.GetNameWithoutAlias(), component.ComponentType, component.ValueDomain.DataType);
             }
+            else if (parentExpr.OperatorSymbol == "unpivot")
+            {
+                if (expression.ParamSignature == "ds_1")
+                {
+                    structure = this.dsResolver(expression.ExpressionText, ComponentType.Identifier, BasicDataType.String); //string as nominal data
+                }
+                else
+                {
+                    //unpivot > datasetClause > dataset
+                    if (parentExpr.ParentExpression?.Operands["ds_1"]?.Structure?.Measures.First() != null)
+                    {
+                        BasicDataType type = parentExpr.ParentExpression.Operands["ds_1"].Structure.Measures.First().ValueDomain.DataType;
+                        structure = this.dsResolver(expression.ExpressionText, ComponentType.Measure, type);
+                    }
+                    structure = this.dsResolver(expression.ExpressionText, ComponentType.Measure, BasicDataType.None);
+                }
+            }
             else if ((parentExpr.OperatorSymbol != "calcExpr" || parentExpr.Operands["ds_1"] != expression) &&
                 (parentExpr.OperatorSymbol != "renameExpr" || parentExpr.Operands["ds_2"] != expression))
             {

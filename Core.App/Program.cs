@@ -30,7 +30,7 @@
                 {
                     { "Json", string.Empty },
                     { "Regular", string.Empty },
-                    { "Subspace", "[VtlProcessingTests].[Subspace]." },
+                    { "Pivot", "[VtlProcessingTests].[Pivoting]." },
                 });
 
 

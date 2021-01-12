@@ -5,7 +5,7 @@
     public static class Example
     {
         public static string Source = new StringBuilder()
-            .AppendLine("DS_r := Subspace\\DS_1[sub Id_1 = 1, Id_2 = \"A\"]")
+            .AppendLine("DS_r := Pivot\\DS_1 [pivot Id_2, Me_1]")
             .ToString();
 
         //public static string Source = new StringBuilder()
