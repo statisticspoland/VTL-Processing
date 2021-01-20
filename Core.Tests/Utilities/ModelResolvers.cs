@@ -113,6 +113,7 @@
                     else if (key == "pivot") return new PivotOperator(ModelResolvers.DsResolver);
                     else if (key == "ref") return new ReferenceOperator();
                     else if (key == "rename") return new RenameOperator(ModelResolvers.DsResolver);
+                    else if (key.In("union", "intersect", "setdiff", "symdiff")) return new SetOperator(key);
                     else if (key.In("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")) return new StringOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "sub") return new SubspaceOperator(ModelResolvers.DsResolver);
                     else if (key.In("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")) return new TimeOperator(key);

@@ -331,6 +331,17 @@
             return optionalExpr;
         }
 
+        public override IExpression VisitSetExpr([NotNull] VtlParser.SetExprContext context)
+        {
+            IExpression setExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            setExpr.ExpressionText = this.GetOriginalText(context);
+            setExpr.LineNumber = context.Start.Line;
+            setExpr.AddOperand("ds_1", this.Visit(context.dataset()[0]));
+            setExpr.AddOperand("ds_2", this.Visit(context.dataset()[1]));
+
+            return setExpr;
+        }
+
         public override IExpression VisitDatasetClause([NotNull] VtlParser.DatasetClauseContext context)
         {
             if (context.calcClause() != null) return this.Visit(context.calcClause());
