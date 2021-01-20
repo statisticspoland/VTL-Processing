@@ -48,6 +48,18 @@
 
             joinExpr.BasicStructure = this.ProcessDsBranch(joinExpr, this.dsResolver());
 
+            if (joinExpr.Operands.ContainsKey("aggr"))
+            {
+                IExpression aggrExpr = joinExpr.Operands["aggr"];
+
+                joinExpr.AddOperand("calc", aggrExpr.Operands["calc"]);
+                joinExpr.AddOperand("group", aggrExpr.Operands["group"]);
+                if (aggrExpr.Operands.ContainsKey("having")) joinExpr.AddOperand("having", aggrExpr.Operands["having"]);
+                joinExpr.Operands.Remove("aggr");
+
+                joinExpr.Operands["calc"].OperatorDefinition.Keyword = "Aggr";
+            }
+
             if (joinExpr.Operands.ContainsKey("keep") ||
                 joinExpr.Operands.ContainsKey("drop")) mergedStructure = this.ProcessKeepDropBranch(joinExpr, mergedStructure);
             if (joinExpr.Operands.ContainsKey("calc")) mergedStructure = this.ProcessCalcBranch(joinExpr, mergedStructure);

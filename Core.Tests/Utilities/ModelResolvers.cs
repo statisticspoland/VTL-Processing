@@ -90,7 +90,10 @@
             opResolverMock.Setup(o => o(It.IsAny<string>()))
                 .Returns((string key) =>
                 {
-                    if (key.In("+", "-", "*", "/")) return new ArithmeticOperator(joinApplyMeasuresOp, key);
+                    if (key.In("count", "min", "max", "median", "sum", "avg", "stddev_pop", "stddev_samp", "var_pop", "var_samp")) return new AggrFunctionOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
+                    else if (key == "aggr") return new AggrOperator();
+                    else if (key.In("first_value", "last_value", "lag", "rank", "ratio_to_report", "lead")) return new AnalyticFunctionOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
+                    else if (key.In("+", "-", "*", "/")) return new ArithmeticOperator(joinApplyMeasuresOp, key);
                     else if (key == "between") return new BetweenOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("and", "or", "xor", "not")) return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "calc") return new CalcOperator(ModelResolvers.DsResolver);
@@ -123,6 +126,9 @@
                     else if (key == "calcExpr") return new CalcExprOperator(ModelResolvers.DsResolver);
                     else if (key == "collection") return new CollectionOperator(ModelResolvers.DsResolver);
                     else if (key == "datasetClause") return new DatasetClauseOperator();
+                    else if (key == "group") return new GroupOperator(ModelResolvers.DsResolver);
+                    else if (key == "order") return new OrderOperator(ModelResolvers.DsResolver);
+                    else if (key == "partition") return new PartitionOperator(ModelResolvers.DsResolver);
                     else if (key == "renameExpr") return new RenameExprOperator(ModelResolvers.DsResolver);
                     else if (key == "subExpr") return new SubspaceExprOperator();
 

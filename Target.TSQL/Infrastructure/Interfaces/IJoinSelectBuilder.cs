@@ -50,5 +50,17 @@
         /// </summary>
         /// <returns>Instance of the builder.</returns>
         IJoinSelectBuilder AddFilters();
+
+        /// <summary>
+        /// Adds a "join" operator's grouping clause to the builder.
+        /// </summary>
+        /// <returns>Instance of the builder.</returns>
+        IJoinSelectBuilder AddGroupingClause();
+
+        /// <summary>
+        /// Adds a "join" operator's having clause to the builder.
+        /// </summary>
+        /// <returns>Instance of the builder.</returns>
+        IJoinSelectBuilder AddHavingClause();
     }
 }

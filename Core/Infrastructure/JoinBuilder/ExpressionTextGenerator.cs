@@ -33,6 +33,16 @@
             }
             else if (expr.OperatorSymbol == "calcExpr") expr.ExpressionText = $"{expr.Operands["ds_1"].ExpressionText} := {expr.Operands["ds_2"].ExpressionText}";
             else if (expr.OperatorSymbol == "renameExpr") expr.ExpressionText = $"{expr.Operands["ds_1"].ExpressionText} to {expr.Operands["ds_2"].ExpressionText}";
+            else if (expr.OperatorSymbol == "group")
+            {
+                expr.ExpressionText = $"group {expr.OperatorDefinition.Keyword} ";
+                foreach (IExpression op in expr.OperandsCollection)
+                {
+                    expr.ExpressionText += $"{op.ExpressionText}, ";
+                }
+
+                expr.ExpressionText = expr.ExpressionText.Remove(expr.ExpressionText.Length - 2); // usunięcie ", "
+            }
             else if (expr.OperatorSymbol == "if")
             {
                 string elseExpr = expr.Operands.ContainsKey("else") ? $" {expr.Operands["else"].ExpressionText}" : string.Empty;
@@ -43,6 +53,11 @@
                 if (expr.ResultName == "If") expr.ExpressionText = $"if {expr.Operands["ds_1"].ExpressionText}";
                 else if (expr.ResultName == "Then") expr.ExpressionText = $"then {expr.Operands["ds_1"].ExpressionText}";
                 else if (expr.ResultName == "Else") expr.ExpressionText = $"else {expr.Operands["ds_1"].ExpressionText}";
+            }
+            else if (expr.OperatorSymbol.In(AggrFunctionOperator.Symbols) || expr.OperatorSymbol.In(AnalyticFunctionOperator.Symbols))
+            {
+                string compName = expr.Operands.ContainsKey("ds_1") || expr.GetDescendantExprs("Alias").Count > 0 ? expr.OperandsCollection.ToArray()[0].ExpressionText : string.Empty;
+                expr.ExpressionText = $"{expr.OperatorSymbol}({compName})";
             }
             else if (!expr.OperatorSymbol.In("get", "ref", "const", "comp", "join", "collection", "datasetClause", "subExpr"))
             {

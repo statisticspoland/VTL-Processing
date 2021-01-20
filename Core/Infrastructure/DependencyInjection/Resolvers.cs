@@ -79,7 +79,9 @@
             services.AddTransient<OperatorResolver>(ServiceProvider => key =>
             {
                 Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
-                
+
+                if (type == typeof(AggrFunctionOperator)) return new AggrFunctionOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(AnalyticFunctionOperator)) return new AnalyticFunctionOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
                 if (type == typeof(BooleanOperator)) return new BooleanOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(ComparisonOperator)) return new ComparisonOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);

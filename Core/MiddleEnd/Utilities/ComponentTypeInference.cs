@@ -1,10 +1,12 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using System.Linq;
 
@@ -28,7 +30,8 @@
         {
             BasicDataType? dataType =
                this.InferByJoinDsBranch(expr, componentType) ??
-               this.InferByDatasetClauseOperator(expr, componentType);
+               this.InferByDatasetClauseOperator(expr, componentType) ??
+               this.InferByAggrAnalyticOperator(expr, componentType);
 
             if (dataType != null) return (BasicDataType)dataType;
 
@@ -88,6 +91,34 @@
 
                         return dataType;
                     }
+                }
+            }
+
+            return dataType;
+        }
+
+        /// <summary>
+        /// Infers a basic data type of a component by an aggregation or analityc operator expression.
+        /// </summary>
+        /// <param name="expr">The component expression.</param>
+        /// <param name="componentType">The type of a component.</param>
+        /// <returns>The basic data type type of a component.</returns>
+        private BasicDataType? InferByAggrAnalyticOperator(IExpression expr, ComponentType? componentType)
+        {
+            BasicDataType? dataType = null;
+            IExpression functionExpr = expr.GetFirstAncestorExpr("Aggregation function");
+            if (functionExpr == null && expr.GetFirstAncestorExpr("Over") != null) functionExpr = expr.GetFirstAncestorExpr("Analytic function");
+
+            if (functionExpr == null) // operator AggrFunction / AnalyticFunction może mieć ResultName o nazwie zmiennej, jeżeli jest w korzeniu
+                functionExpr = expr.GetFirstAncestorExpr(); // root
+
+            if (functionExpr.OperatorSymbol != "rank" && (functionExpr.OperatorSymbol.In(AggrFunctionOperator.Symbols) || functionExpr.OperatorSymbol.In(AnalyticFunctionOperator.Symbols)))
+            {
+                dataType = functionExpr.Operands["ds_1"].Structure?.Components.FirstOrDefault(comp => comp.ComponentName == expr.ExpressionText && (comp.ComponentType == componentType || componentType == null))?.ValueDomain.DataType;
+                if (dataType != null)
+                {
+                    componentType = functionExpr.Operands["ds_1"].Structure.Components?.First(comp => comp.ComponentName == expr.ExpressionText && (comp.ComponentType == componentType || componentType == null)).ComponentType;
+                    expr.Structure = this.dsResolver(expr.ExpressionText, (ComponentType)componentType, (BasicDataType)dataType);
                 }
             }
 

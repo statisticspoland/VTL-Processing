@@ -113,6 +113,11 @@
                 }
             }
 
+            if (this.Branches.ContainsKey("aggr")) mainExpr.AddOperand("aggr", this.Branches["aggr"]);
+            if (this.Branches.ContainsKey("group")) mainExpr.AddOperand("group", this.Branches["group"]);
+            if (this.Branches.ContainsKey("having")) mainExpr.AddOperand("having", this.Branches["having"]);
+            if (this.Branches.ContainsKey("over")) mainExpr.AddOperand("over", this.Branches["over"]);
+
             this.ValidateClause();
 
             if (this.Branches.ContainsKey("pivot")) mainExpr.AddOperand("pivot", this.Branches["pivot"]);

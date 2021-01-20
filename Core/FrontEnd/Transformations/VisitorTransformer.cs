@@ -355,6 +355,42 @@
             return this.Visit(context.subspaceClause());
         }
 
+        public override IExpression VisitAggrClause([NotNull] VtlParser.AggrClauseContext context)
+        {
+            IExpression aggrClauseExpr = this.exprFactory.GetExpression("aggr", ExpressionFactoryNameTarget.OperatorSymbol);
+            aggrClauseExpr.ExpressionText = this.GetOriginalText(context);
+            aggrClauseExpr.LineNumber = context.Start.Line;
+
+            IExpression calcClauseExpr = this.exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
+            calcClauseExpr.ExpressionText = $"calc {this.GetOriginalText(context).Split("aggr ")[1].Split("group")[0]}";
+
+            for (int i = 0; i < context.aggrExpr().Length; i++)
+            {
+                calcClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.aggrExpr()[i]));
+            }
+
+            aggrClauseExpr.AddOperand("calc", calcClauseExpr);
+            aggrClauseExpr.AddOperand("group", this.Visit(context.groupingClause()));
+            if (context.havingClause() != null) aggrClauseExpr.AddOperand("having", this.Visit(context.havingClause()));
+
+            return aggrClauseExpr;
+        }
+
+        public override IExpression VisitAggrExpr([NotNull] VtlParser.AggrExprContext context)
+        {
+            IExpression aggrExpr = this.exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            aggrExpr.ExpressionText = this.GetOriginalText(context);
+            aggrExpr.LineNumber = context.Start.Line;
+
+            aggrExpr.OperatorDefinition.Keyword = "measure";
+            if (context.componentRole() != null) aggrExpr.OperatorDefinition.Keyword = context.componentRole().GetText().Replace("viral", "viral ");
+
+            aggrExpr.AddOperand("ds_1", this.Visit(context.componentID()));
+            aggrExpr.AddOperand("ds_2", this.Visit(context.aggrFunction()));
+
+            return aggrExpr;
+        }
+
         public override IExpression VisitFilterClause([NotNull] VtlParser.FilterClauseContext context)
         {
             IExpression filterExpr = this.Visit(context.scalar());
@@ -652,6 +688,244 @@
 
             this.joinBuilder.AddBranch("apply", applyBranch);
             return applyBranch;
+        }
+
+        public override IExpression VisitAggrInvocation([NotNull] VtlParser.AggrInvocationContext context)
+        {
+            IExpression aggrInvocationExpr = this.exprFactory.GetExpression(context.aggrFunctionName().GetText(), ExpressionFactoryNameTarget.OperatorSymbol);
+            aggrInvocationExpr.ExpressionText = this.GetOriginalText(context);
+            aggrInvocationExpr.LineNumber = context.Start.Line;
+
+            aggrInvocationExpr.AddOperand("ds_1", this.Visit(context.dataset()));
+            aggrInvocationExpr.AddOperand("group", this.Visit(context.groupingClause()));
+            if (context.havingClause() != null) aggrInvocationExpr.AddOperand("having", this.Visit(context.havingClause()));
+
+            return aggrInvocationExpr;
+        }
+
+        public override IExpression VisitAggrFunction([NotNull] VtlParser.AggrFunctionContext context)
+        {
+            IExpression aggrFunctionExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            aggrFunctionExpr.ExpressionText = this.GetOriginalText(context);
+            aggrFunctionExpr.LineNumber = context.Start.Line;
+            if (context.component() != null) aggrFunctionExpr.AddOperand("ds_1", this.Visit(context.component()));
+
+            return aggrFunctionExpr;
+        }
+
+        public override IExpression VisitGroupingClause([NotNull] VtlParser.GroupingClauseContext context)
+        {
+            IExpression groupingClauseExpr = this.exprFactory.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
+
+            if (groupingClauseExpr.OperatorDefinition.Keyword == null) groupingClauseExpr.OperatorDefinition.Keyword = context.groupKeyword().BY()?.GetText();
+            if (groupingClauseExpr.OperatorDefinition.Keyword == null) groupingClauseExpr.OperatorDefinition.Keyword = context.groupKeyword().EXCEPT()?.GetText();
+            if (groupingClauseExpr.OperatorDefinition.Keyword == null) groupingClauseExpr.OperatorDefinition.Keyword = context.groupKeyword().ALL()?.GetText();
+
+            groupingClauseExpr.ExpressionText = $"{this.GetOriginalText(context.groupKeyword())} {this.GetOriginalText(context).Split(groupingClauseExpr.OperatorDefinition.Keyword + " ")[1]}";
+            groupingClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.component().Length; i++)
+            {
+                groupingClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.component()[i]));
+            }
+
+            return groupingClauseExpr;
+        }
+
+        public override IExpression VisitHavingClause([NotNull] VtlParser.HavingClauseContext context)
+        {
+            IExpression havingClauseExpr = this.Visit(context.havingExpr());
+            havingClauseExpr.ResultName = "Having";
+            havingClauseExpr.ExpressionText = this.GetOriginalText(context);
+            havingClauseExpr.LineNumber = context.Start.Line;
+
+            return havingClauseExpr;
+        }
+
+        public override IExpression VisitHavingExpr([NotNull] VtlParser.HavingExprContext context)
+        {
+            IExpression havingExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            havingExpr.ExpressionText = this.GetOriginalText(context);
+            havingExpr.LineNumber = context.Start.Line;
+
+            if (context.leftScalar != null)
+            {
+                havingExpr.AddOperand("ds_1", this.Visit(context.leftScalar));
+                havingExpr.AddOperand("ds_2", this.Visit(context.aggrFunction()));
+            }
+            else if (context.leftAggrFunction != null)
+            {
+                havingExpr.AddOperand("ds_1", this.Visit(context.leftAggrFunction));
+                havingExpr.AddOperand("ds_2", this.Visit(context.scalar()));
+            }
+            else
+            {
+                havingExpr.AddOperand("ds_1", this.Visit(context.havingExpr()[0]));
+                havingExpr.AddOperand("ds_2", this.Visit(context.havingExpr()[1]));
+            }
+
+            return havingExpr;
+        }
+
+        public override IExpression VisitAnalyticInvocation([NotNull] VtlParser.AnalyticInvocationContext context)
+        {
+            string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
+
+            IExpression analyticInvocationExpr = this.exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+            analyticInvocationExpr.ExpressionText = this.GetOriginalText(context);
+            analyticInvocationExpr.LineNumber = context.Start.Line;
+
+            analyticInvocationExpr.AddOperand("ds_1", this.Visit(context.dataset()));
+
+            if (!opSymbol.In("ratio_to_report", "lag", "lead")) analyticInvocationExpr.AddOperand("over", this.Visit(context.analyticClause()));
+            else
+            {
+                IExpression overExpr = this.exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
+                overExpr.ExpressionText = "over (";
+                overExpr.LineNumber = context.Start.Line;
+
+                if (context.partitionClause() != null)
+                {
+                    overExpr.ExpressionText += $"{this.GetOriginalText(context.partitionClause())} ";
+                    overExpr.AddOperand("partition", this.Visit(context.partitionClause()));
+                }
+
+                if (context.orderClause() != null)
+                {
+                    overExpr.ExpressionText += $"{this.GetOriginalText(context.orderClause())})";
+                    overExpr.AddOperand("order", this.Visit(context.orderClause()));
+                }
+
+                analyticInvocationExpr.AddOperand("over", overExpr);
+
+                if (opSymbol.In("lag", "lead"))
+                {
+                    analyticInvocationExpr.AddOperand("offset", this.Visit(context.scalar()[0]));
+                    if (context.scalar().Length > 1) analyticInvocationExpr.AddOperand("default", this.Visit(context.scalar()[1]));
+                }
+            }
+
+            return analyticInvocationExpr;
+        }
+
+        public override IExpression VisitAnalyticFunction([NotNull] VtlParser.AnalyticFunctionContext context)
+        {
+            string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
+
+            IExpression analyticFunctionExpr = this.exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+            analyticFunctionExpr.ExpressionText = this.GetOriginalText(context);
+            analyticFunctionExpr.LineNumber = context.Start.Line;
+
+            if (context.component() != null) analyticFunctionExpr.AddOperand("ds_1", this.Visit(context.component()));
+
+            if (!opSymbol.In("rank", "ration_to_report", "lag", "lead")) analyticFunctionExpr.AddOperand("over", this.Visit(context.analyticClause()));
+            else
+            {
+                IExpression overExpr = this.exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
+                overExpr.ExpressionText = "over (";
+                overExpr.LineNumber = context.Start.Line;
+
+                if (context.partitionClause() != null)
+                {
+                    overExpr.ExpressionText += $"{this.GetOriginalText(context.partitionClause())} ";
+                    overExpr.AddOperand("partition", this.Visit(context.partitionClause()));
+                }
+
+                if (context.orderClause() != null)
+                {
+                    overExpr.ExpressionText += $"{this.GetOriginalText(context.orderClause())})";
+                    overExpr.AddOperand("order", this.Visit(context.orderClause()));
+                }
+
+                analyticFunctionExpr.AddOperand("over", overExpr);
+
+                if (opSymbol.In("lag", "lead"))
+                {
+                    analyticFunctionExpr.AddOperand("offset", this.Visit(context.scalar()[0]));
+                    if (context.scalar().Length > 1) analyticFunctionExpr.AddOperand("default", this.Visit(context.scalar()[1]));
+                }
+            }
+
+            return analyticFunctionExpr;
+        }
+
+        public override IExpression VisitAnalyticClause([NotNull] VtlParser.AnalyticClauseContext context)
+        {
+            IExpression analyticClauseExpr = this.exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
+            analyticClauseExpr.ExpressionText = $"over ({this.GetOriginalText(context)})";
+            analyticClauseExpr.LineNumber = context.Start.Line;
+
+            if (context.partitionClause() != null) analyticClauseExpr.AddOperand("partition", this.Visit(context.partitionClause()));
+            if (context.orderClause() != null) analyticClauseExpr.AddOperand("order", this.Visit(context.orderClause()));
+            if (context.windowingClause() != null) analyticClauseExpr.AddOperand("window", this.Visit(context.windowingClause()));
+
+            return analyticClauseExpr;
+        }
+
+        public override IExpression VisitPartitionClause([NotNull] VtlParser.PartitionClauseContext context)
+        {
+            IExpression partitionClauseExpr = this.exprFactory.GetExpression("partition", ExpressionFactoryNameTarget.OperatorSymbol);
+            partitionClauseExpr.ExpressionText = this.GetOriginalText(context);
+            partitionClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.component().Length; i++)
+            {
+                partitionClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.component()[i]));
+            }
+
+            return partitionClauseExpr;
+        }
+
+        public override IExpression VisitOrderClause([NotNull] VtlParser.OrderClauseContext context)
+        {
+            IExpression orderClauseExpr = this.exprFactory.GetExpression("order", ExpressionFactoryNameTarget.OperatorSymbol);
+            orderClauseExpr.ExpressionText = this.GetOriginalText(context);
+            orderClauseExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.orderExpr().Length; i++)
+            {
+                orderClauseExpr.AddOperand($"ds_{i + 1}", this.Visit(context.orderExpr()[i]));
+            }
+
+            return orderClauseExpr;
+        }
+
+        public override IExpression VisitOrderExpr([NotNull] VtlParser.OrderExprContext context)
+        {
+            IExpression orderExpr = this.Visit(context.component());
+            orderExpr.OperatorDefinition.Keyword = context.ASC()?.GetText() ?? context.DESC()?.GetText();
+
+            return orderExpr;
+        }
+
+        public override IExpression VisitWindowingClause([NotNull] VtlParser.WindowingClauseContext context)
+        {
+            IExpression windowingClauseExpr = this.exprFactory.GetExpression("Window", ExpressionFactoryNameTarget.ResultName);
+            windowingClauseExpr.ExpressionText = this.GetOriginalText(context);
+            windowingClauseExpr.LineNumber = context.Start.Line;
+
+            windowingClauseExpr.AddOperand($"limit_1", this.Visit(context.firstWindowLimit()));
+            windowingClauseExpr.AddOperand($"limit_2", this.Visit(context.secondWindowLimit()));
+
+            return windowingClauseExpr;
+        }
+
+        public override IExpression VisitFirstWindowLimit([NotNull] VtlParser.FirstWindowLimitContext context)
+        {
+            IExpression windowLimitExpr = this.exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
+            windowLimitExpr.ExpressionText = this.GetOriginalText(context);
+            windowLimitExpr.LineNumber = context.Start.Line;
+
+            return windowLimitExpr;
+        }
+
+        public override IExpression VisitSecondWindowLimit([NotNull] VtlParser.SecondWindowLimitContext context)
+        {
+            IExpression windowLimitExpr = this.exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
+            windowLimitExpr.ExpressionText = this.GetOriginalText(context);
+            windowLimitExpr.LineNumber = context.Start.Line;
+
+            return windowLimitExpr;
         }
 
         public override IExpression VisitList([NotNull] VtlParser.ListContext context)

@@ -51,6 +51,9 @@
             this.parts.Add("calc", string.Empty);
             this.parts.Add("source", string.Empty);
             this.parts.Add("filters", string.Empty);
+            this.parts.Add("group", string.Empty);
+            this.parts.Add("having", string.Empty);
+            this.parts.Add("over", string.Empty);
         }
 
         public string Build()
@@ -66,7 +69,9 @@
             sb.Append("FROM ");
             sb.Append(this.parts["source"]);
             sb.Append(this.parts["filters"]);
-            
+            sb.Append(this.parts["group"]);
+            sb.Append(this.parts["having"]);
+
             if (this.ifThenElse) sb.AppendLine($") AS t WHERE {this.joinExpr.Operands["ds"].OperandsCollection.First().Structure.Identifiers[0].ComponentName} IS NOT NULL");
 
             return sb.ToString();
@@ -100,23 +105,41 @@
 
                 if (!isCalc)
                 {
+                    bool skipId = false;
                     string baseName = this.joinExpr.BasicStructure.Identifiers.FirstOrDefault(me => me.BaseComponentName == identifiers[i].BaseComponentName.GetNameWithoutAlias())?.ComponentName;
                     string source = this.joinExpr.GetAliasExprWithId(identifiers[i].BaseComponentName)?.ParamSignature;
                     if (source == null && identifiers[i].BaseComponentName.Split('#').Length == 2) source = identifiers[i].BaseComponentName.Split('#')[0];
                     if (source != null) source += ".";
 
-                    if (i == 0 && this.ifThenElse) sb.AppendLine(this.RenderIfThenElseIdentifier(identifiers[i]));
-                    else
+                    if (this.joinExpr.Operands.ContainsKey("group") && this.joinExpr.Operands["group"].Structure.Components.FirstOrDefault(comp => comp.ComponentName.Replace('#', '.') == $"{source}{identifiers[i].BaseComponentName}") == null)
                     {
-                        if (this.joinExpr.OperatorDefinition.Keyword != "full")
+                        string src = this.joinExpr.Operands["group"].Structure.Components.FirstOrDefault(comp => comp.BaseComponentName == identifiers[i].BaseComponentName)?.ComponentName;
+                        if (src == null)
                         {
-                            if (baseName != identifiers[i].ComponentName.GetNameWithoutAlias()) sb.AppendLine($"{source}{baseName} AS {identifiers[i].ComponentName},");
-                            else sb.AppendLine($"{source}{baseName},");
+                            if (this.joinExpr.Operands["group"].OperatorDefinition.Keyword != "except") skipId = true;
                         }
                         else
                         {
-                            string[] aliases = this.joinExpr.GetAliasesSignatures(baseName);
-                            sb.AppendLine($"CASE WHEN NOT {aliases[0]}.{baseName} IS NULL THEN {aliases[0]}.{baseName} ELSE {aliases[1]}.{baseName} END AS {identifiers[i].ComponentName},");
+                            if (this.joinExpr.Operands["group"].OperatorDefinition.Keyword == "except") skipId = true;
+                            else if (src.Contains("#")) source = $"{src.Split("#")[0]}.";
+                        }
+                    }
+
+                    if (!skipId)
+                    {
+                        if (i == 0 && this.ifThenElse) sb.AppendLine(this.RenderIfThenElseIdentifier(identifiers[i]));
+                        else
+                        {
+                            if (this.joinExpr.OperatorDefinition.Keyword != "full")
+                            {
+                                if (baseName != identifiers[i].ComponentName.GetNameWithoutAlias()) sb.AppendLine($"{source}{baseName} AS {identifiers[i].ComponentName},");
+                                else sb.AppendLine($"{source}{baseName},");
+                            }
+                            else
+                            {
+                                string[] aliases = this.joinExpr.GetAliasesSignatures(baseName);
+                                sb.AppendLine($"CASE WHEN NOT {aliases[0]}.{baseName} IS NULL THEN {aliases[0]}.{baseName} ELSE {aliases[1]}.{baseName} END AS {identifiers[i].ComponentName},");
+                            }
                         }
                     }
                 }
@@ -239,6 +262,27 @@
                         else propagate = true;
 
                         if (propagate) sb.AppendLine($"{this.propagationAlgorithm.Propagate(attributes[i], aliases)} AS {attributes[i].ComponentName.GetNameWithoutAlias()},");
+                        if (this.joinExpr.Operands.ContainsKey("group"))
+                        {
+                            // TODO: Obsługa agregacji z propagacją atrybutów
+                            string attributesText = sb.ToString();
+                            string[] split = attributesText.Split(",\r\n");
+                            string lastAttribute = split[split.Length - 2];
+
+                            int asIndex = lastAttribute.LastIndexOf(" AS");
+                            if (asIndex != -1) lastAttribute.Remove(asIndex).Replace(",\r\n", string.Empty);
+
+                            lastAttribute = $"MIN({lastAttribute}) AS {baseName}";
+                            split[split.Length - 2] = lastAttribute;
+
+                            for (int j = 0; j < split.Length - 1; j++)
+                            {
+                                split[j] += ",\r\n";
+                            }
+
+                            attributesText = string.Concat(split);
+                            sb = new StringBuilder(attributesText);
+                        }
                     }
                 }
 
@@ -307,6 +351,63 @@
             }
 
             this.parts["filters"] = sb.ToString();
+            return this;
+        }
+
+        public IJoinSelectBuilder AddGroupingClause()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (this.joinExpr.Operands.ContainsKey("group"))
+            {
+                sb.AppendLine("GROUP BY");
+                if (this.joinExpr.Operands["group"].OperatorDefinition.Keyword != "except")
+                {
+                    foreach (IExpression identifierExpr in this.joinExpr.Operands["group"].OperandsCollection)
+                    {
+                        sb.AppendLine($"{this.opRendererResolver(identifierExpr.OperatorSymbol).Render(identifierExpr)},");
+                    }
+                }
+                else
+                {
+                    foreach (StructureComponent identifier in this.joinExpr.Structure.Identifiers)
+                    {
+                        StructureComponent idComp = this.joinExpr.Operands["group"].Structure.Identifiers.FirstOrDefault(id => id.BaseComponentName == identifier.BaseComponentName);
+                        if (idComp != null)
+                        {
+                            if (idComp.ComponentName.Contains('#'))
+                            {
+                                string[] aliases = this.joinExpr.GetAliasesSignatures(idComp.BaseComponentName);
+                                string dsName = aliases.FirstOrDefault(alias => alias != idComp.ComponentName.Split('#')[0]);
+
+                                if (aliases.Length > 1) throw new VtlTargetError(this.joinExpr.Operands["group"], $"There are more than 1 alternative data structures with id {idComp.BaseComponentName}");
+                                if (dsName != null) sb.AppendLine($"{dsName}.{identifier.BaseComponentName},");
+                            }
+                        }
+                        else sb.AppendLine($"{identifier.BaseComponentName},");
+                    }
+                }
+
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n"
+                sb.AppendLine();
+            }
+
+            this.parts["group"] = sb.ToString();
+            return this;
+        }
+
+        public IJoinSelectBuilder AddHavingClause()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (this.joinExpr.Operands.ContainsKey("having"))
+            {
+                IExpression havingExpr = this.joinExpr.Operands["having"];
+                sb.AppendLine("HAVING");
+                sb.Append(this.opRendererResolver(havingExpr.OperatorSymbol).Render(havingExpr));
+            }
+
+            this.parts["having"] = sb.ToString();
             return this;
         }
 

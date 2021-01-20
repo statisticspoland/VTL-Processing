@@ -9,6 +9,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
+    using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using System;
     using System.Collections.Generic;
@@ -105,7 +106,13 @@
 
                 if (resultName == "Aggregation")
                 {
-                    throw new NotImplementedException();
+                    IExpression aggrExpr = expression.Operands["ds_2"];
+
+                    this.builder.AddBranch("calc", aggrExpr.Operands["calc"]);
+                    this.builder.AddBranch("group", aggrExpr.Operands["group"]);
+                    if (aggrExpr.Operands.ContainsKey("having")) this.builder.AddBranch("having", aggrExpr.Operands["having"]);
+
+                    this.builder.Branches["calc"].OperatorDefinition.Keyword = "Aggr";
                 }
                 else
                 {
@@ -116,6 +123,17 @@
                             throw new Exception("Expected boolean single component expression as filter branch.");
                     }
                 }
+            }
+            else if (expression.OperatorSymbol.In(AnalyticFunctionOperator.Symbols)) this.builder.AddBranch("over", expression.Operands["over"]);
+            else if (expression.OperatorSymbol.In(AggrFunctionOperator.Symbols))
+            {
+                if (expression.Operands.ContainsKey("group"))
+                {
+                    this.builder.AddBranch("group", expression.Operands["group"]);
+                    if (expression.Operands.ContainsKey("having")) this.builder.AddBranch("having", expression.Operands["having"]);
+                    if (expression.OperatorSymbol == "count") this.builder.BuildBranch("calc", expression);
+                }
+                else this.builder.AddBranch("over", expression.Operands["over"]);
             }
             else if (expression.OperatorSymbol.In(JoinOperators.ComparisonOperators) &&
                     (expression.Operands["ds_1"].Structure.Measures[0].ComponentName != "bool_var"

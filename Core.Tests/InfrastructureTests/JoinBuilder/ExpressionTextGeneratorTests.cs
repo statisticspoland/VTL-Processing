@@ -92,6 +92,26 @@
             Assert.Equal($"{expr1Text} {connector} {expr2Text}", expr.ExpressionText);
         }
 
+        [Theory]
+        [InlineData("by")]
+        [InlineData("except")]
+        [InlineData("all")]
+        public void Generate_GroupOperator_CorrectText(string opKeyword)
+        {
+            Mock<IOperatorDefinition> groupOpMock = new Mock<IOperatorDefinition>();
+            groupOpMock.SetupGet(o => o.Keyword).Returns(opKeyword);
+
+            IExpression expr = this.GetExpr("group");
+            expr.OperatorDefinition = groupOpMock.Object;
+            this.exprTextGenerator.Generate(expr);
+
+            string expr1Text = expr.Operands["ds_1"].ExpressionText;
+            string expr2Text = expr.Operands["ds_2"].ExpressionText;
+            string expr3Text = expr.Operands["ds_3"].ExpressionText;
+
+            Assert.Equal($"group {opKeyword} {expr1Text}, {expr2Text}, {expr3Text}", expr.ExpressionText);
+        }
+
         [Fact]
         public void Generate_IfOperator_CorrectText()
         {
@@ -134,6 +154,38 @@
             this.exprTextGenerator.Generate(expr);
 
             Assert.Equal($"{resultName.ToLower()} {exprText}", expr.ExpressionText);
+        }
+
+        [Fact]
+        public void Generate_AggrAnalyticOperator_CorrectText()
+        {
+            List<string> operators = AggrFunctionOperator.Symbols.ToList();
+            operators.AddRange(AnalyticFunctionOperator.Symbols);
+
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (string opSymbol in operators)
+                {
+                    IExpression expr = this.GetExpr(opSymbol);
+                    string expected = $"{opSymbol}({expr.Operands["ds_1"].ExpressionText})";
+                    
+                    if (i == 1)
+                    {
+                        expr.Operands.Remove("ds_1");
+                        expr.Operands["ds_2"].ResultName = "Alias";
+                        expected = $"{opSymbol}({expr.Operands["ds_2"].ExpressionText})";
+                    }
+                    else if (i == 2)
+                    {
+                        expr.Operands.Clear();
+                        expected = $"{opSymbol}()";
+                    }
+
+                    this.exprTextGenerator.Generate(expr);
+
+                    Assert.Equal($"{expected}", expr.ExpressionText);
+                }
+            }
         }
 
         [Theory]
