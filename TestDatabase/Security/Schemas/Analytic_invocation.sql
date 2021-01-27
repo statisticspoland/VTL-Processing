@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Analytic_invocation]

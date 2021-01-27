@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Not_equal_to]

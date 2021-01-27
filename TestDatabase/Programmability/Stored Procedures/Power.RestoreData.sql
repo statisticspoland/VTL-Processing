@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [Power].RestoreData AS
+	DELETE FROM [Power].DS_1
+
+	INSERT INTO [Power].DS_1 VALUES (10, 'A', 3, 0.7545)
+	INSERT INTO [Power].DS_1 VALUES (10, 'B', 4, 13.45)
+	INSERT INTO [Power].DS_1 VALUES (11, 'A', 5, 1.87)
+GO

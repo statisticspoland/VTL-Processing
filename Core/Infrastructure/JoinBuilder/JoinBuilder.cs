@@ -114,6 +114,16 @@
             }
 
             if (this.Branches.ContainsKey("aggr")) mainExpr.AddOperand("aggr", this.Branches["aggr"]);
+            if (this.Branches.ContainsKey("group")) mainExpr.AddOperand("group", this.Branches["group"]);
+            if (this.Branches.ContainsKey("having")) mainExpr.AddOperand("having", this.Branches["having"]);
+            if (this.Branches.ContainsKey("over")) mainExpr.AddOperand("over", this.Branches["over"]);
+
+            this.ValidateClause();
+
+            if (this.Branches.ContainsKey("pivot")) mainExpr.AddOperand("pivot", this.Branches["pivot"]);
+            if (this.Branches.ContainsKey("unpivot")) mainExpr.AddOperand("unpivot", this.Branches["unpivot"]);
+
+            if (this.Branches.ContainsKey("subspace")) mainExpr.AddOperand("subspace", this.Branches["subspace"]);
 
             mainExpr.SetContainingSchema(mainExpr.ContainingSchema);
 
@@ -133,6 +143,29 @@
 
             this.IsCleared = false;
             return this.Branches[key];
+        }
+
+        /// <summary>
+        /// Validates possible pivot/unpivot/subspace clause.
+        /// </summary>
+        private void ValidateClause()
+        {
+            string clause = this.Branches.ContainsKey("pivot") ? "pivot" :
+                this.Branches.ContainsKey("unpivot") ? "unpivot" :
+                this.Branches.ContainsKey("subspace") ? "subspace" : null;
+
+            if (clause != null)
+            {
+                bool isError = false;
+                if (this.Branches.Count > 4) isError = true;
+                else if (this.Branches.Count == 4 && !(this.Branches.ContainsKey("ds") && this.Branches.ContainsKey("using")))
+                    isError = true;
+                else if (this.Branches.Count == 3 && !(this.Branches.ContainsKey("ds") || this.Branches.ContainsKey("using")))
+                    isError = true;
+
+                if (isError)
+                    throw new VtlOperatorError(this.Branches["main"], "join", $"\"Join\" expression can't contain \"{clause}\" and other than \"ds\" and \"using\" branches.");
+            }
         }
 
         /// <summary>

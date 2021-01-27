@@ -37,6 +37,8 @@
                 .AddViralAttributes()
                 .AddSource()
                 .AddFilters()
+                .AddGroupingClause()
+                .AddHavingClause()
                 .Build();
         }
 
@@ -64,6 +66,7 @@
             if (result.Split(',')[0].Length != 2 || result.Split(',')[0].Split('.')[1] != renamedMeasure.ComponentName)
             {
                 result = result.Remove(result.Length - 1); // usunięcie ","
+                if (applyBranch.CurrentJoinExpr.Operands.ContainsKey("over")) result += this.opRendererResolver("over").Render(applyBranch.CurrentJoinExpr.Operands["over"]);
                 result += $" AS {renamedMeasure.ComponentName},";
             }
 

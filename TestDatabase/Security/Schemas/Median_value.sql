@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Median_value]

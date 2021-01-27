@@ -46,8 +46,8 @@
                 result += " COLLATE Latin1_General_BIN"; // TODO
 
 
-            if (expr.ParamSignature != "filter" &&
-                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && expr.ParentExpression.ParamSignature != "if")))
+            if (!expr.ParamSignature.In("filter", "having") &&
+                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && !expr.ParentExpression.ParamSignature.In("if", "subspace"))))
             {
                 result = $"IIF({op1} IS NULL OR {op2} IS NULL, NULL,\nIIF({result}, 1, 0))";
             }

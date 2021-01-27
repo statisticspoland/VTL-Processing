@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Time_aggregation]

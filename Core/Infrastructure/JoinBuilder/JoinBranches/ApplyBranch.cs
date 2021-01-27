@@ -4,6 +4,7 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Operators;
 
     /// <summary>
     /// The "apply" branch of the "join" operator expression builded from a dataset expression.
@@ -35,6 +36,13 @@
             applyBranch.OperatorDefinition = datasetExpr.OperatorDefinition;
             applyBranch.ResultName = "Apply";
             applyBranch.Structure = applyBranch.OperatorDefinition.GetOutputStructure(applyBranch);
+
+            if (applyBranch.OperatorSymbol.In(AggrFunctionOperator.Symbols) || applyBranch.OperatorSymbol.In(AnalyticFunctionOperator.Symbols))
+            {
+                applyBranch.Operands.Remove("group");
+                applyBranch.Operands.Remove("having");
+                applyBranch.Operands.Remove("over");
+            }
 
             this.exprTextGen.Generate(applyBranch);
             return applyBranch;

@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Equal_to]

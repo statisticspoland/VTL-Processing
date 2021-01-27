@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Maximum_value]

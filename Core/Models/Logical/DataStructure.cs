@@ -28,6 +28,7 @@
         public DataStructure()
         {
             this.DatasetName = string.Empty;
+            this.DatasetType = DatasetType.Regular;
             this.identifiers = new List<StructureComponent>();
             this.measures = new List<StructureComponent>();
             this.viralAttributes = new List<StructureComponent>();
@@ -65,6 +66,8 @@
         }
 
         public string DatasetName { get; set; }
+
+        public DatasetType DatasetType { get; set; }
 
         public bool IsSingleComponent => this.Components.Count == 1;
 

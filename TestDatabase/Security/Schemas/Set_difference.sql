@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Set_difference]

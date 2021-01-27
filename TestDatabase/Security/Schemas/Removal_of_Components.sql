@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Removal_of_Components]

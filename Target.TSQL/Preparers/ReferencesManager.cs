@@ -10,10 +10,11 @@
     using Target.TSQL.Infrastructure;
     using Target.TSQL.Infrastructure.Interfaces;
     using Target.TSQL.Preparers.Interfaces;
+    using Target.TSQL.Renderers;
 
     /// <summary>
     /// The references manager.
-    /// </summary>                                 
+    /// </summary>
     public class ReferencesManager : IReferencesManager
     {
         private readonly OperatorRendererResolver opRendererResolver;
@@ -47,6 +48,8 @@
                     else
                     {
                         StringBuilder result = new StringBuilder();
+                        if (expr.OperatorSymbol == "fill_time_series")
+                            result.AppendLine((this.opRendererResolver(expr.OperatorSymbol) as FillTimeSeriesOperatorRenderer).RenderWith(expr));
                         result.AppendLine($"SELECT * INTO #{assignmentObject.Name} FROM (\n{renderResult}) AS t");
 
                         if (expr.OperatorSymbol == "exists_in" && expr.OperatorDefinition.Keyword == "false") result.Append($" WHERE {expr.Structure.Measures[0].ComponentName} = 0");
@@ -101,14 +104,14 @@
             {
                 case BasicDataType.Boolean: return "BIT";
                 case BasicDataType.Integer:
-                case BasicDataType.None: 
+                case BasicDataType.None:
                     return "INT";
                 case BasicDataType.Number: return "DECIMAL(28,9)";
-                case BasicDataType.String: 
-                case BasicDataType.Time: 
-                case BasicDataType.Date: 
-                case BasicDataType.TimePeriod: 
-                case BasicDataType.Duration: 
+                case BasicDataType.String:
+                case BasicDataType.Time:
+                case BasicDataType.Date:
+                case BasicDataType.TimePeriod:
+                case BasicDataType.Duration:
                     return "VARCHAR(MAX)";
                 default: throw new NotImplementedException(); // TODO: Reszta typów bazowych   
             }

@@ -1,6 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Operators
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
@@ -47,6 +48,18 @@
 
             joinExpr.BasicStructure = this.ProcessDsBranch(joinExpr, this.dsResolver());
 
+            if (joinExpr.Operands.ContainsKey("aggr"))
+            {
+                IExpression aggrExpr = joinExpr.Operands["aggr"];
+
+                joinExpr.AddOperand("calc", aggrExpr.Operands["calc"]);
+                joinExpr.AddOperand("group", aggrExpr.Operands["group"]);
+                if (aggrExpr.Operands.ContainsKey("having")) joinExpr.AddOperand("having", aggrExpr.Operands["having"]);
+                joinExpr.Operands.Remove("aggr");
+
+                joinExpr.Operands["calc"].OperatorDefinition.Keyword = "Aggr";
+            }
+
             if (joinExpr.Operands.ContainsKey("keep") ||
                 joinExpr.Operands.ContainsKey("drop")) mergedStructure = this.ProcessKeepDropBranch(joinExpr, mergedStructure);
             if (joinExpr.Operands.ContainsKey("calc")) mergedStructure = this.ProcessCalcBranch(joinExpr, mergedStructure);
@@ -57,6 +70,9 @@
             {
                 throw new VtlOperatorError(joinExpr, this.Name, "Expected boolean single component expression as filter branch.");
             }
+
+            if (joinExpr.Operands.ContainsKey("subspace"))
+                (mergedStructure.Identifiers as List<StructureComponent>).RemoveAll(id => id.ComponentName.In(joinExpr.Operands["subspace"].Structure.Identifiers.Select(id => id.ComponentName).ToArray()));
 
             return mergedStructure;
         }

@@ -5,7 +5,7 @@
     public static class Example
     {
         public static string Source = new StringBuilder()
-            .AppendLine("DS1 := period_indicator(t\"2010Q1\");")
+            .AppendLine("DS_r := Pivot\\DS_1 [pivot Id_2, Me_1]")
             .ToString();
 
         //public static string Source = new StringBuilder()

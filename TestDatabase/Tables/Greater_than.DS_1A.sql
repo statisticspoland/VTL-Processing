@@ -1,0 +1,10 @@
+﻿CREATE TABLE [Greater_than].[DS_1A]
+(
+	[Id_1] INT NOT NULL,
+	[Id_2] VARCHAR(32) NOT NULL,
+	[Id_3] INT NOT NULL,
+	[Id_4] VARCHAR(32) NOT NULL,
+	[Id_5] VARCHAR(32) NOT NULL,
+	[Me_1] DECIMAL(28,9),
+	CONSTRAINT [PK_Greater_than_DS_1A] PRIMARY KEY CLUSTERED ([Id_1], [Id_2], [Id_3], [Id_4], [Id_5])
+)

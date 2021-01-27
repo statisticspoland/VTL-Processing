@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Minimum_value]

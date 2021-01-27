@@ -8,6 +8,10 @@
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Models.Types;
+    using StatisticsPoland.VtlProcessing.Core.Operators;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -64,17 +68,17 @@
                 }
                 else
                 {
-                    if (expression.OperatorSymbol == "#" && !expression.OperandsCollection.ToArray()[0].IsScalar)
+                    if (expression.OperatorSymbol.In("datasetClause", "#") && !expression.OperandsCollection.ToArray()[0].IsScalar)
                         expression.Operands["ds_1"] = this.TransformDatasets(expression.Operands["ds_1"]);
 
                     for (int i = 0; i < expression.OperandsCollection.Count; i++)
                     {
-                        if (expression.OperandsCollection.ToArray()[i].OperatorSymbol == "#")
+                        if (expression.OperandsCollection.ToArray()[i].OperatorSymbol.In("datasetClause", "#"))
                             expression.Operands[$"ds_{i + 1}"] = this.TransformDatasets(expression.Operands[$"ds_{i + 1}"]);
                     }
                 }
 
-                if (this.IsJoinIfThenElse(expression) || this.IsJoinDatasetOperator(expression))
+                if (expression.OperatorSymbol == "datasetClause" || this.IsJoinIfThenElse(expression) || this.IsJoinDatasetOperator(expression))
                     return this.TransformToJoin(expression);
             }
 
@@ -88,18 +92,73 @@
         /// <returns>The modified expression.</returns>
         private IJoinExpression TransformToJoin(IExpression expression)
         {
-            this.builder.BuildBranch("ds", expression);
-            if (expression.OperatorSymbol.In(JoinOperators.ComparisonOperators) &&
+            IExpression additionalAliasExpr = null;
+
+            if (expression.OperatorSymbol == "datasetClause")
+            {
+                if (expression.Operands["ds_1"].OperatorSymbol == "join")
+                    additionalAliasExpr = expression.Operands["ds_1"];
+
+                string resultName = expression.Operands["ds_2"].ResultName;
+
+                if (!resultName.In(DatasetClauseOperator.ClauseNames))
+                    throw new Exception($"Unknown dataset clause symbol: {resultName}");
+
+                if (resultName == "Aggregation")
+                {
+                    IExpression aggrExpr = expression.Operands["ds_2"];
+
+                    this.builder.AddBranch("calc", aggrExpr.Operands["calc"]);
+                    this.builder.AddBranch("group", aggrExpr.Operands["group"]);
+                    if (aggrExpr.Operands.ContainsKey("having")) this.builder.AddBranch("having", aggrExpr.Operands["having"]);
+
+                    this.builder.Branches["calc"].OperatorDefinition.Keyword = "Aggr";
+                }
+                else
+                {
+                    this.builder.AddBranch(resultName.ToLower(), expression.Operands["ds_2"]);
+                    if (resultName == "Filter")
+                    {
+                        if (!this.builder.Branches["filter"].Structure.IsSingleComponent || this.builder.Branches["filter"].Structure.Components[0].ValueDomain.DataType != BasicDataType.Boolean)
+                            throw new Exception("Expected boolean single component expression as filter branch.");
+                    }
+                }
+            }
+            else if (expression.OperatorSymbol.In(AnalyticFunctionOperator.Symbols)) this.builder.AddBranch("over", expression.Operands["over"]);
+            else if (expression.OperatorSymbol.In(AggrFunctionOperator.Symbols))
+            {
+                if (expression.Operands.ContainsKey("group"))
+                {
+                    this.builder.AddBranch("group", expression.Operands["group"]);
+                    if (expression.Operands.ContainsKey("having")) this.builder.AddBranch("having", expression.Operands["having"]);
+                    if (expression.OperatorSymbol == "count") this.builder.BuildBranch("calc", expression);
+                }
+                else this.builder.AddBranch("over", expression.Operands["over"]);
+            }
+            else if (expression.OperatorSymbol.In(JoinOperators.ComparisonOperators) &&
                     (expression.Operands["ds_1"].Structure.Measures[0].ComponentName != "bool_var"
                     || expression.Operands["ds_2"].Structure.Measures[0].ComponentName != "bool_var"))
                 this.builder.BuildBranch("rename", expression);
 
-            if (!this.builder.Branches.ContainsKey("calc")) 
-                this.builder.BuildBranch("apply", expression);
+            if (additionalAliasExpr == null) this.builder.BuildBranch("ds", expression);
+            if (expression.OperatorSymbol != "datasetClause" && !this.builder.Branches.ContainsKey("calc")) this.builder.BuildBranch("apply", expression);
 
             expression.OperatorDefinition = this.exprFactory.OperatorResolver("join");
             expression.OperatorDefinition.Keyword = "inner";
             expression.Operands.Clear();
+
+            if (additionalAliasExpr != null)
+            {
+                IExpression dsBranch = this.exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+                dsBranch.ExpressionText = $"{additionalAliasExpr.ExpressionText} as ds1";
+                dsBranch.AddOperand("ds1", additionalAliasExpr);
+
+                additionalAliasExpr.OperatorDefinition = this.exprFactory.OperatorResolver("join");
+                additionalAliasExpr.OperatorDefinition.Keyword = "inner";
+                additionalAliasExpr.ResultName = "Join";
+
+                this.builder.Branches.Add("ds", dsBranch);
+            }
 
             expression.AddOperand("ds", this.builder.Branches["ds"]);
             expression = this.joinExprResolver(expression);

@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Character_case_conversion]

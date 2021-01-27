@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Element_of]

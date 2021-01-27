@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [String_pattern_location]

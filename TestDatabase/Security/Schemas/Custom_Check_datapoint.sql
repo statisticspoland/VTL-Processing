@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Custom_Check_datapoint]

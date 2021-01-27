@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [Counting_the_number_of_data_points]
