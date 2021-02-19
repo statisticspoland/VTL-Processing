@@ -22,8 +22,10 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: 9
-    - name: Setup SonarScanner
-      run: dotnet tool install --global dotnet-sonarscanner --version 5.0.4
+    - run: dotnet tool install --global dotnet-sonarscanner
+    - run: dotnet sonarscanner begin /k:"StatisticsPoland.VtlProcessing.Core"  /d:sonar.login="%SONAR_TOKEN%"
+    - run: dotnet build
+    - run: dotnet sonarscanner end /d:sonar.login="%SONAR_TOKEN%"
     env:
       SONAR_TOKEN: 8784854f6b0cc1faec30dd20d476ace9af8a740e
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
