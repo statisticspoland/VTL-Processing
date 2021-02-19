@@ -2,14 +2,14 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, build-on-windows]
   pull_request:
     branches: [ master ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -19,20 +19,25 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x 
-    - name: Sonarscanner for dotnet
-      uses: Secbyte/dotnet-sonarscanner@v2.3
+    - uses: actions/setup-java@v1
       with:
-        buildCommand: dotnet build --configuration Release
-        testCommand: |
+        java-version: 11
+    - run: dotnet tool install --global dotnet-sonarscanner
+    - run: >
+          dotnet sonarscanner begin 
+          /k:"StatisticsPoland.VtlProcessing.Core" 
+          /n:"StatisticsPoland.VtlProcessing.Core" 
+          /d:sonar.host.url="https://sonarcloud.io"  
+          /d:sonar.login="${{ env.SONAR_TOKEN }}" 
+          /o:"vtl-processing"
+          /d:sonar.verbose="true"
+          /d:sonar.cs.opencover.reportsPaths='"./coverage.opencover.xml"'
+          /d:sonar.coverage.exclusions='"Core.App/**/*", Core.Tests/**/*'
+    - run: |
+          dotnet build
           dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results ; 
           cp results/*/coverage.opencover.xml .
-        projectKey: StatisticsPoland.VtlProcessing.Core
-        projectName: StatisticsPoland.VtlProcessing.Core
-        sonarOrganisation: vtl-processing
-        beginArguments: >
-            /d:sonar.verbose="true"
-            /d:sonar.cs.opencover.reportsPaths='"./coverage.opencover.xml"'
-            /d:sonar.coverage.exclusions='"Core.App/**/*", Core.Tests/**/*'
+    - run: dotnet sonarscanner end /d:sonar.login="${{ env.SONAR_TOKEN }}"
     env:
       SONAR_TOKEN: 8784854f6b0cc1faec30dd20d476ace9af8a740e
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
