@@ -177,6 +177,48 @@
             }
           }
         ]
+      },
+      {
+        "DatasetName": "X_Bool",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "boolean_default"
+            }
+          }
+        ]
+      },
+      {
+        "DatasetName": "Y_Bool",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "boolean_default"
+            }
+          }
+        ]
       }
     ]
   }

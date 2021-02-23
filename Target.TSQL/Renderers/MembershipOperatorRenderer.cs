@@ -33,6 +33,7 @@
             IExpression expr2 = expr.OperandsCollection.ToArray()[1];
 
             if (expr.OperatorDefinition.Keyword == "Standard") return this.RenderStandard(expr);
+            if (expr.OperatorDefinition.Keyword == "DatasetClause") return $"ds1.{expr2.ExpressionText}";
             return $"{expr1.ExpressionText}.{expr2.ExpressionText}";
         }
 

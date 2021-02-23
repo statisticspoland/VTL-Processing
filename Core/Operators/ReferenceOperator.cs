@@ -23,9 +23,9 @@
             IExpression joinExpr = expression.CurrentJoinExpr;
 
             if (expression.IsScalar &&
-                expression.GetFirstAncestorExpr("Apply") != null &&
+                expression.GetFirstAncestorExpr("Apply") != null && 
                 joinExpr.Operands["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expression.ExpressionText) == null)
-                throw new VtlOperatorError(expression, this.Name, $"Wrong use of scalar reference operator expression: {expression.ExpressionText}");
+                    throw new VtlOperatorError(expression, this.Name, $"Wrong use of scalar reference operator expression: {expression.ExpressionText}");
 
             IDataStructure structure = expression.ReferenceExpression?.Structure.GetCopy(true);
 

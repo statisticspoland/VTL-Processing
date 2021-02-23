@@ -10,7 +10,6 @@
         public static IServiceCollection AddPlantUmlTarget(this IServiceCollection services)
         {
             services.AddSingleton<ITargetRenderer, PlantUmlTargetRenderer>();
-            services.AddSingleton<PlantUmlTargetRenderer>();
 
             return services;
         }

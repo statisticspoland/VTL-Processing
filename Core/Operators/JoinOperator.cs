@@ -9,7 +9,6 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -117,7 +116,22 @@
         /// <param name="mergedStructure">The data structure.</param>
         private IDataStructure ProcessCalcBranch(IJoinExpression expression, IDataStructure mergedStructure)
         {
-            mergedStructure.AddStructure(expression.Operands["calc"].Structure.GetCopy());
+            IExpression calcBranch = expression.Operands["calc"];
+            if (calcBranch.OperatorDefinition.Keyword == "Aggr")
+            {
+                List<string> compNames = new List<string>();
+                foreach (StructureComponent component in calcBranch.Structure.Components.Where(comp => comp.ComponentType != ComponentType.Identifier))
+                {
+                    List<StructureComponent> comps = mergedStructure.Components as List<StructureComponent>;
+                    comps.RemoveAll(comp => comp.ComponentName != component.BaseComponentName && comp.ComponentType == component.ComponentType);
+                    mergedStructure.Measures = comps.Where(comp => comp.ComponentType == ComponentType.Measure).ToList();
+                    mergedStructure.NonViralAttributes = comps.Where(comp => comp.ComponentType == ComponentType.NonViralAttribute).ToList();
+                    mergedStructure.ViralAttributes = comps.Where(comp => comp.ComponentType == ComponentType.ViralAttribute).ToList();
+                }
+            }
+
+            mergedStructure.AddStructure(calcBranch.Structure.GetCopy());
+
             return mergedStructure;
         }
 
@@ -237,7 +251,7 @@
                     bool divideComp = false;
                     string baseName = component.BaseComponentName;
                     StructureComponent renameComp = renameStructure.Components.FirstOrDefault(comp => comp.BaseComponentName == baseName);
-
+                    
                     if (renameComp == null)
                     {
                         divideComp = true;
@@ -246,7 +260,7 @@
 
                         foreach (string alias in aliases)
                         {
-                            string name = $"{alias}#{baseName}";
+                            string name= $"{alias}#{baseName}";
                             renameComp = renameStructure.Components.FirstOrDefault(comp => comp.BaseComponentName == name);
                             if (renameComp != null)
                             {
@@ -336,7 +350,7 @@
                     }
                 }
 
-                if (!renamed)
+                if (!renamed) 
                     throw new VtlOperatorError(expression, this.Name, $"Could not rename one of given components. Have any of them been dropped?");
             }
 

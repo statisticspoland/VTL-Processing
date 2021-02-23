@@ -3,10 +3,14 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.IO.Compression;
     using System.Linq;
     using System.Text;
+    using Target.PlantUML.Infrastructure;
     using Target.PlantUML.Infrastructure.Interfaces;
 
     /// <summary>
@@ -18,7 +22,7 @@
         private readonly int fontSize;
 
         /// <summary>
-        /// Initializes new instance of the <see cref="PlantUmlTargetRenderer"/> class.
+        /// Initializes a new instance of the <see cref="PlantUmlTargetRenderer"/> class.
         /// </summary>
         /// <param name="configuration">The target configuration.</param>
         public PlantUmlTargetRenderer(ITargetConfiguration configuration)
@@ -31,7 +35,9 @@
 
         public string Render(ITransformationSchema schema)
         {
-            return this.Render(this.RenderTransformationSchema(schema.GetExpressions()));
+            if (this.conf.ExprType == ExpressionsType.Standard)
+                return this.Render(this.RenderTransformationSchema(schema.GetExpressions()));
+            return this.Render(this.RenderTransformationSchema(schema.Rulesets));
         }
 
         public string Render(IExpression expression)
@@ -76,6 +82,71 @@
             for (int i = 0; i < exprs.Count(); i++)
             {
                 sb.AppendLine($"shema {this.conf.Arrow} {objectName}{i + 1}");
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Renders the PlantUML code based on a given VTL 2.0 rulesets collection.
+        /// </summary>
+        /// <param name="rulesets">The VTL 2.0 rulesets collection.</param>
+        /// <returns>The PlantUML code.</returns>
+        private string RenderTransformationSchema(IEnumerable<IRuleset> rulesets)
+        {
+            StringBuilder sb = new StringBuilder();
+            string objectName = "ruleset";
+
+            sb.Append(this.RenderSchemaObject("Rulesets"));
+
+            for (int i = 0; i < rulesets.Count(); i++)
+            {
+                sb.Append(this.RenderRuleset(rulesets.ToArray()[i], $"{objectName}{i + 1}"));
+            }
+
+            for (int i = 0; i < rulesets.Count(); i++)
+            {
+                sb.AppendLine($"shema {this.conf.Arrow} {objectName}{i + 1}");
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Renders the PlantUML code based on a given VTL 2.0 ruleset.
+        /// </summary>
+        /// <param name="ruleset">The VTL 2.0 ruleset.</param>
+        /// <param name="name">The name of PlantUML object to render.</param>
+        /// <returns>The PlantUML code.</returns>
+        private string RenderRuleset(IRuleset ruleset, string name)
+        {
+            StringBuilder sb = new StringBuilder();
+            
+            string size = $"<size:{(int)(this.fontSize * 0.9)}>";
+            string objectName = ruleset.RulesetText;
+
+            sb.AppendLine();
+            sb.AppendLine($"object \"{this.ReplaceQuotationMarks(objectName)}\" as {name} #Bisque{"{"}");
+            sb.AppendLine($"  {size}Name = '{ruleset.Name}'");
+            sb.AppendLine("}");
+
+            IEnumerable<IRuleExpression> exprs = ruleset.RulesCollection;
+            string ruleName = "rule";
+
+            for (int i = 0; i < exprs.Count(); i++)
+            {
+                sb.Append(this.RenderExpression(exprs.ToArray()[i], $"{name}_{ruleName}{i + 1}"));
+            }
+
+            for (int i = 0; i < exprs.Count(); i++)
+            {
+                sb.AppendLine($"{name} {this.conf.Arrow} {name}_{ruleName}{i + 1}");
+            }
+
+            if (ruleset.Structure != null && this.conf.ShowDataStructure)
+            {
+                sb.AppendLine();
+                sb.Append(RenderDataStructureObject(ruleset.Structure, $"{name}_ds", name, string.Empty));
             }
 
             return sb.ToString();
@@ -139,6 +210,7 @@
         private string RenderObject(IExpression expr, string name, string space)
         {
             StringBuilder sb = new StringBuilder();
+            IRuleExpression ruleExpr = (this.conf.ExprType == ExpressionsType.Rulesets && expr.ParentExpression == null) ? (IRuleExpression)expr : null;
             
             string size = $"<size:{(int)(this.fontSize * 0.9)}>";
             string objectName = expr.ExpressionText;
@@ -149,7 +221,11 @@
             }
 
             string color = null;
-            if (expr.ResultName == null || objectName != " ") color = "#PHYSICAL";
+            if (expr.OperatorSymbol == "join") color = "#Moccasin";
+            else if (expr.ParentExpression?.OperatorSymbol == "join") color = "#PapayaWhip";
+            else if (expr.ResultName == null || objectName != " ") color = "#PHYSICAL";
+            
+            if (ruleExpr != null) color = "#BlanchedAlmond";
             if (objectName == " ") color = "#LightPink";
 
             sb.AppendLine();
@@ -160,6 +236,13 @@
             sb.AppendLine($"{space}  {size}IsScalar = {expr.IsScalar}");
             if(this.conf.ShowNumberLine) sb.AppendLine($"{space}  {size}LineNumber = {expr.LineNumber}");
             sb.AppendLine($"{space}  {size}ParamSignature = '{expr.ParamSignature}'");
+
+            if (ruleExpr != null)
+            {
+                if (ruleExpr.ErrorCode != null) sb.AppendLine($"{space}  {size}errorCode = '{ruleExpr.ErrorCode}'");
+                if (ruleExpr.ErrorLevel != null) sb.AppendLine($"{space}  {size}errorLevel = {ruleExpr.ErrorLevel}");
+            }
+
             sb.AppendLine($"{space}{"}"}");
 
             if (expr.Structure != null && this.conf.ShowDataStructure)
@@ -182,9 +265,11 @@
         private string RenderDataStructureObject(IDataStructure structure, string name, string parentName, string space)
         {
             StringBuilder sb = new StringBuilder();
-
+            
             string color = structure.Identifiers.Count == 0 ? "#PowderBlue" : "#LightCyan";
             color = structure.IsSingleComponent ? "#PaleTurquoise" : color;
+
+            if (structure.DatasetType == DatasetType.Pivoted) color = structure.IsSingleComponent ? "#Thistle" : "#Lavender";
 
             sb.AppendLine($"{space}object \"Data Structure {structure.DatasetName}\" as {name} {color}{"{"}");
             if (structure.Identifiers.Count != 0)
@@ -233,7 +318,7 @@
             {
                 string dataType = Enum.GetName(component.ValueDomain.DataType.GetType(), component.ValueDomain.DataType);
                 string baseName = string.Empty;
-
+                
                 if (component.BaseComponentName != component.ComponentName) baseName = $" ({component.BaseComponentName})";
                 sb.AppendLine($"{space}    **{dataType}** {component.ComponentName}{baseName}");
             }

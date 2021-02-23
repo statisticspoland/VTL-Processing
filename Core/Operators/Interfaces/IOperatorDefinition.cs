@@ -10,32 +10,23 @@ namespace StatisticsPoland.VtlProcessing.Core.Operators.Interfaces
         /// <summary>
         /// Gets the name of operator.
         /// </summary>
-        /// <value>
-        /// The operator name.
-        /// </value>
         string Name { get; }
 
         /// <summary>
         /// Gets the operator symbol.
         /// </summary>
-        /// <value>
-        /// The operator symbol.
-        /// </value>
         string Symbol { get; }
 
         /// <summary>
         /// Gets or sets the operator keyword.
         /// </summary>
-        /// <value>
-        /// The operator keyword.
-        /// </value>
         public string Keyword { get; set; }
 
         /// <summary>
-        /// Gets the structure of the resulting operator parameter for specified operands.
+        /// Gets the structure of the resulting operator parameter for a given expression.
         /// </summary>
         /// <param name="expression">The expression.</param>
-        /// <returns>The dynamically defined structure of the output parameter for the given input parameters.</returns>
+        /// <returns>A dynamically defined structure.</returns>
         IDataStructure GetOutputStructure(IExpression expression);
     }
 }

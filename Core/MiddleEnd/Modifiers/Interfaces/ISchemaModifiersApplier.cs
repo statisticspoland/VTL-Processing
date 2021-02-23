@@ -3,7 +3,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
 
     /// <summary>
-    /// Apllier of a complex transformation of a VTL 2.0 transformation schema interface.
+    /// Interface of an apllier of a complex transformation of a VTL 2.0 transformation schema.
     /// </summary>
     public interface ISchemaModifiersApplier
     {

@@ -46,7 +46,7 @@
             {
                 StructureComponent component = parentExpr.Operands["ds_1"].Structure.Components.FirstOrDefault(comp => comp.ComponentName.GetNameWithoutAlias() == expression.ExpressionText);
                 if (component == null) throw new VtlOperatorError(expression, this.Name, $"Component {expression.ExpressionText} has been not found in dataset {parentExpr.Operands["ds_1"].ExpressionText}.");
-
+ 
                 structure = this.dsResolver(component.ComponentName.GetNameWithoutAlias(), component.ComponentType, component.ValueDomain.DataType);
             }
             else if (parentExpr.OperatorSymbol == "unpivot")
@@ -70,7 +70,7 @@
                 (parentExpr.OperatorSymbol != "renameExpr" || parentExpr.Operands["ds_2"] != expression))
             {
                 this.compTypeInference.InferTypeOfComponent(expression);
-                structure = expression.Structure;
+                structure = expression.Structure.GetCopy();
             }
             else
             {
@@ -99,6 +99,13 @@
                     structure = this.dsResolver(expression.ExpressionText, compType, dataType);
                 }
                 else throw new VtlOperatorError(expression, this.Symbol, "Unknown component type.");
+            }
+
+            IRuleset ruleset = expression.ContainingSchema?.Rulesets.FirstOrDefault(ruleset => ruleset.RulesCollection.Contains(expression.GetFirstAncestorExpr() ?? expression));
+            if (ruleset != null)
+            {
+                if (ruleset.Variables.Count > 0) structure.Components[0].BaseComponentName = ruleset.Variables[structure.Components[0].ComponentName];
+                else structure.Components[0].BaseComponentName = ruleset.ValueDomains[structure.Components[0].ComponentName].Signature;
             }
 
             return structure;

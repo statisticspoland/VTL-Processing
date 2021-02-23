@@ -33,7 +33,8 @@
 
             bool isRootExpr = 
                 !expr.ParamSignature.In("filter", "having") && 
-                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && expr.ParentExpression.ParamSignature != "if"));
+                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && expr.ParentExpression.ParamSignature != "if")) &&
+                expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.RulesCollection.Contains(expr.GetFirstAncestorExpr() ?? expr)) == null;
 
             string symbol = expr.OperatorSymbol.ToUpper();
             string op1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);

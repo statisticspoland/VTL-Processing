@@ -21,6 +21,9 @@
     using System.Linq;
     using System.Reflection;
 
+    /// <summary>
+    /// The <see cref="IServiceCollection"/> extensions.
+    /// </summary>
     public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> configure)
@@ -28,21 +31,22 @@
             services.AddSingleton<ITreeGenerator, TreeGenerator>();
             services.AddSingleton<ITreeTransformer, VisitorTransformer>();
             services.AddSingleton<IExpressionFactory, ExpressionFactory>();
-            services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(null, null));
 
             services.AddSingleton<IJoinBranch, ApplyBranch>();
+            services.AddSingleton<IJoinBranch, CalcBranch>();
             services.AddSingleton<IJoinBranch, DsBranch>();
             services.AddSingleton<IJoinBranch, RenameBranch>();
             services.AddSingleton<IJoinBranch, UsingBranch>();
             services.AddSingleton<IJoinBuilder, JoinBuilder>();
-            services.AddSingleton<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
             services.AddSingleton<IExpressionTextGenerator, ExpressionTextGenerator>();
 
+            services.AddSingleton<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
             services.AddSingleton<IComponentTypeInference, ComponentTypeInference>();
-
+            services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(null, null));
+            
             services.AddResolvers();
 
-            IEnumerable<Type> Operators =
+            IEnumerable<Type> Operators = 
                 Assembly
                 .GetExecutingAssembly()
                 .GetTypes()
@@ -50,18 +54,18 @@
 
             foreach (Type type in Operators)
             {
-                services.AddTransient(type);
+                 services.AddTransient(type);
             }
 
             services.AddSingleton<ISchemaModifiersApplier, SchemaModifiersApplier>();
 
             // middle end schema modifier chain
-            // services.AddSingleton<ISchemaModifier, DeadCodeModifier>(); - turned off for testing
+            //services.AddSingleton<ISchemaModifier, DeadCodeModifier>(); // Wyłączone do testów wyrażeń nietrwałego przypisania
             services.AddSingleton<ISchemaModifier, TypeInferenceModifier>();
             services.AddSingleton<ISchemaModifier, JoinUsingFillingModifier>();
             services.AddSingleton<ISchemaModifier, DsOperatorsToJoinsModifier>();
 
-            //additional configuration (e.g. register data model)
+            // additional configuration (e.g. register data model)
             IVtlProcessingConfig configBuilder = new VtlProcessingConfig(services);
             configure(configBuilder);
 

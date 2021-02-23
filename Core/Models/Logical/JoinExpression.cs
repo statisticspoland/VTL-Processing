@@ -122,6 +122,13 @@
             return JoinExpression.GetSupersetAlias(this.Operands["ds"].OperandsCollection.ToList()).Structure.GetCopy();
         }
 
+        public bool IsPartOfBranch(string branchName, IExpression expr)
+        {
+            if (!this.Operands.ContainsKey(branchName)) return false;
+            if (expr == this.Operands[branchName]) return true;
+            return this.ExprIsChildOf(expr, this.Operands[branchName]);
+        }
+
         public string[] GetAliasesSignatures(string compName = null)
         {
             if (!this.Operands.ContainsKey("ds")) throw new Exception("Join expression must contain \"ds\" branch.");
@@ -155,6 +162,22 @@
             }
 
             return signatures.ToArray();
+        }
+
+        /// <summary>
+        /// Checks if a given first expression is child of a given second expression. 
+        /// </summary>
+        /// <param name="child">The first expression.</param>
+        /// <param name="parent">The second expression.</param>
+        /// <returns>Value specyfing if a given first expression is child of a given second expression.</returns>
+        private bool ExprIsChildOf(IExpression child, IExpression parent)
+        {
+            foreach (IExpression expr in parent.OperandsCollection)
+            {
+                if (child == expr || this.ExprIsChildOf(child, expr)) return true;
+            }
+
+            return false;
         }
 
         /// <summary>

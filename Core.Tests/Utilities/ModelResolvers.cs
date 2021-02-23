@@ -11,6 +11,7 @@
     using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
+    using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using System;
 
     /// <summary>
@@ -22,6 +23,11 @@
         /// Gets the expression resolver.
         /// </summary>
         public readonly static ExpressionResolver ExprResolver;
+
+        /// <summary>
+        /// Gets the rule expression resolver.
+        /// </summary>
+        public readonly static RuleExpressionResolver RuleExprResolver;
 
         /// <summary>
         /// Gets the "join" expression resolver.
@@ -52,6 +58,10 @@
             exprResolverMock.Setup(o => o(null)).Returns(() => { return new Expression(); });
             exprResolverMock.Setup(o => o(It.IsNotNull<IExpression>())).Returns((IExpression parentExpr) => { return new Expression(parentExpr); });
 
+            Mock<RuleExpressionResolver> ruleExprResolverMock = new Mock<RuleExpressionResolver>();
+            ruleExprResolverMock.Setup(o => o(It.IsNotNull<IExpression>(), It.IsAny<IRuleset>(), It.IsAny<string>(), It.IsAny<int?>()))
+                .Returns((IExpression expression, IRuleset containingRuleset, string errorCode, int? errorLevel) => { return new RuleExpression(expression, containingRuleset, errorCode, errorLevel); });
+
             Mock<JoinExpressionResolver> joinExprResolverMock = new Mock<JoinExpressionResolver>();
             joinExprResolverMock.Setup(o => o(It.IsNotNull<IExpression>())).Returns((IExpression expression) => { return new JoinExpression(expression); });
 
@@ -64,6 +74,7 @@
             schemaResolverMock.Setup(o => o()).Returns(() => { return new TransformationSchema(); });
 
             ModelResolvers.ExprResolver = exprResolverMock.Object;
+            ModelResolvers.RuleExprResolver = ruleExprResolverMock.Object;
             ModelResolvers.JoinExprResolver = joinExprResolverMock.Object;
             ModelResolvers.DsResolver = dsResolverMock.Object;
             ModelResolvers.SchemaResolver = schemaResolverMock.Object;
@@ -80,6 +91,7 @@
             IExpressionFactory exprFactory = 
                 new ExpressionFactory(
                     ModelResolvers.ExprResolver,
+                    ModelResolvers.RuleExprResolver,
                     ModelResolvers.JoinExprResolver,
                     opResolverMock.Object);
 
@@ -97,10 +109,12 @@
                     else if (key == "between") return new BetweenOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("and", "or", "xor", "not")) return new BooleanOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "calc") return new CalcOperator(ModelResolvers.DsResolver);
+                    else if (key == "check_datapoint") return new CheckDatapointOperator(ModelResolvers.DsResolver, exprFactory);
                     else if (key.In("=", "<>", "<", "<=", ">", ">=")) return new ComparisonOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
                     else if (key == "comp") return new ComponentOperator(ModelResolvers.DsResolver, new ComponentTypeInference(ModelResolvers.DsResolver));
                     else if (key == "const") return new ConstantOperator(ModelResolvers.DsResolver);
                     else if (key == "current_date") return new CurrentDateOperator(ModelResolvers.DsResolver);
+                    else if (key == "exists_in") return new ExistsInOperator(ModelResolvers.DsResolver);
                     else if (key == "get") return new GetOperator(new Mock<IDataModel>().Object); // operator tests should mock IDataModel implementation
                     else if (key == "if") return new IfThenElseOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("in", "not_in")) return new InOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver, key);
@@ -131,7 +145,8 @@
                     else if (key == "partition") return new PartitionOperator(ModelResolvers.DsResolver);
                     else if (key == "renameExpr") return new RenameExprOperator(ModelResolvers.DsResolver);
                     else if (key == "subExpr") return new SubspaceExprOperator();
-
+                    else if (key == "when") return new WhenOperator();
+                    
                     throw new Exception("Operator not found");
                 });
 

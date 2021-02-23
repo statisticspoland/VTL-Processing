@@ -6,6 +6,7 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -94,13 +95,24 @@
                 throw new VtlOperatorError(mainExpr, "join", "\"Join\" expression can't contain \"aggr\" and \"calc\" branches at the same time.");
 
             if (this.Branches.ContainsKey("apply")) mainExpr.AddOperand("apply", this.Branches["apply"]);
-            if (this.Branches.ContainsKey("calc")) mainExpr.AddOperand("calc", this.Branches["calc"]);
+            if (this.Branches.ContainsKey("calc"))
+            {
+                mainExpr.AddOperand("calc", this.Branches["calc"]);
+                this.Branches["calc"].SetContainingSchema(mainExpr.ContainingSchema);
+
+                if (this.Branches["calc"].OperatorDefinition.Keyword == "Aggr Built")
+                {
+                    this.ReinferTypes(this.Branches["calc"]);
+                    this.Branches["calc"].OperatorDefinition.Keyword = "Aggr";
+                }
+            }
 
             if (this.Branches.ContainsKey("keep") && this.Branches.ContainsKey("drop"))
                 throw new VtlOperatorError(mainExpr, "join", "\"Join\" expression can't contain \"keep\" and \"drop\" branches at the same time.");
 
             if (this.Branches.ContainsKey("keep")) mainExpr.AddOperand("keep", this.Branches["keep"]);
             if (this.Branches.ContainsKey("drop")) mainExpr.AddOperand("drop", this.Branches["drop"]);
+
             if (this.Branches.ContainsKey("rename"))
             {
                 mainExpr.AddOperand("rename", this.Branches["rename"]);
@@ -138,8 +150,12 @@
 
         public IExpression BuildBranch(string key, IExpression datasetExpr)
         {
+            IJoinBranch joinBranch = this.joinBranches.FirstOrDefault(jb => jb.Signature == key);
+
+            if (joinBranch == null) throw new Exception($"Join branch named \"{key}\" has been not found.");
+
             this.Branches.Remove(key);
-            this.Branches.Add(key, this.joinBranches.FirstOrDefault(jb => jb.Signature == key).Build(datasetExpr));
+            this.Branches.Add(key, joinBranch.Build(datasetExpr));
 
             this.IsCleared = false;
             return this.Branches[key];
@@ -162,7 +178,7 @@
                     isError = true;
                 else if (this.Branches.Count == 3 && !(this.Branches.ContainsKey("ds") || this.Branches.ContainsKey("using")))
                     isError = true;
-
+                
                 if (isError)
                     throw new VtlOperatorError(this.Branches["main"], "join", $"\"Join\" expression can't contain \"{clause}\" and other than \"ds\" and \"using\" branches.");
             }

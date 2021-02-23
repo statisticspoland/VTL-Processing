@@ -27,11 +27,10 @@
 
         public IExpression Build(IExpression datasetExpr)
         {
-            IExpression usingBranch = this.exprFactory.ExprResolver();
-
-            usingBranch.ResultName = "Using";
+            IExpression usingBranch = this.exprFactory.GetExpression("Using", ExpressionFactoryNameTarget.ResultName);
             usingBranch.ParamSignature = this.Signature;
             usingBranch.ExpressionText = "using ";
+
             foreach (StructureComponent identifier in (datasetExpr as IJoinExpression).GetSubsetAliasStructure().Identifiers)
             {
                 usingBranch.AddOperand(identifier.ComponentName, this.exprFactory.GetExpression("Identifier", ExpressionFactoryNameTarget.ResultName)); // przypisanie wszystkich wspólnych id do gałęzi using

@@ -14,12 +14,12 @@
         public TransformationSchema()
         {
             this.AssignmentObjects = new AssignmentObjectCollection();
-            this.UsedOperators = new List<string>();
+            this.Rulesets = new List<IRuleset>();
         }
 
         public AssignmentObjectCollection AssignmentObjects { get; }
 
-        public ICollection<string> UsedOperators { get; }
+        public ICollection<IRuleset> Rulesets { get; }
 
         public ICollection<IExpression> GetExpressions()
         {

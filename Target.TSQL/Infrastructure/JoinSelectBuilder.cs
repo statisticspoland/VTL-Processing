@@ -71,7 +71,7 @@
             sb.Append(this.parts["filters"]);
             sb.Append(this.parts["group"]);
             sb.Append(this.parts["having"]);
-
+            
             if (this.ifThenElse) sb.AppendLine($") AS t WHERE {this.joinExpr.Operands["ds"].OperandsCollection.First().Structure.Identifiers[0].ComponentName} IS NOT NULL");
 
             return sb.ToString();
@@ -512,7 +512,7 @@
             }
             else if (thenExprAlias != null) return $"{thenExprAlias.ParamSignature}.{identifier.ComponentName},";
             else if (elseExprAlias != null) return $"{elseExprAlias.ParamSignature}.{identifier.ComponentName},";
-            else return $"{ifExprAlias.ParamSignature}.{identifier.ComponentName},";
+            else return  $"{ifExprAlias.ParamSignature}.{identifier.ComponentName},";
         }
 
         /// <summary>

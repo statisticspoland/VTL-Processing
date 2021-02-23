@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// The VTL 2.0 expression's data structure representation interface.
+    /// The VTL 2.0 expression data structure representation interface.
     /// </summary>
     public interface IDataStructure
     {
@@ -26,17 +26,11 @@
         /// <summary>
         /// Gets or sets identifier components.
         /// </summary>
-        /// <value>
-        /// Collection of identifier components.
-        /// </value>
         IList<StructureComponent> Identifiers { get; set; }
 
         /// <summary>
         /// Gets or sets measure components.
         /// </summary>
-        /// <value>
-        /// Collection of measure components.
-        /// </value>
         IList<StructureComponent> Measures { get; set; }
 
         /// <summary>
@@ -74,23 +68,23 @@
         /// <param name="structure">The dataset to compare.</param>
         /// <param name="checkMeasures">Specifies if measures should be checked.</param>
         /// <param name="checkAttributes">Specifies if viral attributes should be checked.</param>
-        /// <param name="allowNulls">Specifies if null values are equal to every type.</param>
+        /// <param name="allowNulls">Specifies if null values are equal to every type. <br />It doesn't apply to identifiers.</param>
         /// <returns>The value specyfing if it's a superset.</returns>
         bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false);
 
         /// <summary>
-        /// Adds a structure to this data structure.
+        /// Adds a structure to this data structure. Resets the name of the structure.
         /// </summary>
         /// <param name="structure">The structure to add.</param>
         void AddStructure(IDataStructure structure);
 
         /// <summary>
-        /// Removes component duplicates of the same type with the same names.
+        /// Removes component duplicates of the same component types, data types and names.
         /// </summary>
         void RemoveComponentDuplicates();
 
         /// <summary>
-        /// Removes component duplicates of different types with the same names.
+        /// Removes component duplicates of the same names and different component types.
         /// </summary>
         /// <param name="duplicatesDataStructure">The source of component duplicates</param>
         void RemoveComponentDuplicates(IDataStructure duplicatesDataStructure);

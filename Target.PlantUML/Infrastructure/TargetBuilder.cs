@@ -55,6 +55,14 @@
             return this;
         }
 
+        public ITargetBuilder UseRuleExpressionsModel()
+        {
+            this.configuration.ExprType = ExpressionsType.Rulesets;
+            this.ReloadTargetService();
+
+            return this;
+        }
+
         private void ReloadTargetService()
         {
             this.Services.Remove(this.Services.FirstOrDefault(service => service.ServiceType == typeof(TargetConfiguration)));

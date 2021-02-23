@@ -18,7 +18,8 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="SchemaModifiersApplier"/> class.
         /// </summary>
-        /// <param name="mods">Collection of modifiers to apply.</param>
+        /// <param name="mods">The collection of modifiers to apply.</param>
+        /// <param name="logger">The errors logger.</param>
         public SchemaModifiersApplier(IEnumerable<ISchemaModifier> mods, ILogger<ISchemaModifiersApplier> logger = null)
         {
             this.logger = logger;
@@ -28,7 +29,7 @@
         /// <summary>
         /// Performs processing of the schema.
         /// </summary>
-        /// <param name="schema">Schema object to be processed.</param>
+        /// <param name="schema">The schema object to be processed.</param>
         public void Process(ITransformationSchema schema)
         {
             foreach(ISchemaModifier mod in this.modifiers)

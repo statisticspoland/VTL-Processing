@@ -15,9 +15,9 @@
         private ITransformationSchema schema;
 
         /// <summary>
-        /// Performs removing a dead code for a schema.
+        /// Performs removing a dead code for a transformation schema.
         /// </summary>
-        /// <param name="schema">The schema to modify.</param>
+        /// <param name="schema">The transformation schema to modify.</param>
         public void Modify(ITransformationSchema schema)
         {
             this.schema = schema;

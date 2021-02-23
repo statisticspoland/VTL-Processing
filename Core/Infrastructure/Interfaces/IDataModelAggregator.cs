@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// The aggregator of data models interface.
+    /// Interface of an aggregator of data models.
     /// </summary>
     internal interface IDataModelAggregator : IDataModel
     {

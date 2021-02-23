@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    ///  Contains informations of the VTL 2.0 expression assignment object.
+    ///  Contains informations of a VTL 2.0 expression assignment object.
     /// </summary>
     public class AssignmentObject
     {
@@ -45,12 +45,12 @@
         public IExpression Expression { get; set; }
 
         /// <summary>
-        /// Gets or sets the transformation schema, containing this assignment object.
+        /// Gets or sets the transformation schema containing this assignment object.
         /// </summary>
         public ITransformationSchema ContainingSchema { get; set; }
 
         /// <summary>
-        /// Gets the collection of assignment objects that using this instance.
+        /// Gets the collection of assignment objects that uses this instance.
         /// </summary>
         public ICollection<AssignmentObject> Users { get; }
     }

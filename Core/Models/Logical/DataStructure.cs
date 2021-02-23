@@ -11,7 +11,7 @@
     using System.Linq;
 
     /// <summary>
-    /// The VTL 2.0 expression's data structure representation.
+    /// The VTL 2.0 expression data structure representation.
     /// </summary>
     public class DataStructure : IDataStructure
     {
@@ -165,12 +165,14 @@
                         throw new VtlError(null, $"Data type of the viral attribute \"{attribute.ComponentName} has been ovverided.\"");
                 }
             }
-
+            
             return this.GetCopy();
         }
 
         public bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false)
         {
+            if (this.Identifiers.Count < structure.Identifiers.Count) return false;
+
             StructureComponent[] supersetComponents = this.Identifiers.ToArray();
             StructureComponent[] subsetComponents = structure.Identifiers.ToArray();
 
@@ -178,7 +180,7 @@
             {
                 if (checkMeasures && i == 1)
                 {
-                    if (this.Measures.Count != structure.Measures.Count) 
+                    if (this.Measures.Count != structure.Measures.Count)
                         return false;
 
                     supersetComponents = this.Measures.ToArray();
@@ -186,16 +188,16 @@
                 }
                 else if (checkAttributes && i == 2)
                 {
-                    if (this.ViralAttributes.Count != structure.ViralAttributes.Count) 
+                    if (this.ViralAttributes.Count != structure.ViralAttributes.Count)
                         return false;
 
                     supersetComponents = this.ViralAttributes.ToArray();
                     subsetComponents = structure.ViralAttributes.ToArray();
                 }
-
+                
                 foreach (StructureComponent subsetComponent in subsetComponents)
                 {
-                    if (supersetComponents.FirstOrDefault(comp => comp.ComponentName == subsetComponent.ComponentName && 
+                    if (supersetComponents.FirstOrDefault(comp => comp.ComponentName == subsetComponent.ComponentName &&
                             comp.ValueDomain.DataType.EqualsObj(subsetComponent.ValueDomain.DataType, i != 0, i != 0 && allowNulls)) == null)
                         return false;
                 }

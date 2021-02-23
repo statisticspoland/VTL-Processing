@@ -11,7 +11,6 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -61,7 +60,43 @@
         /// <returns>A dynamically defined structure.</returns>
         private IDataStructure ProcessNoParameterFunction(IExpression expression)
         {
-            throw new NotImplementedException();
+            IExpression componentExpr = this.exprFac.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression ancesorExpr = null;
+            foreach (string name in DatasetClauseOperator.ClauseNames)
+            {
+                ancesorExpr = expression.GetFirstAncestorExpr(name);
+                if (ancesorExpr != null) break;
+            }
+
+            if (ancesorExpr == null) throw new VtlOperatorError(expression, this.Name, "Expected function parameter.");
+            if (expression.CurrentJoinExpr == null)
+            {
+                IExpression datasetExpr = ancesorExpr.ParentExpression.OperandsCollection.ToArray()[0];
+                StructureComponent component = datasetExpr.Structure.Identifiers.FirstOrDefault(comp => comp.ValueDomain.DataType == BasicDataType.TimePeriod);
+                if (component == null)
+                    throw new VtlOperatorError(expression, this.Name, "Could not find time period data type identifier.");
+                if (datasetExpr.Structure.Identifiers.Where(comp => comp.ValueDomain.DataType == BasicDataType.TimePeriod).ToArray().Length > 1)
+                    throw new VtlOperatorError(expression, this.Name, "Found more than 1 identifier of time period data type.");
+
+                componentExpr.ExpressionText = component.ComponentName.GetNameWithoutAlias();
+            }
+            else
+            {
+                string[] aliases = this.GetCompatibleAliases(expression.CurrentJoinExpr.Operands["ds"]);
+                if (aliases.Length == 0) throw new VtlOperatorError(expression, this.Name, "Could not find time period data type identifier.");
+                if (aliases.Length > 1) throw new VtlOperatorError(expression, this.Name, "Identifier of time period data type has been found in more than 1 join structure.");
+
+                componentExpr.ExpressionText = expression.CurrentJoinExpr.GetAliasExpression(aliases[0]).Structure.Identifiers
+                    .First(id => id.ValueDomain.DataType == BasicDataType.TimePeriod).ComponentName.GetNameWithoutAlias();
+            }
+
+            expression.AddOperand("ds_1", componentExpr);
+            componentExpr.LineNumber = expression.LineNumber;
+            componentExpr.Structure = componentExpr.OperatorDefinition.GetOutputStructure(componentExpr);
+            
+            IDataStructure structure = this.dsResolver("duration_var", ComponentType.Measure, BasicDataType.Duration);
+            structure.Components[0].BaseComponentName = componentExpr.Structure.Components[0].BaseComponentName;
+            return structure;
         }
 
         /// <summary>

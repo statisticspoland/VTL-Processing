@@ -13,9 +13,9 @@
         AssignmentObjectCollection AssignmentObjects { get; }
 
         /// <summary>
-        /// Gets the operators collection used in the transformation schema.
+        /// Gets the rulesets collection.
         /// </summary>
-        ICollection<string> UsedOperators { get; }
+        ICollection<IRuleset> Rulesets { get; }
 
         /// <summary>
         /// Gets the VTL expressions collection.

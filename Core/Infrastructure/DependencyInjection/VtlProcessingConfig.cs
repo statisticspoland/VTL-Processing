@@ -6,7 +6,7 @@
     using System.Linq;
 
     /// <summary>
-    /// The configuration of the VTL 2.0 translator.
+    /// Configuration of the VTL 2.0 translator.
     /// </summary>
     public class VtlProcessingConfig : IVtlProcessingConfig
     {

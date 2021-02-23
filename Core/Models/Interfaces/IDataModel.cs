@@ -1,7 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Models.Interfaces
 {
     /// <summary>
-    /// The VTL 2.0 data model Interface.
+    /// The VTL 2.0 data model interface.
     /// </summary>
     public interface IDataModel
     {

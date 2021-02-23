@@ -1,7 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Models.Types
 {
     /// <summary>
-    /// VTL 2.0 datasets components types.
+    /// VTL 2.0 dataset components types.
     /// </summary>
     public enum ComponentType
     {

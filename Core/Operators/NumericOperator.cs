@@ -77,7 +77,7 @@
             if (ds1.IsSingleComponent)
             {
                 if (this.Symbol.In("ceil", "floor")) return this.dsResolver("int_var", ComponentType.Measure, BasicDataType.Integer);
-                return this.dsResolver("number_var", ComponentType.Measure, BasicDataType.Number);
+                return this.dsResolver("num_var", ComponentType.Measure, BasicDataType.Number);
             }
             else
             {

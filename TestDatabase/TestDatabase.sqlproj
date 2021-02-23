@@ -377,4 +377,7 @@
   <ItemGroup>
     <PostDeploy Include="Programmability\Stored Procedures\FillData.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="VtlProcessingTests.scmp" />
+  </ItemGroup>
 </Project>
