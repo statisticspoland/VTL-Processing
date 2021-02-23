@@ -15,10 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Tests", "Core.Tests\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Target.TSQL", "Target.TSQL\Target.TSQL.csproj", "{88E7C3CA-BC2F-483F-9466-D5516283F208}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests.TSQL", "IntegrationTests\IntegrationTests.TSQL.csproj", "{1D36802C-EF7B-4375-96CE-2946DBFB6B86}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TestDatabase", "TestDatabase\TestDatabase.sqlproj", "{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,16 +45,6 @@ Global
 		{88E7C3CA-BC2F-483F-9466-D5516283F208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88E7C3CA-BC2F-483F-9466-D5516283F208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88E7C3CA-BC2F-483F-9466-D5516283F208}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D36802C-EF7B-4375-96CE-2946DBFB6B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D36802C-EF7B-4375-96CE-2946DBFB6B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D36802C-EF7B-4375-96CE-2946DBFB6B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D36802C-EF7B-4375-96CE-2946DBFB6B86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14EDBD11-F2C5-45F1-81FA-A7F3921EB571}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
