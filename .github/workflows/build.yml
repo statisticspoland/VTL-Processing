@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ master , localdb_testing ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -40,7 +40,7 @@ jobs:
     - name: Run tests
       run: |
           dotnet publish ./TestDatabase/TestDatabase.csproj
-          dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results ; 
+          dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results ; 
           cp results/*/coverage.opencover.xml .
     - name: End scan
       run: dotnet sonarscanner end /d:sonar.login="${{ env.SONAR_TOKEN }}"
