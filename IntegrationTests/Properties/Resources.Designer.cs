@@ -61,7 +61,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Server=VMAOLS02\TEST;Database=VtlProcessingTests;Trusted_Connection=True;.
+        ///   Looks up a localized string similar to Server=(localdb)\mssqllocaldb;Database=TestDB;Trusted_Connection=True;.
         /// </summary>
         internal static string TestDbConnectionString {
             get {
