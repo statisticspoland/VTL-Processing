@@ -48,7 +48,7 @@
 
                 if (expr1.OperatorSymbol == "join") this.RemoveAliases(structure);
             }
-            else if (this.Keyword == "Component")
+            else if (this.Keyword.In("Component", "DatasetClause"))
             {
                 structure = expr2.Structure.GetCopy();
                 expr2.Structure.DatasetName = structure.DatasetName;

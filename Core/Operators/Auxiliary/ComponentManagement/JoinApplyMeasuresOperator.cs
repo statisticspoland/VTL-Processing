@@ -56,14 +56,14 @@
                 else operands.Last().Add(expr);
             }
 
-            List<IExpression> measuresExprList = operands.First(op => op.FirstOrDefault(o => o.ResultName == "Alias") != null);
+            List<IExpression> measuresExprList = operands.Last(op => op.FirstOrDefault(o => o.ResultName == "Alias") != null); // Last because first in if-then-else is condition
             for (int i = 0; i < measuresExprList.Count; i++)
             {
                 IExpression operatorExpr = this.exprFac.GetExpression(expression.OperatorSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
                 for (int j = 0; j < operands.Count; j++)
                 {
                     IExpression operand = operands[j][0];
-                    if (operands[j].Count > 1 && j != 0)
+                    if (operands[j].Count > 1 && (j != 0 || j == 0 && expression.OperatorSymbol != "if"))
                     {
                         if (!this.AreExprListsEqual(operands[j], measuresExprList))
                             throw new VtlOperatorError(expression, expression.OperatorSymbol, "Aliased measures collections don't match each other.");

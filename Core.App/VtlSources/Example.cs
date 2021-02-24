@@ -4,27 +4,23 @@
 
     public static class Example
     {
-        public static string Source = new StringBuilder()
-            .AppendLine("DS_r := Pivot\\DS_1 [pivot Id_2, Me_1]")
-            .ToString();
+        public static string Source = "define datapoint ruleset dpr1 ( variable x, Id1, Me2 as var ) is " +
+            "x = \"123\"; " +
+            "var >= 15 errorcode \"Bad credit\" errorlevel 5; " +
+            "rule123: when Id1 = Id1 and Id1 > 2 then var >= 15; " +
+            "var >= 20 errorcode \"Bad debit\" " +
+            "end datapoint ruleset;" +
+            "" +
+            "define datapoint ruleset dpr2 ( valuedomain integer_default, string_default as a ) is " +
+            "when integer_default = integer_default then a = \"321\" errorcode \"Bad credit\" errorlevel 5; " +
+            "rule123: when integer_default > 5 and integer_default < 10.0 then match_characters(a, \"123\"); " +
+            "a <> \"123\" errorcode \"Bad debit\" " +
+            "end datapoint ruleset;" +
+            "" +
+            "DS_r := check_datapoint(Y, dpr2 components Id1, At_string)";
 
         //public static string Source = new StringBuilder()
-        //    .AppendLine("X2 := inner_join(X calc Me1 := true drop Me2 rename Me1 to bool_var);")
-        //    .AppendLine("Y2 := inner_join(X as ds1, Y as ds2 filter ds1#Me1 > 2 keep ds2#Me2);")
-        //    .AppendLine("Y3 := isnull(Y2);")
-        //    .AppendLine("DS_1 := not X2 = Y3;")
-        //    .AppendLine("DS_2 := X2 and false or DS_1 < Y3;")
-        //    .AppendLine("DS_3 := X#Id1 = 5 <> Y3;")
-        //    .ToString();
-
-        //public static string Source = new StringBuilder()
-        //    .AppendLine(@"DS1 := 10 / 2.5;")
-        //    .AppendLine(@"DS2 := 5 * 3;")
-        //    .AppendLine(@"DS3 := Regular\R1 - 5 * DS1;")
-        //    .AppendLine(@"DS4 := Json\X * Y;")
-        //    .AppendLine(@"DS5 := Y * Y + 200;")
-        //    .AppendLine(@"Y <- DS4 + 100.0;")
-        //    .AppendLine(@"Regular\R1 <- 2 / DS3;")
+        //    .AppendLine("DS_r := Pivot\\DS_1 [pivot Id_2, Me_1]")
         //    .ToString();
     }
 }

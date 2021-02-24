@@ -43,7 +43,7 @@
 
             foreach (StructureComponent identifier in expr.Structure.Identifiers)
             {
-                if (expr.OperatorSymbol == "timeshift" && identifier.ValueDomain.DataType.In(BasicDataType.Time, BasicDataType.Date, BasicDataType.TimePeriod))
+                if (expr.OperatorSymbol == "timeshift" && identifier.ValueDomain.DataType.In(BasicDataType.Time, BasicDataType.Date, BasicDataType.TimePeriod)) 
                     sb.AppendLine($"{this.opRendererResolver(expr.OperatorSymbol).Render(expr, identifier)} AS {identifier.ComponentName},");
                 else sb.AppendLine($"{identifier.ComponentName},");
             }
@@ -77,7 +77,7 @@
                 sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n" 
                 sb.AppendLine();
             }
-
+            
             sb.AppendLine($"FROM {this.opRendererResolver(sourceExpr.OperatorSymbol).Render(sourceExpr)}{asAlias}");
             return sb.ToString();
         }

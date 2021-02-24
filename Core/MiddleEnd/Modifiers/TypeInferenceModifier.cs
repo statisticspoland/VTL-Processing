@@ -8,7 +8,7 @@
     using System.Linq;
 
     /// <summary>
-    /// Modifier performing type inference.
+    /// Modifier performing a type inference.
     /// </summary>
     public class TypeInferenceModifier : ISchemaModifier
     {
@@ -32,6 +32,16 @@
         /// <param name="schema">The schema to modify.</param>
         public void Modify(ITransformationSchema schema)
         {
+            foreach (IRuleset ruleset in schema.Rulesets)
+            {
+                foreach (IExpression expr in ruleset.RulesCollection)
+                {
+                    this.Infer(expr);
+                }
+
+                ruleset.InferStructure();
+            }
+
             foreach (AssignmentObject assignmentObject in schema.AssignmentObjects)
             {
                 this.Infer(assignmentObject.Expression);

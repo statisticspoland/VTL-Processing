@@ -16,3 +16,5 @@ obj/
 /Core.Tests/TestResults
 /results
 /coverage.xml
+/TestDatabase/TestDatabase.jfm
+/TestDatabase/TestDatabase.dbmdl

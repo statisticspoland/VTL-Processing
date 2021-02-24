@@ -5,14 +5,19 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
 
     /// <summary>
-    /// Expression factory interface.
+    /// The expression factory interface.
     /// </summary>
     public interface IExpressionFactory
     {
         /// <summary>
-        /// Gets expression resolver.
+        /// Gets the expression resolver.
         /// </summary>
-        public ExpressionResolver ExprResolver { get; }
+        ExpressionResolver ExprResolver { get; }
+
+        /// <summary>
+        /// Gets the rule expression resolver.
+        /// </summary>
+        RuleExpressionResolver RuleExprResolver { get; }
 
         /// <summary>
         /// Gets the join expression resolver.
@@ -20,16 +25,16 @@
         JoinExpressionResolver JoinExprResolver { get; }
 
         /// <summary>
-        /// Gets operator resolver.
+        /// Gets the operator resolver.
         /// </summary>
         OperatorResolver OperatorResolver { get; }
 
         /// <summary>
-        /// Gets a new <see cref="IExpression"/> object with assigned field.
+        /// Gets a new <see cref="IExpression"/> object with an assigned field.
         /// </summary>
-        /// <param name="name">Value to assign.</param>
-        /// <param name="field">Field to assign the value to.</param>
-        /// <returns>New expression object.</returns>
+        /// <param name="name">The value to assign.</param>
+        /// <param name="field">The field to assign the value to.</param>
+        /// <returns>The new expression object.</returns>
         IExpression GetExpression(string name, ExpressionFactoryNameTarget field);
     }
 }

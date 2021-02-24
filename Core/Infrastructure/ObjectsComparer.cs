@@ -6,6 +6,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Contains methods of comparing objects.
+    /// </summary>
     public static class ObjectsComparer
     {
         /// <summary>
@@ -13,7 +16,7 @@
         /// </summary>
         /// <param name="instance">The compared dataset.</param>
         /// <param name="structure">The dataset to compare.</param>
-        /// <returns>A value specyfing an equality.</returns>
+        /// <returns>Value specyfing an equality.</returns>
         public static bool EqualsObj(this IDataStructure instance, IDataStructure structure)
         {
             if (instance.IsSingleComponent != structure.IsSingleComponent ||
@@ -41,7 +44,7 @@
         /// </summary>
         /// <param name="instance">The compared collection.</param>
         /// <param name="collection">The collection to compare.</param>
-        /// <returns>A value specyfing an equality.</returns>
+        /// <returns>Value specyfing an equality.</returns>
         public static bool EqualsObj(this ICollection<StructureComponent> instance, ICollection<StructureComponent> collection)
         {
             if (instance.Count != collection.Count) return false;
@@ -56,7 +59,7 @@
         /// </summary>
         /// <param name="instance">The compared component.</param>
         /// <param name="component">The component to compare.</param>
-        /// <returns>A Value specyfing an equality.</returns>
+        /// <returns>Value specyfing an equality.</returns>
         public static bool EqualsObj(this StructureComponent instance, StructureComponent component)
         {
             if (instance.ComponentType != component.ComponentType ||
@@ -72,7 +75,7 @@
         /// <param name="valueDomain">The value domain to compare.</param>
         /// <param name="allNumsEqual">Specifies if an integer data type is equal to a number data type.</param>
         /// <param name="allEqualsToNull">Specifies if a none data type is equal to other.</param>
-        /// <returns>A value specyfing equality.</returns>
+        /// <returns>Value specyfing equality.</returns>
         public static bool EqualsObj(this ValueDomain instance, ValueDomain valueDomain, bool allNumsEqual = false, bool allEqualsToNull = false)
         {
             if (!instance.DataType.EqualsObj(valueDomain.DataType, allNumsEqual, allEqualsToNull) || instance.Signature != valueDomain.Signature) return false;
@@ -86,7 +89,7 @@
         /// <param name="dataType">The data type to compare.</param>
         /// <param name="allNumsEqual">Specifies if an integer data type is equal to a number data type.</param>
         /// <param name="allEqualsToNull">Specifies if a none data type is equal to other.</param>
-        /// <returns>A value specyfing equality.</returns>
+        /// <returns>Value specyfing equality.</returns>
         public static bool EqualsObj(this BasicDataType instance, BasicDataType dataType, bool allNumsEqual = true, bool allEqualsToNull = true)
         {
             if (instance != dataType

@@ -15,7 +15,7 @@
     public static class ServiceProviderExtensions
     {
         /// <summary>
-        /// Gets the font-end VTL 2.0 transformation schema generator from service provider.
+        /// Gets the font-end VTL 2.0 transformation schema generator from the service provider.
         /// </summary>
         /// <param name="provider">The service provider.</param>
         /// <returns>The front-end VTL 2.0 transformation schema generator.</returns>
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Gets the middle-end transformation schema generator from service provider.
+        /// Gets the middle-end transformation schema generator from the service provider.
         /// </summary>
         /// <param name="provider">The service provider.</param>
         /// <returns>The middle-end VTL 2.0 transformation schema generator.</returns>
@@ -45,7 +45,7 @@
         }
 
         /// <summary>
-        /// Gets the expression factory from service provider.
+        /// Gets the expression factory from the service provider.
         /// </summary>
         /// <param name="provider">The service provider.</param>
         /// <returns>The expression factory.</returns>
@@ -55,7 +55,7 @@
         }
 
         /// <summary>
-        /// Gets the target renderer for the VTL 2.0 code from service provider.
+        /// Gets the target renderer for the VTL 2.0 code from the service provider.
         /// </summary>
         /// <param name="provider">The service provider.</param>
         /// <param name="name">The name of the target renderer.</param>

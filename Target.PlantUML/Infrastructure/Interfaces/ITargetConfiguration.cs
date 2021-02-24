@@ -9,5 +9,7 @@
         bool ShowNumberLine { get; set; }
         
         string Arrow { get; set; }
+
+        ExpressionsType ExprType { get; set; }
     }
 }

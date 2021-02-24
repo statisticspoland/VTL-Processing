@@ -19,11 +19,12 @@
     using System.Linq;
 
     /// <summary>
-    /// Transforms the CST tree into a transformation schema structure using an ANTRL4 visitor.
+    /// Transforms a CST tree into a transformation schema structure by using an ANTRL4 visitor.
     /// </summary>
     public sealed class VisitorTransformer : VtlBaseVisitor<IExpression>, ITreeTransformer
     {
         private readonly TransformationSchemaResolver schemaResolver;
+        private readonly DatapointRulesetResolver dprReslover;
         private readonly IExpressionFactory exprFactory;
         private readonly IJoinBuilder joinBuilder;
         private readonly ILogger<VisitorTransformer> logger;
@@ -34,16 +35,19 @@
         /// Initializes a new instance of the <see cref="VisitorTransformer"/> class.
         /// </summary>
         /// <param name="schemaResolver">The transformation schema resolver.</param>
+        /// <param name="dprReslover">The datapoint ruleset resolver.</param>
         /// <param name="exprFactory">The expressions factory.</param>
         /// <param name="joinBuilder">The "join" operator expressions builder.</param>
         /// <param name="logger">The errors logger.</param>
         public VisitorTransformer(
-            TransformationSchemaResolver schemaResolver,
-            IExpressionFactory exprFactory,
-            IJoinBuilder joinBuilder,
+            TransformationSchemaResolver schemaResolver, 
+            DatapointRulesetResolver dprReslover,
+            IExpressionFactory exprFactory, 
+            IJoinBuilder joinBuilder, 
             ILogger<VisitorTransformer> logger = null)
         {
             this.schemaResolver = schemaResolver;
+            this.dprReslover = dprReslover;
             this.exprFactory = exprFactory;
             this.joinBuilder = joinBuilder;
             this.logger = logger;
@@ -66,10 +70,10 @@
         }
 
         /// <summary>
-        /// A node to walk to a tree. Returns a temporary expression object whose operands are the correct VTL 2.0 expressions.
+        /// Node to walk to a tree.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <returns>The temporary expression object whose operands are the correct VTL 2.0 expressions.</returns>
+        /// <returns>Null.</returns>
         public override IExpression VisitStart(VtlParser.StartContext context)
         {
             context.statement().Select(op => this.Visit(op)).Where(op => op != null).ToList();
@@ -77,7 +81,7 @@
         }
 
         /// <summary>
-        /// Represents a single VTL 2.0 expression. Returns the expression of the assignment. The variable name is the name of the result of the expression.
+        /// Represents a single VTL 2.0 expression. Returns an expression of the assignment. The variable name is the name of the result of the expression.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The VTL 2.0 expression.</returns>
@@ -86,19 +90,25 @@
             this.currentRefs = new List<string>();
 
             IExpression statementExpr;
-            if (context.dataset() != null) statementExpr = this.Visit(context.dataset());
-            else statementExpr = this.Visit(context.scalar());
-            statementExpr.ResultName = context.datasetID()?.GetText();
-            statementExpr.ParamSignature = "<root>";
-            statementExpr.LineNumber = context.Start.Line;
-            statementExpr.SetContainingSchema(this.schema);
-
-            while (statementExpr.ExpressionText[0] == ' ')
+            if (context.datasetID() != null)
             {
-                statementExpr.ExpressionText = statementExpr.ExpressionText.Remove(0, 1);
+                if (context.dataset() != null) statementExpr = this.Visit(context.dataset());
+                else statementExpr = this.Visit(context.scalar());
+
+                statementExpr.ResultName = context.datasetID().GetText();
+                statementExpr.ParamSignature = "<root>";
+                statementExpr.LineNumber = context.Start.Line;
+                statementExpr.SetContainingSchema(this.schema);
+
+                while (statementExpr.ExpressionText[0] == ' ')
+                {
+                    statementExpr.ExpressionText = statementExpr.ExpressionText.Remove(0, 1);
+                }
+
+                this.schema.AssignmentObjects.Add(new AssignmentObject(this.schema, statementExpr, context.PUT_SYMBOL() != null, this.currentRefs));
             }
-            
-            this.schema.AssignmentObjects.Add(new AssignmentObject(this.schema, statementExpr, context.PUT_SYMBOL() != null, this.currentRefs));
+            else statementExpr = this.Visit(context.defExpr());
+
             return statementExpr;
         }
 
@@ -156,6 +166,7 @@
             else
             {
                 string opSymbol = context.opSymbol.Text;
+                if (opSymbol == "time_agg") throw new NotImplementedException("Operator time_agg is not supported.");
                 if (opSymbol == "+") return this.Visit(context.dataset()[0]);
                 if (opSymbol == "-") opSymbol = "minus";
 
@@ -341,7 +352,7 @@
 
             return setExpr;
         }
-
+        
         public override IExpression VisitDatasetClause([NotNull] VtlParser.DatasetClauseContext context)
         {
             if (context.calcClause() != null) return this.Visit(context.calcClause());
@@ -770,7 +781,7 @@
         public override IExpression VisitAnalyticInvocation([NotNull] VtlParser.AnalyticInvocationContext context)
         {
             string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
-
+            
             IExpression analyticInvocationExpr = this.exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
             analyticInvocationExpr.ExpressionText = this.GetOriginalText(context);
             analyticInvocationExpr.LineNumber = context.Start.Line;
@@ -985,6 +996,123 @@
             }
 
             return constantExpr;
+        }
+
+        public override IExpression VisitCheckDatapoint([NotNull] VtlParser.CheckDatapointContext context)
+        {
+            IExpression checkExpr = this.exprFactory.GetExpression("check_datapoint", ExpressionFactoryNameTarget.OperatorSymbol);
+            checkExpr.ExpressionText = this.GetOriginalText(context);
+            checkExpr.LineNumber = context.Start.Line;
+            checkExpr.OperatorDefinition.Keyword = context.output?.Text ?? "invalid";
+
+            IExpression componentsExpr = this.exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
+            componentsExpr.ExpressionText = "components ";
+            componentsExpr.LineNumber = context.Start.Line;
+
+            for (int i = 0; i < context.componentID().Length; i++)
+            {
+                componentsExpr.AddOperand($"ds_{i + 1}", this.Visit(context.componentID()[i]));
+                componentsExpr.ExpressionText += this.GetOriginalText(context.componentID()[i]);
+                if (i < context.componentID().Length - 1) componentsExpr.ExpressionText += ", ";
+            }
+
+            checkExpr.AddOperand("ds_1", this.Visit(context.dataset()));
+            checkExpr.AddOperand("ruleset", this.Visit(context.rulesetID()));
+            if (componentsExpr.OperandsCollection.Count > 0 ) checkExpr.AddOperand("comps", componentsExpr);
+
+            return checkExpr;
+        }
+
+        public override IExpression VisitDefDatapoint([NotNull] VtlParser.DefDatapointContext context)
+        {
+            this.schema.Rulesets.Add(this.dprReslover(this.GetOriginalText(context.rulesetID()), this.GetOriginalText(context)));
+            base.VisitDefDatapoint(context);
+
+            foreach (IExpression expr in this.schema.Rulesets.Last().RulesCollection)
+            {
+                expr.SetContainingSchema(this.schema);
+            }
+
+            return null;
+        }
+
+        public override IExpression VisitRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context)
+        {
+            IRuleset ruleset = this.schema.Rulesets.Last();
+            if (context.VARIABLE() != null) ruleset.Variables.Add("variable", null);
+            else ruleset.ValueDomains.Add("valuedomain", null);
+
+            return base.VisitRulesetSignature(context);
+        }
+
+        public override IExpression VisitVarSignature([NotNull] VtlParser.VarSignatureContext context)
+        {
+            IRuleset ruleset = this.schema.Rulesets.Last();
+
+            if (ruleset.Variables.Count > 0)
+            {
+                if (ruleset.Variables.Last().Value == null) ruleset.Variables.Clear();
+                ruleset.Variables.Add(context.IDENTIFIER()?.GetText() ?? $"{this.GetOriginalText(context.varID())}", this.GetOriginalText(context.varID()));
+            }
+            else
+            {
+                if (ruleset.ValueDomains.Last().Value == null) ruleset.ValueDomains.Clear();
+                ruleset.ValueDomains.Add(context.IDENTIFIER()?.GetText() ?? $"{this.GetOriginalText(context.varID())}", new ValueDomain(this.GetOriginalText(context.varID())));
+            }
+
+            return base.VisitVarSignature(context);
+        }
+
+        public override IExpression VisitRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context)
+        {
+            IRuleset ruleset = this.schema.Rulesets.Last();
+            IRuleExpression ruleExpr;
+            int? errorLevel = null;
+
+            if (context.errorLevel() != null)
+            {
+                int errLevel = 0;
+                if (!int.TryParse(context.errorLevel().GetText().Replace("errorlevel", string.Empty), out errLevel)) 
+                    throw new VtlSyntaxError("Expected integer as errorlevel value.", context.Start.Line);
+
+                errorLevel = errLevel;
+            }
+
+            if (context.WHEN() != null)
+            {
+                IExpression whenExpr = this.exprFactory.GetExpression("when", ExpressionFactoryNameTarget.OperatorSymbol);
+                whenExpr.AddOperand("when", this.Visit(context.scalar()[0]));
+                whenExpr.AddOperand("then", this.Visit(context.scalar()[1]));
+                whenExpr.LineNumber = context.Start.Line;
+
+                ruleExpr = this.exprFactory.RuleExprResolver(whenExpr, ruleset, context.errorCode()?.GetText().Replace("errorcode", string.Empty), errorLevel);
+            }
+            else ruleExpr = this.exprFactory.RuleExprResolver(this.Visit(context.scalar()[0]), ruleset, context.errorCode()?.GetText().Replace("errorcode", string.Empty), errorLevel);
+
+            if (context.ruleID() != null) ruleExpr.ResultName = this.GetOriginalText(context.ruleID());
+            else
+            {
+                int index = 0;
+                ruleset.RulesCollection.LastOrDefault(rule => rule.ResultName.Contains('_') && rule.ResultName.Remove(
+                    rule.ResultName.LastIndexOf('_'), rule.ResultName.Split('_').Last().Length + 1) == ruleset.Name && int.TryParse(rule.ResultName.Split('_').Last(), out index));
+                ruleExpr.ResultName = $"{ruleset.Name}_{++index}";
+            }
+
+            ruleExpr.ExpressionText = this.GetOriginalText(context).Split(":").Last().Split("errorcode")[0].Split("errorlevel")[0];
+            if (ruleExpr.ExpressionText[0] == ' ') ruleExpr.ExpressionText = ruleExpr.ExpressionText.Remove(0, 1);
+
+            ruleExpr.LineNumber = context.Start.Line;
+            ruleset.Rules.Add(ruleExpr.ResultName, ruleExpr);
+            return ruleExpr;
+        }
+
+        public override IExpression VisitRulesetID([NotNull] VtlParser.RulesetIDContext context)
+        {
+            IExpression rulesetExpr = this.exprFactory.GetExpression("Ruleset", ExpressionFactoryNameTarget.ResultName);
+            rulesetExpr.ExpressionText = this.GetOriginalText(context);
+            rulesetExpr.LineNumber = context.Start.Line;
+
+            return rulesetExpr;
         }
 
         private string GetOriginalText(ParserRuleContext ctx)

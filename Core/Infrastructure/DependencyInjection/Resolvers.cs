@@ -1,6 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Logical;
@@ -12,7 +13,7 @@
     using System.Reflection;
 
     /// <summary>
-    /// Initializes new instance of the <see cref="IDataStructure"/> interface <b>for a single component structure</b>.
+    /// Initializes a new instance of the <see cref="IDataStructure"/> interface <b>for a single component structure</b>.
     /// </summary>
     /// <param name="compName">The name of component.</param>
     /// <param name="compType">The component type.</param>
@@ -20,10 +21,26 @@
     public delegate IDataStructure DataStructureResolver(string compName = null, ComponentType? compType = null, BasicDataType? dataType = null);
 
     /// <summary>
+    /// Initialises a new instance of the <see cref="IRuleset"/> interface.
+    /// </summary>
+    /// <param name="name">The name of the ruleset.</param>
+    /// <param name="rulesetText">The text of the ruleset.</param>
+    public delegate IRuleset DatapointRulesetResolver(string name, string rulesetText);
+
+    /// <summary>
     /// Initialises a new instance of the <see cref="IExpression"/> interface.
     /// </summary>
     /// <param name="parentExpr">The parent expression.</param>
     public delegate IExpression ExpressionResolver(IExpression parentExpr = null);
+
+    /// <summary>
+    /// Initialises a new instance of the <see cref="IRuleExpression"/> interface.
+    /// </summary>
+    /// <param name="expression">The base expression.</param>
+    /// <param name="containingRuleset">The ruleset containing this rule expression.</param>
+    /// <param name="errorCode">The error code.</param>
+    /// <param name="errorLevel">The error level.</param>
+    public delegate IRuleExpression RuleExpressionResolver(IExpression expression, IRuleset containingRuleset, string errorCode = null, int? errorLevel = null);
 
     /// <summary>
     /// Initialises a new instance of the <see cref="IJoinExpression"/> interface.
@@ -39,7 +56,7 @@
     /// <summary>
     /// Initializes a new instance of the <see cref="IOperatorDefinition"/> interface.
     /// </summary>
-    /// <param name="key">Operator key.</param>
+    /// <param name="key">The operator key.</param>
     public delegate IOperatorDefinition OperatorResolver(string key);
 
     /// <summary>
@@ -56,14 +73,24 @@
         {
             services.AddTransient<DataStructureResolver>(ServiceProvider => (compName, compType, dataType) =>
             {
-                if (compName == null && compType == null && dataType == null) return new DataStructure();
+                if (compName == null && compType == null && dataType == null) return new DataStructure(ServiceProvider.GetService<ILogger<IDataStructure>>());
                 else if (compName == null || compType == null || dataType == null) throw new Exception("DataStructureResolver expects 0 or 3 nullable arguments");
-                return new DataStructure(compName, (ComponentType)compType, (BasicDataType)dataType);
+                return new DataStructure(compName, (ComponentType)compType, (BasicDataType)dataType, ServiceProvider.GetService<ILogger<IDataStructure>>());
+            });
+
+            services.AddTransient<DatapointRulesetResolver>(ServiceProvider => (name, rulesetText) =>
+            {
+                return new DatapointRuleset(name, rulesetText, ServiceProvider.GetService<DataStructureResolver>());
             });
 
             services.AddTransient<ExpressionResolver>(ServiceProvider => parentExpr => 
             {
                 return new Expression(parentExpr);
+            });
+
+            services.AddTransient<RuleExpressionResolver>(ServiceProvider => (expression, containingRuleset, errorCode, errorLevel) =>
+            {
+                return new RuleExpression(expression, containingRuleset, errorCode, errorLevel);
             });
 
             services.AddTransient<JoinExpressionResolver>(ServiceProvider => expression =>
@@ -79,12 +106,12 @@
             services.AddTransient<OperatorResolver>(ServiceProvider => key =>
             {
                 Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
-
+                
                 if (type == typeof(AggrFunctionOperator)) return new AggrFunctionOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(AnalyticFunctionOperator)) return new AnalyticFunctionOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
                 if (type == typeof(BooleanOperator)) return new BooleanOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(ComparisonOperator)) return new ComparisonOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
+                if (type == typeof(ComparisonOperator)) return new ComparisonOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(),  key);
                 if (type == typeof(InOperator)) return new InOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(KeepDropOperator)) return new KeepDropOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
                 if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);

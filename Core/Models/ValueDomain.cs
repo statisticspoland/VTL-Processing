@@ -17,8 +17,8 @@
         public ValueDomain(BasicDataType dataType, string signature = null)
         {
             this.DataType = dataType;
-            this.Signature = signature ?? dataType.GetName().ToLower();
-            if (this.Signature == "none") this.Signature = "null";
+            this.Signature = signature ?? $"{dataType.GetName().ToLower()}_default";
+            if (this.Signature == "none") this.Signature = "null_default";
         }
 
         /// <summary>

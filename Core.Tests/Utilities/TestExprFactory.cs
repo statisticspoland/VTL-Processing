@@ -1,5 +1,6 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Utilities
 {
+    using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
     using Moq;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;

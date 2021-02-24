@@ -15,5 +15,7 @@
         ITargetBuilder UseArrowLastToFirst();
 
         ITargetBuilder ShowNumberLine();
+
+        ITargetBuilder UseRuleExpressionsModel();
     }
 }

@@ -6,7 +6,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
 
     /// <summary>
-    /// Methods for numeric structures.
+    /// The extension methods for numeric structures.
     /// </summary>
     public static class NumericStructure
     {
@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="structure">The structure to check.</param>
         /// <param name="allowNulls">Specifies if nulls are equal to numerics.</param>
-        /// <returns>The value specyfing if a given structure is a numeric structure.</returns>
+        /// <returns>Value specyfing if a given structure is a numeric structure.</returns>
         public static bool IsNumericStructure(this IDataStructure structure, bool allowNulls = false)
         {
             if (structure.IsSingleComponent)
@@ -36,7 +36,7 @@
         }
 
         /// <summary>
-        /// Gets a fused structure from given dataset and scalar.
+        /// Gets a fused structure from a given dataset and a scalar.
         /// </summary>
         /// <param name="dataset">The dataset.</param>
         /// <param name="scalar">The scalar.</param>
@@ -56,9 +56,9 @@
         }
 
         /// <summary>
-        /// Gets a fused structure from given super data set and sub data set.
+        /// Gets a fused structure from agiven super dataset and a sub dataset.
         /// </summary>
-        /// <param name="superset">The superdataset.</param>
+        /// <param name="superset">The super dataset.</param>
         /// <param name="subset">The subset.</param>
         /// <returns>The data structure.</returns>
         public static IDataStructure GetDatasetsMixedStructure(IDataStructure superset, IDataStructure subset)

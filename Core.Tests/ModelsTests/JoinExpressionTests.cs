@@ -281,6 +281,33 @@
             Assert.ThrowsAny<Exception>(() => { joinExpr.GetSupersetAliasStructure(); });
         }
 
+        [Fact]
+        public void IsPartOfBranch_Exprs_CorrectResult()
+        {
+            IExpression branchExpr1 = ModelResolvers.ExprResolver();
+            IExpression branchExpr2 = ModelResolvers.ExprResolver();
+            IExpression expr1 = ModelResolvers.ExprResolver();
+            IExpression expr2 = ModelResolvers.ExprResolver();
+            IExpression expr3 = ModelResolvers.ExprResolver();
+
+            JoinExpression joinExpr = new JoinExpression(TestExprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
+            joinExpr.AddOperand("branch_1", branchExpr1);
+            joinExpr.AddOperand("branch_2", branchExpr2);
+            branchExpr1.AddOperand("ds_1", expr1);
+            branchExpr2.AddOperand("ds_1", expr2);
+
+            Assert.True(joinExpr.IsPartOfBranch("branch_1", branchExpr1));
+            Assert.True(joinExpr.IsPartOfBranch("branch_1", expr1));
+            Assert.True(joinExpr.IsPartOfBranch("branch_2", branchExpr2));
+            Assert.True(joinExpr.IsPartOfBranch("branch_2", expr2));
+            Assert.False(joinExpr.IsPartOfBranch("branch_2", branchExpr1));
+            Assert.False(joinExpr.IsPartOfBranch("branch_2", expr1));
+            Assert.False(joinExpr.IsPartOfBranch("branch_1", branchExpr2));
+            Assert.False(joinExpr.IsPartOfBranch("branch_1", expr2));
+            Assert.False(joinExpr.IsPartOfBranch("branch_1", expr3));
+            Assert.False(joinExpr.IsPartOfBranch("branch_2", expr3));
+        }
+
         [Theory]
         [InlineData(null)]
         [InlineData("comp1")]

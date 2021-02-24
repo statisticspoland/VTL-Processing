@@ -104,14 +104,14 @@
             {
                 case BasicDataType.Boolean: return "BIT";
                 case BasicDataType.Integer:
-                case BasicDataType.None:
+                case BasicDataType.None: 
                     return "INT";
                 case BasicDataType.Number: return "DECIMAL(28,9)";
-                case BasicDataType.String:
-                case BasicDataType.Time:
-                case BasicDataType.Date:
-                case BasicDataType.TimePeriod:
-                case BasicDataType.Duration:
+                case BasicDataType.String: 
+                case BasicDataType.Time: 
+                case BasicDataType.Date: 
+                case BasicDataType.TimePeriod: 
+                case BasicDataType.Duration: 
                     return "VARCHAR(MAX)";
                 default: throw new NotImplementedException(); // TODO: Reszta typów bazowych   
             }

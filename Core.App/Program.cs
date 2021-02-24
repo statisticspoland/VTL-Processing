@@ -49,6 +49,7 @@
                 configure.AddDataStructureObject();
                 configure.UseArrowFirstToLast();
                 configure.ShowNumberLine();
+                configure.UseRuleExpressionsModel();
                 //configure.UseArrowLastToFirst();
                 //configure.UseHorizontalView();
             });
@@ -74,6 +75,7 @@
 
             provider.GetMiddleEnd().Process(schema); // middle-end
 
+            //var vtlErrors = errColector.GetErrorsOfType<IVtlError>().ToList()
             bool areErrors = errColector.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
 
             // back-end:

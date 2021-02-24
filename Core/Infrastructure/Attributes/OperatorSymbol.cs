@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Attribute allows to find the definition of the operator with the specified symbol.
+    /// Attribute allowing to find a definition of an operator with the specified symbol.
     /// </summary>
     /// <seealso cref="Attribute" />
     [AttributeUsage(AttributeTargets.Class)]
@@ -13,14 +13,14 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="OperatorSymbol"/> class.
         /// </summary>
-        /// <param name="symbols">Symbol of the operator.</param>
+        /// <param name="symbols">The symbol of the operator.</param>
         public OperatorSymbol(params string[] symbols)
         {
             this.Symbols = symbols;
         }
 
         /// <summary>
-        /// Gets the symbols collection.
+        /// Gets the symbol collection.
         /// </summary>
         public ICollection<string> Symbols { get; private set; }
     }

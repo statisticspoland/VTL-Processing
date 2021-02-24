@@ -42,7 +42,8 @@
             result = $"{op1} LIKE '%{expr2.ExpressionText.Split("\"")[1]}%'";
 
             if (expr.ParamSignature != "filter" &&
-                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && expr.ParentExpression.ParamSignature != "if")))
+                (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && expr.ParentExpression.ParamSignature != "if")) &&
+                expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.RulesCollection.Contains(expr.GetFirstAncestorExpr() ?? expr)) == null)
             {
                 result = $"IIF({op1} IS NULL, NULL,\nIIF({result}, 1, 0))";
             }

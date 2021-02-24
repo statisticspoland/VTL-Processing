@@ -180,7 +180,7 @@
         /// <returns>The value specyfing if an expression is an "if-then-else" operator expression convertible to a "join" operator expression.</returns>
         private bool IsJoinIfThenElse(IExpression expression)
         {
-            if (expression.OperatorSymbol == "if" &&
+            if (expression.OperatorSymbol == "if" && 
                     (!expression.Operands["if"].IsScalar || !expression.Operands["then"].IsScalar || !expression.Operands["else"].IsScalar))
                 return true;
             return false;

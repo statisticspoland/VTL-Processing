@@ -4,8 +4,14 @@
 
     internal class TargetConfiguration : ITargetConfiguration
     {
-        public TargetConfiguration(bool horizontal = false, bool showNL = false, bool showDS = false, string arrow = "--")
+        public TargetConfiguration(
+            ExpressionsType exprType = ExpressionsType.Standard,
+            bool horizontal = false, 
+            bool showNL = false,
+            bool showDS = false,
+            string arrow = "--")
         {
+            this.ExprType = exprType;
             this.UseHorizontalView = horizontal;
             this.ShowDataStructure = showDS;
             this.ShowNumberLine = showNL;
@@ -19,5 +25,7 @@
         public bool ShowNumberLine { get; set; }
 
         public string Arrow { get; set; }
+
+        public ExpressionsType ExprType { get; set; }
     }
 }
