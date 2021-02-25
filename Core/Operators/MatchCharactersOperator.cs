@@ -64,7 +64,7 @@
 
             structure.Measures[0].ComponentName = "bool_var";
             structure.Measures[0].ValueDomain = new ValueDomain(BasicDataType.Boolean);
-            structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].BaseComponentName;
+            structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].ComponentName;
 
             return structure;
         }
