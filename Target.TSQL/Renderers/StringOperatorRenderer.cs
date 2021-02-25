@@ -55,7 +55,7 @@
                 null;
 
             if (symbol == "||") return $"CONCAT({arg1}, {arg2})";
-            if (symbol == "TRIM") return $"TRIM({arg1})";
+            if (symbol == "TRIM") return $"LTRIM(RTRIM({arg1}))";
             if (symbol == "RTRIM") return $"RTRIM({arg1})";
             if (symbol == "LTRIM") return $"LTRIM({arg1})";
             if (symbol == "UPPER") return $"UPPER({arg1})";
