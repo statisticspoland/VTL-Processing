@@ -11,10 +11,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - uses: olegtarasov/get-tag@v2.1
+    - name: Get version
+      uses: olegtarasov/get-tag@v2.1
       id: tagName
       with:
         tagRegex: "v(.*)"
@@ -32,9 +34,6 @@ jobs:
     - name: Pack NuGet
       run: dotnet pack ./Core/Core.csproj --no-build -p:PackageVersion=${{ steps.tagName.outputs.tag }} --output .
     - name: PushGithub
-      #run: |
-      #  dotnet tool install -g gpr --no-cache -v q
-      #  gpr push . --api-key ${{ secrets.GITHUB_TOKEN }}
       run: dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
     - name: Upload Release Asset
       id: upload-release-asset 
@@ -43,7 +42,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: .
+        asset_path: ./StatisticsPoland.VtlProcessing.Core.${{ steps.tagName.outputs.tag }}.nupkg
         asset_name: StatisticsPoland.VtlProcessing.Core.${{ steps.tagName.outputs.tag }}.nupkg
         asset_content_type: application/zip
 
