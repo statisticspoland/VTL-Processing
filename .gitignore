@@ -18,3 +18,5 @@ obj/
 /coverage.xml
 /TestDatabase/TestDatabase.jfm
 /TestDatabase/TestDatabase.dbmdl
+
+nuget.config

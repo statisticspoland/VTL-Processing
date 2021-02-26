@@ -10,7 +10,6 @@
     <Description>The .NET Core library for translation of validation and transformation rules written in the VTL language</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/statisticspoland/VTL-Processing</PackageProjectUrl>
-    <Version>0.1.0</Version>
     <RepositoryUrl>https://github.com/statisticspoland/VTL-Processing</RepositoryUrl>
   </PropertyGroup>
 
