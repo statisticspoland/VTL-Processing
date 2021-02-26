@@ -83,7 +83,7 @@
 
             structure.Measures.Clear();
             structure.Measures.Add(new StructureComponent(BasicDataType.Boolean, "bool_var"));
-            structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].BaseComponentName;
+            structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].ComponentName;
 
             return structure;
         }

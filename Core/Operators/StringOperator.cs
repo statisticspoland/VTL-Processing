@@ -108,7 +108,7 @@
                 if (expr1.Structure.Measures.Count > 1) throw new VtlOperatorError(expression, this.Name, "Expected structure with only one measure.");
                 structure.Measures.Clear();
                 structure.Measures.Add(new StructureComponent(BasicDataType.Integer, "int_var"));
-                structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].BaseComponentName;
+                structure.Measures[0].BaseComponentName = expr1.Structure.GetCopy().Measures[0].ComponentName;
             }
             else if (!structure.IsSingleComponent)
             {
