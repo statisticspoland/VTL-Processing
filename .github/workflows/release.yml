@@ -25,7 +25,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Publish NuGet
       id: publish_nuget
-      uses: rohith/publish-nuget@v2
+      uses: Rebel028/publish-nuget@2.6.1
       with:
           PROJECT_FILE_PATH: Core/Core.csproj
           NUGET_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}
