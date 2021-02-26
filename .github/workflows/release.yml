@@ -29,5 +29,5 @@ jobs:
     - name: PushGithub
       run: |
         dotnet tool install -g gpr --no-cache -v q
-        gpr push --api-key ${{ secrets.GITHUB_TOKEN }}
+        gpr push . --api-key ${{ secrets.GITHUB_TOKEN }}
       #run: dotnet nuget push *.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
