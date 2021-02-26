@@ -27,6 +27,9 @@ jobs:
     - name: Pack NuGet
       run: dotnet pack ./Core/Core.csproj --no-build -p:PackageVersion=${{ steps.tagName.outputs.tag }} --output .
     - name: PushGithub
-      run: dotnet nuget push *.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
+      run: |
+        dotnet tool install -g gpr --no-cache -v q
+        gpr push --api-key $GITHUB_TOKEN
+      #run: dotnet nuget push *.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
