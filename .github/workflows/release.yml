@@ -10,7 +10,7 @@ jobs:
 
     runs-on: windows-latest
 
-    steps:
+steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -18,16 +18,44 @@ jobs:
       id: tagName
       with:
         tagRegex: "v(.*)"
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Publish NuGet
+      id: publish_nuget
+      uses: rohith/publish-nuget@v2
       with:
-        dotnet-version: 3.1.x   
-    - name: Build
-      run: dotnet build
-    - name: Pack NuGet
-      run: dotnet pack ./Core/Core.csproj --no-build -p:PackageVersion=${{ steps.tagName.outputs.tag }} --output .
-    - name: PushGithub
-      run: |
-        dotnet tool install -g gpr --no-cache -v q
-        gpr push . --api-key ${{ secrets.GITHUB_TOKEN }}
-      #run: dotnet nuget push *.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
+          PROJECT_FILE_PATH: Core/Core.csproj
+          NUGET_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          VERSION_STATIC: ${{ steps.tagName.outputs.tag }}
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.publish_nuget.outputs.PACKAGE_PATH }}
+        asset_name: ${{ steps.publish_nuget.outputs.PACKAGE_NAME }}
+        asset_content_type: application/zip
+
+
+    #steps:
+   # - uses: actions/checkout@v2
+   #   with:
+  #      fetch-depth: 0
+  #  - uses: olegtarasov/get-tag@v2.1
+  #    id: tagName
+  #    with:
+  #      tagRegex: "v(.*)"
+  #  - name: Setup .NET Core
+  #    uses: actions/setup-dotnet@v1
+  #    with:
+  #      dotnet-version: 3.1.x   
+  #  - name: Build
+  #    run: dotnet build
+  #  - name: Pack NuGet
+  #    run: dotnet pack ./Core/Core.csproj --no-build -p:PackageVersion=${{ steps.tagName.outputs.tag }} --output .
+   # - name: PushGithub
+   #   run: |
+   #     dotnet tool install -g gpr --no-cache -v q
+   ##     gpr push . --api-key ${{ secrets.GITHUB_TOKEN }}
+      ##run: dotnet nuget push *.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
