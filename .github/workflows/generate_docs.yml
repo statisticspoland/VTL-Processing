@@ -3,6 +3,12 @@ name: Generate Docs
 on:
   push:
     branches: [ master ]
+    paths:
+    - 'docs-source/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'docs-source/**'
 jobs:
   build_site:
     name: Build site with Antora
