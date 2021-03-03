@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
@@ -6,13 +6,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Target.TSQL;
-    using Target.TSQL.Infrastructure.Attributes;
-    using Target.TSQL.Infrastructure.Interfaces;
-    using Target.TSQL.Preparers;
-    using Target.TSQL.Preparers.Interfaces;
-    using Target.TSQL.Renderers;
-    using Target.TSQL.Renderers.Interfaces;
+    using Attributes;
+    using Interfaces;
+    using Preparers;
+    using Preparers.Interfaces;
+    using Renderers;
+    using Renderers.Interfaces;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IOperatorRenderer"/> interface.

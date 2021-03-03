@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools;
@@ -6,7 +6,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System.Collections.Generic;
     using System.Text;
-    using Target.TSQL.Infrastructure.Interfaces;
+    using Infrastructure.Interfaces;
 
     /// <summary>
     /// The standard VTL 2.0 attribute propagation algorithm representation.

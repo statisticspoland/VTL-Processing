@@ -1,4 +1,4 @@
-﻿namespace Target.PlantUML.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure
 {
     using System;
     using System.IO;

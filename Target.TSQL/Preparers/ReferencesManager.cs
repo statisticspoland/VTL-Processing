@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Preparers
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Preparers
 {
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
@@ -7,10 +7,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Target.TSQL.Infrastructure;
-    using Target.TSQL.Infrastructure.Interfaces;
-    using Target.TSQL.Preparers.Interfaces;
-    using Target.TSQL.Renderers;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Interfaces;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Renderers;
 
     /// <summary>
     /// The references manager.

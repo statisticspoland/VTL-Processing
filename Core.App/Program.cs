@@ -15,9 +15,9 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Target.PlantUML;
-    using Target.PlantUML.Infrastructure;
-    using Target.TSQL.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.PlantUML;
+    using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
 
     public sealed class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Preparers
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Preparers
 {
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.Models;

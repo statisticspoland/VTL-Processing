@@ -1,4 +1,4 @@
-﻿namespace Target.PlantUML
+﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML
 {
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.Models;
@@ -10,8 +10,8 @@
     using System.IO.Compression;
     using System.Linq;
     using System.Text;
-    using Target.PlantUML.Infrastructure;
-    using Target.PlantUML.Infrastructure.Interfaces;
+    using Infrastructure;
+    using Infrastructure.Interfaces;
 
     /// <summary>
     /// The PlantUML target renderer for the VTL 2.0 translation.

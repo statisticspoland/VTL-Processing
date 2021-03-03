@@ -1,9 +1,9 @@
-﻿namespace Target.PlantUML.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure
 {
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using System;
-    using Target.PlantUML.Infrastructure.Interfaces;
+    using Interfaces;
 
     public static class ServiceCollectionExtension
     {

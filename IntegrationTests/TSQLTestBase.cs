@@ -17,8 +17,8 @@ namespace VtlProcessing.IntegrationTests.TSQL
     using System.Diagnostics;
     using System.Linq;
     using System.Text;
-    using Target.TSQL;
-    using Target.TSQL.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.TSQL;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using VtlProcessing.IntegrationTests.TSQL.Properties;
 
     public class TSQLTestBase

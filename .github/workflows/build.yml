@@ -39,7 +39,7 @@ jobs:
       run: dotnet build
     - name: Run tests
       run: |
-          dotnet publish ./TestDatabase/TestDatabase.csproj
+          dotnet publish ./TestDatabase/TestDatabase.csproj --no-build
           dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results ; 
           cp results/*/coverage.opencover.xml .
     - name: End scan
