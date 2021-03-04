@@ -1,8 +1,14 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Models.Logical;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>

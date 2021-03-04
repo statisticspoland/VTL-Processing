@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.DataModel.Infrastructure.Interfaces
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces
 {
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
 

@@ -3,13 +3,15 @@ namespace VtlProcessing.IntegrationTests.TSQL
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using StatisticsPoland.VtlProcessing.DataModel;
-    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.TSQL;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -17,8 +19,6 @@ namespace VtlProcessing.IntegrationTests.TSQL
     using System.Diagnostics;
     using System.Linq;
     using System.Text;
-    using StatisticsPoland.VtlProcessing.Target.TSQL;
-    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using VtlProcessing.IntegrationTests.TSQL.Properties;
 
     public class TSQLTestBase

@@ -1,11 +1,11 @@
-﻿namespace StatisticsPoland.VtlProcessing.DataModel
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders
 {
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Logical;
-    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure;
-    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure.Interfaces;
-    using StatisticsPoland.VtlProcessing.DataModel.Models;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models;
     using System;
     using System.Collections.Generic;
 

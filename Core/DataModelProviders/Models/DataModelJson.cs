@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.DataModel.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
 {
     using Newtonsoft.Json;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
