@@ -42,7 +42,6 @@
 
             services.AddSingleton<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
             services.AddSingleton<IComponentTypeInference, ComponentTypeInference>();
-            services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(null, null));
             
             services.AddResolvers();
 

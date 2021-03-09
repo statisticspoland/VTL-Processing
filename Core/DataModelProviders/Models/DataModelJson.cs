@@ -35,6 +35,9 @@
 
         public string DefaultNamespace { get; }
 
+        /// <summary>
+        /// Gets or sets the namespace name.
+        /// </summary>
         public string Namespace { get; set; }
 
         public ICollection<DataStructure> DataStructuresCollection { get; set; }

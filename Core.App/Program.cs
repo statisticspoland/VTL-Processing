@@ -38,8 +38,8 @@
             {
                 configure.DefaultNamespace = "Json";
                 configure.AddSqlServerModel(connectionString, envMapper.Mapping);
-                configure.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
-                configure.AddRegularModel(RegularModel.ModelConfiguration);
+                configure.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json"); // namespace name is in a json file
+                configure.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
             });
 
             services.AddPlantUmlTarget((configure) =>

@@ -47,11 +47,12 @@
         /// </summary>
         /// <param name="config">The translator configuration.</param>
         /// <param name="modelConfiguration">The configuration of the data model.</param>
-        public static IVtlProcessingConfig AddRegularModel(this IVtlProcessingConfig config, Action<IRegularModelConfiguration> modelConfiguration)
+        /// <param name="namespaceName">The namespace name.</param>
+        public static IVtlProcessingConfig AddRegularModel(this IVtlProcessingConfig config, Action<IRegularModelConfiguration> modelConfiguration, string namespaceName)
         {
             Dictionary<string, IDataStructure> dataStructures = new Dictionary<string, IDataStructure>();
             modelConfiguration(new RegularModelConfiguration(dataStructures));
-            IDataModel dataModel = new DataModelRegular(config.DefaultNamespace, dataStructures);
+            IDataModel dataModel = new DataModelRegular(config.DefaultNamespace, namespaceName, dataStructures);
             return config.AddModel(dataModel);
         }
     }

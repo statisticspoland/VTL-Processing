@@ -25,6 +25,7 @@
         public VtlProcessingConfig(IServiceCollection services)
         {
             this.Services = services;
+            this.Services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(null, null));
             this.dataModelAggr = this.Services.BuildServiceProvider().GetService<IDataModelAggregator>();
         }
 
