@@ -2,11 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: VTL Processing Documentation</title>
     <link rel="canonical" href="http://localhost/vtlprocessing/vtl_arch/0.1/10_quality_requirements.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/search.css">
+    <script>var uiRootPath = '../../_'</script>
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -14,7 +16,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="http://localhost/vtlprocessing">VTL Processing Documentation</a>
         <div class="navbar-item">
-          <input id="search-input" type="text" placeholder="Szukaj na stronie">
+          <input id="search-input" type="text" placeholder="Search docs">
         </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -22,13 +24,31 @@
         <span></span>
       </button>
     </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
-<div class="main-wrapper">
-<div class="navigation-container" data-component="vtl_arch" data-version="0.1">
-  <aside class="navigation" role="navigation">
+<div class="body">
+<div class="nav-container" data-component="vtl_arch" data-version="0.1">
+  <aside class="nav">
     <div class="panels">
-<div class="navigation-menu is-active" data-panel="menu">
+<div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <h3 class="title"><a href="index.html">Architektura</a></h3>
 <ul class="nav-list">
@@ -75,14 +95,14 @@
 </ul>
   </nav>
 </div>
-<div class="navigation-explore" data-panel="explore">
+<div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Architektura</span>
     <span class="version">0.1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">Architektura</span>
+      <a class="title" href="index.html">Architektura</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">0.1</a>
@@ -94,17 +114,22 @@
     </div>
   </aside>
 </div>
-  <main class="main" role="main">
+<main class="article">
 <div class="toolbar" role="navigation">
-  <button class="navigation-toggle"></button>
+<button class="nav-toggle"></button>
   <a href="index.html" class="home-link"></a>
-<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+<nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Architektura</a></li>
-    <li class="crumb"><a href="10_quality_requirements.html">Wymagania jakościowe</a></li>
+    <li><a href="index.html">Architektura</a></li>
+    <li><a href="10_quality_requirements.html">Wymagania jakościowe</a></li>
   </ul>
 </nav>
-</div>
+  <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/master/docs-source/Architecture/modules/ROOT/pages/10_quality_requirements.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <div class="sect1">
 <h2 id="_wymagania_jakościowe"><a class="anchor" href="#_wymagania_jakościowe"></a>Wymagania jakościowe</h2>
@@ -124,16 +149,17 @@ todo: 10. Quality Requirements
 </div>
 </div>
 </article>
-  </main>
+  </div>
+</main>
 </div>
 <footer class="footer">
-  <p>US Olsztyn 2019.</p>
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/lunr.js"></script>
-<script>antoraLunr.init("../../_/../search_index.json")</script>
-<script src="../../_/js/vendor/highlight.js"></script>
-<script>hljs.initHighlighting()</script>
-
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vtl_arch/0.1/10_quality_requirements.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>
