@@ -1,6 +1,6 @@
 site:
   title: VTL Processing Documentation
-  url: http://localhost/vtlprocessing
+  url: https://statisticspoland.github.io/VTL-Processing
   start_page: vtl_arch::index.adoc 
 content:
   sources:
