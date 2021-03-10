@@ -13,6 +13,9 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="http://localhost/vtlprocessing">VTL Processing Documentation</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Szukaj na stronie">
+        </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -127,6 +130,8 @@ todo: 11. Risks and Technical Debt
   <p>US Olsztyn 2019.</p>
 </footer>
 <script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script>antoraLunr.init("../../_/../search_index.json")</script>
 <script src="../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
 
