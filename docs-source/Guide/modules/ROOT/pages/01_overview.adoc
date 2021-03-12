@@ -2,7 +2,7 @@
 
 === What is VTL Processing
 
-VTL Processing is a .NET Core library for translating VTL expressions into various target languages. The generated code can be then executed in a data processing environment to perform data validation or transformation. It is DI-friendly and comes with built in support for .NET IOC container. 
+VTL Processing is a .NET Core library for translating VTL expressions into various target languages. The generated code can be then executed in a data processing environment to perform data validation or transformation. The library is DI-friendly and comes with built in support for .NET IOC container. 
 
 === Basic architecture
 
