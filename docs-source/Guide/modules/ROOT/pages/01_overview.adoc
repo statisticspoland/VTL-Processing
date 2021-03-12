@@ -1,2 +1,72 @@
 == Overview
 
+=== What is VTL Processing
+
+VTL Processing is a .NET Core library for translating VTL expressions into various target languages. The generated code can be then executed in a data processing environment to perform data validation or transformation. It is DI-friendly and comes with built in support for .NET IOC container. 
+
+=== Example translation
+
+.Source VTL code
+----
+B := inner_join(X as ds1, Y as ds2 filter Id1 = 2 and Me1 > 3 calc Id1 := 3, Me1 := 5 keep Id1, Me1 rename Id1 to Id3, Me1 to Me3)
+----
+
+.Translated T-SQL code
+----
+
+----
+
+=== Basic architecture
+
+The VTL processing consists of several pieces: 
+
+* Core library
+* translation target libraries
+* CLI application 
+* REST translation service 
+
+[plantuml]
+----
+[Core]
+[Target.Tsql]
+[Service]
+[Cli]
+[Your application]
+
+[Target.Tsql] -> [Core]
+[Service] --> [Core]
+[Cli] --> [Core]
+[Your application] -> [Core]
+
+[Service] --> [Target.Tsql]
+[Cli] --> [Target.Tsql]
+[Your application] -> [Target.Tsql]
+
+[Your application] -> [Service]
+
+----
+
+The translation process has been divided into three stages, according to the classical compiler architecture:
+
+Front End :: Performs the analysis of the input VTL code and generates an intermediate representation for further processing.
+Middle End :: Type inference and code optimizations takes place in this phase. 
+Back End :: Generates output code of the translation target language. 
+
+[plantuml]
+----
+file vtl
+rectangle "\nFront end\n" as fe
+rectangle "\nMiddle end\n" as me
+rectangle "\nBack end\n" as be
+file output
+
+vtl -> fe
+fe -> me
+me -> be
+be -> output
+----
+
+Front-end and Middle-end parts of the translator are packaged in the *StatisticsPoland.VtlProcessing.Core* library. Code generation logic (back-end) has been placed in separate targeting packages, one for each target language. VTL processing comes with the following targets:
+
+StatisticsPoland.VtlProcessing.Target.Tsql :: Produces a Transact SQL code executable under Sql Server databases.
+StatisticsPoland.VtlProcessing.Target.PlantUml :: Generates a PlantUML diagram of the provided intermediate representation. Helpful for debugging purposes.
