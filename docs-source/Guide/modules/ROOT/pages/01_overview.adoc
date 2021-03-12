@@ -1,0 +1,104 @@
+== Overview
+
+=== What is VTL Processing
+
+VTL Processing is a .NET Core library for translating VTL expressions into various target languages. The generated code can be then executed in a data processing environment to perform data validation or transformation. It is DI-friendly and comes with built in support for .NET IOC container. 
+
+=== Basic architecture
+
+The VTL processing consists of several pieces: 
+
+* Core library
+* translation target libraries
+* CLI application 
+* REST translation service 
+
+[plantuml]
+----
+[Core]
+[Target.Tsql]
+[Service]
+[Cli]
+[Your application]
+
+[Target.Tsql] -> [Core]
+[Service] --> [Core]
+[Cli] --> [Core]
+[Your application] -> [Core]
+
+[Service] --> [Target.Tsql]
+[Cli] --> [Target.Tsql]
+[Your application] -> [Target.Tsql]
+
+[Your application] -> [Service]
+
+----
+
+The translation process has been divided into three stages, according to the classical compiler architecture:
+
+Front End :: Performs the analysis of the input VTL code and generates an intermediate representation for further processing.
+Middle End :: Type inference and code optimizations takes place in this phase. 
+Back End :: Generates output code of the translation target language. 
+
+[plantuml]
+----
+file vtl
+rectangle "\nFront end\n" as fe
+rectangle "\nMiddle end\n" as me
+rectangle "\nBack end\n" as be
+file output
+
+vtl -> fe
+fe -> me
+me -> be
+be -> output
+----
+
+Front-end and Middle-end parts of the translator are packaged in the *StatisticsPoland.VtlProcessing.Core* library. Code generation logic (back-end) has been placed in separate targeting packages, one for each target language. VTL processing comes with the following targets:
+
+StatisticsPoland.VtlProcessing.Target.Tsql :: Produces a Transact SQL code executable under Sql Server databases.
+StatisticsPoland.VtlProcessing.Target.PlantUml :: Generates a PlantUML diagram of the provided intermediate representation. Helpful for debugging purposes.
+
+VTL Processing also sames with simple command line application to perform translation without the need to build your own app.
+
+=== Example translation
+
+.Source VTL code
+----
+DS_r := DS_1 + DS_2
+----
+
+.Translated T-SQL code
+----
+IF OBJECT_ID (N'tempdb..#DS_r', N'U') IS NOT NULL
+DROP TABLE #DS_r
+
+SELECT * INTO #DS_r FROM (
+SELECT
+ds1.Id_1,
+ds1.Id_2,
+ds1.Me_1 + ds2.Me_1 AS Me_1,
+ds1.Me_2 + ds2.Me_2 AS Me_2
+FROM DS_1 AS ds1 
+INNER JOIN DS_2 AS ds2 
+ON
+ds1.Id_1 = ds2.Id_1 AND
+ds1.Id_2 = ds2.Id_2 
+) AS t
+----
+
+=== Additional metadata requirements
+
+In order to perform the translation, you need to provide the model of the data, your VTL expressions work with. The above example translation wouldn't be possible without the knowledge of _DS_r_ structure.
+
+[plantuml]
+----
+file vtl
+file sql
+rectangle translator
+rectangle "data model" as model
+
+vtl --> translator
+model --> translator
+translator --> sql
+----
