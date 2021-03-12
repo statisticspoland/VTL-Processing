@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Infrastructure.Interfaces
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces
 {
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;

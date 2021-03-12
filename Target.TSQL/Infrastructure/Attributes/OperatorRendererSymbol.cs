@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Infrastructure.Attributes
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes
 {
     using System;
 

@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Renderers.Interfaces
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces
 {
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;

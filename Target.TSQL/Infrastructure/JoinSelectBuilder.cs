@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
@@ -9,7 +9,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Target.TSQL.Infrastructure.Interfaces;
+    using Infrastructure.Interfaces;
 
     /// <summary>
     /// Visits an "apply" branch of a "join" operator expression and renders measures for the TSQL join select query.

@@ -1,6 +1,6 @@
-﻿namespace Target.PlantUML.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure
 {
-    using Target.PlantUML.Infrastructure.Interfaces;
+    using Interfaces;
 
     internal class TargetConfiguration : ITargetConfiguration
     {

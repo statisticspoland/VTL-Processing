@@ -37,15 +37,15 @@ jobs:
           /d:sonar.login="${{ env.SONAR_TOKEN }}" 
           /o:"vtl-processing"
           /d:sonar.verbose="true"
-          /d:sonar.cs.opencover.reportsPaths='"./coverage.opencover.xml"'
+          /d:sonar.cs.opencover.reportsPaths='"results/**/coverage.opencover.xml"'
           /d:sonar.coverage.exclusions='"Core.App/**/*", Core.Tests/**/*'
     - name: Build
       run: dotnet build
     - name: Run tests
       run: |
-          dotnet publish ./TestDatabase/TestDatabase.csproj
-          dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results ; 
-          cp results/*/coverage.opencover.xml .
+          dotnet publish ./TestDatabase/TestDatabase.csproj --no-build
+          dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory results 
+      # cp results/*/coverage.opencover.xml .
     - name: End scan
       run: dotnet sonarscanner end /d:sonar.login="${{ env.SONAR_TOKEN }}"
     env:

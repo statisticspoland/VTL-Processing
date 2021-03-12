@@ -2,10 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>StatisticsPoland.VtlProcessing.Target.TSQL</AssemblyName>
+    <RootNamespace>StatisticsPoland.VtlProcessing.Target.TSQL</RootNamespace>
+    <Authors />
+    <Company>Statistics Poland</Company>
+    <Description>Transact-SQL target for VTL Processing translator</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/statisticspoland/VTL-Processing</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/statisticspoland/VTL-Processing</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

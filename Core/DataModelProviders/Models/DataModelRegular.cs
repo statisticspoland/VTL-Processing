@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.DataModel.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
 {
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System.Collections.Generic;

@@ -1,9 +1,9 @@
-﻿namespace Target.TSQL.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using System.Linq;
-    using Target.TSQL.Infrastructure.Interfaces;
+    using Infrastructure.Interfaces;
 
     /// <summary>
     /// The target builder.

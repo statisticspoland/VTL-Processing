@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Renderers
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Renderers
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
@@ -7,9 +7,9 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System.Linq;
     using System.Text;
-    using Target.TSQL.Infrastructure;
-    using Target.TSQL.Infrastructure.Attributes;
-    using Target.TSQL.Renderers.Interfaces;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces;
 
     /// <summary>
     /// The TSQL code renderer for overall "non-join" operators.

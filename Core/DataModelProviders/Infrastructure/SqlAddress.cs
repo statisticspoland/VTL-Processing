@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace StatisticsPoland.VtlProcessing.DataModel.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     internal class SqlAddress
     {
         public SqlAddress(string[] address)

@@ -4,20 +4,18 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using StatisticsPoland.VtlProcessing.DataModel;
-    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using System.Threading.Tasks;
-    using Target.PlantUML;
-    using Target.PlantUML.Infrastructure;
-    using Target.TSQL.Infrastructure;
 
     public sealed class Program
     {

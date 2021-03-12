@@ -1,7 +1,7 @@
-﻿namespace Target.TSQL.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
-    using Target.TSQL.Infrastructure.Interfaces;
+    using Interfaces;
 
     internal class TargetConfiguration : ITargetConfiguration
     {

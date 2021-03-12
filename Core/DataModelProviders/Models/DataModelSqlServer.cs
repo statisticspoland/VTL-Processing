@@ -1,16 +1,16 @@
-﻿namespace StatisticsPoland.VtlProcessing.DataModel.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
 {
+    using Microsoft.Data.SqlClient;
     using Microsoft.SqlServer.Management.Common;
     using Microsoft.SqlServer.Management.Smo;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure;
     using System;
     using System.Collections.Generic;
-    using System.Data.SqlClient;
 
     /// <summary>
     /// The SQL server VTL 2.0 data model.

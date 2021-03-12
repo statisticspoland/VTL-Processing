@@ -1,7 +1,7 @@
 ﻿namespace Core.App.VtlSources
 {
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.DataModel.Infrastructure.Interfaces;
     using System;
 
     public static class RegularModel

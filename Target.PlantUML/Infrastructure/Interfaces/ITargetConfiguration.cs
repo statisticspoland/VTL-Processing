@@ -1,4 +1,4 @@
-﻿namespace Target.PlantUML.Infrastructure.Interfaces
+﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces
 {
     public interface ITargetConfiguration
     {

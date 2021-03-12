@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL
 {
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
@@ -8,9 +8,9 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System;
     using System.Text;
-    using Target.TSQL.Infrastructure;
-    using Target.TSQL.Infrastructure.Interfaces;
-    using Target.TSQL.Preparers.Interfaces;
+    using Infrastructure;
+    using Infrastructure.Interfaces;
+    using Preparers.Interfaces;
 
     /// <summary>
     /// The TSQL target renderer for the VTL 2.0 translation.

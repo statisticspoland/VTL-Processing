@@ -1,8 +1,8 @@
-﻿namespace Target.PlantUML.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure
 {
     using Microsoft.Extensions.DependencyInjection;
     using System.Linq;
-    using Target.PlantUML.Infrastructure.Interfaces;
+    using Interfaces;
 
     public sealed class TargetBuilder : ITargetBuilder
     {

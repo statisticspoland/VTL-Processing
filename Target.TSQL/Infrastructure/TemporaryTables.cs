@@ -1,4 +1,4 @@
-﻿namespace Target.TSQL.Infrastructure
+﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
     /// <summary>
     /// The temporary tables data.
