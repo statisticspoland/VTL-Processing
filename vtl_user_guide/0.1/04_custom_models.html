@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: VTL Processing Documentation</title>
-    <link rel="canonical" href="https://statisticspoland.github.io/VTL-Processing/vtl_arch/0.1/07_deployment.html">
+    <link rel="canonical" href="https://statisticspoland.github.io/VTL-Processing/vtl_user_guide/0.1/04_custom_models.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/search.css">
@@ -22,50 +22,35 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="vtl_arch" data-version="0.1">
+<div class="nav-container" data-component="vtl_user_guide" data-version="0.1">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Architektura</a></h3>
+    <h3 class="title"><a href="index.html">User guide</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="01_introduction.html">Wprowadzenie</a>
+    <a class="nav-link" href="01_overview.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="02_constraints.html">Ograniczenia</a>
+    <a class="nav-link" href="02_getting_started.html">Getting Started</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="03_context.html">Kontekst</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="04_strategy.html">Strategia</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="05_architecture.html">Architektura</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="06_runtime.html">Dynamika</a>
+    <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="07_deployment.html">Wdrożenie</a>
+    <a class="nav-link" href="04_custom_models.html">Custom Data Models</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="08_concepts.html">Koncepcje</a>
+    <a class="nav-link" href="05_vtl_basics.html">VTL Basics</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="09_decisions.html">Decyzje architektoniczne</a>
+    <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="10_quality_requirements.html">Wymagania jakościowe</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="11_risks.html">Ryzyka i dług techniczny</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="12_glossary.html">Glosariusz</a>
+    <a class="nav-link" href="07_cli.html">CLI</a>
   </li>
 </ul>
   </li>
@@ -74,12 +59,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Architektura</span>
+    <span class="title">User guide</span>
     <span class="version">0.1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="index.html">Architektura</a>
+      <a class="title" href="index.html">User guide</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">0.1</a>
@@ -97,11 +82,11 @@
   <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Architektura</a></li>
-    <li><a href="07_deployment.html">Wdrożenie</a></li>
+    <li><a href="index.html">User guide</a></li>
+    <li><a href="04_custom_models.html">Custom Data Models</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/master/docs-source/Architecture/modules/ROOT/pages/07_deployment.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/HEAD/docs-source/Guide/modules/ROOT/pages/04_custom_models.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -109,11 +94,9 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_wdrożenie_systemu"><a class="anchor" href="#_wdrożenie_systemu"></a>Wdrożenie systemu</h2>
+<h2 id="_using_custom_data_models"><a class="anchor" href="#_using_custom_data_models"></a>Using Custom Data Models</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>TODO</p>
-</div>
+
 </div>
 </div>
 </article>
@@ -125,7 +108,7 @@
 </footer>
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/lunr.js"></script>
-<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vtl_arch/0.1/07_deployment.html"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vtl_user_guide/0.1/04_custom_models.html"></script>
 <script async src="../../_/../search-index.js"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
   </body>

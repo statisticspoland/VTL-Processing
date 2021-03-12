@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: VTL Processing Documentation</title>
+    <link rel="canonical" href="https://statisticspoland.github.io/VTL-Processing/vtl_user_guide/0.1/01_overview.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/search.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://statisticspoland.github.io/VTL-Processing">VTL Processing Documentation</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vtl_user_guide" data-version="0.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">User guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="01_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02_getting_started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="04_custom_models.html">Custom Data Models</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05_vtl_basics.html">VTL Basics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="07_cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">User guide</span>
+    <span class="version">0.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">User guide</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">User guide</a></li>
+    <li><a href="01_overview.html">Overview</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/HEAD/docs-source/Guide/modules/ROOT/pages/01_overview.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_is_vtl_processing"><a class="anchor" href="#_what_is_vtl_processing"></a>What is VTL Processing</h3>
+<div class="paragraph">
+<p>VTL Processing is a .NET Core library for translating VTL expressions into various target languages. The generated code can be then executed in a data processing environment to perform data validation or transformation. It is DI-friendly and comes with built in support for .NET IOC container.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_basic_architecture"><a class="anchor" href="#_basic_architecture"></a>Basic architecture</h3>
+<div class="paragraph">
+<p>The VTL processing consists of several pieces:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Core library</p>
+</li>
+<li>
+<p>translation target libraries</p>
+</li>
+<li>
+<p>CLI application</p>
+</li>
+<li>
+<p>REST translation service</p>
+</li>
+</ul>
+</div>
+<div class="imageblock plantuml">
+<div class="content">
+<img src="_images/c23b47f2c93b5f2587057fd8202c510fd63e307c.png" alt="diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The translation process has been divided into three stages, according to the classical compiler architecture:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Front End </dt>
+<dd>
+<p>Performs the analysis of the input VTL code and generates an intermediate representation for further processing.</p>
+</dd>
+<dt class="hdlist1">Middle End </dt>
+<dd>
+<p>Type inference and code optimizations takes place in this phase.</p>
+</dd>
+<dt class="hdlist1">Back End </dt>
+<dd>
+<p>Generates output code of the translation target language.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock plantuml">
+<div class="content">
+<img src="_images/81a07384db7c213edbbeaad5a762512ca92c294a.png" alt="diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Front-end and Middle-end parts of the translator are packaged in the <strong>StatisticsPoland.VtlProcessing.Core</strong> library. Code generation logic (back-end) has been placed in separate targeting packages, one for each target language. VTL processing comes with the following targets:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">StatisticsPoland.VtlProcessing.Target.Tsql </dt>
+<dd>
+<p>Produces a Transact SQL code executable under Sql Server databases.</p>
+</dd>
+<dt class="hdlist1">StatisticsPoland.VtlProcessing.Target.PlantUml </dt>
+<dd>
+<p>Generates a PlantUML diagram of the provided intermediate representation. Helpful for debugging purposes.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>VTL Processing also sames with simple command line application to perform translation without the need to build your own app.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_translation"><a class="anchor" href="#_example_translation"></a>Example translation</h3>
+<div class="listingblock">
+<div class="title">Source VTL code</div>
+<div class="content">
+<pre>DS_r := DS_1 + DS_2</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Translated T-SQL code</div>
+<div class="content">
+<pre>IF OBJECT_ID (N'tempdb..#DS_r', N'U') IS NOT NULL
+DROP TABLE #DS_r
+
+SELECT * INTO #DS_r FROM (
+SELECT
+ds1.Id_1,
+ds1.Id_2,
+ds1.Me_1 + ds2.Me_1 AS Me_1,
+ds1.Me_2 + ds2.Me_2 AS Me_2
+FROM DS_1 AS ds1
+INNER JOIN DS_2 AS ds2
+ON
+ds1.Id_1 = ds2.Id_1 AND
+ds1.Id_2 = ds2.Id_2
+) AS t</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_additional_metadata_requirements"><a class="anchor" href="#_additional_metadata_requirements"></a>Additional metadata requirements</h3>
+<div class="paragraph">
+<p>In order to perform the translation, you need to provide the model of the data, your VTL expressions work with. The above example translation wouldn&#8217;t be possible without the knowledge of <em>DS_r</em> structure.</p>
+</div>
+<div class="imageblock plantuml">
+<div class="content">
+<img src="_images/7b828b5cc4efd6879ebf71f80e208a544f800950.png" alt="diagram">
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>The UI for this site is based on the default Antora UI and is licensed under the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vtl_user_guide/0.1/01_overview.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
