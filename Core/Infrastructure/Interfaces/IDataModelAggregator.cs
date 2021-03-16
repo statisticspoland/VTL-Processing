@@ -6,11 +6,16 @@
     /// <summary>
     /// Interface of an aggregator of data models.
     /// </summary>
-    internal interface IDataModelAggregator : IDataModel
+    public interface IDataModelAggregator : IDataModel
     {
         /// <summary>
-        /// Gets the data model collection.
+        /// Gets the default namespace name.
         /// </summary>
-        ICollection<IDataModel> DataModels { get; }
+        new string DefaultNamespace { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data model collection.
+        /// </summary>
+        ICollection<IDataModel> DataModels { get; set; }
     }
 }

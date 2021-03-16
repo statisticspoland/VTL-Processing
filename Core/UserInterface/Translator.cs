@@ -3,63 +3,56 @@
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
-    using System;
 
     public class Translator
     {
-        private bool configured;
+        private readonly IServiceCollection _services;
+        private readonly IDataModelAggregator _dataModelAggregator;
         private ServiceProvider provider;
-        private IVtlProcessingConfig vtlConfig;
-        private IServiceCollection services;
 
-        public Translator()
+        public Translator(string defaultNamespace)
         {
-            this.configured = false;
-            this.services = new ServiceCollection();
-            this.vtlConfig = new VtlProcessingConfig(this.services);
+            this.DefaultNamespace = defaultNamespace;
+
+            this._services = new ServiceCollection();
+            this._services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(defaultNamespace, null));
+            this._services.AddVtlProcessing((configure) => configure = new VtlProcessingConfig(this._services));
+
+            this.BuildProvider();
+            this._dataModelAggregator = this.provider.GetService<IDataModelAggregator>();
+
+            this.Targets = new TargetCollection(this._services, this.BuildProvider);
+            this.DataModels = new DataModelCollection(this._dataModelAggregator, this._services, this.BuildProvider);
         }
 
-        public IVtlProcessingConfig VtlConfig
-        {
-            get => this.vtlConfig;
-            set
-            {
-                this.services = value.Services;
-                this.vtlConfig = value;
-            }
-        }
+        public string DefaultNamespace { get; set; } // TODO
 
-        public void Configure()
-        {
-            if (this.configured) throw new Exception("The translator instance has been configured already.");
+        public DataModelCollection DataModels { get; }
 
-            this.services.AddVtlProcessing((configure) => configure = this.VtlConfig);
-            this.provider = this.services.BuildServiceProvider();
-            this.configured = true;
-        }
+        public TargetCollection Targets { get; }
 
         public ITreeGenerator GetFrontEnd()
         {
-            if (!this.configured) throw new Exception("The translator instance has been not configured yet.");
-
             return this.provider.GetFrontEnd();
         }
 
         public ISchemaModifiersApplier GetMiddleEnd()
         {
-            if (!this.configured) throw new Exception("The translator instance has been not configured yet.");
-
             return this.provider.GetMiddleEnd();
         }
 
         public ITargetRenderer GetTargetRenderer(string name)
         {
-            if (!this.configured) throw new Exception("The translator instance has been not configured yet.");
-
             return this.provider.GetTargetRenderer(name);
+        }
+
+        private void BuildProvider()
+        {
+            this.provider = this._services.BuildServiceProvider();
         }
     }
 }

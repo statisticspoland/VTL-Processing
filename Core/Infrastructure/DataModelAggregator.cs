@@ -22,9 +22,9 @@
             this.DataModels = dataModels?.ToList();
         }
 
-        public string DefaultNamespace { get; }
+        public string DefaultNamespace { get; set; }
 
-        public ICollection<IDataModel> DataModels { get; }
+        public ICollection<IDataModel> DataModels { get; set; }
 
         public IDataStructure GetDatasetStructure(string datasetName)
         {

@@ -4,6 +4,7 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.UserInterface;
@@ -25,12 +26,11 @@
                     { "Namespace", "[DbSchema].[DbTable]." },
                 });
 
-            Translator translator = new Translator();
-            translator.VtlConfig.DefaultNamespace = "Json";
-            translator.VtlConfig.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
-            translator.VtlConfig.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
+            Translator translator = new Translator("Json");
+            translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
+            translator.DataModels.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
 
-            translator.VtlConfig.Services.AddPlantUmlTarget((configure) =>
+            translator.Targets.AddPlantUmlTarget((configure) =>
             {
                 configure.AddDataStructureObject();
                 configure.UseArrowFirstToLast();
@@ -40,14 +40,14 @@
                 //configure.UseHorizontalView();
             });
 
-            translator.VtlConfig.Services.AddTsqlTarget((configure) =>
+            translator.Targets.AddTsqlTarget((configure) =>
             {
                 configure.AddEnvMapper(envMapper);
                 configure.AddComments();
                 //configure.SetAttributePropagationAlgorithm(new AttributePropagationAlgorithm());
             });
 
-            translator.Configure();
+            translator.DataModels.Clear();
 
             // TODO: Error Logger
 

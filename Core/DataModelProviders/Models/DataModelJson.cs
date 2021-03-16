@@ -17,7 +17,8 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelJson"/> class.
         /// </summary>
-        public DataModelJson()
+        [JsonConstructor]
+        private DataModelJson()
         {
             this.dataStructures = new Dictionary<string, IDataStructure>();
         }

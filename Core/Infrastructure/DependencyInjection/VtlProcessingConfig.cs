@@ -25,13 +25,12 @@
         public VtlProcessingConfig(IServiceCollection services)
         {
             this.Services = services;
-            this.Services.AddSingleton<IDataModelAggregator>(new DataModelAggregator(null, null));
             this.dataModelAggr = this.Services.BuildServiceProvider().GetService<IDataModelAggregator>();
         }
 
         public IServiceCollection Services { get; }
 
-        public string DefaultNamespace {get; set;}
+        public string DefaultNamespace { get; set; }
 
         public IVtlProcessingConfig AddModel(IDataModel dataModel)
         {

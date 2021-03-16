@@ -19,7 +19,7 @@
     /// <param name="key">The operator key.</param>
     public delegate IOperatorRenderer OperatorRendererResolver(string key);
 
-    public static class ServiceCollectionExtension
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddTsqlTarget(this IServiceCollection services)
         {

@@ -5,7 +5,7 @@
     using System;
     using Interfaces;
 
-    public static class ServiceCollectionExtension
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddPlantUmlTarget(this IServiceCollection services)
         {
