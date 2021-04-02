@@ -30,6 +30,9 @@
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" />
+    <PackageReference Include="Estat.SdmxSource.Extension" Version="8.1.2" />
+    <PackageReference Include="Estat.SdmxSource.SdmxAPI" Version="8.1.2" />
+    <PackageReference Include="Estat.SdmxSource.SdmxObjects" Version="8.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="161.46041.41" />
