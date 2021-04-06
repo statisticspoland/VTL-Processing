@@ -132,17 +132,17 @@ namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
 
             foreach (IDimension dimension in datastructure.DimensionList.Dimensions)
             {
-                BasicDataType type = dimension.Representation.TextFormat != null ? this.mappingSDMX(dimension.Representation.TextFormat.TextType.EnumType) : BasicDataType.String;
+                BasicDataType type = dimension.Representation?.TextFormat != null ? this.mappingSDMX(dimension.Representation.TextFormat.TextType.EnumType) : BasicDataType.String;
                 dataStructure.Identifiers.Add(new StructureComponent(type, dimension.Id, ComponentType.Identifier));
             }
 
             IPrimaryMeasure primaryMeasure = datastructure.PrimaryMeasure;
-            BasicDataType measureType = primaryMeasure.Representation.TextFormat != null ? this.mappingSDMX(primaryMeasure.Representation.TextFormat.TextType.EnumType) : BasicDataType.Number;
+            BasicDataType measureType = primaryMeasure.Representation?.TextFormat != null ? this.mappingSDMX(primaryMeasure.Representation.TextFormat.TextType.EnumType) : BasicDataType.Number;
             dataStructure.Measures.Add(new StructureComponent(measureType, primaryMeasure.Id, ComponentType.Measure));
 
             foreach (IAttributeObject attribute in datastructure.AttributeList.Attributes)
             {
-                BasicDataType type = attribute.Representation.TextFormat != null ? this.mappingSDMX(attribute.Representation.TextFormat.TextType.EnumType) : BasicDataType.String;
+                BasicDataType type = attribute.Representation?.TextFormat != null ? this.mappingSDMX(attribute.Representation.TextFormat.TextType.EnumType) : BasicDataType.String;
                 dataStructure.ViralAttributes.Add(new StructureComponent(type, attribute.Id, ComponentType.ViralAttribute));
             }
 
