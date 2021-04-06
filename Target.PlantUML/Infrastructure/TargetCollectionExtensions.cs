@@ -7,7 +7,7 @@
 
     public static class TargetCollectionExtensions
     {
-        public static void AddPlantUmlTarget(this TargetCollection collection, Action<ITargetBuilder> configure)
+        public static void AddPlantUmlTarget(this TargetsCollection collection, Action<ITargetBuilder> configure)
         {
             IServiceCollection services = new ServiceCollection();
             services.AddPlantUmlTarget();

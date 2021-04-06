@@ -1,0 +1,72 @@
+﻿{
+  "DataModel": {
+    "Namespace": "Json2",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "Y",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Id2",
+            "ComponentName": "Id2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "ViralAttributes": [
+          {
+            "BaseComponentName": "At_bool",
+            "ComponentName": "At_bool",
+            "ValueDomain": {
+              "Signature": "boolean_default"
+            }
+          },
+          {
+            "BaseComponentName": "At_int",
+            "ComponentName": "At_int",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "At_number",
+            "ComponentName": "At_number",
+            "ValueDomain": {
+              "Signature": "number_default"
+            }
+          },
+          {
+            "BaseComponentName": "At_string",
+            "ComponentName": "At_string",
+            "ValueDomain": {
+              "Signature": "string_default"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

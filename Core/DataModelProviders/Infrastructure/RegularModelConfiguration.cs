@@ -37,7 +37,7 @@
             if (@namespace.In(string.Empty, null)) throw new Exception("A namespace is required.");
 
             DataStructure structure = new DataStructure();
-            structure.DatasetName = $@"{@namespace}\{datasetName}";
+            structure.DatasetName = datasetName;
 
             structure.Identifiers = GetStructureComponentsByType(ComponentType.Identifier, componentSettings);
             structure.Measures = GetStructureComponentsByType(ComponentType.Measure, componentSettings);

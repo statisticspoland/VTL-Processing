@@ -15,7 +15,7 @@
     /// <summary>
     /// The SQL server VTL 2.0 data model.
     /// </summary>
-    public class DataModelSqlServer : IDataModel
+    public class DataModelSqlServer : DataModel
     {
         private readonly DataStructureResolver dsResolver;
         private readonly string connStr;
@@ -24,21 +24,19 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelSqlServer"/> class.
         /// </summary>
+        /// <param name="rootModel">The root data model.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
-        /// <param name="defaultNamespace">The default namespace name.</param>
         /// <param name="connectionString">The SQL Server connection string.</param>
         /// <param name="mapping">The dictionary of mapped names.</param>
-        public DataModelSqlServer(DataStructureResolver dsResolver, string defaultNamespace, string connectionString, Dictionary<string, string> mapping)
+        public DataModelSqlServer(IDataModel rootModel, DataStructureResolver dsResolver, string connectionString, Dictionary<string, string> mapping)
+            : base(rootModel)
         {
             this.dsResolver = dsResolver;
             this.connStr = connectionString;
             this.mapping = mapping;
-            this.DefaultNamespace = defaultNamespace;
         }
 
-        public string DefaultNamespace { get; }
-
-        public IDataStructure GetDatasetStructure(string datasetName)
+        public override IDataStructure GetDatasetStructure(string datasetName)
         {
             string[] split = datasetName.Split(@"\");
             string @namespace;

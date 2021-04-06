@@ -11,18 +11,44 @@
     /// </summary>
     internal class DataModelAggregator : IDataModelAggregator
     {
+        private Func<string> getDefaultNamespace;
+
+        /// <summary>
+        /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
+        /// </summary>
+        public DataModelAggregator()
+        {
+            this.DataModels = new List<IDataModel>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
+        /// </summary>
+        /// <param name="defaultNamespace">The default namespace name.</param>
+        public DataModelAggregator(Func<string> defaultNamespace)
+            : this()
+        {
+            this.getDefaultNamespace = defaultNamespace;
+        }
+
         /// <summary>
         /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
         /// </summary>
         /// <param name="defaultNamespace">The default namespace name.</param>
         /// <param name="dataModels">The data model collection.</param>
         public DataModelAggregator(string defaultNamespace, params IDataModel[] dataModels)
+            : this()
         {
             this.DefaultNamespace = defaultNamespace;
-            this.DataModels = dataModels?.ToList();
+
+            if (dataModels != null) this.DataModels = dataModels.ToList();
         }
 
-        public string DefaultNamespace { get; set; }
+        public string DefaultNamespace
+        {
+            get => this.getDefaultNamespace();
+            set => this.getDefaultNamespace = new Func<string>(() => { return value; });
+        }
 
         public ICollection<IDataModel> DataModels { get; set; }
 

@@ -10,47 +10,48 @@
 
     public class DataModelCollection
     {
-        private readonly IDataModelAggregator _aggregator;
         private readonly IServiceCollection _services;
         private readonly Action _providerCreationMethod;
 
         public DataModelCollection(IDataModelAggregator aggregator, IServiceCollection services, Action providerCreationMethod)
         {
-            this._aggregator = aggregator;
+            this._Aggregator = aggregator;
             this._services = services;
             this._providerCreationMethod = providerCreationMethod;
         }
 
-        public IDataModel this[int index] => this._aggregator.DataModels.ElementAt(index);
+        internal readonly IDataModelAggregator _Aggregator;
 
-        public string DefaultNamespace => this._aggregator.DefaultNamespace;
+        public IDataModel this[int index] => this._Aggregator.DataModels.ElementAt(index);
+
+        public string DefaultNamespace => this._Aggregator.DefaultNamespace;
 
         public void AddModel(IDataModel model)
         {
-            if (this._aggregator.DataModels != null) _aggregator.DataModels.Add(model);
-            else this._aggregator.DataModels = new List<IDataModel>() { model };
+            if (this._Aggregator.DataModels != null) this._Aggregator.DataModels.Add(model);
+            else this._Aggregator.DataModels = new List<IDataModel>() { model };
 
-            this._services.AddSingleton(typeof(IDataModel), model);
+            //this._services.AddSingleton(typeof(IDataModel), model);
         }
 
         public void RemoveModel(IDataModel model)
         {
-            this._aggregator.DataModels.Remove(model);
-            this._services.Remove(this._services.FirstOrDefault(s => s.ImplementationInstance == model));
-            this._providerCreationMethod();
+            this._Aggregator.DataModels.Remove(model);
+            //this._services.Remove(this._services.FirstOrDefault(s => s.ImplementationInstance == model));
+            //this._providerCreationMethod();
         }
 
         public void Clear()
         {
-            this._aggregator.DataModels.Clear();
+            this._Aggregator.DataModels.Clear();
 
-            ServiceDescriptor[] services = this._services.Where(s => s.ServiceType == typeof(IDataModel)).ToArray();
-            foreach (ServiceDescriptor service in services)
-            {
-                this._services.Remove(service);
-            }
+            //ServiceDescriptor[] services = this._services.Where(s => s.ServiceType == typeof(IDataModel)).ToArray();
+            //foreach (ServiceDescriptor service in services)
+            //{
+            //    this._services.Remove(service);
+            //}
 
-            this._providerCreationMethod();
+            //this._providerCreationMethod();
         }
     }
 }

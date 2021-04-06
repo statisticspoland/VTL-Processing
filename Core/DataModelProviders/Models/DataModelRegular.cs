@@ -7,39 +7,24 @@
     /// <summary>
     /// The regular VTL 2.0 data model.
     /// </summary>
-    public class DataModelRegular : IDataModel
+    public class DataModelRegular : DataModel
     {
         private Dictionary<string, IDataStructure> dataStructures;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelRegular"/> class.
         /// </summary>
-        public DataModelRegular()
-        {
-            this.dataStructures = new Dictionary<string, IDataStructure>();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DataModelRegular"/> class.
-        /// </summary>
-        /// <param name="defaultNamespace">The default namespace name.</param>
+        /// <param name="rootModel">The root data model.</param>
         /// <param name="namespaceName">The namespace name.</param>
         /// <param name="dataStructures">The dictionary of structures.</param>
-        public DataModelRegular(string defaultNamespace, string namespaceName, Dictionary<string, IDataStructure> dataStructures)
+        public DataModelRegular(IDataModel rootModel, string namespaceName, Dictionary<string, IDataStructure> dataStructures)
+            : base(rootModel)
         {
-            this.DefaultNamespace = defaultNamespace;
             this.Namespace = namespaceName;
             this.dataStructures = dataStructures;
         }
 
-        public string DefaultNamespace { get; }
-
-        /// <summary>
-        /// Gets or sets the namespace name.
-        /// </summary>
-        public string Namespace { get; set; }
-
-        public IDataStructure GetDatasetStructure(string datasetName)
+        public override IDataStructure GetDatasetStructure(string datasetName)
         {
             string[] split = datasetName.Split(@"\");
             switch (split.Length)

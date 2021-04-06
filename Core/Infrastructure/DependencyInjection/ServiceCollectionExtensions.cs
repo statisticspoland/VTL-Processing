@@ -11,6 +11,7 @@
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
+    using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
@@ -24,9 +25,9 @@
     /// <summary>
     /// The <see cref="IServiceCollection"/> extensions.
     /// </summary>
-    public static class ServiceCollectionExtension
+    public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> configure)
+        internal static IServiceCollection AddVtlProcessing(this IServiceCollection services)
         {
             services.AddSingleton<ITreeGenerator, TreeGenerator>();
             services.AddSingleton<ITreeTransformer, VisitorTransformer>();
@@ -42,10 +43,10 @@
 
             services.AddSingleton<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
             services.AddSingleton<IComponentTypeInference, ComponentTypeInference>();
-            
+
             services.AddResolvers();
 
-            IEnumerable<Type> Operators = 
+            IEnumerable<Type> Operators =
                 Assembly
                 .GetExecutingAssembly()
                 .GetTypes()
@@ -53,7 +54,7 @@
 
             foreach (Type type in Operators)
             {
-                 services.AddTransient(type);
+                services.AddTransient(type);
             }
 
             services.AddSingleton<ISchemaModifiersApplier, SchemaModifiersApplier>();
@@ -64,11 +65,20 @@
             services.AddSingleton<ISchemaModifier, JoinUsingFillingModifier>();
             services.AddSingleton<ISchemaModifier, DsOperatorsToJoinsModifier>();
 
-            // additional configuration (e.g. register data model)
-            IVtlProcessingConfig configBuilder = new VtlProcessingConfig(services);
-            configure(configBuilder);
+            return services;
+        }
 
-            return configBuilder.Services;
+        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IDataModelAggregator> dataModelsConfig)
+        {
+            services.AddVtlProcessing();
+
+            IDataModelAggregator dataModelAggregator = new DataModelAggregator();
+            dataModelsConfig(dataModelAggregator);
+
+            services.AddSingleton(dataModelAggregator);
+            services.AddSingleton(typeof(IDataModel), dataModelAggregator);
+
+            return services;
         }
     }
 }

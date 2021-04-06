@@ -3,39 +3,39 @@
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Logical;
-    using StatisticsPoland.VtlProcessing.Core.UserInterface;
     using System;
     using System.Collections.Generic;
 
     /// <summary>
-    /// The <see cref="DataModelCollection"/> extensions.
+    /// The <see cref="IDataModelAggregator"/> extensions.
     /// </summary>
-    public static class DataModelCollectionExtensions
+    public static class DataModelAggregatorExtensions
     {
-        public static void AddJsonModel(this DataModelCollection collection, string filePath)
+        public static void AddJsonModel(this IDataModelAggregator aggregator, string filePath)
         {
-            collection.AddModel(new DataModelJson(collection.DefaultNamespace, filePath));
+            aggregator.DataModels.Add(new DataModelJson(aggregator, filePath));
         }
 
-        public static void AddSqlServerModel(this DataModelCollection collection, string connectionString, Dictionary<string, string> mapping)
+        public static void AddSqlServerModel(this IDataModelAggregator aggregator, string connectionString, Dictionary<string, string> mapping)
         {
             IDataModel dataModel = new DataModelSqlServer(
+                aggregator,
                 (compName, compType, dataType) => { return new DataStructure(); },
-                collection.DefaultNamespace,
                 connectionString,
                 mapping);
 
-            collection.AddModel(dataModel);
+            aggregator.DataModels.Add(dataModel);
         }
 
-        public static void AddRegularModel(this DataModelCollection collection, Action<IRegularModelConfiguration> modelConfiguration, string namespaceName)
+        public static void AddRegularModel(this IDataModelAggregator aggregator, Action<IRegularModelConfiguration> modelConfiguration, string namespaceName)
         {
             Dictionary<string, IDataStructure> dataStructures = new Dictionary<string, IDataStructure>();
             modelConfiguration(new RegularModelConfiguration(dataStructures));
-            IDataModel dataModel = new DataModelRegular(collection.DefaultNamespace, namespaceName, dataStructures);
-            collection.AddModel(dataModel);
+            IDataModel dataModel = new DataModelRegular(aggregator, namespaceName, dataStructures);
+            aggregator.DataModels.Add(dataModel);
         }
     }
 }

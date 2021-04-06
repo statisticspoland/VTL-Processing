@@ -4,7 +4,6 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.UserInterface;
@@ -28,6 +27,7 @@
 
             Translator translator = new Translator("Json");
             translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
+            translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel2.json");
             translator.DataModels.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
 
             translator.Targets.AddPlantUmlTarget((configure) =>
@@ -47,11 +47,13 @@
                 //configure.SetAttributePropagationAlgorithm(new AttributePropagationAlgorithm());
             });
 
-            translator.DataModels.Clear();
+            translator.Targets.ConfirmTargets();
 
             // TODO: Error Logger
 
-            string source = Example.Source;
+            translator.DefaultNamespace = "Json2";
+            string source = "P := Regular\\R1 + Json\\Y - Y;";
+
             ITransformationSchema schema = translator.GetFrontEnd().BuildTransformationSchema(source);
             translator.GetMiddleEnd().Process(schema);
 

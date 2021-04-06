@@ -7,7 +7,7 @@
 
     public static class TargetCollectionExtensions
     {
-        public static void AddTsqlTarget(this TargetCollection collection, Action<ITargetBuilder> configure)
+        public static void AddTsqlTarget(this TargetsCollection collection, Action<ITargetBuilder> configure)
         {
             IServiceCollection services = new ServiceCollection();
             services.AddTsqlTarget();
