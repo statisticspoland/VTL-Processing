@@ -1,13 +1,17 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.UserInterface
 {
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
+    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.UserInterface.Interfaces;
     using System;
 
     public class Translator
@@ -15,16 +19,30 @@
         private readonly IServiceCollection _services;
         private ServiceProvider provider;
 
-        public Translator(string defaultNamespace)
+        public Translator(Action<ITranslatorConfig> configuration)
         {
-            this.DefaultNamespace = defaultNamespace;
             this.DataModels = new DataModelAggregator(() => { return this.DefaultNamespace; });
 
             this._services = new ServiceCollection().AddVtlProcessing();
             this._services.AddSingleton(this.DataModels);
             this._services.AddSingleton(typeof(IDataModel), this.DataModels);
 
-            this.Targets = new TargetsCollection(this._services, this.BuildProvider);
+            ErrorCollectorProvider errorCollectorProvider = new ErrorCollectorProvider();
+            this._services.AddLogging((config) =>
+            {
+                config.AddProvider(errorCollectorProvider);
+            });
+
+            this.Errors = new ErrorsCollection(errorCollectorProvider);
+
+            ITranslatorConfig translatorConfig = new TranslatorConfig(this._services);
+            configuration(translatorConfig);
+
+            this.DefaultNamespace = translatorConfig.DefaultNamespace;
+            this.Targets = translatorConfig.Targets;
+            this.EnvironmentMapper = new DictionaryEnvMapper();
+
+            this.provider = this._services.BuildServiceProvider();
         }
 
         public string DefaultNamespace { get; set; }
@@ -33,27 +51,14 @@
 
         public TargetsCollection Targets { get; }
 
-        public ITreeGenerator GetFrontEnd()
-        {
-            if (!this.Targets.Confirmed) throw new Exception("The collection of targets has been not confirmed.");
-            return this.provider.GetFrontEnd();
-        }
+        public ErrorsCollection Errors { get; }
 
-        public ISchemaModifiersApplier GetMiddleEnd()
-        {
-            if (!this.Targets.Confirmed) throw new Exception("The collection of targets has been not confirmed.");
-            return this.provider.GetMiddleEnd();
-        }
+        public IEnvironmentMapper EnvironmentMapper { get; }
 
-        public ITargetRenderer GetTargetRenderer(string name)
-        {
-            if (!this.Targets.Confirmed) throw new Exception("The collection of targets has been not confirmed.");
-            return this.provider.GetTargetRenderer(name);
-        }
+        public ITreeGenerator GetFrontEnd() => this.provider.GetFrontEnd();
 
-        private void BuildProvider()
-        {
-            this.provider = this._services.BuildServiceProvider();
-        }
+        public ISchemaModifiersApplier GetMiddleEnd() => this.provider.GetMiddleEnd();
+
+        public ITargetRenderer GetTargetRenderer(string name) => this.provider.GetTargetRenderer(name);
     }
 }

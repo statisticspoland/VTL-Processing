@@ -12,6 +12,14 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DictionaryEnvMapper"/> class.
         /// </summary>
+        public DictionaryEnvMapper()
+        {
+            this.Mapping = new Dictionary<string, string>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DictionaryEnvMapper"/> class.
+        /// </summary>
         /// <param name="namespaceMapping">The dictionary of mapped names.</param>
         public DictionaryEnvMapper(Dictionary<string, string> namespaceMapping)
         {

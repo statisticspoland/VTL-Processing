@@ -9,14 +9,11 @@
     {
         private readonly IServiceCollection _targets;
         private readonly IServiceCollection _services;
-        private readonly Action _confirmTargets;
 
-        public TargetsCollection(IServiceCollection services, Action confirmTargets)
+        public TargetsCollection(IServiceCollection services)
         {
-            this.Confirmed = false;
             this._targets = new ServiceCollection();
             this._services = services;
-            this._confirmTargets = confirmTargets;
 
             foreach (ServiceDescriptor service in services.Where(s => s.ServiceType == typeof(ITargetRenderer)))
             {
@@ -24,18 +21,15 @@
             }
         }
 
-        public ITargetRenderer this[int index] => (ITargetRenderer)this._targets[index];
-
-        public bool Confirmed { get; private set; }
+        public ITargetRenderer this[string name] => (ITargetRenderer)this._targets.First(target => (target as ITargetRenderer).Name == name);
 
         /// <summary>
         /// Adds a target to the target collection and injects its depentent services.
         /// </summary>
         /// <param name="targetType">The target type.</param>
         /// <param name="services">The services to inject.</param>
-        public void AddTarget(Type targetType, IServiceCollection services = null)
+        internal void AddTarget(Type targetType, IServiceCollection services = null)
         {
-            if (this.Confirmed) throw new Exception("The collection of targets has been confirmed already.");
             if (!typeof(ITargetRenderer).IsAssignableFrom(targetType)) throw new Exception("Wrong type of a target instance.");
 
             this._targets.AddSingleton(typeof(ITargetRenderer), targetType);
@@ -54,36 +48,23 @@
         /// Removes a target from the collection but not removes its dependent sevices.
         /// </summary>
         ///<param name="target">The target to remove.</param>
-        public void RemoveTarget(ITargetRenderer target)
+        internal void RemoveTarget(ITargetRenderer target)
         {
-            if (this.Confirmed) throw new Exception("The collection of targets has been confirmed already.");
-
             this._targets.Remove(this._targets.FirstOrDefault(s => s.ImplementationInstance == target));
             this._services.Remove(this._services.FirstOrDefault(s => s.ImplementationInstance == target));
         }
 
         /// <summary>
-        /// Clears the target collection but not removes dependent sevices of these tagrgets.
+        /// Clears the target collection but not removes dependent sevices of these targets.
         /// </summary>
-        public void Clear()
+        internal void Clear()
         {
-            if (this.Confirmed) throw new Exception("The collection of targets has been confirmed already.");
-
             this._targets.Clear();
 
             ServiceDescriptor[] services = this._services.Where(s => s.ServiceType == typeof(ITargetRenderer)).ToArray();
             foreach (ServiceDescriptor service in services)
             {
                 this._services.Remove(service);
-            }
-        }
-
-        public void ConfirmTargets()
-        {
-            if (!this.Confirmed)
-            {
-                this._confirmTargets();
-                this.Confirmed = true;
             }
         }
     }

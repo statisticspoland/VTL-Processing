@@ -1,6 +1,7 @@
 ﻿namespace ExampleApp
 {
     using ExampleApp.VtlSources;
+    using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
@@ -20,36 +21,38 @@
             IEnvironmentMapper envMapper = new DictionaryEnvMapper(
                 new Dictionary<string, string>()
                 {
-                    { "Json", string.Empty },
+                    { "Json", "ABC." },
+                    { "Json2", "XYZ." },
                     { "Regular", string.Empty },
                     { "Namespace", "[DbSchema].[DbTable]." },
                 });
 
-            Translator translator = new Translator("Json");
+            Translator translator = new Translator((configure) =>
+            {
+                configure.DefaultNamespace = "Json";
+                configure.AddPlantUmlTarget((config) =>
+                {
+                    config.AddDataStructureObject();
+                    config.UseArrowFirstToLast();
+                    config.ShowNumberLine();
+                });
+
+                configure.AddTsqlTarget((config) =>
+                {
+                    config.AddEnvMapper(envMapper);
+                    config.AddComments();
+                });
+
+                configure.AddLogging((config) =>
+                {
+                    config.AddConsole();
+                    config.AddDebug();
+                });
+            });
+
             translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
             translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel2.json");
             translator.DataModels.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
-
-            translator.Targets.AddPlantUmlTarget((configure) =>
-            {
-                configure.AddDataStructureObject();
-                configure.UseArrowFirstToLast();
-                configure.ShowNumberLine();
-                //configure.UseRuleExpressionsModel();
-                //configure.UseArrowLastToFirst();
-                //configure.UseHorizontalView();
-            });
-
-            translator.Targets.AddTsqlTarget((configure) =>
-            {
-                configure.AddEnvMapper(envMapper);
-                configure.AddComments();
-                //configure.SetAttributePropagationAlgorithm(new AttributePropagationAlgorithm());
-            });
-
-            translator.Targets.ConfirmTargets();
-
-            // TODO: Error Logger
 
             translator.DefaultNamespace = "Json2";
             string source = "P := Regular\\R1 + Json\\Y - Y;";

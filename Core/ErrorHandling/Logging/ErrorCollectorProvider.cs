@@ -32,12 +32,12 @@
             return this.ErrorCollectors.SelectMany(s => s.Errors).ToList().OfType<TResult>();
         }
 
-        public ILogger CreateLogger(string categoryName)
+        public ILogger CreateLogger(string categoryName = null)
         {
-            ErrorCollector errorCounter = new ErrorCollector();
-            this.ErrorCollectors.Add(errorCounter);
+            ErrorCollector errorCollector = new ErrorCollector();
+            this.ErrorCollectors.Add(errorCollector);
 
-            return errorCounter;
+            return errorCollector;
         }
 
         public void Dispose()

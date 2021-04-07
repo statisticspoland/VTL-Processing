@@ -40,7 +40,7 @@ namespace VtlProcessing.IntegrationTests.TSQL
             services.AddVtlProcessing((configure) =>
             {
                 configure.DefaultNamespace = "ns";
-                configure.AddSqlServerModel(connectionString, sqlMapping);
+                configure.DataModels.AddSqlServerModel(connectionString, sqlMapping);
             });
 
             services.AddTsqlTarget((configure) =>

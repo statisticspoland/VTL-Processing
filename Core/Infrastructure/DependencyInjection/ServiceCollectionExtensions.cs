@@ -68,13 +68,15 @@
             return services;
         }
 
-        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IDataModelAggregator> dataModelsConfig)
+        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
         {
             services.AddVtlProcessing();
 
-            IDataModelAggregator dataModelAggregator = new DataModelAggregator();
-            dataModelsConfig(dataModelAggregator);
+            IVtlProcessingConfig configuration = new VtlProcessingConfig();
+            config(configuration);
 
+            IDataModelAggregator dataModelAggregator = configuration.DataModels;
+            
             services.AddSingleton(dataModelAggregator);
             services.AddSingleton(typeof(IDataModel), dataModelAggregator);
 
