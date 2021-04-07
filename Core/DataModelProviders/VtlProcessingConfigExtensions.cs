@@ -54,5 +54,11 @@
             IDataModel dataModel = new DataModelRegular(config.DefaultNamespace, dataStructures);
             return config.AddModel(dataModel);
         }
+
+        public static IVtlProcessingConfig AddSDMXModel(this IVtlProcessingConfig config, string url)
+        {
+            IDataModel dataModel = new DataModelSDMX(config.DefaultNamespace, url);
+            return config.AddModel(dataModel);
+        }
     }
 }
