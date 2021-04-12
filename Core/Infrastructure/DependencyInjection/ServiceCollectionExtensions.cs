@@ -79,6 +79,7 @@
             
             services.AddSingleton(dataModelAggregator);
             services.AddSingleton(typeof(IDataModel), dataModelAggregator);
+            services.AddSingleton(configuration.EnvironmentMapper);
 
             return services;
         }

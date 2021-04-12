@@ -9,7 +9,7 @@
     public interface IDataModelAggregator : IDataModel
     {
         /// <summary>
-        /// Gets the default namespace name.
+        /// Gets or sets the default namespace name.
         /// </summary>
         new string DefaultNamespace { get; set; }
 
@@ -17,5 +17,10 @@
         /// Gets or sets the data model collection.
         /// </summary>
         ICollection<IDataModel> DataModels { get; set; }
+
+        /// <summary>
+        /// Gets the environmentm names mapper.
+        /// </summary>
+        IEnvironmentMapper EnvironmentMapper { get; }
     }
 }

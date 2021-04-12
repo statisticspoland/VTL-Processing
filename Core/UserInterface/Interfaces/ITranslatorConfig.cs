@@ -7,8 +7,9 @@
 
     public interface ITranslatorConfig
     {
-        string DefaultNamespace { get; set; }
-
+        /// <summary>
+        /// Gets the targets collection.
+        /// </summary>
         TargetsCollection Targets { get; }
 
         /// <summary>

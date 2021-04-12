@@ -16,8 +16,6 @@
             this.Targets = new TargetsCollection(services);
         }
 
-        public string DefaultNamespace { get; set; }
-
         public TargetsCollection Targets { get; }
 
         public void AddLogging(Action<ILoggingBuilder> config) => this._services.AddLogging(config);

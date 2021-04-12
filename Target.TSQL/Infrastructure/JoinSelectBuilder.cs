@@ -10,6 +10,7 @@
     using System.Linq;
     using System.Text;
     using Infrastructure.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
 
     /// <summary>
     /// Visits an "apply" branch of a "join" operator expression and renders measures for the TSQL join select query.
@@ -26,7 +27,7 @@
     internal sealed class JoinSelectBuilder : IJoinSelectBuilder
     {
         private readonly OperatorRendererResolver opRendererResolver;
-        private readonly ITargetConfiguration config;
+        private readonly IEnvironmentMapper envMapper;
         private readonly IAttributePropagationAlgorithm propagationAlgorithm;
         private Dictionary<string, string> parts;
         private IJoinExpression joinExpr;
@@ -36,12 +37,12 @@
         /// Initializes a new instance of the <see cref="JoinSelectBuilder"/> class.
         /// </summary>
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
-        /// <param name="config">The configuration of the target.</param>
+        /// <param name="envMapper">The environment names mapper.</param>
         /// <param name="propagationAlgorithm">The attribute propagation algorithm.</param>
-        public JoinSelectBuilder(OperatorRendererResolver opRendererResolver, ITargetConfiguration config, IAttributePropagationAlgorithm propagationAlgorithm)
+        public JoinSelectBuilder(OperatorRendererResolver opRendererResolver, IEnvironmentMapper envMapper, IAttributePropagationAlgorithm propagationAlgorithm)
         {
             this.opRendererResolver = opRendererResolver;
-            this.config = config;
+            this.envMapper = envMapper;
             this.propagationAlgorithm = propagationAlgorithm;
 
             this.parts = new Dictionary<string, string>();
@@ -422,7 +423,7 @@
             if (alias.OperatorSymbol == "ref")
             {
                 // Jeżeli operator ref
-                sb.AppendLine($"{this.config.EnvMapper.Map(alias.ResultMappedName)} AS {alias.ParamSignature} ");
+                sb.AppendLine($"{this.envMapper.Map(alias.ResultMappedName)} AS {alias.ParamSignature} ");
             }
             else if (alias.OperatorSymbol.In("join", "#"))
             {
@@ -434,7 +435,7 @@
             else
             {
                 // Jeżeli inny operator
-                sb.AppendLine($"{this.config.EnvMapper.Map(this.GetExprSource(alias).ExpressionText)} AS {alias.ParamSignature} ");
+                sb.AppendLine($"{this.envMapper.Map(this.GetExprSource(alias).ExpressionText)} AS {alias.ParamSignature} ");
             }
 
             return sb.ToString();

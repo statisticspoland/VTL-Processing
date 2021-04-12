@@ -11,6 +11,7 @@
     using Infrastructure;
     using Infrastructure.Interfaces;
     using Preparers.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
 
     /// <summary>
     /// The TSQL target renderer for the VTL 2.0 translation.
@@ -22,8 +23,9 @@
         private readonly TemporaryTables tmpTables;
         private readonly IReferencesManager refs;
         private readonly IMapper mapper;
-        private readonly ILogger<ITargetRenderer> logger;
         private readonly ITargetConfiguration conf;
+        private readonly IEnvironmentMapper envMapper;
+        private readonly ILogger<ITargetRenderer> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TsqlTargetRenderer"/> class.
@@ -34,6 +36,7 @@
         /// <param name="tmpTables">The temporary tables informations.</param>
         /// <param name="mapper">The objects names mapper.</param>
         /// <param name="configuration">The configuration of the target.</param>
+        /// <param name="envMapper">The environment names mapper.</param>
         /// <param name="logger">The errors logger.</param>
         public TsqlTargetRenderer(
             TransformationSchemaResolver schemaResolver,
@@ -42,6 +45,7 @@
             IReferencesManager references,
             IMapper mapper, 
             ITargetConfiguration configuration,
+            IEnvironmentMapper envMapper,
             ILogger<ITargetRenderer> logger = null)
         {
             this.schemaResolver = schemaResolver;
@@ -50,6 +54,7 @@
             this.refs = references;
             this.mapper = mapper;
             this.conf = configuration;
+            this.envMapper = envMapper;
             this.logger = logger;
         }
 
@@ -117,7 +122,7 @@
         private string RenderPersistentExpr(IExpression expr)
         {
             StringBuilder sb = new StringBuilder();
-            string resultName = this.conf.EnvMapper.Map(expr.ResultName); //expr.ParamSignature == "<root>" ? expr.ResultName : expr.ResultMappedName;
+            string resultName = this.envMapper.Map(expr.ResultName); //expr.ParamSignature == "<root>" ? expr.ResultName : expr.ResultMappedName;
             string renderResult = this.opRendererResolver(expr.OperatorSymbol).Render(expr);
 
             if (this.conf.UseComments) sb.AppendLine($"-- Raw: {expr.ResultName} <- {expr.ExpressionText}");

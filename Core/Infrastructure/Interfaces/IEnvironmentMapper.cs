@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
-
-namespace StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces
+﻿namespace StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Interface of an environment names mapper.
     /// </summary>
     public interface IEnvironmentMapper
     {
-        Dictionary<string, string> Mapping { get; }
+        /// <summary>
+        /// Gets or sets the mapping.
+        /// </summary>
+        Dictionary<string, string> Mapping { get; set; }
 
         /// <summary>
         /// Maps a dataset name between a data model and a physical environment.

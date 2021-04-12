@@ -1,17 +1,18 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.BackEnd;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Attributes;
     using Interfaces;
+    using Microsoft.Extensions.DependencyInjection;
     using Preparers;
     using Preparers.Interfaces;
     using Renderers;
     using Renderers.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.BackEnd;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IOperatorRenderer"/> interface.
@@ -49,7 +50,7 @@
                 Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbol>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) return null;
-                if (type == typeof(GetOperatorRenderer)) return new GetOperatorRenderer(ServiceProvider.GetService<ITargetConfiguration>());
+                if (type == typeof(GetOperatorRenderer)) return new GetOperatorRenderer(ServiceProvider.GetService<IEnvironmentMapper>());
 
                 return (IOperatorRenderer)ServiceProvider
                 .GetService(type);

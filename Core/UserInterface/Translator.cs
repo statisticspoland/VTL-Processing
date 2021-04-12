@@ -17,15 +17,22 @@
     public class Translator
     {
         private readonly IServiceCollection _services;
-        private ServiceProvider provider;
+        private readonly ServiceProvider _provider;
 
         public Translator(Action<ITranslatorConfig> configuration)
         {
-            this.DataModels = new DataModelAggregator(() => { return this.DefaultNamespace; });
+            this.EnvironmentMapper = new EnvironmentMapper();
+            this.DataModels = new DataModelAggregator(this.EnvironmentMapper);
 
             this._services = new ServiceCollection().AddVtlProcessing();
-            this._services.AddSingleton(this.DataModels);
             this._services.AddSingleton(typeof(IDataModel), this.DataModels);
+            this._services.AddSingleton(this.DataModels);
+            this._services.AddSingleton(this.EnvironmentMapper);
+
+            ITranslatorConfig translatorConfig = new TranslatorConfig(this._services);
+            configuration(translatorConfig);
+
+            this.Targets = translatorConfig.Targets;
 
             ErrorCollectorProvider errorCollectorProvider = new ErrorCollectorProvider();
             this._services.AddLogging((config) =>
@@ -35,17 +42,8 @@
 
             this.Errors = new ErrorsCollection(errorCollectorProvider);
 
-            ITranslatorConfig translatorConfig = new TranslatorConfig(this._services);
-            configuration(translatorConfig);
-
-            this.DefaultNamespace = translatorConfig.DefaultNamespace;
-            this.Targets = translatorConfig.Targets;
-            this.EnvironmentMapper = new DictionaryEnvMapper();
-
-            this.provider = this._services.BuildServiceProvider();
+            this._provider = this._services.BuildServiceProvider();
         }
-
-        public string DefaultNamespace { get; set; }
 
         public IDataModelAggregator DataModels { get; }
 
@@ -55,10 +53,10 @@
 
         public IEnvironmentMapper EnvironmentMapper { get; }
 
-        public ITreeGenerator GetFrontEnd() => this.provider.GetFrontEnd();
+        public ITreeGenerator GetFrontEnd() => this._provider.GetFrontEnd();
 
-        public ISchemaModifiersApplier GetMiddleEnd() => this.provider.GetMiddleEnd();
+        public ISchemaModifiersApplier GetMiddleEnd() => this._provider.GetMiddleEnd();
 
-        public ITargetRenderer GetTargetRenderer(string name) => this.provider.GetTargetRenderer(name);
+        public ITargetRenderer GetTargetRenderer(string name) => this._provider.GetTargetRenderer(name);
     }
 }

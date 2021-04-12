@@ -11,13 +11,12 @@
     /// </summary>
     internal class DataModelAggregator : IDataModelAggregator
     {
-        private Func<string> getDefaultNamespace;
-
         /// <summary>
         /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
         /// </summary>
-        public DataModelAggregator()
+        public DataModelAggregator(IEnvironmentMapper mapper)
         {
+            this.EnvironmentMapper = mapper;
             this.DataModels = new List<IDataModel>();
         }
 
@@ -25,32 +24,42 @@
         /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
         /// </summary>
         /// <param name="defaultNamespace">The default namespace name.</param>
-        public DataModelAggregator(Func<string> defaultNamespace)
-            : this()
+        /// <param name="mapper">The environment names mapper.</param>
+        public DataModelAggregator(string defaultNamespace, IEnvironmentMapper mapper)
+            : this(mapper)
         {
-            this.getDefaultNamespace = defaultNamespace;
+            this.DefaultNamespace = defaultNamespace;
+            this.EnvironmentMapper = mapper;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
+        /// </summary>
+        /// <param name="mapper">The environment names mapper.</param>
+        /// <param name="dataModels">The data model collection.</param>
+        public DataModelAggregator(IEnvironmentMapper mapper, params IDataModel[] dataModels)
+            : this(mapper)
+        {
+            if (dataModels != null) this.DataModels = dataModels.ToList();
         }
 
         /// <summary>
         /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
         /// </summary>
         /// <param name="defaultNamespace">The default namespace name.</param>
+        /// <param name="mapper">The environment names mapper.</param>
         /// <param name="dataModels">The data model collection.</param>
-        public DataModelAggregator(string defaultNamespace, params IDataModel[] dataModels)
-            : this()
+        public DataModelAggregator(string defaultNamespace, IEnvironmentMapper mapper, params IDataModel[] dataModels)
+            : this(defaultNamespace, mapper)
         {
-            this.DefaultNamespace = defaultNamespace;
-
             if (dataModels != null) this.DataModels = dataModels.ToList();
         }
 
-        public string DefaultNamespace
-        {
-            get => this.getDefaultNamespace();
-            set => this.getDefaultNamespace = new Func<string>(() => { return value; });
-        }
+        public string DefaultNamespace { get; set;  }
 
         public ICollection<IDataModel> DataModels { get; set; }
+
+        public IEnvironmentMapper EnvironmentMapper { get; }
 
         public IDataStructure GetDatasetStructure(string datasetName)
         {

@@ -19,13 +19,13 @@
             aggregator.DataModels.Add(new DataModelJson(aggregator, filePath));
         }
 
-        public static void AddSqlServerModel(this IDataModelAggregator aggregator, string connectionString, Dictionary<string, string> mapping)
+        public static void AddSqlServerModel(this IDataModelAggregator aggregator, string connectionString)
         {
             IDataModel dataModel = new DataModelSqlServer(
                 aggregator,
                 (compName, compType, dataType) => { return new DataStructure(); },
                 connectionString,
-                mapping);
+                aggregator.EnvironmentMapper);
 
             aggregator.DataModels.Add(dataModel);
         }
