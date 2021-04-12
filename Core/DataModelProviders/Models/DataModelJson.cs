@@ -10,14 +10,16 @@
     /// <summary>
     /// The JSON VTL 2.0 data model.
     /// </summary>
-    public class DataModelJson: IDataModel
+    public class DataModelJson: DataModel
     {
         private Dictionary<string, IDataStructure> dataStructures;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelJson"/> class.
         /// </summary>
-        public DataModelJson()
+        /// <param name="rootModel">The root data model.</param>
+        [JsonConstructor]
+        private DataModelJson(IDataModel rootModel = null) : base(rootModel)
         {
             this.dataStructures = new Dictionary<string, IDataStructure>();
         }
@@ -25,21 +27,16 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelJson"/> class.
         /// </summary>
-        /// <param name="defaultNamespace">The default namespace name.</param>
+        /// <param name="rootModel">The root data model.</param>
         /// <param name="jsonFilePath">The JSON file path.</param>
-        public DataModelJson(string defaultNamespace, string jsonFilePath) : this()
+        public DataModelJson(IDataModel rootModel, string jsonFilePath) : this(rootModel)
         {
-            this.DefaultNamespace = defaultNamespace;
             this.LoadData(jsonFilePath);
         }
 
-        public string DefaultNamespace { get; }
-
-        public string Namespace { get; set; }
-
         public ICollection<DataStructure> DataStructuresCollection { get; set; }
 
-        public IDataStructure GetDatasetStructure(string datasetName)
+        public override IDataStructure GetDatasetStructure(string datasetName)
         {
             string[] split = datasetName.Split(@"\");
             switch (split.Length)

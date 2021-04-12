@@ -1,103 +1,76 @@
-﻿using Org.Sdmxsource.Sdmx.Api.Constants;
-using Org.Sdmxsource.Sdmx.Api.Factory;
-using Org.Sdmxsource.Sdmx.Api.Manager.Parse;
-using Org.Sdmxsource.Sdmx.Api.Model;
-using Org.Sdmxsource.Sdmx.Api.Model.Objects;
-using Org.Sdmxsource.Sdmx.Api.Model.Objects.Base;
-using Org.Sdmxsource.Sdmx.Api.Model.Objects.DataStructure;
-using Org.Sdmxsource.Sdmx.Api.Util;
-using Org.Sdmxsource.Sdmx.SdmxObjects.Model.Objects.DataStructure;
-using Org.Sdmxsource.Sdmx.Structureparser.Manager.Parsing;
-using Org.Sdmxsource.Util.Io;
-using StatisticsPoland.VtlProcessing.Core.Models;
-using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-using StatisticsPoland.VtlProcessing.Core.Models.Logical;
-using StatisticsPoland.VtlProcessing.Core.Models.Types;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-
-namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
 {
-    public class DataModelSDMX : IDataModel
+    using Org.Sdmxsource.Sdmx.Api.Constants;
+    using Org.Sdmxsource.Sdmx.Api.Factory;
+    using Org.Sdmxsource.Sdmx.Api.Manager.Parse;
+    using Org.Sdmxsource.Sdmx.Api.Model;
+    using Org.Sdmxsource.Sdmx.Api.Model.Objects;
+    using Org.Sdmxsource.Sdmx.Api.Model.Objects.Base;
+    using Org.Sdmxsource.Sdmx.Api.Model.Objects.DataStructure;
+    using Org.Sdmxsource.Sdmx.Api.Util;
+    using Org.Sdmxsource.Sdmx.SdmxObjects.Model.Objects.DataStructure;
+    using Org.Sdmxsource.Sdmx.Structureparser.Manager.Parsing;
+    using Org.Sdmxsource.Util.Io;
+    using StatisticsPoland.VtlProcessing.Core.Models;
+    using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Models.Logical;
+    using StatisticsPoland.VtlProcessing.Core.Models.Types;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+
+    public class DataModelSDMX : DataModel
     {
-        private IStructureParsingManager _structureParsingManager = new StructureParsingManager();
-        private IReadableDataLocationFactory _dataLocationFactory = new ReadableDataLocationFactory();
-        private IReadableDataLocation _readableDataLocation;
+        private readonly IStructureParsingManager _structureParsingManager;
+        private readonly IReadableDataLocationFactory _dataLocationFactory;
+        private readonly IReadableDataLocation _readableDataLocation;
 
-        public DataModelSDMX(string defaultNamespace, FileInfo structureFile)
+        private DataModelSDMX(IDataModel rootModel, string namespaceName)
+            : base(rootModel)
         {
-            this.DefaultNamespace = defaultNamespace;
-            try
-            {
-                this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureFile);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            this.Namespace = namespaceName;
+
+            this._structureParsingManager = new StructureParsingManager();
+            this._dataLocationFactory = new ReadableDataLocationFactory();
         }
 
-        public DataModelSDMX(string defaultNamespace, Uri structureUri)
+        public DataModelSDMX(IDataModel rootModel, string namespaceName, FileInfo structureFile)
+            : this(rootModel, namespaceName)
         {
-            this.DefaultNamespace = defaultNamespace;
-            try
-            {
-                this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureUri);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureFile);
         }
 
-        public DataModelSDMX(string defaultNamespace, string strUrl)
+        public DataModelSDMX(IDataModel rootModel, string namespaceName, Uri structureUri)
+            : this(rootModel, namespaceName)
         {
-            this.DefaultNamespace = defaultNamespace;
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(strUrl);
-                HttpClient.DefaultProxy.Credentials = CredentialCache.DefaultNetworkCredentials;
-                request.Method = "GET";
-                request.Accept = "application/xml";
-                WebResponse response = request.GetResponse();
-
-                this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(response.GetResponseStream());
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureUri);
         }
 
-        public DataModelSDMX(string defaultNamespace, byte[] bytes)
+        public DataModelSDMX(IDataModel rootModel, string namespaceName, string strUrl)
+            : this(rootModel, namespaceName)
         {
-            this.DefaultNamespace = defaultNamespace;
-            try
-            {
-                this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(bytes);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(strUrl);
+            HttpClient.DefaultProxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+            request.Method = "GET";
+            request.Accept = "application/xml";
+            WebResponse response = request.GetResponse();
+
+            this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(response.GetResponseStream());
         }
 
-        public DataModelSDMX(string defaultNamespace, Stream stream)
+        public DataModelSDMX(IDataModel rootModel, string namespaceName, byte[] bytes)
+            : this(rootModel, namespaceName)
         {
-            this.DefaultNamespace = defaultNamespace;
-            try
-            {
-                this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(stream);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(bytes);
+        }
+
+        public DataModelSDMX(IDataModel rootModel, string namespaceName, Stream stream)
+            : this(rootModel, namespaceName)
+        {
+            this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(stream);
         }
 
         private ISet<IMaintainableObject> GetMaintainableObjects()
@@ -115,11 +88,7 @@ namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
             return maintainable;
         }
 
-
-
-        public string DefaultNamespace { get; }
-
-        public IDataStructure GetDatasetStructure(string datasetName)
+        public override IDataStructure GetDatasetStructure(string datasetName)
         {
             ISet<IMaintainableObject> maintainable = this.GetMaintainableObjects();
 

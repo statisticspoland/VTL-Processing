@@ -5,10 +5,8 @@
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
-    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
@@ -22,26 +20,23 @@
         public static void Main(string[] args)
         {
             string source = Example.Source;
+            string connectionString = @"Server=...;Trusted_Connection=True;";
+            IServiceCollection services = new ServiceCollection();
 
-            IEnvironmentMapper envMapper = new DictionaryEnvMapper(
-                new Dictionary<string, string>()
+            services.AddVtlProcessing((configure) =>
+            {
+                configure.DataModels.DefaultNamespace = "Json";
+                configure.DataModels.AddSqlServerModel(connectionString);
+                configure.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json"); // namespace name is in a json file
+                configure.DataModels.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
+                configure.EnvironmentMapper.Mapping = new Dictionary<string, string>()
                 {
                     { "Json", string.Empty },
                     { "Regular", string.Empty },
                     { "Pivot", "[VtlProcessingTests].[Pivoting]." },
-                });
-
-
-            string connectionString = @"Server=...;Trusted_Connection=True;";
-            IServiceCollection services = new ServiceCollection();
-            services.AddVtlProcessing((configure) =>
-            {
-                configure.DefaultNamespace = "Json";
-                configure.AddSqlServerModel(connectionString, envMapper.Mapping);
-                configure.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
-                configure.AddRegularModel(RegularModel.ModelConfiguration);
+                };
             });
-
+            
             services.AddPlantUmlTarget((configure) =>
             {
                 configure.AddDataStructureObject();
@@ -54,7 +49,6 @@
 
             services.AddTsqlTarget((configure) =>
             {
-                configure.AddEnvMapper(envMapper);
                 configure.AddComments();
                 //configure.SetAttributePropagationAlgorithm(new AttributePropagationAlgorithm());
             });

@@ -6,6 +6,7 @@
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
@@ -15,30 +16,28 @@
     /// <summary>
     /// The SQL server VTL 2.0 data model.
     /// </summary>
-    public class DataModelSqlServer : IDataModel
+    public class DataModelSqlServer : DataModel
     {
         private readonly DataStructureResolver dsResolver;
         private readonly string connStr;
-        private readonly Dictionary<string, string> mapping;
+        private readonly IEnvironmentMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelSqlServer"/> class.
         /// </summary>
+        /// <param name="rootModel">The root data model.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
-        /// <param name="defaultNamespace">The default namespace name.</param>
         /// <param name="connectionString">The SQL Server connection string.</param>
-        /// <param name="mapping">The dictionary of mapped names.</param>
-        public DataModelSqlServer(DataStructureResolver dsResolver, string defaultNamespace, string connectionString, Dictionary<string, string> mapping)
+        /// <param name="mapper">The environment names mapper.</param>
+        public DataModelSqlServer(IDataModel rootModel, DataStructureResolver dsResolver, string connectionString, IEnvironmentMapper mapper)
+            : base(rootModel)
         {
             this.dsResolver = dsResolver;
             this.connStr = connectionString;
-            this.mapping = mapping;
-            this.DefaultNamespace = defaultNamespace;
+            this.mapper = mapper;
         }
 
-        public string DefaultNamespace { get; }
-
-        public IDataStructure GetDatasetStructure(string datasetName)
+        public override IDataStructure GetDatasetStructure(string datasetName)
         {
             string[] split = datasetName.Split(@"\");
             string @namespace;
@@ -53,10 +52,10 @@
                 default: throw new Exception($"Invalid DataSet identifier: {datasetName}");
             }
 
-            if (!this.mapping.ContainsKey(@namespace)) 
+            if (!this.mapper.Mapping.ContainsKey(@namespace)) 
                 return null;
 
-            SqlAddress sqlAddress = new SqlAddress(this.mapping[@namespace].Split('.'));
+            SqlAddress sqlAddress = new SqlAddress(this.mapper.Mapping[@namespace].Split('.'));
             using (SqlConnection conn = new SqlConnection(this.connStr))
             {
                 if (sqlAddress.Server != null && sqlAddress.Server != conn.DataSource) return null;
