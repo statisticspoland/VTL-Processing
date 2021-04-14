@@ -1,9 +1,8 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
-    using System.Linq;
     using Infrastructure.Interfaces;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.Linq;
 
     /// <summary>
     /// The target builder.
@@ -23,14 +22,6 @@
         }
 
         public IServiceCollection Services { get; }
-
-        public ITargetBuilder AddEnvMapper(IEnvironmentMapper envMapper)
-        {
-            this.configuration.EnvMapper = envMapper;
-            this.ReloadTargetService();
-
-            return this;
-        }
 
         public ITargetBuilder AddComments()
         {

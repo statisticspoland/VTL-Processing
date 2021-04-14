@@ -7,22 +7,27 @@
     /// <summary>
     /// The dictionary environment names mapper.
     /// </summary>
-    public class DictionaryEnvMapper : IEnvironmentMapper
+    public class EnvironmentMapper : IEnvironmentMapper
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DictionaryEnvMapper"/> class.
+        /// Initializes a new instance of the <see cref="EnvironmentMapper"/> class.
+        /// </summary>
+        public EnvironmentMapper()
+        {
+            this.Mapping = new Dictionary<string, string>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnvironmentMapper"/> class.
         /// </summary>
         /// <param name="namespaceMapping">The dictionary of mapped names.</param>
-        public DictionaryEnvMapper(Dictionary<string, string> namespaceMapping)
+        public EnvironmentMapper(Dictionary<string, string> namespaceMapping)
         {
             if (namespaceMapping == null) throw new ArgumentNullException("mapping");
             this.Mapping = namespaceMapping;
         }
 
-        /// <summary>
-        /// Gets the dictionary of mapped names
-        /// </summary>
-        public Dictionary<string, string> Mapping { get; }
+        public Dictionary<string, string> Mapping { get; set; }
 
         public string Map(string datasetName)
         {

@@ -4,7 +4,6 @@ namespace VtlProcessing.IntegrationTests.TSQL
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
-    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
@@ -39,14 +38,11 @@ namespace VtlProcessing.IntegrationTests.TSQL
             IServiceCollection services = new ServiceCollection();
             services.AddVtlProcessing((configure) =>
             {
-                configure.DefaultNamespace = "ns";
-                configure.AddSqlServerModel(connectionString, sqlMapping);
+                configure.DataModels.DefaultNamespace = "ns";
+                configure.DataModels.AddSqlServerModel(connectionString);
             });
 
-            services.AddTsqlTarget((configure) =>
-            {
-                configure.AddEnvMapper(new DictionaryEnvMapper(sqlMapping));
-            });
+            services.AddTsqlTarget();
 
             this.errCollectorProvider = new ErrorCollectorProvider();
             services.AddLogging((configure) =>

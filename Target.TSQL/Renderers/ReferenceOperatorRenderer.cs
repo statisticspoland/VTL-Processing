@@ -1,10 +1,10 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Renderers
 {
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes;
-    using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces;
 
     /// <summary>
@@ -13,20 +13,20 @@
     [OperatorRendererSymbol("ref")]
     internal sealed class ReferenceOperatorRenderer : IOperatorRenderer
     {
-        private readonly ITargetConfiguration config;
+        private readonly IEnvironmentMapper envMapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceOperatorRenderer"/> class.
         /// </summary>
-        /// <param name="config">The configuration of the target.</param>
-        public ReferenceOperatorRenderer(ITargetConfiguration config)
+        /// <param name="envMapper">The environment names mapper.</param>
+        public ReferenceOperatorRenderer(IEnvironmentMapper envMapper)
         {
-            this.config = config;
+            this.envMapper = envMapper;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (expr.ParamSignature == "<root>") return $"SELECT * FROM {this.config.EnvMapper.Map(expr.ReferenceExpression.ResultMappedName)}";
+            if (expr.ParamSignature == "<root>") return $"SELECT * FROM {this.envMapper.Map(expr.ReferenceExpression.ResultMappedName)}";
             if (expr.ResultName == "Alias")
             {
                 // join "if-then-else" operator support:

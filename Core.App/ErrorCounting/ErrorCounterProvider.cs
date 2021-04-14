@@ -12,7 +12,7 @@
 
         public List<ErrorCounter> ErrorCounters { get; set; }
 
-        public ILogger CreateLogger(string categoryName)
+        public ILogger CreateLogger(string categoryName = null)
         {
             ErrorCounter errorCounter = new ErrorCounter();
             this.ErrorCounters.Add(errorCounter);

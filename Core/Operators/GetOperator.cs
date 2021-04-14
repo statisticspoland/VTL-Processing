@@ -32,7 +32,7 @@
 
             string[] split = expression.ExpressionText.Split(@"\");
             if (split.Length == 1)
-                expression.ExpressionText = $@"{dataModel.DefaultNamespace}\{expression.ExpressionText}";
+                expression.ExpressionText = $@"{this.dataModel.DefaultNamespace}\{expression.ExpressionText}";
 
             return structure;
         }
