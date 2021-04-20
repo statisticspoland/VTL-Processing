@@ -3,6 +3,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
@@ -13,6 +14,7 @@
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Transformations;
@@ -54,7 +56,9 @@
 
             foreach (Type type in Operators)
             {
-                services.AddTransient(type);
+                OperatorSymbol opSymbol = (OperatorSymbol)type.GetCustomAttributes().First(attribute => attribute.GetType() == typeof(OperatorSymbol));
+                if (opSymbol.Symbols.Count == 1)
+                    services.AddTransient(type);
             }
 
             services.AddSingleton<ISchemaModifiersApplier, SchemaModifiersApplier>();
