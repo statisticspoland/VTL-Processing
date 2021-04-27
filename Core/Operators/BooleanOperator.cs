@@ -16,8 +16,8 @@
     [OperatorSymbol("and", "or", "xor", "not")]
     public class BooleanOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BooleanOperator"/> class.
@@ -27,8 +27,8 @@
         /// <param name="symbol">The symbol of the operator.</param>
         public BooleanOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Boolean";
@@ -39,7 +39,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 =
@@ -70,7 +70,7 @@
                 if (!ds1.IsSingleComponent) ds1.Measures[0].ValueDomain = new ValueDomain(BasicDataType.Boolean);
                 if (!ds2.IsSingleComponent) ds2.Measures[0].ValueDomain = new ValueDomain(BasicDataType.Boolean);
 
-                if (expr1.IsScalar && expr2.IsScalar) structure = this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
+                if (expr1.IsScalar && expr2.IsScalar) structure = this._dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
                 else if (!expr1.IsScalar && expr2.IsScalar) structure = ds1.WithAttributesOf(ds2);
                 else if (expr1.IsScalar && !expr2.IsScalar) structure = ds2.WithAttributesOf(ds1);
                 else

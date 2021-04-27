@@ -11,11 +11,11 @@
 
     public class UnaryArithmeticOperatorTests
     {
-        private readonly List<string> operators;
+        private readonly List<string> _operators;
 
         public UnaryArithmeticOperatorTests()
         {
-            this.operators = new List<string>() { "minus", "plus" };
+            this._operators = new List<string>() { "minus", "plus" };
         }
 
         [Theory]
@@ -30,7 +30,7 @@
         [InlineData(TestExprType.MixedNoneNumDataset)]
         public void GetOutputStructure_CorrectExpr_DataStructure(TestExprType type)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression unaryArithmeticExpr = ModelResolvers.ExprResolver();
                 unaryArithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -60,7 +60,7 @@
             TestExprType[][] combinations = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().GetCombinations(1);
             TestExprType[][] wrongCombs = combinations.Without(correctCombs);
 
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 foreach (TestExprType[] wrongComb in wrongCombs)
                 {

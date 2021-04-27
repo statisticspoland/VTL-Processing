@@ -16,8 +16,8 @@
     [OperatorSymbol("match_characters")]
     public class MatchCharactersOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="MatchCharactersOperator"/> class.
@@ -26,8 +26,8 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public MatchCharactersOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Match characters";
@@ -38,7 +38,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 = expression.OperandsCollection.ToArray()[1];
@@ -58,7 +58,7 @@
             if (!type1.In(BasicDataType.String, BasicDataType.None) || !type2.In(BasicDataType.String, BasicDataType.None)) 
                 throw new VtlOperatorError(expression, this.Name, "Expected string components.");
 
-            if (expr1.IsScalar) return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
+            if (expr1.IsScalar) return this._dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
 
             IDataStructure structure = expr1.Structure.GetCopy().WithAttributesOf(expr2.Structure);
 

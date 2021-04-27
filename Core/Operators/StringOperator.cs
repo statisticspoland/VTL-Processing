@@ -16,8 +16,8 @@
     [OperatorSymbol("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")]
     public class StringOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="StringOperator"/> class.
@@ -27,8 +27,8 @@
         /// <param name="symbol">The symbol of the operator.</param>
         public StringOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "String";
@@ -39,9 +39,8 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
-            int attributeErrors = 0;
             IDataStructure structure = null;
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 =
@@ -116,7 +115,7 @@
                     measure.ValueDomain = new ValueDomain(BasicDataType.String);
                 }
             }
-            else return this.dsResolver("string_var", ComponentType.Measure, BasicDataType.String);
+            else return this._dsResolver("string_var", ComponentType.Measure, BasicDataType.String);
 
             return structure;
         }

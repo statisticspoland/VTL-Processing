@@ -12,7 +12,7 @@
     /// </summary>
     public class JoinUsingFillingModifier : ISchemaModifier
     {
-        private readonly IJoinBuilder builder;
+        private readonly IJoinBuilder _builder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JoinUsingFillingModifier"/> class.
@@ -20,7 +20,7 @@
         /// <param name="builder">Builder for modifier.</param>
         public JoinUsingFillingModifier(IJoinBuilder builder)
         {
-            this.builder = builder;
+            this._builder = builder;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@
             {
                 List<IExpression> branches = expression.OperandsCollection.ToList();
 
-                branches.Insert(1, this.builder.BuildBranch("using", expression));
+                branches.Insert(1, this._builder.BuildBranch("using", expression));
                 expression.OperandsCollection = branches;
 
                 if (expression.Operands.ContainsKey("apply")) this.ModifyJoins(expression.Operands["apply"]);

@@ -15,7 +15,7 @@
     [OperatorSymbol("exists_in")]
     public class ExistsInOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ExistsInOperator"/> class.
@@ -23,7 +23,7 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public ExistsInOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Exists in";
@@ -42,7 +42,7 @@
             if (expr1.Structure.Identifiers.Count > expr2.Structure.Identifiers.Count)
                 throw new VtlOperatorError(expression, this.Name, "Second dataset's identifiers number must be greater or equal to identifiers number of first dataset's.");
 
-            if (expression.CurrentJoinExpr != null) return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
+            if (expression.CurrentJoinExpr != null) return this._dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
 
             IDataStructure structure = expr1.Structure.GetCopy().WithAttributesOf(expr2.Structure);
             StructureComponent measure = structure.Measures[0];

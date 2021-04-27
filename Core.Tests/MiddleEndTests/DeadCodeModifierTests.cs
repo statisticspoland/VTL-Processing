@@ -9,15 +9,15 @@
         [Fact]
         public void Modify_ExprWithDeadCode_ExprWithoutDeadCode()
         {
-            this.deadCodeModifier.Modify(this.schema);
+            this._deadCodeModifier.Modify(this._schema);
 
-            Assert.Equal(2, schema.AssignmentObjects.Count);
+            Assert.Equal(2, _schema.AssignmentObjects.Count);
             Assert.Equal(
-                new AssignmentObject[] { this.schema.AssignmentObjects["C"] },
-                this.schema.AssignmentObjects["A"].Users.ToArray());
+                new AssignmentObject[] { this._schema.AssignmentObjects["C"] },
+                this._schema.AssignmentObjects["A"].Users.ToArray());
             Assert.Equal(
                 new AssignmentObject[] { },
-                this.schema.AssignmentObjects["C"].Users.ToArray());
+                this._schema.AssignmentObjects["C"].Users.ToArray());
         }
     }
 }

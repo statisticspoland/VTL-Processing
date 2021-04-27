@@ -14,7 +14,7 @@
     [OperatorSymbol("collection")]
     public class CollectionOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="CollectionOperator"/> class.
@@ -22,7 +22,7 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public CollectionOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Collection";
@@ -33,7 +33,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            IDataStructure dataStructure = this.dsResolver();
+            IDataStructure dataStructure = this._dsResolver();
             foreach (IExpression expr in expression.OperandsCollection)
             {
                 StructureComponent currentComp = expr.Structure.GetCopy().Components[0];

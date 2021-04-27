@@ -17,7 +17,7 @@
     [OperatorRendererSymbol("flow_to_stock")]
     internal sealed class FlowToStockOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FlowToStockOperatorRenderer"/> class.
@@ -25,16 +25,16 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public FlowToStockOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             StringBuilder result = new StringBuilder();
             IExpression datasetExpr = expr.OperandsCollection.ToArray()[0];
-            string datasetName = this.opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
+            string datasetName = this._opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
             string measureName = component.ComponentName.GetNameWithoutAlias();
 
             result.AppendLine($"(SELECT SUM({measureName}) FROM (");

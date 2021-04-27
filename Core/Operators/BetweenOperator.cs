@@ -16,8 +16,8 @@
     [OperatorSymbol("between")]
     public class BetweenOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BetweenOperator"/> class.
@@ -26,8 +26,8 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public BetweenOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Between";
@@ -38,7 +38,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 = expression.OperandsCollection.ToArray()[1];
@@ -65,7 +65,7 @@
                     throw new VtlOperatorError(expression, this.Name, "First parameter must have the same data type as second and third parameter.");
                 }
 
-                return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
+                return this._dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
             }
             else
             {

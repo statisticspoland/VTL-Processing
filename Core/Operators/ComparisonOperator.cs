@@ -16,8 +16,8 @@
     [OperatorSymbol("=", "<>", "<", "<=", ">", ">=")]
     public class ComparisonOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ComparisonOperator"/> class.
@@ -27,8 +27,8 @@
         /// <param name="symbol">The symbol of the operator.</param>
         public ComparisonOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Comparison";
@@ -39,7 +39,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr1 = expression.OperandsCollection.ToArray()[0];
             IExpression expr2 = expression.OperandsCollection.ToArray()[1];
@@ -68,7 +68,7 @@
             IDataStructure ds1 = expr1.Structure.GetCopy();
             IDataStructure ds2 = expr2.Structure.GetCopy();
 
-            if (expr1.IsScalar && expr2.IsScalar) return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
+            if (expr1.IsScalar && expr2.IsScalar) return this._dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
             if (!expr1.IsScalar && expr2.IsScalar) structure = ds1.WithAttributesOf(ds2);
             else if (expr1.IsScalar && !expr2.IsScalar) structure = ds2.WithAttributesOf(ds1);
             else

@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("match_characters")]
     internal sealed class MatchCharactersOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MatchCharactersOperatorRenderer"/> class.
@@ -22,17 +22,17 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public MatchCharactersOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression expr1 = expr.OperandsCollection.First();
             IExpression expr2 = expr.Operands["ds_2"];
 
-            string op1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
+            string op1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
 
             string result = string.Empty;
             string symbol = expr.OperatorSymbol;

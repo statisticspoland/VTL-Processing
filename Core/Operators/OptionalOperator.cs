@@ -12,7 +12,7 @@
     [OperatorSymbol("optional")]
     public class OptionalOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="OptionalOperator"/> class.
@@ -20,7 +20,7 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public OptionalOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Optional";
@@ -31,7 +31,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            return this.dsResolver(expression.OperatorSymbol, ComponentType.Measure, BasicDataType.None);
+            return this._dsResolver(expression.OperatorSymbol, ComponentType.Measure, BasicDataType.None);
         }
     }
 }

@@ -11,18 +11,18 @@
 
     public class IfThenElseOperatorTests
     {
-        private readonly IExpression ifThenElseExpr;
+        private readonly IExpression _ifThenElseExpr;
 
         public IfThenElseOperatorTests()
         {
-            this.ifThenElseExpr = ModelResolvers.ExprResolver();
-            this.ifThenElseExpr.OperatorDefinition = ModelResolvers.OperatorResolver("if");
-            this.ifThenElseExpr.AddOperand("if", ModelResolvers.ExprResolver());
-            this.ifThenElseExpr.AddOperand("then", ModelResolvers.ExprResolver());
-            this.ifThenElseExpr.AddOperand("else", ModelResolvers.ExprResolver());
-            this.ifThenElseExpr.Operands["if"].AddOperand("ds_1", ModelResolvers.ExprResolver());
-            this.ifThenElseExpr.Operands["then"].AddOperand("ds_1", ModelResolvers.ExprResolver());
-            this.ifThenElseExpr.Operands["else"].AddOperand("ds_1", ModelResolvers.ExprResolver());
+            this._ifThenElseExpr = ModelResolvers.ExprResolver();
+            this._ifThenElseExpr.OperatorDefinition = ModelResolvers.OperatorResolver("if");
+            this._ifThenElseExpr.AddOperand("if", ModelResolvers.ExprResolver());
+            this._ifThenElseExpr.AddOperand("then", ModelResolvers.ExprResolver());
+            this._ifThenElseExpr.AddOperand("else", ModelResolvers.ExprResolver());
+            this._ifThenElseExpr.Operands["if"].AddOperand("ds_1", ModelResolvers.ExprResolver());
+            this._ifThenElseExpr.Operands["then"].AddOperand("ds_1", ModelResolvers.ExprResolver());
+            this._ifThenElseExpr.Operands["else"].AddOperand("ds_1", ModelResolvers.ExprResolver());
         }
 
         [Theory]
@@ -213,9 +213,9 @@
         [InlineData(TestExprType.MixedNoneDurDataset, TestExprType.DurationsDataset, /*result:*/ TestExprType.DurationsDataset)]
         public void GetOutputStructure_CorrectScalarConditionExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(types[0]);
@@ -223,7 +223,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -231,9 +231,9 @@
         [Fact]
         public void GetOutputStructure_CorrectDatasetCondition2ScalarsExpr_DataStructure()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
@@ -243,7 +243,7 @@
             IExpression expected = TestExprFactory.GetExpression(TestExprType.Boolean);
             expected.Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -408,9 +408,9 @@
         [InlineData(TestExprType.None, TestExprType.MixedNoneDurDataset, /*result:*/ TestExprType.MixedNoneDurDataset)]
         public void GetOutputStructure_CorrectDatasetConditionNot2ScalarsExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
@@ -419,7 +419,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -475,9 +475,9 @@
         [InlineData(TestExprType.MixedNoneDurDataset, TestExprType.None, /*result:*/ TestExprType.MixedNoneDurDataset)]
         public void GetOutputStructure_CorrectNoCalc2DatasetsComponentExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
@@ -488,7 +488,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -544,9 +544,9 @@
         [InlineData(TestExprType.None, TestExprType.MixedNoneDurDataset, /*result:*/ TestExprType.MixedNoneDurDataset)]
         public void GetOutputStructure_CorrectNoCalcDatasetComponentDatasetExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
@@ -557,7 +557,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -565,9 +565,9 @@
         [Fact]
         public void GetOutputStructure_CorrectNoCalcDataset2ComponentsExpr_DataStructure()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
@@ -580,7 +580,7 @@
             IExpression expected = TestExprFactory.GetExpression(TestExprType.Boolean);
             expected.Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -636,9 +636,9 @@
         [InlineData(TestExprType.None, TestExprType.MixedNoneDurDataset, /*result:*/ TestExprType.MixedNoneDurDataset)]
         public void GetOutputStructure_CorrectNoCalc2ComponentsDatasetExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(types[0]);
@@ -649,7 +649,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -715,9 +715,9 @@
         [InlineData(TestExprType.MixedNoneDurDataset, TestExprType.DurationsDataset, /*result:*/ TestExprType.DurationsDataset)]
         public void GetOutputStructure_CorrectNoCalcComponent2DatasetsExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(types[0]);
@@ -727,7 +727,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -783,9 +783,9 @@
         [InlineData(TestExprType.None, TestExprType.MixedNoneDurDataset, /*result:*/ TestExprType.MixedNoneDurDataset)]
         public void GetOutputStructure_CorrectNoCalcComponentDatasetScalarExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(types[1]);
@@ -795,7 +795,7 @@
 
             IExpression expected = TestExprFactory.GetExpression(types[2]);
 
-            IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+            IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
             Assert.True(expected.Structure.EqualsObj(dataStructure));
         }
@@ -810,15 +810,15 @@
         [InlineData(TestExprType.Duration)]
         public void GetOutputStructure_NoBooleanScalarIfExpr_ThrowsException(TestExprType type)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(type);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Theory]
@@ -831,9 +831,9 @@
         [InlineData(TestExprType.Duration)]
         public void GetOutputStructure_NoBooleanMeasureDatasetIfExpr_ThrowsException(TestExprType type)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(type);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.Integer, "Id1"));
@@ -841,7 +841,7 @@
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Theory]
@@ -854,24 +854,24 @@
         [InlineData(TestExprType.Duration)]
         public void GetOutputStructure_Dataset2NoBooleanScalarsExpr_ThrowsException(TestExprType type)
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.String, "Id1"));
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(type);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(type);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Fact]
         public void GetOutputStructure_NoSingleMeasureDatasetIfExpr_ThrowsException()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
@@ -880,22 +880,22 @@
             ifExpr.Operands["ds_1"].Structure.Measures.Add(new StructureComponent(BasicDataType.Boolean, "Me1"));
             ifExpr.Operands["ds_1"].Structure.Measures.Add(new StructureComponent(BasicDataType.Boolean, "Me2"));
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Fact]
         public void GetOutputStructure_CalcComponentWithoutDatasetExpr_DataStructure()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
             IExpression calcBranchExpr = TestExprFactory.GetExpression("Calc", ExpressionFactoryNameTarget.ResultName);
             IExpression calcExpr = TestExprFactory.GetExpression("Calc expression", ExpressionFactoryNameTarget.ResultName);
             IExpression compExpr = TestExprFactory.GetExpression(TestExprType.Integer);
 
             calcBranchExpr.AddOperand("ds_1", calcExpr);
             calcExpr.AddOperand("ds_1", compExpr);
-            calcExpr.AddOperand("ds_2", this.ifThenElseExpr);
+            calcExpr.AddOperand("ds_2", this._ifThenElseExpr);
             compExpr.ResultName = "Component";
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
@@ -917,7 +917,7 @@
                     default: throw new Exception();
                 }
 
-                IDataStructure dataStructure = this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr);
+                IDataStructure dataStructure = this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr);
 
                 Assert.True(dataStructure.IsSingleComponent);
                 Assert.True(compExpr.Structure.Components[0].ValueDomain.DataType == dataStructure.Components[0].ValueDomain.DataType);
@@ -958,24 +958,24 @@
         [Fact]
         public void GetOutputStructure_3NotMatchingDatasetsExpr_ThrowsException()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             ifExpr.Operands["ds_1"].Structure.Identifiers.Add(new StructureComponent(BasicDataType.String, "Id1"));
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.IntsDataset);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.StringsDataset);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Fact]
         public void GetOutputStructure_2NotMatchingDatasetsExpr_ThrowsException()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
@@ -1001,50 +1001,50 @@
                         break;
                 }
 
-                Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+                Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
             }
         }
 
         [Fact]
         public void GetOutputStructure_NotMatchingTypesScalarThenScalarElseExpr_ThrowsException()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.String);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Fact]
         public void GetOutputStructure_NotMatchingTypesScalarThenDatasetElseExpr_ThrowsException()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Integer);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.StringsDataset);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
 
         [Fact]
         public void GetOutputStructure_NotMatchingTypesDatasetThenScalarElseExpr_ThrowsException()
         {
-            IExpression ifExpr = this.ifThenElseExpr.Operands["if"];
-            IExpression thenExpr = this.ifThenElseExpr.Operands["then"];
-            IExpression elseExpr = this.ifThenElseExpr.Operands["else"];
+            IExpression ifExpr = this._ifThenElseExpr.Operands["if"];
+            IExpression thenExpr = this._ifThenElseExpr.Operands["then"];
+            IExpression elseExpr = this._ifThenElseExpr.Operands["else"];
 
             ifExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.Boolean);
             thenExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.IntsDataset);
             elseExpr.Operands["ds_1"] = TestExprFactory.GetExpression(TestExprType.String);
 
-            Assert.ThrowsAny<VtlOperatorError>(() => { this.ifThenElseExpr.OperatorDefinition.GetOutputStructure(this.ifThenElseExpr); });
+            Assert.ThrowsAny<VtlOperatorError>(() => { this._ifThenElseExpr.OperatorDefinition.GetOutputStructure(this._ifThenElseExpr); });
         }
     }
 }

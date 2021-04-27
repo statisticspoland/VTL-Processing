@@ -13,7 +13,7 @@
     [OperatorSymbol("keep", "drop")]
     public class KeepDropOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="KeepDropOperator"/> class.
@@ -22,7 +22,7 @@
         /// <param name="symbol">The symbol of the operator.</param>
         public KeepDropOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Keep / Drop";
@@ -33,7 +33,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            IDataStructure structure = this.dsResolver();
+            IDataStructure structure = this._dsResolver();
             foreach (IExpression expr in expression.OperandsCollection)
             {
                 if (!expr.IsScalar) throw new VtlOperatorError(expression, this.Name, "Expected scalar expression.");

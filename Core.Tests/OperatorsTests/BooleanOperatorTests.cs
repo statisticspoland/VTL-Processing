@@ -12,11 +12,11 @@
 
     public partial class BooleanOperatorTests
     {
-        private readonly List<string> operators;
+        private readonly List<string> _operators;
 
         public BooleanOperatorTests()
         {
-            this.operators = new List<string>() { "and", "or", "xor" };
+            this._operators = new List<string>() { "and", "or", "xor" };
         }
 
         [Theory]
@@ -26,7 +26,7 @@
         [InlineData(TestExprType.NonesDataset, TestExprType.BoolsDataset)]
         public void GetOutputStructure_Correct2DatasetsExpr_BoolScalarStructre(params TestExprType[] types)
         {
-            foreach (string opSymbol in operators)
+            foreach (string opSymbol in _operators)
             {
                 IExpression boolExpr = TestExprFactory.GetExpression(types);
                 boolExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -50,7 +50,7 @@
         [InlineData(TestExprType.NonesDataset, TestExprType.Boolean)]
         public void GetOutputStructure_CorrectDatasetScalarExpr_BoolScalarStructre(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression boolExpr = TestExprFactory.GetExpression(types);
                 boolExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -73,7 +73,7 @@
         [InlineData(TestExprType.None, TestExprType.BoolsDataset)]
         public void GetOutputStructure_CorrectScalarDatasetExpr_BoolScalarStructre(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression boolExpr = TestExprFactory.GetExpression(types);
                 boolExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -96,7 +96,7 @@
         [InlineData(TestExprType.None, TestExprType.Boolean)]
         public void GetOutputStructure_Correct2ScalarsExpr_BoolScalarStructre(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression boolExpr = TestExprFactory.GetExpression(types[0], types[1]);
                 boolExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -132,7 +132,7 @@
             TestExprType[][] combinations = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().GetCombinations(2);
             TestExprType[][] wrongCombs = combinations.Without(correctCombs);
 
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18 && (int)wrongComb[1] < 18)) // No mixed datasets
                 {

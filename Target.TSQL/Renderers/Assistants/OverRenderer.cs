@@ -13,7 +13,7 @@
     [OperatorRendererSymbol("over")]
     internal sealed class OverRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OverRenderer"/> class.
@@ -21,7 +21,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public OverRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -34,7 +34,7 @@
                 sb.AppendLine("PARTITION BY ");
                 foreach (IExpression compExpr in expr.Operands["partition"].OperandsCollection)
                 {
-                    sb.Append($"{this.opRendererResolver(compExpr.OperatorSymbol).Render(compExpr)}, ");
+                    sb.Append($"{this._opRendererResolver(compExpr.OperatorSymbol).Render(compExpr)}, ");
                 }
 
                 sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 2)); // usunięcie ", " 
@@ -46,7 +46,7 @@
                 sb.AppendLine("ORDER BY");
                 foreach (IExpression compExpr in expr.Operands["order"].OperandsCollection)
                 {
-                    sb.Append($"{this.opRendererResolver(compExpr.OperatorSymbol).Render(compExpr)}, ");
+                    sb.Append($"{this._opRendererResolver(compExpr.OperatorSymbol).Render(compExpr)}, ");
                 }
             }
 

@@ -16,7 +16,7 @@
     [OperatorRendererSymbol("#")]
     internal sealed class MembershipOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MembershipOperatorRenderer"/> class.
@@ -24,7 +24,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public MembershipOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -64,7 +64,7 @@
             string[] closingKeywords = new string[] { "(", ")", " AS t" };
             if (expr.Operands["ds_1"].OperatorSymbol.In("get", "ref")) closingKeywords = new string[] { string.Empty, string.Empty, string.Empty };
 
-            sb.AppendLine($"FROM {closingKeywords[0]}{this.opRendererResolver(expr.Operands["ds_1"].OperatorSymbol).Render(expr.Operands["ds_1"], null)}{closingKeywords[1]}{closingKeywords[2]}");
+            sb.AppendLine($"FROM {closingKeywords[0]}{this._opRendererResolver(expr.Operands["ds_1"].OperatorSymbol).Render(expr.Operands["ds_1"], null)}{closingKeywords[1]}{closingKeywords[2]}");
             return sb.ToString();
         }
     }

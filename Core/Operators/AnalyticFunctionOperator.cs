@@ -15,8 +15,8 @@
     [OperatorSymbol("first_value", "last_value", "lag", "rank", "ratio_to_report", "lead")]
     public class AnalyticFunctionOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="AnalyticFunctionOperator"/> class.
@@ -26,8 +26,8 @@
         /// <param name="symbol">The symbol of the operator.</param>
         public AnalyticFunctionOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression operand = 
                 expression.Operands.ContainsKey("ds_1") ?
@@ -61,10 +61,10 @@
 
             if (operand == null || operand.IsScalar)
             {
-                if (this.Symbol == "rank") return this.dsResolver("int_var", ComponentType.Measure, BasicDataType.Integer);
+                if (this.Symbol == "rank") return this._dsResolver("int_var", ComponentType.Measure, BasicDataType.Integer);
                 
                 StructureComponent component = operand.Structure.Components[0];
-                return this.dsResolver(component.ComponentName, component.ComponentType, component.ValueDomain.DataType);
+                return this._dsResolver(component.ComponentName, component.ComponentType, component.ValueDomain.DataType);
             }
 
             return operand.Structure.GetCopy();

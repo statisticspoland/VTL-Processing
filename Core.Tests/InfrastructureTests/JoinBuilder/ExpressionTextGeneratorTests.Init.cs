@@ -8,11 +8,11 @@
 
     public partial class ExpressionTextGeneratorTests
     {
-        private readonly ExpressionTextGenerator exprTextGenerator;
+        private readonly ExpressionTextGenerator _exprTextGenerator;
 
         public ExpressionTextGeneratorTests()
         {
-            this.exprTextGenerator = new ExpressionTextGenerator();
+            this._exprTextGenerator = new ExpressionTextGenerator();
         }
 
         private IExpression GetExpr(string opSymbol)

@@ -14,7 +14,7 @@
     [OperatorSymbol("pivot")]
     public class PivotOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="PivotOperator"/> class.
@@ -22,7 +22,7 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public PivotOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Pivot";
@@ -33,7 +33,7 @@
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            IDataStructure structure = this.dsResolver();
+            IDataStructure structure = this._dsResolver();
 
             if (expression.OperandsCollection.Count() != 2) throw new VtlOperatorError(expression, this.Name, "Expected two components.");
 

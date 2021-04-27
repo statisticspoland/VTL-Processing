@@ -17,8 +17,8 @@
     [OperatorSymbol("check_datapoint")]
     public class CheckDatapointOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
-        private readonly IExpressionFactory exprFac;
+        private readonly DataStructureResolver _dsResolver;
+        private readonly IExpressionFactory _exprFac;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="CheckDatapointOperator"/> class.
@@ -27,8 +27,8 @@
         /// <param name="exprFac">The expression factory.</param>
         public CheckDatapointOperator(DataStructureResolver dsResolver, IExpressionFactory exprFac)
         {
-            this.dsResolver = dsResolver;
-            this.exprFac = exprFac;
+            this._dsResolver = dsResolver;
+            this._exprFac = exprFac;
         }
 
         public string Name => "Check datapoint";
@@ -41,7 +41,7 @@
         {
             this.Validate(expression);
 
-            IDataStructure structure = this.dsResolver();
+            IDataStructure structure = this._dsResolver();
             structure.Identifiers = expression.Operands["ds_1"].Structure.GetCopy().Identifiers;
             structure.Identifiers.Add(new StructureComponent(BasicDataType.String, "ruleid"));
             
@@ -106,7 +106,7 @@
             }
             else // components list not specified
             {
-                IExpression collectionExpr = this.exprFac.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression collectionExpr = this._exprFac.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
                 collectionExpr.ExpressionText = "components ";
                 collectionExpr.LineNumber = expr.LineNumber;
 
@@ -159,7 +159,7 @@
         /// <returns>A component expression.</returns>
         private IExpression CreateComponentExpression(string expressionText, int lineNumber, IExpression parentExpr)
         {
-            IExpression componentExpr = this.exprFac.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression componentExpr = this._exprFac.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
             componentExpr.ExpressionText = expressionText;
             componentExpr.LineNumber = lineNumber;
 

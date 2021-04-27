@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("if")]
     internal sealed class IfThenElseOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IfThenElseOperatorRenderer"/> class.
@@ -22,12 +22,12 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public IfThenElseOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             string ifExprRenderSuffix = string.Empty;
             if (expr.Operands["if"].OperandsCollection.First().OperatorSymbol.In("ref", "const", "#", "comp")) ifExprRenderSuffix = " = 1";
@@ -45,7 +45,7 @@
             if (expr.IsScalar)
             {
                 if (expr.ResultName == "If" && expr.CurrentJoinExpr != null) component = null;
-                return this.opRendererResolver(expr.Operands["ds_1"].OperatorSymbol).Render(expr.Operands["ds_1"], component);
+                return this._opRendererResolver(expr.Operands["ds_1"].OperatorSymbol).Render(expr.Operands["ds_1"], component);
             }
 
             return $"{expr.OperandsCollection.First().ExpressionText}.{component.ComponentName}";

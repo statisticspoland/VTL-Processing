@@ -16,7 +16,7 @@
     [OperatorSymbol("const")]
     public class ConstantOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ConstantOperator"/> class.
@@ -24,7 +24,7 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public ConstantOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Constant";
@@ -106,7 +106,7 @@
                 throw new VtlOperatorError(expression, this.Name, "Could not infer data type.");
             }
 
-            return this.dsResolver(constName, ComponentType.Measure, dataType);
+            return this._dsResolver(constName, ComponentType.Measure, dataType);
         }
     }
 }

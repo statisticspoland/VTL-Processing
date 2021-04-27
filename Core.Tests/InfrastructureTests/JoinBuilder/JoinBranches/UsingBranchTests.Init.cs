@@ -7,7 +7,7 @@
 
     public partial class UsingBranchTests
     {
-        private readonly IExpressionFactory exprFac;
+        private readonly IExpressionFactory _exprFac;
 
         public UsingBranchTests()
         {
@@ -18,7 +18,7 @@
                 return TestExprFactory.GetExpression(name, nameTarget);
             });
 
-            this.exprFac = exprFactoryMock.Object;
+            this._exprFac = exprFactoryMock.Object;
         }
     }
 }

@@ -9,14 +9,14 @@
 
     public partial class DeadCodeModifierTests
     {
-        private readonly DeadCodeModifier deadCodeModifier;
-        private readonly ITransformationSchema schema;
+        private readonly DeadCodeModifier _deadCodeModifier;
+        private readonly ITransformationSchema _schema;
 
         public DeadCodeModifierTests()
         {
-            this.deadCodeModifier = new DeadCodeModifier();
+            this._deadCodeModifier = new DeadCodeModifier();
 
-            this.InitSchema(ref this.schema);
+            this.InitSchema(ref this._schema);
         }
 
         private void InitSchema(ref ITransformationSchema schema)

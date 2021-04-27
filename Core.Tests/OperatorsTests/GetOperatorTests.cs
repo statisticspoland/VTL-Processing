@@ -11,7 +11,7 @@
 
     public class GetOperatorTests
     {
-        private readonly OperatorResolver opResolver;
+        private readonly OperatorResolver _opResolver;
 
         public GetOperatorTests()
         {
@@ -21,7 +21,7 @@
             Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();
             opResolverMock.Setup(o => o("get")).Returns(() => { return new GetOperator(dataModelMock.Object); });
 
-            this.opResolver = opResolverMock.Object;
+            this._opResolver = opResolverMock.Object;
         }
 
         private IDataStructure GetDataStructure(string dsName)
@@ -39,7 +39,7 @@
             IExpression getExpr = ModelResolvers.ExprResolver();
             getExpr.ExpressionText = "IntsDataset";
 
-            getExpr.OperatorDefinition = this.opResolver("get");
+            getExpr.OperatorDefinition = this._opResolver("get");
 
             IDataStructure dataStructure = getExpr.OperatorDefinition.GetOutputStructure(getExpr);
 
@@ -52,7 +52,7 @@
             IExpression getExpr = ModelResolvers.ExprResolver();
             getExpr.ExpressionText = "Dataset";
 
-            getExpr.OperatorDefinition = this.opResolver("get");
+            getExpr.OperatorDefinition = this._opResolver("get");
 
             Assert.ThrowsAny<Exception>(() => { getExpr.OperatorDefinition.GetOutputStructure(getExpr); });
         }
