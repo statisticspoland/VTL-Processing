@@ -11,18 +11,9 @@
     [OperatorSymbol("union", "intersect", "setdiff", "symdiff")]
     public class SetOperator : IOperatorDefinition
     {
-        /// <summary>
-        /// Initialises a new instance of the <see cref="SetOperator"/> class.
-        /// </summary>
-        /// <param name="symbol">The symbol of the operator.</param>
-        public SetOperator(string symbol)
-        {
-            this.Symbol = symbol;
-        }
-
         public string Name => "Set";
 
-        public string Symbol { get; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 

@@ -25,7 +25,7 @@
 
         public string Name => "Optional";
 
-        public string Symbol => "opt";
+        public string Symbol { get; set; } = "opt";
 
         public string Keyword { get; set; }
 

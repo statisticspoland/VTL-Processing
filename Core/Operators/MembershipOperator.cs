@@ -27,7 +27,7 @@
 
         public string Name => "Membership";
 
-        public string Symbol => "#";
+        public string Symbol { get; set; } = "#";
 
         public string Keyword { get; set; }
 

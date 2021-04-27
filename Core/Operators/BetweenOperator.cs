@@ -32,7 +32,7 @@
 
         public string Name => "Between";
 
-        public string Symbol => "between";
+        public string Symbol { get; set; } = "between";
 
         public string Keyword { get; set; }
 

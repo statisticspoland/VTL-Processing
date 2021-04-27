@@ -27,16 +27,15 @@
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public NumericOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver, string symbol)
+        public NumericOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
             this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
-            this.Symbol = symbol;
         }
 
         public string Name => "Numeric";
 
-        public string Symbol { get; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 

@@ -26,7 +26,7 @@
 
         public string Name => "Subspace";
 
-        public string Symbol => "sub";
+        public string Symbol { get; set; } = "sub";
 
         public string Keyword { get; set; }
 

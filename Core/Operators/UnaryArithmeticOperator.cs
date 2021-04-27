@@ -20,15 +20,14 @@
         /// </summary>
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public UnaryArithmeticOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, string symbol)
+        public UnaryArithmeticOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp)
         {
             this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.Symbol = symbol;
         }
 
         public string Name => "Unary arithmetic";
 
-        public string Symbol { get; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 

@@ -32,7 +32,7 @@
 
         public string Name => "If-Then-Else";
 
-        public string Symbol => "if";
+        public string Symbol { get; set; } = "if";
 
         public string Keyword { get; set; }
 

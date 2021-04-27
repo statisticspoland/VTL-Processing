@@ -22,7 +22,7 @@
 
         public string Name => "Partition";
 
-        public string Symbol => "partition";
+        public string Symbol { get; set; } = "partition";
 
         public string Keyword { get; set; }
     }

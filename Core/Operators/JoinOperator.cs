@@ -31,7 +31,7 @@
 
         public string Name => "Join";
 
-        public string Symbol => "join";
+        public string Symbol { get; set; } = "join";
 
         public string Keyword { get; set; }
 

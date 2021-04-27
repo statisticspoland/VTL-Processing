@@ -50,10 +50,8 @@
                 Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbol>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) return null;
-                if (type == typeof(GetOperatorRenderer)) return new GetOperatorRenderer(ServiceProvider.GetService<IEnvironmentMapper>());
 
-                return (IOperatorRenderer)ServiceProvider
-                .GetService(type);
+                return (IOperatorRenderer)ServiceProvider.GetService(type);
             });
 
             return services;

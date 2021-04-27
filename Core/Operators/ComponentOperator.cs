@@ -33,7 +33,7 @@
 
         public string Name => "Component";
 
-        public string Symbol => "comp";
+        public string Symbol { get; set; } = "comp";
 
         public string Keyword { get; set; }
 

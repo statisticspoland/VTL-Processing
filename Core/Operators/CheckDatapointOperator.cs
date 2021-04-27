@@ -33,7 +33,7 @@
 
         public string Name => "Check datapoint";
 
-        public string Symbol => "check_datapoint";
+        public string Symbol { get; set; } = "check_datapoint";
 
         public string Keyword { get; set; }
 

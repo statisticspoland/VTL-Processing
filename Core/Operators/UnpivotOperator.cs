@@ -26,7 +26,7 @@
 
         public string Name => "Unpivot";
 
-        public string Symbol => "unpivot";
+        public string Symbol { get; set; } = "unpivot";
 
         public string Keyword { get; set; }
 

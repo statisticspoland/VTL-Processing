@@ -39,7 +39,7 @@
 
         public string Name => "Period indicator";
 
-        public string Symbol => "period_indicator";
+        public string Symbol { get; set; } = "period_indicator";
 
         public string Keyword { get; set; }
 

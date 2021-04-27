@@ -31,7 +31,7 @@
 
         public string Name => "Is null";
 
-        public string Symbol => "isnull";
+        public string Symbol { get; set; } = "isnull";
 
         public string Keyword { get; set; }
 

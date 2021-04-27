@@ -27,7 +27,7 @@
 
         public string Name => "Pivot";
 
-        public string Symbol => "pivot";
+        public string Symbol { get; set; } = "pivot";
 
         public string Keyword { get; set; }
 

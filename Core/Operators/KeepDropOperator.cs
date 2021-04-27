@@ -20,15 +20,14 @@
         /// </summary>
         /// <param name="dsResolver">The data structure resolver.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public KeepDropOperator(DataStructureResolver dsResolver, string symbol)
+        public KeepDropOperator(DataStructureResolver dsResolver)
         {
             this.dsResolver = dsResolver;
-            this.Symbol = symbol;
         }
 
         public string Name => "Keep / Drop";
 
-        public string Symbol { get; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 

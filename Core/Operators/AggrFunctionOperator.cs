@@ -24,11 +24,10 @@
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public AggrFunctionOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver, string symbol)
+        public AggrFunctionOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
             this.joinApplyMeasuresOp = joinApplyMeasuresOp;
             this.dsResolver = dsResolver;
-            this.Symbol = symbol;
         }
 
         /// <summary>
@@ -38,7 +37,7 @@
 
         public string Name => "Aggregation function";
 
-        public string Symbol { get; private set; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 

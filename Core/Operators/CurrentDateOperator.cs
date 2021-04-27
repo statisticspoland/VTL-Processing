@@ -25,7 +25,7 @@
 
         public string Name => "Current date";
 
-        public string Symbol => "current_date";
+        public string Symbol { get; set; } = "current_date";
 
         public string Keyword { get; set; }
 

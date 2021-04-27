@@ -32,7 +32,7 @@
 
         public string Name => "Match characters";
 
-        public string Symbol => "match_characters";
+        public string Symbol { get; set; } = "match_characters";
 
         public string Keyword { get; set; }
 

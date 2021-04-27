@@ -28,7 +28,7 @@
 
         public string Name => "Exists in";
 
-        public string Symbol => "exists_in";
+        public string Symbol { get; set; } = "exists_in";
 
         public string Keyword { get; set; }
 

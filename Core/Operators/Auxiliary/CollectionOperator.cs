@@ -27,7 +27,7 @@
 
         public string Name => "Collection";
 
-        public string Symbol => "collection";
+        public string Symbol { get; set; } = "collection";
 
         public string Keyword { get; set; }
 

@@ -29,7 +29,7 @@
 
         public string Name => "Constant";
 
-        public string Symbol => "const";
+        public string Symbol { get; set; } = "const";
 
         public string Keyword { get; set; }
 

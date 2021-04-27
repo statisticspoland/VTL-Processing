@@ -28,7 +28,7 @@
 
         public string Name => "Nvl";
 
-        public string Symbol => "nvl";
+        public string Symbol { get; set; } = "nvl";
 
         public string Keyword { get; set; }
 
