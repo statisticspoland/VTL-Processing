@@ -77,18 +77,18 @@
         /// </summary>
         /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
         /// <returns>The service collection.</returns>
-        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
+        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config = null)
         {
             services.AddVtlProcessing();
 
             IVtlProcessingConfig configuration = new VtlProcessingConfig();
-            config(configuration);
+            if (config != null) config(configuration);
 
             IDataModelAggregator dataModelAggregator = configuration.DataModels;
             
-            services.AddScoped((sp) => dataModelAggregator);
-            services.AddScoped<IDataModel>((sp) => dataModelAggregator);
-            services.AddScoped((sp) => configuration.EnvironmentMapper);
+            services.AddScoped(p => dataModelAggregator);
+            services.AddScoped<IDataModel>(p => dataModelAggregator);
+            services.AddScoped(p => configuration.EnvironmentMapper);
 
             return services;
         }

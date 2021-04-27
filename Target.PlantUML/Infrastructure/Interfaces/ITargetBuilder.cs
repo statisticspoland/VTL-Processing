@@ -1,11 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces
 {
-    using Microsoft.Extensions.DependencyInjection;
-
     public interface ITargetBuilder
     {
-        IServiceCollection Services { get; }
-
         ITargetBuilder UseHorizontalView();
 
         ITargetBuilder AddDataStructureObject();

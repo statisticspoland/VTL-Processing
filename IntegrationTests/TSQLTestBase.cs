@@ -61,7 +61,7 @@ namespace VtlProcessing.IntegrationTests.TSQL
             ITransformationSchema schema = this.frontEnd.BuildTransformationSchema(source);
             this.middleEnd.Process(schema);
 
-            ITargetRenderer tsqlRenderer = this.provider.GetService<TsqlTargetRenderer>();
+            ITargetRenderer tsqlRenderer = this.provider.GetTargetRenderer("TSQL");
 
             string sql = tsqlRenderer.Render(schema);
 
