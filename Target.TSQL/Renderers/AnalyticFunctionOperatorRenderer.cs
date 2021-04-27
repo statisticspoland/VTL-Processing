@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("first_value", "last_value", "lag", "rank", "ratio_to_report", "lead")]
     internal sealed class AnalyticFunctionOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AnalyticFunctionOperatorRenderer"/> class.
@@ -23,20 +23,20 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public AnalyticFunctionOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
             string opSymbol = expr.OperatorSymbol;
             string compName = expr.OperandsCollection.ToArray()[0].OperatorSymbol != null ?
-                this.opRendererResolver(expr.OperandsCollection.ToArray()[0].OperatorSymbol).Render(expr.OperandsCollection.ToArray()[0]) :
+                this._opRendererResolver(expr.OperandsCollection.ToArray()[0].OperatorSymbol).Render(expr.OperandsCollection.ToArray()[0]) :
                 string.Empty;
 
             if (compName != string.Empty && component != null) compName += $".{component.ComponentName}";
 
             string over = string.Empty;
-            if (expr.Operands.ContainsKey("over")) over = this.opRendererResolver("over").Render(expr.Operands["over"]);
+            if (expr.Operands.ContainsKey("over")) over = this._opRendererResolver("over").Render(expr.Operands["over"]);
 
             if (opSymbol == "ratio_to_report" 
                 && ((component != null && component.ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.Number))

@@ -20,9 +20,9 @@
     [OperatorSymbol("period_indicator")]
     public class PeriodIndicatorOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
-        private readonly IExpressionFactory exprFac;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
+        private readonly IExpressionFactory _exprFac;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="NumericOperator"/> class.
@@ -32,20 +32,20 @@
         /// <param name="exprFac">The expression factory.</param>
         public PeriodIndicatorOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver, IExpressionFactory exprFac)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
-            this.exprFac = exprFac;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
+            this._exprFac = exprFac;
         }
 
         public string Name => "Period indicator";
 
-        public string Symbol => "period_indicator";
+        public string Symbol { get; set; } = "period_indicator";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr1 = expression.OperandsCollection.FirstOrDefault();
             if (expr1 == null) return this.ProcessNoParameterFunction(expression);
@@ -60,7 +60,7 @@
         /// <returns>A dynamically defined structure.</returns>
         private IDataStructure ProcessNoParameterFunction(IExpression expression)
         {
-            IExpression componentExpr = this.exprFac.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression componentExpr = this._exprFac.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
             IExpression ancesorExpr = null;
             foreach (string name in DatasetClauseOperator.ClauseNames)
             {
@@ -94,7 +94,7 @@
             componentExpr.LineNumber = expression.LineNumber;
             componentExpr.Structure = componentExpr.OperatorDefinition.GetOutputStructure(componentExpr);
             
-            IDataStructure structure = this.dsResolver("duration_var", ComponentType.Measure, BasicDataType.Duration);
+            IDataStructure structure = this._dsResolver("duration_var", ComponentType.Measure, BasicDataType.Duration);
             structure.Components[0].BaseComponentName = componentExpr.Structure.Components[0].BaseComponentName;
             return structure;
         }
@@ -113,7 +113,7 @@
             if (expr1.OperatorSymbol != "#" && expression.CurrentJoinExpr != null && this.GetCompatibleAliases(expression.CurrentJoinExpr.Operands["ds"]).Length > 1)
                 throw new VtlOperatorError(expression, this.Name, "Identifier of time period data type has been found in more than 1 join structure.");
 
-            IDataStructure structure = this.dsResolver("duration_var", ComponentType.Measure, BasicDataType.Duration);
+            IDataStructure structure = this._dsResolver("duration_var", ComponentType.Measure, BasicDataType.Duration);
             structure.Components[0].BaseComponentName = expr1.Structure.Components[0].BaseComponentName;
             return structure;
         }

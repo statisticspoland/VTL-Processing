@@ -13,9 +13,9 @@ namespace StatisticsPoland.VtlProcessing.Core.Operators.Interfaces
         string Name { get; }
 
         /// <summary>
-        /// Gets the operator symbol.
+        /// Gets or sets the operator symbol.
         /// </summary>
-        string Symbol { get; }
+        string Symbol { get; set; }
 
         /// <summary>
         /// Gets or sets the operator keyword.

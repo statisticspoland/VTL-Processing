@@ -12,7 +12,7 @@
     /// </summary>
     public class DatapointRuleset : IRuleset
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
         private string rulesetText;
 
         /// <summary>
@@ -23,7 +23,7 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public DatapointRuleset(string name, string rulesetText, DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
             this.Name = name;
             this.RulesetText = rulesetText;
             this.Variables = new Dictionary<string, string>();
@@ -79,7 +79,7 @@
 
         public void InferStructure()
         {
-            this.Structure = this.dsResolver();
+            this.Structure = this._dsResolver();
             if (this.Variables.Count > 0)
             {
                 foreach (string variableName in this.Variables.Keys)

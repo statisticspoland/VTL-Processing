@@ -30,16 +30,16 @@ namespace VtlProcessing.IntegrationTests.TSQL
         public TSQLTestBase(string schema)
         {
             string connectionString = Resources.TestDbConnectionString;
-            Dictionary<string, string> sqlMapping = new Dictionary<string, string>()
-            {
-                { "ns", $"[{schema}]." },
-            };
 
             IServiceCollection services = new ServiceCollection();
             services.AddVtlProcessing((configure) =>
             {
                 configure.DataModels.DefaultNamespace = "ns";
                 configure.DataModels.AddSqlServerModel(connectionString);
+                configure.EnvironmentMapper.Mapping = new Dictionary<string, string>()
+                    {
+                        { "ns", $"[{schema}]." }
+                    };
             });
 
             services.AddTsqlTarget();
@@ -61,7 +61,7 @@ namespace VtlProcessing.IntegrationTests.TSQL
             ITransformationSchema schema = this.frontEnd.BuildTransformationSchema(source);
             this.middleEnd.Process(schema);
 
-            ITargetRenderer tsqlRenderer = this.provider.GetService<TsqlTargetRenderer>();
+            ITargetRenderer tsqlRenderer = this.provider.GetTargetRenderer("TSQL");
 
             string sql = tsqlRenderer.Render(schema);
 

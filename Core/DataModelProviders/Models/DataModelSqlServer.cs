@@ -18,9 +18,9 @@
     /// </summary>
     public class DataModelSqlServer : DataModel
     {
-        private readonly DataStructureResolver dsResolver;
-        private readonly string connStr;
-        private readonly IEnvironmentMapper mapper;
+        private readonly DataStructureResolver _dsResolver;
+        private readonly string _connStr;
+        private readonly IEnvironmentMapper _mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelSqlServer"/> class.
@@ -32,9 +32,9 @@
         public DataModelSqlServer(IDataModel rootModel, DataStructureResolver dsResolver, string connectionString, IEnvironmentMapper mapper)
             : base(rootModel)
         {
-            this.dsResolver = dsResolver;
-            this.connStr = connectionString;
-            this.mapper = mapper;
+            this._dsResolver = dsResolver;
+            this._connStr = connectionString;
+            this._mapper = mapper;
         }
 
         public override IDataStructure GetDatasetStructure(string datasetName)
@@ -52,11 +52,11 @@
                 default: throw new Exception($"Invalid DataSet identifier: {datasetName}");
             }
 
-            if (!this.mapper.Mapping.ContainsKey(@namespace)) 
+            if (!this._mapper.Mapping.ContainsKey(@namespace)) 
                 return null;
 
-            SqlAddress sqlAddress = new SqlAddress(this.mapper.Mapping[@namespace].Split('.'));
-            using (SqlConnection conn = new SqlConnection(this.connStr))
+            SqlAddress sqlAddress = new SqlAddress(this._mapper.Mapping[@namespace].Split('.'));
+            using (SqlConnection conn = new SqlConnection(this._connStr))
             {
                 if (sqlAddress.Server != null && sqlAddress.Server != conn.DataSource) return null;
                 if (sqlAddress.Database != null && conn.Database != string.Empty && sqlAddress.Database != conn.Database) return null;
@@ -68,7 +68,7 @@
 
                 if (server.Databases.Contains(dbName))
                 {
-                    IDataStructure structure = this.dsResolver();
+                    IDataStructure structure = this._dsResolver();
                     Database database = server.Databases[dbName];
                     Table table = null;
 

@@ -18,7 +18,7 @@
     [OperatorSymbol("join")]
     public class JoinOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="JoinOperator"/> class.
@@ -26,26 +26,26 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public JoinOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Join";
 
-        public string Symbol => "join";
+        public string Symbol { get; set; } = "join";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
             IJoinExpression joinExpr = (IJoinExpression)expression;
-            IDataStructure mergedStructure = this.dsResolver();
+            IDataStructure mergedStructure = this._dsResolver();
 
             if (!joinExpr.Operands["ds"].Operands.All(ds => ds.Value.Structure.IsSingleComponent == false)) throw new VtlOperatorError(joinExpr, this.Name, "Scalar joinExprs cannot be joined.");
 
             this.ProcessDsBranch(joinExpr, mergedStructure);
             if (joinExpr.Operands.ContainsKey("apply")) mergedStructure = this.ProcessApplyBranch(joinExpr, mergedStructure);
 
-            joinExpr.BasicStructure = this.ProcessDsBranch(joinExpr, this.dsResolver());
+            joinExpr.BasicStructure = this.ProcessDsBranch(joinExpr, this._dsResolver());
 
             if (joinExpr.Operands.ContainsKey("aggr"))
             {

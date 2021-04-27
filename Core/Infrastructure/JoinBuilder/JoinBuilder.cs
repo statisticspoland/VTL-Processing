@@ -15,8 +15,8 @@
     /// </summary>
     public sealed class JoinBuilder : IJoinBuilder
     {
-        private readonly JoinExpressionResolver joinExprResolver;
-        private readonly IEnumerable<IJoinBranch> joinBranches;
+        private readonly JoinExpressionResolver _joinExprResolver;
+        private readonly IEnumerable<IJoinBranch> _joinBranches;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JoinBuilder"/> class.
@@ -25,10 +25,10 @@
         /// <param name="joinBranches">The join branches preparers.</param>
         public JoinBuilder(JoinExpressionResolver joinExprResolver, IEnumerable<IJoinBranch> joinBranches)
         {
-            this.joinExprResolver = joinExprResolver;
+            this._joinExprResolver = joinExprResolver;
             this.Branches = new Dictionary<string, IExpression>();
             this.IsCleared = true;
-            this.joinBranches = joinBranches;
+            this._joinBranches = joinBranches;
         }
 
         public IExpression this[string key] => this.Branches[key];
@@ -43,7 +43,7 @@
 
             if (!mainExpr.IsScalar && mainExpr.OperatorSymbol.In(JoinOperators.Operators))
                 this.Branches.Add("main", mainExpr);
-            else this.Branches.Add("main", this.joinExprResolver(mainExpr));
+            else this.Branches.Add("main", this._joinExprResolver(mainExpr));
 
             this.IsCleared = false;
             return this;
@@ -73,7 +73,7 @@
                 throw new VtlOperatorError(mainExpr, "join", "\"Join\" expression expects a \"ds\" branch.");
 
             mainExpr.AddOperand("ds", this.Branches["ds"]);
-            mainExpr = this.joinExprResolver(mainExpr);
+            mainExpr = this._joinExprResolver(mainExpr);
 
             if (this.Branches.ContainsKey("using"))
             {
@@ -150,7 +150,7 @@
 
         public IExpression BuildBranch(string key, IExpression datasetExpr)
         {
-            IJoinBranch joinBranch = this.joinBranches.FirstOrDefault(jb => jb.Signature == key);
+            IJoinBranch joinBranch = this._joinBranches.FirstOrDefault(jb => jb.Signature == key);
 
             if (joinBranch == null) throw new Exception($"Join branch named \"{key}\" has been not found.");
 

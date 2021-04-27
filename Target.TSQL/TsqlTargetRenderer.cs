@@ -18,14 +18,14 @@
     /// </summary>
     public class TsqlTargetRenderer : ITargetRenderer
     {
-        private readonly TransformationSchemaResolver schemaResolver;
-        private readonly OperatorRendererResolver opRendererResolver;
-        private readonly TemporaryTables tmpTables;
-        private readonly IReferencesManager refs;
-        private readonly IMapper mapper;
-        private readonly ITargetConfiguration conf;
-        private readonly IEnvironmentMapper envMapper;
-        private readonly ILogger<ITargetRenderer> logger;
+        private readonly TransformationSchemaResolver _schemaResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
+        private readonly TemporaryTables _tmpTables;
+        private readonly IReferencesManager _refs;
+        private readonly IMapper _mapper;
+        private readonly ITargetConfiguration _conf;
+        private readonly IEnvironmentMapper _envMapper;
+        private readonly ILogger<ITargetRenderer> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TsqlTargetRenderer"/> class.
@@ -48,14 +48,14 @@
             IEnvironmentMapper envMapper,
             ILogger<ITargetRenderer> logger = null)
         {
-            this.schemaResolver = schemaResolver;
-            this.opRendererResolver = opRendererResolver;
-            this.tmpTables = tmpTables;
-            this.refs = references;
-            this.mapper = mapper;
-            this.conf = configuration;
-            this.envMapper = envMapper;
-            this.logger = logger;
+            this._schemaResolver = schemaResolver;
+            this._opRendererResolver = opRendererResolver;
+            this._tmpTables = tmpTables;
+            this._refs = references;
+            this._mapper = mapper;
+            this._conf = configuration;
+            this._envMapper = envMapper;
+            this._logger = logger;
         }
 
         /// <summary>
@@ -70,37 +70,37 @@
 
             try
             {
-                this.mapper.MapNames(schema);
-                this.refs.TakeNonPersistentExprs(schema);            
+                this._mapper.MapNames(schema);
+                this._refs.TakeNonPersistentExprs(schema);            
 
                 foreach (AssignmentObject assignmentObject in schema.AssignmentObjects)
                 {
-                    if (this.refs.ContainsExpression(assignmentObject.Expression)) 
-                        assignmentsSB.AppendLine(this.refs.RenderNonPersistentExpr(assignmentObject.Expression)); // non-persistent assignment expressions rendering
+                    if (this._refs.ContainsExpression(assignmentObject.Expression)) 
+                        assignmentsSB.AppendLine(this._refs.RenderNonPersistentExpr(assignmentObject.Expression)); // non-persistent assignment expressions rendering
                     else 
                         assignmentsSB.AppendLine(this.RenderPersistentExpr(assignmentObject.Expression)); // persistent assignment expressions rendering
                 }
 
-                if (this.conf.UseComments) scriptSB.AppendLine($"-- Script generated: {DateTime.Now}");
+                if (this._conf.UseComments) scriptSB.AppendLine($"-- Script generated: {DateTime.Now}");
                 scriptSB.AppendLine("BEGIN TRANSACTION\n");
-                for (int i = 1; i <= this.tmpTables.Count; i++)
+                for (int i = 1; i <= this._tmpTables.Count; i++)
                 {
-                    scriptSB.AppendLine($"IF OBJECT_ID (N'tempdb..{this.tmpTables.Name}{i}', N'U') IS NOT NULL");
-                    scriptSB.AppendLine($"DROP TABLE {this.tmpTables.Name}{i}\n");
+                    scriptSB.AppendLine($"IF OBJECT_ID (N'tempdb..{this._tmpTables.Name}{i}', N'U') IS NOT NULL");
+                    scriptSB.AppendLine($"DROP TABLE {this._tmpTables.Name}{i}\n");
                 }
 
-                scriptSB.AppendLine(this.refs.RenderDroppingOfTables());
+                scriptSB.AppendLine(this._refs.RenderDroppingOfTables());
                 scriptSB.Append(assignmentsSB.ToString());
                 scriptSB.AppendLine("COMMIT TRANSACTION");
                 scriptSB.AppendLine("GO");
             }
             catch (VtlTargetError ex)
             {
-                this.logger?.LogError(ex, ex.Message);
+                this._logger?.LogError(ex, ex.Message);
             }
             catch (Exception ex)
             {
-                this.logger?.LogCritical(ex, ex.Message);
+                this._logger?.LogCritical(ex, ex.Message);
             }
 
             return scriptSB.ToString();
@@ -108,10 +108,10 @@
 
         public string Render(IExpression expression)
         {
-            this.mapper.MapNames(expression.ContainingSchema);
-            this.refs.TakeNonPersistentExprs(this.schemaResolver()); // wyczyszczenie referencji
+            this._mapper.MapNames(expression.ContainingSchema);
+            this._refs.TakeNonPersistentExprs(this._schemaResolver()); // wyczyszczenie referencji
 
-            return this.opRendererResolver(expression.OperatorSymbol).Render(expression);
+            return this._opRendererResolver(expression.OperatorSymbol).Render(expression);
         }
 
         /// <summary>
@@ -122,13 +122,13 @@
         private string RenderPersistentExpr(IExpression expr)
         {
             StringBuilder sb = new StringBuilder();
-            string resultName = this.envMapper.Map(expr.ResultName); //expr.ParamSignature == "<root>" ? expr.ResultName : expr.ResultMappedName;
-            string renderResult = this.opRendererResolver(expr.OperatorSymbol).Render(expr);
+            string resultName = this._envMapper.Map(expr.ResultName); //expr.ParamSignature == "<root>" ? expr.ResultName : expr.ResultMappedName;
+            string renderResult = this._opRendererResolver(expr.OperatorSymbol).Render(expr);
 
-            if (this.conf.UseComments) sb.AppendLine($"-- Raw: {expr.ResultName} <- {expr.ExpressionText}");
+            if (this._conf.UseComments) sb.AppendLine($"-- Raw: {expr.ResultName} <- {expr.ExpressionText}");
             if (renderResult.Contains(resultName))
             {
-                string tmp = $"{this.tmpTables.Name}{++this.tmpTables.Count}";
+                string tmp = $"{this._tmpTables.Name}{++this._tmpTables.Count}";
 
                 sb.AppendLine($"SELECT * INTO {tmp} FROM (\n{renderResult}) AS t");
                 sb.AppendLine($"DELETE FROM {resultName}");

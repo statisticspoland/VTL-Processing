@@ -14,7 +14,7 @@
     [OperatorSymbol("renameExpr")]
     public class RenameExprOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="RenameExprOperator"/> class.
@@ -22,12 +22,12 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public RenameExprOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Rename expression";
 
-        public string Symbol => "renameExpr";
+        public string Symbol { get; set; } = "renameExpr";
 
         public string Keyword { get; set; }
 
@@ -43,7 +43,7 @@
                 component.BaseComponentName = $"{ds1.OperandsCollection.ToArray()[0].ExpressionText}#{ds1.Operands["ds_2"].ExpressionText}";
             }
 
-            IDataStructure structure = this.dsResolver(string.Empty, component.ComponentType, component.ValueDomain.DataType);
+            IDataStructure structure = this._dsResolver(string.Empty, component.ComponentType, component.ValueDomain.DataType);
             if (structure.Identifiers.Count > 0) structure.Identifiers[0] = component;
             if (structure.Measures.Count > 0) structure.Measures[0] = component;
             if (structure.NonViralAttributes.Count > 0) structure.NonViralAttributes[0] = component;

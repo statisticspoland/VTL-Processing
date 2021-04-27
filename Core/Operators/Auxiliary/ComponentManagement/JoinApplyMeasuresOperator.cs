@@ -16,8 +16,8 @@
     /// </summary>
     public class JoinApplyMeasuresOperator : IJoinApplyMeasuresOperator
     {
-        private readonly IExpressionFactory exprFac;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IExpressionFactory _exprFac;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="JoinApplyMeasuresOperator"/> class.
@@ -26,13 +26,13 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public JoinApplyMeasuresOperator(IExpressionFactory exprFac, DataStructureResolver dsResolver)
         {
-            this.exprFac = exprFac;
-            this.dsResolver = dsResolver;
+            this._exprFac = exprFac;
+            this._dsResolver = dsResolver;
         }
 
         public IDataStructure GetMeasuresStructure(IExpression expression)
         {
-            IDataStructure measuresStructure = this.dsResolver();
+            IDataStructure measuresStructure = this._dsResolver();
             List<List<IExpression>> operands = new List<List<IExpression>>();
 
             foreach (IExpression expr in expression.OperandsCollection)
@@ -47,9 +47,9 @@
                     for (int i = 0; i < structure.Measures.Count; i++)
                     {
                         StructureComponent measure = structure.Measures[i];
-                        IExpression operand = this.exprFac.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+                        IExpression operand = this._exprFac.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
 
-                        operand.Structure = this.dsResolver(measure.ComponentName, measure.ComponentType, measure.ValueDomain.DataType);
+                        operand.Structure = this._dsResolver(measure.ComponentName, measure.ComponentType, measure.ValueDomain.DataType);
                         operands.Last().Add(operand);
                     }
                 }
@@ -59,7 +59,7 @@
             List<IExpression> measuresExprList = operands.Last(op => op.FirstOrDefault(o => o.ResultName == "Alias") != null); // Last because first in if-then-else is condition
             for (int i = 0; i < measuresExprList.Count; i++)
             {
-                IExpression operatorExpr = this.exprFac.GetExpression(expression.OperatorSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression operatorExpr = this._exprFac.GetExpression(expression.OperatorSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
                 for (int j = 0; j < operands.Count; j++)
                 {
                     IExpression operand = operands[j][0];

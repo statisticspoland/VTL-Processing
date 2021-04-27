@@ -7,12 +7,15 @@
 
     public static class TranslatorConfigExtensions
     {
-        public static void AddPlantUmlTarget(this ITranslatorConfig config, Action<ITargetBuilder> configure)
+        public static void AddPlantUmlTarget(this ITranslatorConfig config, Action<ITargetBuilder> configure = null)
         {
             IServiceCollection services = new ServiceCollection();
             services.AddPlantUmlTarget();
-            configure(new TargetBuilder(services));
 
+            TargetBuilder configuration = new TargetBuilder();
+            if (configure != null) configure(configuration);
+
+            configuration.UpdateServices(services);
             config.AddTarget(typeof(PlantUmlTargetRenderer), services);
         }
     }

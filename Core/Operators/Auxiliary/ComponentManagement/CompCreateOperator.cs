@@ -12,8 +12,8 @@
     /// </summary>
     public class CompCreateOperator
     {
-        private readonly DataStructureResolver dsResolver;
-        private readonly string name;
+        private readonly DataStructureResolver _dsResolver;
+        private readonly string _name;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="CompCreateOperator"/> class.
@@ -22,8 +22,8 @@
         /// <param name="name">The name of a main operator.</param>
         public CompCreateOperator(DataStructureResolver dsResolver, string name)
         {
-            this.dsResolver = dsResolver;
-            this.name = name;
+            this._dsResolver = dsResolver;
+            this._name = name;
         }
 
         public string Keyword { get; set; }
@@ -41,25 +41,25 @@
             BasicDataType type2 = expr2.Structure.Components[0].ValueDomain.DataType;
 
             if (!expr1.IsScalar || expr1.OperatorSymbol != "comp")
-                throw new VtlOperatorError(expression, this.name, "Expected component operator expression as the first parameter.");
+                throw new VtlOperatorError(expression, this._name, "Expected component operator expression as the first parameter.");
 
             if (!expr2.IsScalar)
-                throw new VtlOperatorError(expression, this.name, "Expected scalar expression as the second parameter.");
+                throw new VtlOperatorError(expression, this._name, "Expected scalar expression as the second parameter.");
 
             if (expr1.Structure.Identifiers.Count != 0 && expr1.Structure.Identifiers[0].ValueDomain.DataType != BasicDataType.None)
-                throw new VtlOperatorError(expression, this.name, "Identifier of any dataset can not be modify.");
+                throw new VtlOperatorError(expression, this._name, "Identifier of any dataset can not be modify.");
 
             if (!type1.EqualsObj(type2))
-                throw new VtlOperatorError(expression, this.name, "Types of parameters don't match.");
+                throw new VtlOperatorError(expression, this._name, "Types of parameters don't match.");
 
             BasicDataType type = type2;
             if (type == BasicDataType.None || (type2 == BasicDataType.Integer && type1 == BasicDataType.Number)) type = type1;
 
-            IDataStructure dataStructure = this.dsResolver();
+            IDataStructure dataStructure = this._dsResolver();
             switch (this.Keyword)
             {
                 case "identifier":
-                    if (this.AreNullValues(expr2)) throw new VtlOperatorError(expression, this.name, "Possible putting null values into an identifier component.");
+                    if (this.AreNullValues(expr2)) throw new VtlOperatorError(expression, this._name, "Possible putting null values into an identifier component.");
                     dataStructure.Identifiers.Add(
                         new StructureComponent(type, expr1.ExpressionText));
                     break;
@@ -75,7 +75,7 @@
                     dataStructure.NonViralAttributes.Add(
                         new StructureComponent(type, expr1.ExpressionText));
                     break;
-                default: throw new VtlOperatorError(expression, this.name, $"Unknown keyword of an operator: {this.Keyword}");
+                default: throw new VtlOperatorError(expression, this._name, $"Unknown keyword of an operator: {this.Keyword}");
             }
 
             return dataStructure;

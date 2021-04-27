@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("count", "min", "max", "median", "sum", "avg", "stddev_pop", "stddev_samp", "var_pop", "var_samp")]
     internal sealed class AggrFunctionOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AggrFunctionOperatorRenderer"/> class.
@@ -23,7 +23,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public AggrFunctionOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -32,8 +32,8 @@
             string compName = "*";
             if (expr.OperandsCollection.Count != 0)
             {
-                if (component == null) compName = this.opRendererResolver(expr.OperandsCollection.ToArray()[0].OperatorSymbol).Render(expr.OperandsCollection.ToArray()[0]);
-                else compName = $"{this.opRendererResolver(expr.OperandsCollection.ToArray()[0].OperatorSymbol).Render(expr.OperandsCollection.ToArray()[0])}.{component.ComponentName}";
+                if (component == null) compName = this._opRendererResolver(expr.OperandsCollection.ToArray()[0].OperatorSymbol).Render(expr.OperandsCollection.ToArray()[0]);
+                else compName = $"{this._opRendererResolver(expr.OperandsCollection.ToArray()[0].OperatorSymbol).Render(expr.OperandsCollection.ToArray()[0])}.{component.ComponentName}";
             }
 
             if (!opSymbol.In("COUNT", "SUM")
@@ -42,7 +42,7 @@
                 compName = $"CAST({compName} AS DECIMAL(28,9))";
 
             string over = string.Empty;
-            if (expr.Operands.ContainsKey("over")) over = this.opRendererResolver("over").Render(expr.Operands["over"]);
+            if (expr.Operands.ContainsKey("over")) over = this._opRendererResolver("over").Render(expr.Operands["over"]);
 
             if (opSymbol == "STDDEV_POP") opSymbol = "STDEVP";
             else if (opSymbol == "STDDEV_SAMP") opSymbol = "STDEV";

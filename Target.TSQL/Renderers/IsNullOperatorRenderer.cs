@@ -1,13 +1,12 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Renderers
 {
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using System.Linq;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces;
+    using System.Linq;
 
     /// <summary>
     /// The TSQL code renderer for "Isnull" operator.
@@ -15,7 +14,7 @@
     [OperatorRendererSymbol("isnull")]
     internal sealed class IsNullOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IsNullOperatorRenderer"/> class.
@@ -23,16 +22,16 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public IsNullOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression operand = expr.OperandsCollection.First();
 
-            string op = this.opRendererResolver(operand.OperatorSymbol).Render(operand, component);
+            string op = this._opRendererResolver(operand.OperatorSymbol).Render(operand, component);
 
             string result = $"{op} IS NULL";
 

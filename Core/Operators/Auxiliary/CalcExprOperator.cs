@@ -22,6 +22,6 @@
 
         public string Name => "Calc expression";
 
-        public string Symbol => "calcExpr";
+        public string Symbol { get; set; } = "calcExpr";
     }
 }

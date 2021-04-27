@@ -12,8 +12,8 @@
     /// </summary>
     public sealed class CalcBranch : IJoinBranch
     {
-        private readonly IExpressionFactory exprFactory;
-        private IExpressionTextGenerator exprTextGen;
+        private readonly IExpressionFactory _exprFactory;
+        private readonly IExpressionTextGenerator _exprTextGen;
 
         /// <summary>
         /// Inittializes a new instance of the <see cref="CalcBranch"/> class.
@@ -22,8 +22,8 @@
         /// <param name="exprTextGen">The epression text generator.</param>
         public CalcBranch(IExpressionFactory exprFactory, IExpressionTextGenerator exprTextGen)
         {
-            this.exprFactory = exprFactory;
-            this.exprTextGen = exprTextGen;
+            this._exprFactory = exprFactory;
+            this._exprTextGen = exprTextGen;
         }
 
         public string Signature => "calc";
@@ -35,16 +35,16 @@
             The method can be used to transform "aggr" expressions to "calc" expressions instead of single "apply" expression.
             */
 
-            IExpression calcBranch = this.exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression calcBranch = this._exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
             calcBranch.OperatorDefinition.Keyword = "Aggr Built";
 
             for (int i = 0; i < datasetExpr.Operands["ds_1"].Structure.Measures.Count; i++)
             {
                 StructureComponent measure = datasetExpr.Operands["ds_1"].Structure.Measures[i];
-                IExpression calcExpr = this.exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
-                IExpression aggrFunctionExpr = this.exprFactory.GetExpression(datasetExpr.OperatorSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
-                IExpression compExpr1 = this.exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
-                IExpression compExpr2 = this.exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression calcExpr = this._exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression aggrFunctionExpr = this._exprFactory.GetExpression(datasetExpr.OperatorSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression compExpr1 = this._exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression compExpr2 = this._exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
 
                 calcBranch.LineNumber = datasetExpr.LineNumber;
                 calcExpr.LineNumber = datasetExpr.LineNumber;
@@ -67,12 +67,12 @@
                     compExpr2.ExpressionText = "int_var";
                     aggrFunctionExpr.ExpressionText = "count()";
                     aggrFunctionExpr.Operands.Clear();
-                    this.exprTextGen.Generate(calcExpr);
+                    this._exprTextGen.Generate(calcExpr);
                     break;
                 }
             }
 
-            this.exprTextGen.GenerateRecursively(calcBranch);
+            this._exprTextGen.GenerateRecursively(calcBranch);
             return calcBranch;
         }
     }

@@ -12,7 +12,7 @@
     [OperatorRendererSymbol("get")]
     internal sealed class GetOperatorRenderer : IOperatorRenderer
     {
-        private readonly IEnvironmentMapper envMapper;
+        private readonly IEnvironmentMapper _envMapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetOperatorRenderer"/> class.
@@ -20,14 +20,14 @@
         /// <param name="envMapper">The environment names mapper.</param>
         public GetOperatorRenderer(IEnvironmentMapper envMapper)
         {
-            this.envMapper = envMapper;
+            this._envMapper = envMapper;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
             if (component != null) return component.BaseComponentName;
-            if (expr.ParentExpression == null) return $"SELECT * FROM {this.envMapper.Map(expr.ExpressionText)}";
-            return this.envMapper.Map(expr.ExpressionText);
+            if (expr.ParentExpression == null) return $"SELECT * FROM {this._envMapper.Map(expr.ExpressionText)}";
+            return this._envMapper.Map(expr.ExpressionText);
         }
     }
 }

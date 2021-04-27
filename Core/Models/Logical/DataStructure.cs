@@ -15,7 +15,7 @@
     /// </summary>
     public class DataStructure : IDataStructure
     {
-        private readonly ILogger<IDataStructure> logger;
+        private readonly ILogger<IDataStructure> _logger;
         private IList<StructureComponent> identifiers;
         private IList<StructureComponent> measures;
         private IList<StructureComponent> nonViralAttributes;
@@ -42,7 +42,7 @@
         public DataStructure(ILogger<IDataStructure> logger = null)
             : this()
         {
-            this.logger = logger;
+            this._logger = logger;
         }
 
         /// <summary>
@@ -153,7 +153,7 @@
                     else if (existingAttribute.ValueDomain.DataType != attribute.ValueDomain.DataType)
                     {
                         VtlError warning = new VtlError(null, $"Data type of the non-viral attribute \"{attribute.ComponentName} has been ovverided.\"");
-                        this.logger?.LogWarning(warning.Message, warning);
+                        this._logger?.LogWarning(warning.Message, warning);
                     }
                 }
 

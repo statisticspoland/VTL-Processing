@@ -6,7 +6,7 @@
 
     public partial class ApplyBranchTests
     {
-        private readonly IExpressionTextGenerator exprTextGenerator;
+        private readonly IExpressionTextGenerator _exprTextGenerator;
 
         public ApplyBranchTests()
         {
@@ -17,7 +17,7 @@
                     expr.ExpressionText = "Generated text";
                 });
 
-            this.exprTextGenerator = exprTextGeneratorMock.Object;
+            this._exprTextGenerator = exprTextGeneratorMock.Object;
         }
     }
 }

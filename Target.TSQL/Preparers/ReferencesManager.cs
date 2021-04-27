@@ -17,8 +17,8 @@
     /// </summary>
     public class ReferencesManager : IReferencesManager
     {
-        private readonly OperatorRendererResolver opRendererResolver;
-        private readonly ITargetConfiguration conf;
+        private readonly OperatorRendererResolver _opRendererResolver;
+        private readonly ITargetConfiguration _conf;
         private Dictionary<IExpression, string> nonPersistentExprs;
 
         /// <summary>
@@ -28,8 +28,8 @@
         /// <param name="configuration">The configuration of the target.</param>
         public ReferencesManager(OperatorRendererResolver opRendererResolver, ITargetConfiguration configuration)
         {
-            this.opRendererResolver = opRendererResolver;
-            this.conf = configuration;
+            this._opRendererResolver = opRendererResolver;
+            this._conf = configuration;
             this.nonPersistentExprs = new Dictionary<IExpression, string>();
         }
 
@@ -41,7 +41,7 @@
                 IExpression expr = assignmentObject.Expression;
                 if (!assignmentObject.IsPersistentAssignment)
                 {
-                    string renderResult = this.opRendererResolver(expr.OperatorSymbol).Render(expr);
+                    string renderResult = this._opRendererResolver(expr.OperatorSymbol).Render(expr);
 
                     if (expr.IsScalar)
                         this.nonPersistentExprs.Add(assignmentObject.Expression, $"DECLARE @{assignmentObject.Name} {this.GetType(expr)} = {renderResult};");
@@ -49,7 +49,7 @@
                     {
                         StringBuilder result = new StringBuilder();
                         if (expr.OperatorSymbol == "fill_time_series")
-                            result.AppendLine((this.opRendererResolver(expr.OperatorSymbol) as FillTimeSeriesOperatorRenderer).RenderWith(expr));
+                            result.AppendLine((this._opRendererResolver(expr.OperatorSymbol) as FillTimeSeriesOperatorRenderer).RenderWith(expr));
                         result.AppendLine($"SELECT * INTO #{assignmentObject.Name} FROM (\n{renderResult}) AS t");
 
                         if (expr.OperatorSymbol == "exists_in" && expr.OperatorDefinition.Keyword == "false") result.Append($" WHERE {expr.Structure.Measures[0].ComponentName} = 0");
@@ -65,7 +65,7 @@
             StringBuilder sb = new StringBuilder();
             string result = this.nonPersistentExprs.First(nonPersExpr => nonPersExpr.Key == expr).Value;
 
-            if (this.conf.UseComments) sb.AppendLine($"-- Raw: {expr.ResultName} := {expr.ExpressionText}");
+            if (this._conf.UseComments) sb.AppendLine($"-- Raw: {expr.ResultName} := {expr.ExpressionText}");
             sb.AppendLine(result);
 
             return sb.ToString();

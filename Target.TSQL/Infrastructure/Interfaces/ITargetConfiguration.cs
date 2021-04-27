@@ -9,5 +9,7 @@
         /// Gets or sets the value specifying if comments shall be appended in the TSQL rendered code.
         /// </summary>
         bool UseComments { get; set; }
+
+        IAttributePropagationAlgorithm AttributePropagationAlgorithm { get; set; }
     }
 }

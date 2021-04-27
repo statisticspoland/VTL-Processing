@@ -14,7 +14,7 @@
     {
         public string Name => "Reference";
 
-        public string Symbol => "ref";
+        public string Symbol { get; set; } = "ref";
 
         public string Keyword { get; set; }
 

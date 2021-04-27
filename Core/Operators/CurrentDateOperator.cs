@@ -12,7 +12,7 @@
     [OperatorSymbol("current_date")]
     public class CurrentDateOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="CurrentDateOperator"/> class.
@@ -20,18 +20,18 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public CurrentDateOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Current date";
 
-        public string Symbol => "current_date";
+        public string Symbol { get; set; } = "current_date";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            return this.dsResolver("date_var", ComponentType.Measure, BasicDataType.Date);
+            return this._dsResolver("date_var", ComponentType.Measure, BasicDataType.Date);
         }
     }
 }

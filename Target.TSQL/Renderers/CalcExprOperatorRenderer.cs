@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("calcExpr")]
     internal sealed class CalcExprOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalcExprOperatorRenderer"/> class.
@@ -22,7 +22,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public CalcExprOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -43,7 +43,7 @@
                 if (renameComp != null) name = renameComp.ComponentName;
             }
 
-            sb.AppendLine($"{this.opRendererResolver(expr2.OperatorSymbol).Render(expr2, component)} AS {name},");
+            sb.AppendLine($"{this._opRendererResolver(expr2.OperatorSymbol).Render(expr2, component)} AS {name},");
             return sb.ToString();
         }
     }

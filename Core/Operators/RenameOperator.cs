@@ -26,7 +26,7 @@
 
         public string Name => "Rename";
 
-        public string Symbol => "rename";
+        public string Symbol { get; set; } = "rename";
 
         public string Keyword { get; set; }
 

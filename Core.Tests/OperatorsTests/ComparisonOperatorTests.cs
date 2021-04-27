@@ -13,11 +13,11 @@
 
     public class ComparisonOperatorTests
     {
-        private readonly List<string> operators;
+        private readonly List<string> _operators;
 
         public ComparisonOperatorTests()
         {
-            this.operators = new List<string>() { "=", "<>", "<", "<=", ">", ">=" };
+            this._operators = new List<string>() { "=", "<>", "<", "<=", ">", ">=" };
         }
 
         [Theory]
@@ -50,7 +50,7 @@
         [InlineData(TestExprType.None, TestExprType.Duration)]
         public void GetOutputStructure_Correct2ScalarsArgsExpr_BoolScalarStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -91,7 +91,7 @@
         [InlineData(TestExprType.None, TestExprType.DurationsDataset)]
         public void GetOutputStructure_1CorrectScalar1OneMeasureDatasetArgsExpr_OneMeasureBoolStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -137,7 +137,7 @@
         [InlineData(TestExprType.NonesDataset, TestExprType.DurationsDataset)]
         public void GetOutputStructure_2OneMeasureDatasetsArgsExpr_OneMeasureBoolStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -184,7 +184,7 @@
         [InlineData(TestExprType.NonesDataset, TestExprType.Duration)]
         public void GetOutputStructure_1OneMeasureDataset1CorrectScalarArgsExpr_OneMeasureBoolStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -230,7 +230,7 @@
         [InlineData(TestExprType.None, TestExprType.DurationsDataset)]
         public void GetOutputStructure_1CorrectScalar1MultiMeasuresDatasetArgsExpr_ThrowsException(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -269,7 +269,7 @@
         [InlineData(TestExprType.NonesDataset, TestExprType.DurationsDataset)]
         public void GetOutputStructure_2MultiMeasuresDatasetsArgsExpr_ThrowsException(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -308,7 +308,7 @@
         [InlineData(TestExprType.NonesDataset, TestExprType.Duration)]
         public void GetOutputStructure_1MultiMeasuresDataset1CorrectScalarArgsExpr_ThrowsException(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression equalityExpr = TestExprFactory.GetExpression(types);
                 equalityExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -434,7 +434,7 @@
             TestExprType[][] combinations = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().GetCombinations(2);
             TestExprType[][] wrongCombs = combinations.Without(correctCombs);
 
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 foreach (TestExprType[] wrongComb in wrongCombs.Where(wrongComb => (int)wrongComb[0] < 18 && (int)wrongComb[1] < 18)) // No mixed datasets
                 {

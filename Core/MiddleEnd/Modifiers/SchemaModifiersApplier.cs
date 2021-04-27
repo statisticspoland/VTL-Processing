@@ -12,8 +12,8 @@
     /// </summary>
     public class SchemaModifiersApplier : ISchemaModifiersApplier
     {
-        private readonly IEnumerable<ISchemaModifier> modifiers;
-        private readonly ILogger<ISchemaModifiersApplier> logger;
+        private readonly IEnumerable<ISchemaModifier> _modifiers;
+        private readonly ILogger<ISchemaModifiersApplier> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SchemaModifiersApplier"/> class.
@@ -22,8 +22,8 @@
         /// <param name="logger">The errors logger.</param>
         public SchemaModifiersApplier(IEnumerable<ISchemaModifier> mods, ILogger<ISchemaModifiersApplier> logger = null)
         {
-            this.logger = logger;
-            this.modifiers = mods;
+            this._logger = logger;
+            this._modifiers = mods;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// <param name="schema">The schema object to be processed.</param>
         public void Process(ITransformationSchema schema)
         {
-            foreach(ISchemaModifier mod in this.modifiers)
+            foreach(ISchemaModifier mod in this._modifiers)
             {
                 try
                 {
@@ -40,11 +40,11 @@
                 }
                 catch (VtlOperatorError ex)
                 {
-                    this.logger?.LogError(ex, ex.Message);
+                    this._logger?.LogError(ex, ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.LogCritical(ex, ex.Message);
+                    this._logger?.LogCritical(ex, ex.Message);
                 }
             }
         }

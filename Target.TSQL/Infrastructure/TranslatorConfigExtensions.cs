@@ -7,20 +7,15 @@
 
     public static class TranslatorConfigExtensions
     {
-        public static void AddTsqlTarget(this ITranslatorConfig config)
+        public static void AddTsqlTarget(this ITranslatorConfig config, Action<ITargetBuilder> configure = null)
         {
             IServiceCollection services = new ServiceCollection();
             services.AddTsqlTarget();
 
-            config.AddTarget(typeof(TsqlTargetRenderer), services);
-        }
+            TargetBuilder configuration = new TargetBuilder();
+            if (configure != null) configure(configuration);
 
-        public static void AddTsqlTarget(this ITranslatorConfig config, Action<ITargetBuilder> configure)
-        {
-            IServiceCollection services = new ServiceCollection();
-            services.AddTsqlTarget();
-            configure(new TargetBuilder(services));
-
+            configuration.UpdateServices(services);
             config.AddTarget(typeof(TsqlTargetRenderer), services);
         }
     }
