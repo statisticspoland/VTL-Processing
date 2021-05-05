@@ -1,13 +1,9 @@
-﻿using StatisticsPoland.VtlProcessing.Service.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace StatisticsPoland.VtlProcessing.Service.Services
+﻿namespace StatisticsPoland.VtlProcessing.Service.Services
 {
+    using StatisticsPoland.VtlProcessing.Service.Models;
+
     public interface ITranslationService
     {
-        Response Tanslate(TranslationParameters parameters);
+        TranslationResponse Tanslate(TranslationParameters parameters);
     }
 }

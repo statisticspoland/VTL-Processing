@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace StatisticsPoland.VtlProcessing.Service.Models
+﻿namespace StatisticsPoland.VtlProcessing.Service.Models
 {
+    using System.Collections.Generic;
+
     public class TranslationParameters
     {
-        public Dictionary<string, string> DataSources { get; set; }
+        public List<DataSource> DataSources { get; set; }
         public Dictionary<string, string> DataMappers { get; set; }
         public string Target { get; set; }
         public string Experession { get; set; }
+        public string DefaultNamespace { get; set; }
     }
 }

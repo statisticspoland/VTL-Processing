@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-
-namespace StatisticsPoland.VtlProcessing.Service
+﻿namespace StatisticsPoland.VtlProcessing.Service
 {
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Logging;
+
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -36,7 +34,7 @@ namespace StatisticsPoland.VtlProcessing.Service
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            return context.Response.WriteAsync("");
+            return context.Response.WriteAsync("Unexpected service error.");
         }
     }
 }
