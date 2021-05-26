@@ -71,56 +71,47 @@
         /// <returns>The services collection.</returns>
         public static IServiceCollection AddResolvers(this IServiceCollection services)
         {
-            services.AddTransient<DataStructureResolver>(ServiceProvider => (compName, compType, dataType) =>
+            services.AddScoped<DataStructureResolver>(ServiceProvider => (compName, compType, dataType) =>
             {
                 if (compName == null && compType == null && dataType == null) return new DataStructure(ServiceProvider.GetService<ILogger<IDataStructure>>());
                 else if (compName == null || compType == null || dataType == null) throw new Exception("DataStructureResolver expects 0 or 3 nullable arguments");
                 return new DataStructure(compName, (ComponentType)compType, (BasicDataType)dataType, ServiceProvider.GetService<ILogger<IDataStructure>>());
             });
 
-            services.AddTransient<DatapointRulesetResolver>(ServiceProvider => (name, rulesetText) =>
+            services.AddScoped<DatapointRulesetResolver>(ServiceProvider => (name, rulesetText) =>
             {
                 return new DatapointRuleset(name, rulesetText, ServiceProvider.GetService<DataStructureResolver>());
             });
 
-            services.AddTransient<ExpressionResolver>(ServiceProvider => parentExpr => 
+            services.AddScoped<ExpressionResolver>(ServiceProvider => parentExpr => 
             {
                 return new Expression(parentExpr);
             });
 
-            services.AddTransient<RuleExpressionResolver>(ServiceProvider => (expression, containingRuleset, errorCode, errorLevel) =>
+            services.AddScoped<RuleExpressionResolver>(ServiceProvider => (expression, containingRuleset, errorCode, errorLevel) =>
             {
                 return new RuleExpression(expression, containingRuleset, errorCode, errorLevel);
             });
 
-            services.AddTransient<JoinExpressionResolver>(ServiceProvider => expression =>
+            services.AddScoped<JoinExpressionResolver>(ServiceProvider => expression =>
             {
                 return new JoinExpression(expression);
             });
 
-            services.AddTransient<TransformationSchemaResolver>(ServiceProvider => () =>
+            services.AddScoped<TransformationSchemaResolver>(ServiceProvider => () =>
             {
                 return new TransformationSchema();
             });
 
-            services.AddTransient<OperatorResolver>(ServiceProvider => key =>
+            services.AddScoped<OperatorResolver>(ServiceProvider => key =>
             {
                 Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
-                
-                if (type == typeof(AggrFunctionOperator)) return new AggrFunctionOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(AnalyticFunctionOperator)) return new AnalyticFunctionOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(ArithmeticOperator)) return new ArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
-                if (type == typeof(BooleanOperator)) return new BooleanOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(ComparisonOperator)) return new ComparisonOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(),  key);
-                if (type == typeof(InOperator)) return new InOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(KeepDropOperator)) return new KeepDropOperator(ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(NumericOperator)) return new NumericOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(StringOperator)) return new StringOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), ServiceProvider.GetService<DataStructureResolver>(), key);
-                if (type == typeof(SetOperator)) return new SetOperator(key);
-                if (type == typeof(TimeOperator)) return new TimeOperator(key);
-                if (type == typeof(UnaryArithmeticOperator)) return new UnaryArithmeticOperator(ServiceProvider.GetService<IJoinApplyMeasuresOperator>(), key);
+
                 if (type == null) throw new NotImplementedException($"Operator {key} is not implemented.");
-                return (IOperatorDefinition)ServiceProvider.GetService(type);
+                
+                IOperatorDefinition op = (IOperatorDefinition)ServiceProvider.GetService(type);
+                if (op.Symbol == null) op.Symbol = key;
+                return op;
             });
 
             return services;

@@ -18,7 +18,7 @@
     [OperatorRendererSymbol("timeshift")]
     internal sealed class TimeShiftOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeShiftOperatorRenderer"/> class.
@@ -26,16 +26,16 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public TimeShiftOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             StringBuilder result = new StringBuilder();
             IExpression datasetExpr = expr.OperandsCollection.ToArray()[0];
-            string datasetName = this.opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
+            string datasetName = this._opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
             string identifierName = component.ComponentName.GetNameWithoutAlias();
             string modifier = expr.Operands["ds_2"].ExpressionText;
 

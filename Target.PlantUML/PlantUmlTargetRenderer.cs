@@ -1,25 +1,23 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML
 {
+    using Infrastructure;
+    using Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.Models;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.IO.Compression;
     using System.Linq;
     using System.Text;
-    using Infrastructure;
-    using Infrastructure.Interfaces;
 
     /// <summary>
     /// The PlantUML target renderer for the VTL 2.0 translation.
     /// </summary>
     public class PlantUmlTargetRenderer : ITargetRenderer
     {
-        private readonly ITargetConfiguration conf;
-        private readonly int fontSize;
+        private readonly ITargetConfiguration _conf;
+        private readonly int _fontSize;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlantUmlTargetRenderer"/> class.
@@ -27,15 +25,15 @@
         /// <param name="configuration">The target configuration.</param>
         public PlantUmlTargetRenderer(ITargetConfiguration configuration)
         {
-            this.conf = configuration;
-            this.fontSize = 12;
+            this._conf = configuration;
+            this._fontSize = 12;
         }
         
         public string Name => "PlantUML";
 
         public string Render(ITransformationSchema schema)
         {
-            if (this.conf.ExprType == ExpressionsType.Standard)
+            if (this._conf.ExprType == ExpressionsType.Standard)
                 return this.Render(this.RenderTransformationSchema(schema.GetExpressions()));
             return this.Render(this.RenderTransformationSchema(schema.Rulesets));
         }
@@ -81,7 +79,7 @@
 
             for (int i = 0; i < exprs.Count(); i++)
             {
-                sb.AppendLine($"shema {this.conf.Arrow} {objectName}{i + 1}");
+                sb.AppendLine($"shema {this._conf.Arrow} {objectName}{i + 1}");
             }
 
             return sb.ToString();
@@ -106,7 +104,7 @@
 
             for (int i = 0; i < rulesets.Count(); i++)
             {
-                sb.AppendLine($"shema {this.conf.Arrow} {objectName}{i + 1}");
+                sb.AppendLine($"shema {this._conf.Arrow} {objectName}{i + 1}");
             }
 
             return sb.ToString();
@@ -122,7 +120,7 @@
         {
             StringBuilder sb = new StringBuilder();
             
-            string size = $"<size:{(int)(this.fontSize * 0.9)}>";
+            string size = $"<size:{(int)(this._fontSize * 0.9)}>";
             string objectName = ruleset.RulesetText;
 
             sb.AppendLine();
@@ -140,10 +138,10 @@
 
             for (int i = 0; i < exprs.Count(); i++)
             {
-                sb.AppendLine($"{name} {this.conf.Arrow} {name}_{ruleName}{i + 1}");
+                sb.AppendLine($"{name} {this._conf.Arrow} {name}_{ruleName}{i + 1}");
             }
 
-            if (ruleset.Structure != null && this.conf.ShowDataStructure)
+            if (ruleset.Structure != null && this._conf.ShowDataStructure)
             {
                 sb.AppendLine();
                 sb.Append(RenderDataStructureObject(ruleset.Structure, $"{name}_ds", name, string.Empty));
@@ -177,7 +175,7 @@
                 {
                     string childName = $"{name}{deep + 1}_{i}";
                     sb.AppendLine(this.RenderExpression(expr.OperandsCollection.ToArray()[i], childName, deep + 1));
-                    sb.AppendLine($"{space}{name} {this.conf.Arrow} {childName}");
+                    sb.AppendLine($"{space}{name} {this._conf.Arrow} {childName}");
                 }
             }
 
@@ -194,7 +192,7 @@
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("object shema {");
-            sb.AppendLine($"  <size:{this.fontSize}> {objectsName}");
+            sb.AppendLine($"  <size:{this._fontSize}> {objectsName}");
             sb.AppendLine("}"); ;
 
             return sb.ToString();
@@ -210,9 +208,9 @@
         private string RenderObject(IExpression expr, string name, string space)
         {
             StringBuilder sb = new StringBuilder();
-            IRuleExpression ruleExpr = (this.conf.ExprType == ExpressionsType.Rulesets && expr.ParentExpression == null) ? (IRuleExpression)expr : null;
+            IRuleExpression ruleExpr = (this._conf.ExprType == ExpressionsType.Rulesets && expr.ParentExpression == null) ? (IRuleExpression)expr : null;
             
-            string size = $"<size:{(int)(this.fontSize * 0.9)}>";
+            string size = $"<size:{(int)(this._fontSize * 0.9)}>";
             string objectName = expr.ExpressionText;
             
             if (objectName == null || objectName == string.Empty)
@@ -234,7 +232,7 @@
             sb.AppendLine($"{space}  {size}OperatorSymbol = '{expr.OperatorSymbol}'");
             if(expr.OperatorDefinition?.Keyword != null) sb.AppendLine($"{space}  {size}OperatorKeyword = '{expr.OperatorDefinition.Keyword}'");
             sb.AppendLine($"{space}  {size}IsScalar = {expr.IsScalar}");
-            if(this.conf.ShowNumberLine) sb.AppendLine($"{space}  {size}LineNumber = {expr.LineNumber}");
+            if(this._conf.ShowNumberLine) sb.AppendLine($"{space}  {size}LineNumber = {expr.LineNumber}");
             sb.AppendLine($"{space}  {size}ParamSignature = '{expr.ParamSignature}'");
 
             if (ruleExpr != null)
@@ -245,7 +243,7 @@
 
             sb.AppendLine($"{space}{"}"}");
 
-            if (expr.Structure != null && this.conf.ShowDataStructure)
+            if (expr.Structure != null && this._conf.ShowDataStructure)
             {
                 sb.AppendLine();
                 sb.Append(RenderDataStructureObject(expr.Structure, $"{name}_ds", name, space));
@@ -274,32 +272,32 @@
             sb.AppendLine($"{space}object \"Data Structure {structure.DatasetName}\" as {name} {color}{"{"}");
             if (structure.Identifiers.Count != 0)
             {
-                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>Identifiers:");
+                sb.AppendLine($"{space}  <size:{(int)(this._fontSize * 0.9)}>Identifiers:");
                 sb.Append(this.RenderDataStructureElements(structure.Identifiers, space));
             }
 
             if (structure.Measures.Count != 0)
             {
-                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>Measures:");
+                sb.AppendLine($"{space}  <size:{(int)(this._fontSize * 0.9)}>Measures:");
                 sb.Append(this.RenderDataStructureElements(structure.Measures, space));
             }
 
             if (structure.NonViralAttributes.Count != 0)
             {
-                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>NonViralAttributes:");
+                sb.AppendLine($"{space}  <size:{(int)(this._fontSize * 0.9)}>NonViralAttributes:");
                 sb.Append(this.RenderDataStructureElements(structure.NonViralAttributes, space));
             }
 
             if (structure.ViralAttributes.Count != 0)
             {
-                sb.AppendLine($"{space}  <size:{(int)(this.fontSize * 0.9)}>ViralAttributes:");
+                sb.AppendLine($"{space}  <size:{(int)(this._fontSize * 0.9)}>ViralAttributes:");
                 sb.Append(this.RenderDataStructureElements(structure.ViralAttributes, space));
             }
 
             sb.AppendLine($"{space}{"}"}");
 
             sb.AppendLine();
-            sb.AppendLine($"{space}{parentName} {this.conf.Arrow} {name}");
+            sb.AppendLine($"{space}{parentName} {this._conf.Arrow} {name}");
 
             return sb.ToString();
         }
@@ -334,7 +332,7 @@
         {
             StringBuilder sb = new StringBuilder();
 
-            if (this.conf.UseHorizontalView) sb.AppendLine("left to right direction");
+            if (this._conf.UseHorizontalView) sb.AppendLine("left to right direction");
 
             sb.AppendLine("skinparam object {");
             sb.AppendLine("  FontSize 15");

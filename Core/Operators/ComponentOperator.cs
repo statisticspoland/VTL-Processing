@@ -17,8 +17,8 @@
     [OperatorSymbol("comp")]
     public class ComponentOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
-        private readonly IComponentTypeInference compTypeInference;
+        private readonly DataStructureResolver _dsResolver;
+        private readonly IComponentTypeInference _compTypeInference;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ComponentOperator"/> class.
@@ -27,19 +27,19 @@
         /// <param name="compTypeInference">The component type inferencer.</param>
         public ComponentOperator(DataStructureResolver dsResolver, IComponentTypeInference compTypeInference)
         {
-            this.dsResolver = dsResolver;
-            this.compTypeInference = compTypeInference;
+            this._dsResolver = dsResolver;
+            this._compTypeInference = compTypeInference;
         }
 
         public string Name => "Component";
 
-        public string Symbol => "comp";
+        public string Symbol { get; set; } = "comp";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            IDataStructure structure = this.dsResolver();
+            IDataStructure structure = this._dsResolver();
             IExpression parentExpr = expression.ParentExpression;
 
             if (parentExpr.OperatorSymbol == "#")
@@ -47,13 +47,13 @@
                 StructureComponent component = parentExpr.Operands["ds_1"].Structure.Components.FirstOrDefault(comp => comp.ComponentName.GetNameWithoutAlias() == expression.ExpressionText);
                 if (component == null) throw new VtlOperatorError(expression, this.Name, $"Component {expression.ExpressionText} has been not found in dataset {parentExpr.Operands["ds_1"].ExpressionText}.");
  
-                structure = this.dsResolver(component.ComponentName.GetNameWithoutAlias(), component.ComponentType, component.ValueDomain.DataType);
+                structure = this._dsResolver(component.ComponentName.GetNameWithoutAlias(), component.ComponentType, component.ValueDomain.DataType);
             }
             else if (parentExpr.OperatorSymbol == "unpivot")
             {
                 if (expression.ParamSignature == "ds_1")
                 {
-                    structure = this.dsResolver(expression.ExpressionText, ComponentType.Identifier, BasicDataType.String); //string as nominal data
+                    structure = this._dsResolver(expression.ExpressionText, ComponentType.Identifier, BasicDataType.String); //string as nominal data
                 }
                 else
                 {
@@ -61,15 +61,15 @@
                     if (parentExpr.ParentExpression?.Operands["ds_1"]?.Structure?.Measures.First() != null)
                     {
                         BasicDataType type = parentExpr.ParentExpression.Operands["ds_1"].Structure.Measures.First().ValueDomain.DataType;
-                        structure = this.dsResolver(expression.ExpressionText, ComponentType.Measure, type);
+                        structure = this._dsResolver(expression.ExpressionText, ComponentType.Measure, type);
                     }
-                    structure = this.dsResolver(expression.ExpressionText, ComponentType.Measure, BasicDataType.None);
+                    structure = this._dsResolver(expression.ExpressionText, ComponentType.Measure, BasicDataType.None);
                 }
             }
             else if ((parentExpr.OperatorSymbol != "calcExpr" || parentExpr.Operands["ds_1"] != expression) &&
                 (parentExpr.OperatorSymbol != "renameExpr" || parentExpr.Operands["ds_2"] != expression))
             {
-                this.compTypeInference.InferTypeOfComponent(expression);
+                this._compTypeInference.InferTypeOfComponent(expression);
                 structure = expression.Structure.GetCopy();
             }
             else
@@ -88,7 +88,7 @@
                         default: throw new VtlOperatorError(expression, this.Name, $"Unknown operator keyword: {parentExpr.OperatorDefinition.Keyword}");
                     }
 
-                    structure = this.dsResolver(expression.ExpressionText, compType, dataType);
+                    structure = this._dsResolver(expression.ExpressionText, compType, dataType);
                 }
                 else if (parentExpr.OperatorSymbol == "renameExpr")
                 {
@@ -96,7 +96,7 @@
                     dataType = baseComp.ValueDomain.DataType;
                     compType = baseComp.ComponentType;
 
-                    structure = this.dsResolver(expression.ExpressionText, compType, dataType);
+                    structure = this._dsResolver(expression.ExpressionText, compType, dataType);
                 }
                 else throw new VtlOperatorError(expression, this.Symbol, "Unknown component type.");
             }

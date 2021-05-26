@@ -22,7 +22,7 @@
 
         public string Name => "Calc";
 
-        public string Symbol => "calc";
+        public string Symbol { get; set; } = "calc";
 
         public string Keyword { get; set; }
     }

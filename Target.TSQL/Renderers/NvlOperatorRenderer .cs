@@ -13,7 +13,7 @@
     [OperatorRendererSymbol("nvl")]
     internal sealed class NvlOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NvlOperatorRenderer"/> class.
@@ -21,16 +21,16 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public NvlOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
             IExpression expr2 = expr.OperandsCollection.ToArray()[1];
-            string operand = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
+            string operand = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
 
             return $"IIF({operand} IS NULL, {expr2.ExpressionText}, {operand})";
         }

@@ -17,7 +17,7 @@
 
             foreach (ServiceDescriptor service in services.Where(s => s.ServiceType == typeof(ITargetRenderer)))
             {
-                this._targets.AddSingleton(typeof(ITargetRenderer), service);
+                this._targets.AddScoped(typeof(ITargetRenderer), p => service);
             }
         }
 
@@ -32,8 +32,8 @@
         {
             if (!typeof(ITargetRenderer).IsAssignableFrom(targetType)) throw new Exception("Wrong type of a target instance.");
 
-            this._targets.AddSingleton(typeof(ITargetRenderer), targetType);
-            this._services.AddSingleton(typeof(ITargetRenderer), targetType);
+            this._targets.AddScoped(typeof(ITargetRenderer), targetType);
+            this._services.AddScoped(typeof(ITargetRenderer), targetType);
 
             if (services != null)
             {

@@ -16,18 +16,9 @@
     [OperatorSymbol("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")]
     public class TimeOperator : IOperatorDefinition
     {
-        /// <summary>
-        /// Initialises a new instance of the <see cref="TimeOperator"/> class.
-        /// </summary>
-        /// <param name="symbol">The name of the operator.</param>
-        public TimeOperator(string symbol)
-        {
-            this.Symbol = symbol;
-        }
-
         public string Name => "Time";
 
-        public string Symbol { get; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 

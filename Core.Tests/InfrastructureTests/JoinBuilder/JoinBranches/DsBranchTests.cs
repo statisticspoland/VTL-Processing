@@ -18,14 +18,14 @@
         [InlineData("+", "-", "join", "calc", "test")]
         public void Build_Expr_Expr(params string[] opSymbols)
         {
-            DsBranch dsBranch = new DsBranch(this.exprFac, this.exprTextGenerator);
+            DsBranch dsBranch = new DsBranch(this._exprFac, this._exprTextGenerator);
 
             IExpression expr = ModelResolvers.ExprResolver();
             IExpression expected = ModelResolvers.ExprResolver();
 
             for (int i = 0; i < opSymbols.Length; i++)
             {
-                IExpression subExpr = this.exprFac.GetExpression(opSymbols[i], ExpressionFactoryNameTarget.OperatorSymbol); // local expFactory expected
+                IExpression subExpr = this._exprFac.GetExpression(opSymbols[i], ExpressionFactoryNameTarget.OperatorSymbol); // local expFactory expected
                 subExpr.Structure = ModelResolvers.DsResolver();
                 subExpr.ExpressionText = opSymbols[i];
 

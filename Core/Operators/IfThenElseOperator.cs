@@ -16,8 +16,8 @@
     [OperatorSymbol("if")]
     public class IfThenElseOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="IfThenElseOperator"/> class.
@@ -26,13 +26,13 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public IfThenElseOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "If-Then-Else";
 
-        public string Symbol => "if";
+        public string Symbol { get; set; } = "if";
 
         public string Keyword { get; set; }
 
@@ -43,7 +43,7 @@
                 expression.Operands["if"].Structure = expression.Operands["if"].Operands["ds_1"].Structure.GetCopy();
                 expression.Operands["then"].Structure = expression.Operands["then"].Operands["ds_1"].Structure.GetCopy();
                 expression.Operands["else"].Structure = expression.Operands["else"].Operands["ds_1"].Structure.GetCopy();
-                return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+                return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
             }
             
             IDataStructure dataStructure = null;
@@ -148,7 +148,7 @@
             BasicDataType type = thenExpr.Structure.Components[0].ValueDomain.DataType;
             if (type.In(BasicDataType.Integer, BasicDataType.None) && elseExpr.Structure.Components[0].ValueDomain.DataType != BasicDataType.None)
                 type = elseExpr.Structure.Components[0].ValueDomain.DataType;
-            return this.dsResolver(type.GetVariableName(), ComponentType.Measure, type);
+            return this._dsResolver(type.GetVariableName(), ComponentType.Measure, type);
         }
     }
 }

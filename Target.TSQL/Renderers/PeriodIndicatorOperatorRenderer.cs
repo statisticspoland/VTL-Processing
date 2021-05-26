@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("period_indicator")]
     internal sealed class PeriodIndicatorOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PeriodIndicatorOperatorRenderer"/> class.
@@ -23,18 +23,18 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public PeriodIndicatorOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression operand = expr.OperandsCollection.First();
             string compName = string.Empty;
 
             if (expr.CurrentJoinExpr == null || operand.OperatorSymbol == "#")
-                compName = this.opRendererResolver(operand.OperatorSymbol).Render(operand, component);
+                compName = this._opRendererResolver(operand.OperatorSymbol).Render(operand, component);
             else
             {
                 compName = operand.Structure.Components.FirstOrDefault(id => id.ValueDomain.DataType == BasicDataType.TimePeriod).ComponentName.GetNameWithoutAlias();

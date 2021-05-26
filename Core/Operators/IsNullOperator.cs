@@ -15,8 +15,8 @@
     [OperatorSymbol("isnull")]
     public class IsNullOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
-        private readonly DataStructureResolver dsResolver;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="IsNullOperator"/> class.
@@ -25,23 +25,23 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public IsNullOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.dsResolver = dsResolver;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Is null";
 
-        public string Symbol => "isnull";
+        public string Symbol { get; set; } = "isnull";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr = expression.OperandsCollection.ToArray()[0];
 
-            if (expr.IsScalar) return this.dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
+            if (expr.IsScalar) return this._dsResolver("bool_var", ComponentType.Measure, BasicDataType.Boolean);
             else if (expr.Structure.Measures.Count > 1) throw new VtlOperatorError(expression, this.Name, "Expected structure with only one measure.");
 
             IDataStructure structure = expr.Structure.GetCopy();

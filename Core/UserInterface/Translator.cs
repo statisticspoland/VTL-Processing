@@ -25,9 +25,9 @@
             this.DataModels = new DataModelAggregator(this.EnvironmentMapper);
 
             this._services = new ServiceCollection().AddVtlProcessing();
-            this._services.AddSingleton(typeof(IDataModel), this.DataModels);
-            this._services.AddSingleton(this.DataModels);
-            this._services.AddSingleton(this.EnvironmentMapper);
+            this._services.AddScoped(typeof(IDataModel), p => this.DataModels);
+            this._services.AddScoped(p => this.DataModels);
+            this._services.AddScoped(p => this.EnvironmentMapper);
 
             ITranslatorConfig translatorConfig = new TranslatorConfig(this._services);
             configuration(translatorConfig);

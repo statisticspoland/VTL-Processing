@@ -5,10 +5,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Preparers;
     using Preparers.Interfaces;
-    using Renderers;
     using Renderers.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -22,16 +20,14 @@
 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddTsqlTarget(this IServiceCollection services)
+        internal static IServiceCollection AddTsqlTarget(this IServiceCollection services)
         {
-            services.AddSingleton<IMapper, Mapper>();
+            services.AddScoped<ITargetRenderer, TsqlTargetRenderer>();
+            services.AddScoped<IMapper, Mapper>();
+            services.AddScoped<IReferencesManager, ReferencesManager>();
+            services.AddScoped<TemporaryTables>();
+
             services.AddTransient<IJoinSelectBuilder, JoinSelectBuilder>();
-            services.AddSingleton<ITargetRenderer, TsqlTargetRenderer>();
-            services.AddSingleton<IReferencesManager, ReferencesManager>();
-            services.AddSingleton<ITargetConfiguration, TargetConfiguration>();
-            services.AddSingleton<TsqlTargetRenderer>();
-            services.AddSingleton<TemporaryTables>();
-            services.AddSingleton<IAttributePropagationAlgorithm>(new AttributePropagationAlgorithm());
 
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
 
@@ -50,19 +46,21 @@
                 Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbol>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) return null;
-                if (type == typeof(GetOperatorRenderer)) return new GetOperatorRenderer(ServiceProvider.GetService<IEnvironmentMapper>());
 
-                return (IOperatorRenderer)ServiceProvider
-                .GetService(type);
+                return (IOperatorRenderer)ServiceProvider.GetService(type);
             });
 
             return services;
         }
 
-        public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> configure)
+        public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> config = null)
         {
             services.AddTsqlTarget();
-            configure(new TargetBuilder(services));
+
+            TargetBuilder configuration = new TargetBuilder();
+            if (config != null) config(configuration);
+
+            configuration.UpdateServices(services);
             return services;
         }
     }

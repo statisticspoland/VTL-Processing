@@ -13,11 +13,11 @@
 
     public class ArithmeticOperatorTests
     {
-        private readonly List<string> operators;
+        private readonly List<string> _operators;
 
         public ArithmeticOperatorTests()
         {
-            this.operators = new List<string>() { "+", "-", "*", "/" };
+            this._operators = new List<string>() { "+", "-", "*", "/" };
         }
 
         [Theory]
@@ -59,7 +59,7 @@
         [InlineData(TestExprType.MixedNoneNumDataset, TestExprType.MixedNoneNumDataset)]
         public void GetOutputStructure_Correct1Superset1SubsetExpr_SupersetModified(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -120,7 +120,7 @@
         [InlineData(TestExprType.MixedNoneNumDataset, TestExprType.MixedNoneNumDataset)]
         public void GetOutputStructure_Correct1Subset1SupersetExpr_SupersetModifiedStructure( params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -181,7 +181,7 @@
         [InlineData(TestExprType.MixedNoneNumDataset, TestExprType.MixedNoneNumDataset)]
         public void GetOutputStructure_2NotMatchDatasetsExpr_ThrowsException(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -231,7 +231,7 @@
         [InlineData(TestExprType.MixedNoneNumDataset, TestExprType.MixedNoneNumDataset, /*result:*/ TestExprType.MixedIntNumDataset)]
         public void GetOutputStructure_Correct2DatasetsExpr_DataStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -265,7 +265,7 @@
         [InlineData(TestExprType.MixedNoneNumDataset, TestExprType.None, /*result:*/ TestExprType.MixedIntNumDataset)]
         public void GetOutputStructure_Correct1Dataset1ScalarExpr_DataStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -287,7 +287,7 @@
         [InlineData(TestExprType.Number, TestExprType.None, /*result:*/ TestExprType.Number)]
         public void GetOutputStructure_Correct2ScalarsExpr_DataStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -309,7 +309,7 @@
         [InlineData(TestExprType.Number, TestExprType.MixedIntNumDataset, /*result:*/ TestExprType.NumbersDataset)]
         public void GetOutputStructure_Correct1Scalar1DatasetExpr_DataStructure(params TestExprType[] types)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression arithmeticExpr = TestExprFactory.GetExpression(types);
                 arithmeticExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -417,7 +417,7 @@
             TestExprType[][] combinations = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().GetCombinations(2);
             TestExprType[][] wrongCombs = combinations.Without(correctCombs);
 
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 foreach (TestExprType[] wrongComb in wrongCombs)
                 {

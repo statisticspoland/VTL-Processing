@@ -11,7 +11,7 @@
         [Fact]
         public void Build_Expr_Expr()
         {
-            RenameBranch renameBranch = new RenameBranch(this.exprFac, this.exprTextGenerator);
+            RenameBranch renameBranch = new RenameBranch(this._exprFac, this._exprTextGenerator);
 
             IExpression expr = TestExprFactory.GetExpression("=", ExpressionFactoryNameTarget.OperatorSymbol);
             expr.LineNumber = 10;

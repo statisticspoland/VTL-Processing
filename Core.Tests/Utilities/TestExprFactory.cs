@@ -1,6 +1,5 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.Utilities
 {
-    using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
     using Moq;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models;
@@ -15,7 +14,7 @@
     /// </summary>
     public static class TestExprFactory
     {
-        private static readonly IExpressionFactory exprFactory;
+        private static readonly IExpressionFactory _exprFactory;
 
         /// <summary>
         /// Initializes expression factory.
@@ -40,7 +39,7 @@
                     return expr;
                 });
 
-            TestExprFactory.exprFactory = exprFactoryMock.Object;
+            TestExprFactory._exprFactory = exprFactoryMock.Object;
         }
 
         /// <summary>
@@ -51,7 +50,7 @@
         /// <returns>The expression.</returns>
         public static IExpression GetExpression(string name, ExpressionFactoryNameTarget field)
         {
-            return TestExprFactory.exprFactory.GetExpression(name, field);
+            return TestExprFactory._exprFactory.GetExpression(name, field);
         }
 
         /// <summary>

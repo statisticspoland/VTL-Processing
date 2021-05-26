@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("check_datapoint")]
     internal sealed class CheckDatapointOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckDatapointOperatorRenderer"/> class.
@@ -23,7 +23,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public CheckDatapointOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -90,8 +90,8 @@
 
                 if (rules[i].OperatorSymbol == "when")
                 {
-                    string whenRender = this.opRendererResolver(rules[i].Operands["when"].OperatorSymbol).Render(rules[i].Operands["when"]);
-                    string thenRender = this.opRendererResolver(rules[i].Operands["then"].OperatorSymbol).Render(rules[i].Operands["then"]);
+                    string whenRender = this._opRendererResolver(rules[i].Operands["when"].OperatorSymbol).Render(rules[i].Operands["when"]);
+                    string thenRender = this._opRendererResolver(rules[i].Operands["then"].OperatorSymbol).Render(rules[i].Operands["then"]);
 
                     if (errorCode != "NULL") errorCode = $"IIF({whenRender}, IIF({thenRender}, NULL, {errorCode}), NULL)";
                     if (errorLevel != "NULL") errorLevel = $"IIF({whenRender}, IIF({thenRender}, NULL, {errorLevel}), NULL)";
@@ -100,7 +100,7 @@
                 }
                 else
                 {
-                    string boolRender = this.opRendererResolver(rules[i].OperatorSymbol).Render(rules[i]);
+                    string boolRender = this._opRendererResolver(rules[i].OperatorSymbol).Render(rules[i]);
 
                     if (errorCode != "NULL") errorCode = $"IIF({boolRender}, NULL, {errorCode})";
                     if (errorLevel != "NULL") errorLevel = $"IIF({boolRender}, NULL, {errorLevel})";
@@ -114,7 +114,7 @@
                 if (expr.Structure.ViralAttributes.Count > 0) sb.Append(this.RenderViralAttributes(expr));
                 else sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)).AppendLine(); // removement of ",\n" 
 
-                sb.AppendLine($"FROM {this.opRendererResolver(expr.Operands["ds_1"].OperatorSymbol).Render(expr.Operands["ds_1"])}");
+                sb.AppendLine($"FROM {this._opRendererResolver(expr.Operands["ds_1"].OperatorSymbol).Render(expr.Operands["ds_1"])}");
             }
 
             return sb.ToString();

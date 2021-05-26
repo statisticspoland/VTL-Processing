@@ -15,7 +15,7 @@
     {
         public string Name => "Subspace expression";
 
-        public string Symbol => "=";
+        public string Symbol { get; set; } = "="; // it has to be "='
 
         public string Keyword { get; set; }
 

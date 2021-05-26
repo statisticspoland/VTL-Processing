@@ -14,7 +14,7 @@
     {
         public string Name => "When";
 
-        public string Symbol => "when";
+        public string Symbol { get; set; } = "when";
 
         public string Keyword { get; set; }
 

@@ -10,8 +10,8 @@
 
     public partial class DsBranchTests
     {
-        private readonly IExpressionTextGenerator exprTextGenerator;
-        private readonly IExpressionFactory exprFac;
+        private readonly IExpressionTextGenerator _exprTextGenerator;
+        private readonly IExpressionFactory _exprFac;
 
         public DsBranchTests()
         {
@@ -22,7 +22,7 @@
                     expr.ExpressionText = "Generated text";
                 });
 
-            this.exprTextGenerator = exprTextGeneratorMock.Object;
+            this._exprTextGenerator = exprTextGeneratorMock.Object;
 
             Mock<IExpressionFactory> exprFactoryMock = new Mock<IExpressionFactory>();
             exprFactoryMock.SetupGet(e => e.OperatorResolver).Returns(ModelResolvers.OperatorResolver);
@@ -39,7 +39,7 @@
                 return expr;
             });
 
-            this.exprFac = exprFactoryMock.Object;
+            this._exprFac = exprFactoryMock.Object;
         }
     }
 }

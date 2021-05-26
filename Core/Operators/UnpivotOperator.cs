@@ -13,7 +13,7 @@
     [OperatorSymbol("unpivot")]
     public class UnpivotOperator : IOperatorDefinition
     {
-        private readonly DataStructureResolver dsResolver;
+        private readonly DataStructureResolver _dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="UnpivotOperator"/> class.
@@ -21,18 +21,18 @@
         /// <param name="dsResolver">The data structure resolver.</param>
         public UnpivotOperator(DataStructureResolver dsResolver)
         {
-            this.dsResolver = dsResolver;
+            this._dsResolver = dsResolver;
         }
 
         public string Name => "Unpivot";
 
-        public string Symbol => "unpivot";
+        public string Symbol { get; set; } = "unpivot";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            IDataStructure structure = this.dsResolver();
+            IDataStructure structure = this._dsResolver();
 
             if (expression.OperandsCollection.Count() != 2) throw new VtlOperatorError(expression, this.Name, "Expected two components.");
 

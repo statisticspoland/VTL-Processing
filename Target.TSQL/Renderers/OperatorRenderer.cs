@@ -17,7 +17,7 @@
     [OperatorRendererSymbol("overall")]
     internal class OperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OperatorRenderer"/> class.
@@ -25,12 +25,12 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public OperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (component != null) return this.opRendererResolver(expr.OperatorSymbol).Render(expr, component);
+            if (component != null) return this._opRendererResolver(expr.OperatorSymbol).Render(expr, component);
 
             IExpression sourceExpr = expr.GetDescendantExprs("Get").FirstOrDefault() ?? expr.GetDescendantExprs("Reference").FirstOrDefault();
             if (sourceExpr == null) throw new VtlTargetError(expr, "Source expression has been not found.");
@@ -44,7 +44,7 @@
             foreach (StructureComponent identifier in expr.Structure.Identifiers)
             {
                 if (expr.OperatorSymbol == "timeshift" && identifier.ValueDomain.DataType.In(BasicDataType.Time, BasicDataType.Date, BasicDataType.TimePeriod)) 
-                    sb.AppendLine($"{this.opRendererResolver(expr.OperatorSymbol).Render(expr, identifier)} AS {identifier.ComponentName},");
+                    sb.AppendLine($"{this._opRendererResolver(expr.OperatorSymbol).Render(expr, identifier)} AS {identifier.ComponentName},");
                 else sb.AppendLine($"{identifier.ComponentName},");
             }
 
@@ -56,8 +56,8 @@
 
             foreach (StructureComponent measure in expr.Structure.Measures)
             {
-                if (expr.OperatorSymbol == "isnull") sb.AppendLine($"{this.opRendererResolver(expr.OperatorSymbol).Render(expr, expr.Operands["ds_1"].Structure.Measures[0])} AS {measure.ComponentName},");
-                else if (expr.OperatorSymbol != "timeshift") sb.AppendLine($"{this.opRendererResolver(expr.OperatorSymbol).Render(expr, measure)} AS {measure.ComponentName},");
+                if (expr.OperatorSymbol == "isnull") sb.AppendLine($"{this._opRendererResolver(expr.OperatorSymbol).Render(expr, expr.Operands["ds_1"].Structure.Measures[0])} AS {measure.ComponentName},");
+                else if (expr.OperatorSymbol != "timeshift") sb.AppendLine($"{this._opRendererResolver(expr.OperatorSymbol).Render(expr, measure)} AS {measure.ComponentName},");
                 else sb.AppendLine($"{measure.ComponentName},");
             }
 
@@ -78,7 +78,7 @@
                 sb.AppendLine();
             }
             
-            sb.AppendLine($"FROM {this.opRendererResolver(sourceExpr.OperatorSymbol).Render(sourceExpr)}{asAlias}");
+            sb.AppendLine($"FROM {this._opRendererResolver(sourceExpr.OperatorSymbol).Render(sourceExpr)}{asAlias}");
             return sb.ToString();
         }
     }

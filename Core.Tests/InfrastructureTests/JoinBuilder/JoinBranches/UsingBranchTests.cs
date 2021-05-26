@@ -12,7 +12,7 @@
         [Fact]
         public void Build_Expr_Expr()
         {
-            UsingBranch usingBranch = new UsingBranch(this.exprFac);
+            UsingBranch usingBranch = new UsingBranch(this._exprFac);
 
             IExpression expr = TestExprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);
             IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(expr);

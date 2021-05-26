@@ -11,8 +11,8 @@
     /// </summary>
     public sealed class ApplyBranch : IJoinBranch
     {
-        private readonly ExpressionResolver exprResolver;
-        private IExpressionTextGenerator exprTextGen;
+        private readonly ExpressionResolver _exprResolver;
+        private readonly IExpressionTextGenerator _exprTextGen;
 
         /// <summary>
         /// Inittializes a new instance of the <see cref="ApplyBranch"/> class.
@@ -21,15 +21,15 @@
         /// <param name="exprTextGen">The epression text generator.</param>
         public ApplyBranch(ExpressionResolver exprResolver, IExpressionTextGenerator exprTextGen)
         {
-            this.exprResolver = exprResolver;
-            this.exprTextGen = exprTextGen;
+            this._exprResolver = exprResolver;
+            this._exprTextGen = exprTextGen;
         }
 
         public string Signature => "apply";
 
         public IExpression Build(IExpression datasetExpr)
         {
-            IExpression applyBranch = this.exprResolver();
+            IExpression applyBranch = this._exprResolver();
 
             applyBranch.ParamSignature = this.Signature;
             applyBranch.OperandsCollection = datasetExpr.OperandsCollection;
@@ -44,7 +44,7 @@
                 applyBranch.Operands.Remove("over");
             }
 
-            this.exprTextGen.Generate(applyBranch);
+            this._exprTextGen.Generate(applyBranch);
             return applyBranch;
         }
     }

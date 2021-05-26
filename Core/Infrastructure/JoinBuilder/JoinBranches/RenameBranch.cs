@@ -11,8 +11,8 @@
     /// </summary>
     public sealed class RenameBranch : IJoinBranch
     {
-        private readonly IExpressionFactory exprFactory;
-        private IExpressionTextGenerator exprTextGen;
+        private readonly IExpressionFactory _exprFactory;
+        private readonly IExpressionTextGenerator _exprTextGen;
 
         /// <summary>
         /// Inittializes a new instance of the <see cref="RenameBranch"/> class.
@@ -21,8 +21,8 @@
         /// <param name="exprTextGen">The epression text generator.</param>
         public RenameBranch(IExpressionFactory exprFactory, IExpressionTextGenerator exprTextGen)
         {
-            this.exprFactory = exprFactory;
-            this.exprTextGen = exprTextGen;
+            this._exprFactory = exprFactory;
+            this._exprTextGen = exprTextGen;
         }
 
         public string Signature => "rename";
@@ -34,10 +34,10 @@
             The method can be used to generate "rename" operator expression renaming given dataset expression's single measure name to "bool_var".
             */
 
-            IExpression renameBranch = this.exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
-            IExpression renameExpr = this.exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
-            IExpression compExpr1 = this.exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
-            IExpression compExpr2 = this.exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression renameBranch = this._exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression renameExpr = this._exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression compExpr1 = this._exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression compExpr2 = this._exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
 
             renameBranch.OperatorDefinition.Keyword = "Variable";
             renameBranch.LineNumber = datasetExpr.LineNumber;
@@ -52,8 +52,8 @@
             renameExpr.AddOperand("ds_2", compExpr2);
             renameBranch.AddOperand("ds_1", renameExpr);
 
-            this.exprTextGen.Generate(renameExpr);
-            this.exprTextGen.Generate(renameBranch);
+            this._exprTextGen.Generate(renameExpr);
+            this._exprTextGen.Generate(renameBranch);
 
             return renameBranch;
         }

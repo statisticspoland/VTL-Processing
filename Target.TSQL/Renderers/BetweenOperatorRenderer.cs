@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("between")]
     internal sealed class BetweenOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetweenOperatorRenderer"/> class.
@@ -22,20 +22,20 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public BetweenOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression expr1 = expr.OperandsCollection.First();
             IExpression expr2 = expr.Operands["ds_2"];
             IExpression expr3 = expr.Operands["ds_3"];
 
-            string op1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
-            string op2 = this.opRendererResolver(expr2.OperatorSymbol).Render(expr2, component);
-            string op3 = this.opRendererResolver(expr3.OperatorSymbol).Render(expr3, component);
+            string op1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
+            string op2 = this._opRendererResolver(expr2.OperatorSymbol).Render(expr2, component);
+            string op3 = this._opRendererResolver(expr3.OperatorSymbol).Render(expr3, component);
 
             string result =  $"{op1} BETWEEN {op2} AND {op3}";
 

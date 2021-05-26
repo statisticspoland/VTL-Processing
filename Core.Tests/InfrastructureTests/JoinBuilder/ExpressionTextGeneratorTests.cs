@@ -33,7 +33,7 @@
         public void Generate_ConnectorOperator_CorrectText(string opSymbol)
         {
             IExpression expr = this.GetExpr(opSymbol);
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             string expr1Text = expr.Operands["ds_1"].ExpressionText;
             string expr2Text = expr.Operands["ds_2"].ExpressionText;
@@ -49,7 +49,7 @@
         public void Generate_PrefixOperator_CorrectText(string opSymbol)
         {
             IExpression expr = this.GetExpr(opSymbol);
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             string expr1Text = expr.Operands["ds_1"].ExpressionText;
             string separator = string.Empty;
@@ -68,7 +68,7 @@
         public void Generate_DatasetClauseOperator_CorrectText(string opSymbol)
         {
             IExpression expr = this.GetExpr(opSymbol);
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             string expr1Text = expr.Operands["ds_1"].ExpressionText;
             string expr2Text = expr.Operands["ds_2"].ExpressionText;
@@ -83,7 +83,7 @@
         public void Generate_ClauseExpr_CorrectText(string opSymbol)
         {
             IExpression expr = this.GetExpr(opSymbol);
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             string expr1Text = expr.Operands["ds_1"].ExpressionText;
             string expr2Text = expr.Operands["ds_2"].ExpressionText;
@@ -103,7 +103,7 @@
 
             IExpression expr = this.GetExpr("group");
             expr.OperatorDefinition = groupOpMock.Object;
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             string expr1Text = expr.Operands["ds_1"].ExpressionText;
             string expr2Text = expr.Operands["ds_2"].ExpressionText;
@@ -134,7 +134,7 @@
                     expected += $" {expr3Text}";
                 }
 
-                this.exprTextGenerator.Generate(expr);
+                this._exprTextGenerator.Generate(expr);
 
                 Assert.Equal(expected, expr.ExpressionText);
             }
@@ -151,7 +151,7 @@
             expr.AddOperand("ds_1", ModelResolvers.ExprResolver());
             string exprText = expr.Operands["ds_1"].ExpressionText = "expr1";
 
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             Assert.Equal($"{resultName.ToLower()} {exprText}", expr.ExpressionText);
         }
@@ -181,7 +181,7 @@
                         expected = $"{opSymbol}()";
                     }
 
-                    this.exprTextGenerator.Generate(expr);
+                    this._exprTextGenerator.Generate(expr);
 
                     Assert.Equal($"{expected}", expr.ExpressionText);
                 }
@@ -205,7 +205,7 @@
 
             string expected = expr.ExpressionText;
 
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             Assert.Equal($"{expected}", expr.ExpressionText);
         }
@@ -223,7 +223,7 @@
             string expr2Text = expr.Operands["ds_2"].ExpressionText;
             string expr3Text = expr.Operands["ds_3"].ExpressionText;
 
-            this.exprTextGenerator.Generate(expr);
+            this._exprTextGenerator.Generate(expr);
 
             Assert.Equal($"{opSymbol}({expr1Text}, {expr2Text}, {expr3Text})", expr.ExpressionText);
         }
