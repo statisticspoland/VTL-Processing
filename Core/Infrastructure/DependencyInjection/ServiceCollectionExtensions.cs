@@ -60,9 +60,7 @@
 
             foreach (Type type in Operators)
             {
-                OperatorSymbol opSymbol = (OperatorSymbol)type.GetCustomAttributes().First(attribute => attribute.GetType() == typeof(OperatorSymbol));
-                if (opSymbol.Symbols.Count == 1)
-                    services.AddTransient(type);
+                services.AddTransient(type);
             }
 
             services.AddScoped<ISchemaModifiersApplier, SchemaModifiersApplier>();
