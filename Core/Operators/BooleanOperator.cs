@@ -49,6 +49,11 @@
 
             if (this.Symbol.In("and", "or", "xor"))
             {
+                if(expr2 == null)
+                {
+                    throw new VtlOperatorError(expression, this.Name, "Expected more than one operand.");
+                }
+
                 if (expr1.IsScalar) this.ValdiateComponent(expression, expr1.Structure.Components[0]);
                 else
                 {

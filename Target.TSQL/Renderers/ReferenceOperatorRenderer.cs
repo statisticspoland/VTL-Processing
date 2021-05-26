@@ -35,7 +35,7 @@
                     component = expr.CurrentJoinExpr.GetAliasExpression(expr.ExpressionText).Structure.Measures[0];
                     return $"{expr.ExpressionText}.{component.ComponentName}";
                 }
-                else if (expr.GetFirstAncestorExpr("If") != null) return $"{expr.ExpressionText}.{component.ComponentName}";
+                else if (expr.GetFirstAncestorExpr("If") != null) return component != null ? $"{expr.ExpressionText}.{component.ComponentName}" : expr.ResultMappedName;
             }
             else if (expr.ParentExpression.OperatorSymbol == "isnull") return component?.ComponentName?.GetNameWithoutAlias() ?? expr.ResultMappedName;
             else return expr.ResultMappedName;

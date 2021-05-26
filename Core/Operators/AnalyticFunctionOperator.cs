@@ -50,7 +50,7 @@
                 expression.Operands["ds_1"] :
                 null;
 
-            if (this.Symbol == "ratio_to_report")
+            if (this.Symbol == "ratio_to_report" && operand != null)
             {
                 foreach (StructureComponent measure in operand.Structure.Measures)
                 {
@@ -62,12 +62,15 @@
             if (operand == null || operand.IsScalar)
             {
                 if (this.Symbol == "rank") return this._dsResolver("int_var", ComponentType.Measure, BasicDataType.Integer);
-                
-                StructureComponent component = operand.Structure.Components[0];
-                return this._dsResolver(component.ComponentName, component.ComponentType, component.ValueDomain.DataType);
+
+                if (operand != null)
+                {
+                    StructureComponent component = operand.Structure.Components[0];
+                    return this._dsResolver(component.ComponentName, component.ComponentType, component.ValueDomain.DataType);
+                }
             }
 
-            return operand.Structure.GetCopy();
+            return operand != null ? operand.Structure.GetCopy() : null;
         }
     }
 }

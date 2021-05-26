@@ -76,7 +76,11 @@
         /// <returns>Null.</returns>
         public override IExpression VisitStart(VtlParser.StartContext context)
         {
-            context.statement().Select(op => this.Visit(op)).Where(op => op != null).ToList();
+            foreach(VtlParser.StatementContext op in context.statement())
+            {
+                this.Visit(op);
+            }
+            
             return null;
         }
 
