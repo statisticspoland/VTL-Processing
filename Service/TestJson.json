@@ -1,0 +1,13 @@
+﻿{
+    "DataSources": 
+    [{
+        "Type": "sdmx",
+        "Localazation": "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/datastructure/ESTAT/DSD_cens_01rdhh",
+        "Namespace": "sdmx"
+    }],
+    "DataMappers": { "sdmx": ""},
+    "Target": "TSQL",
+    "ResponseType": "file",
+    "Experession": "a := DSD_cens_01rdhh",
+    "DefaultNamespace": "sdmx"
+}
