@@ -22,7 +22,7 @@
 
         public string Name => "Order";
 
-        public string Symbol => "order";
+        public string Symbol { get; set; } = "order";
 
         public string Keyword { get; set; }
     }

@@ -27,7 +27,7 @@
 
         public string Name => "Group";
 
-        public string Symbol => "group";
+        public string Symbol { get; set; } = "group";
 
         public string Keyword { get; set; }
 

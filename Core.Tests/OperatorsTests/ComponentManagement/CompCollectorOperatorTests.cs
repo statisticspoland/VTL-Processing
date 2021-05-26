@@ -3,12 +3,9 @@
     using Moq;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
-    using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary;
     using StatisticsPoland.VtlProcessing.Core.Tests.Utilities;
     using System;
     using System.Linq;
@@ -16,7 +13,7 @@
 
     public class CompCollectorOperatorTests
     {
-        private readonly IExpressionFactory exprFac;
+        private readonly IExpressionFactory _exprFac;
 
         public CompCollectorOperatorTests()
         {
@@ -37,7 +34,7 @@
                 return expr;
             });
 
-            this.exprFac = exprFactoryMock.Object;
+            this._exprFac = exprFactoryMock.Object;
         }
 
         [Theory]
@@ -240,10 +237,10 @@
         public void GetOutputStructure_2ScalarsExpr_DataStructure(string opSymbol, params TestExprType[] types)
         {
             IExpression compCreateExpr = TestExprFactory.GetExpression(types);
-            compCreateExpr.OperatorDefinition = this.exprFac.OperatorResolver(opSymbol);
+            compCreateExpr.OperatorDefinition = this._exprFac.OperatorResolver(opSymbol);
             compCreateExpr.Operands["ds_2"].Structure.Measures[0].ComponentName += "2";
 
-            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this.exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
+            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this._exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
             joinExpr.AddOperand("ds_1", compCreateExpr);
             
             IDataStructure expectedStructure = compCreateExpr.Operands["ds_1"].Structure.GetCopy();
@@ -306,7 +303,7 @@
         [InlineData(TestExprType.TimePeriod, TestExprType.TimePeriod)]
         public void GetOutputStructure_Group2ScalarsExpr_DataStructure(params TestExprType[] types)
         {
-            IExpression compCreateExpr = this.exprFac.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression compCreateExpr = this._exprFac.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
             IExpression idExpr1 = ModelResolvers.ExprResolver();
             IExpression idExpr2 = ModelResolvers.ExprResolver();
 
@@ -317,7 +314,7 @@
             compCreateExpr.AddOperand("ds_1", idExpr1);
             compCreateExpr.AddOperand("ds_2", idExpr2);
 
-            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this.exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
+            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this._exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
             joinExpr.AddOperand("ds_1", compCreateExpr);
 
             IDataStructure expectedStructure = compCreateExpr.Operands["ds_1"].Structure.GetCopy();
@@ -335,7 +332,7 @@
         [InlineData("drop")]
         public void GetOutputStructure_NScalarsExpr_DataStructure(string opSymbol)
         {
-            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this.exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
+            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this._exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
 
             for (int i = 3; i <= 5; i++) // very expensive
             {
@@ -344,7 +341,7 @@
                 foreach (TestExprType[] combination in combinations)
                 {
                     IExpression compCreateExpr = TestExprFactory.GetExpression(combination);
-                    compCreateExpr.OperatorDefinition = this.exprFac.OperatorResolver(opSymbol);
+                    compCreateExpr.OperatorDefinition = this._exprFac.OperatorResolver(opSymbol);
                     joinExpr.AddOperand("ds_1", compCreateExpr);
 
                     IDataStructure expectedStructure = compCreateExpr.Operands["ds_1"].Structure.GetCopy();
@@ -363,7 +360,7 @@
         [Fact]
         public void GetOutputStructure_GroupNScalarsExpr_DataStructure()
         {
-            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this.exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
+            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this._exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
 
             for (int i = 3; i <= 5; i++) // very expensive
             {
@@ -371,7 +368,7 @@
 
                 foreach (TestExprType[] combination in combinations)
                 {
-                    IExpression compCreateExpr = this.exprFac.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
+                    IExpression compCreateExpr = this._exprFac.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
                     joinExpr.AddOperand("ds_1", compCreateExpr);
 
                     IDataStructure expectedStructure = ModelResolvers.DsResolver();
@@ -397,11 +394,11 @@
         {
             TestExprType[][] wrongCombs = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().Where(type => (int)type <= 8).GetCombinations(2);
 
-            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this.exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
+            IJoinExpression joinExpr = ModelResolvers.JoinExprResolver(this._exprFac.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol));
 
             foreach (TestExprType[] wrongComb in wrongCombs)
             {
-                IExpression compCreateExpr = this.exprFac.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression compCreateExpr = this._exprFac.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
                 IExpression idExpr1 = ModelResolvers.ExprResolver();
                 IExpression idExpr2 = ModelResolvers.ExprResolver();
 

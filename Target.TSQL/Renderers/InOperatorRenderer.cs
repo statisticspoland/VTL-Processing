@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("in", "not_in")]
     internal sealed class InOperatorRenderer :  IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InOperatorRenderer"/> class.
@@ -23,19 +23,19 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public InOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             StringBuilder sb = new StringBuilder();
 
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
             IExpression expr2 = expr.OperandsCollection.ToArray()[1];
 
-            string op1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
+            string op1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
 
             string result = string.Empty;
             string symbol = expr.OperatorSymbol == "in" ? "IN" : "NOT IN";
@@ -44,7 +44,7 @@
             sb.Append($"{op1} {symbol} ");
             foreach (IExpression item in expr2.OperandsCollection)
             {
-                string itemText = this.opRendererResolver(item.OperatorSymbol).Render(item, component);
+                string itemText = this._opRendererResolver(item.OperatorSymbol).Render(item, component);
                 if (itemText.First() == '"' && itemText.Last() == '"') 
                     itemText = $"'{itemText.Remove(itemText.Length - 1).Remove(0, 1)}'";
 

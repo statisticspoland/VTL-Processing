@@ -12,8 +12,8 @@
     /// </summary>
     public class TypeInferenceModifier : ISchemaModifier
     {
-        private readonly OperatorResolver opResolver;
-        private readonly IDataModel dataModel;
+        private readonly OperatorResolver _opResolver;
+        private readonly IDataModel _dataModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeInferenceModifier"/> class.
@@ -22,8 +22,8 @@
         /// <param name="dataModel">The data model.</param>
         public TypeInferenceModifier(OperatorResolver opResolver, IDataModel dataModel)
         {
-            this.opResolver = opResolver;
-            this.dataModel = dataModel;
+            this._opResolver = opResolver;
+            this._dataModel = dataModel;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@
             if (expr.OperatorSymbol == "get" && expr.CurrentJoinExpr != null && expr.GetFirstAncestorExpr("Alias") == null)
             {
                 expr.ResultName = "Reference";
-                expr.OperatorDefinition = this.opResolver("ref");
+                expr.OperatorDefinition = this._opResolver("ref");
                 expr.ReferenceExpression = expr.CurrentJoinExpr.Operands["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expr.ExpressionText);
             }
 
@@ -80,11 +80,11 @@
             IDataStructure structure = null;
             try
             {
-                structure = this.dataModel.GetDatasetStructure(expr.ResultName);
+                structure = this._dataModel.GetDatasetStructure(expr.ResultName);
 
                 string[] split = expr.ResultName.Split(@"\");
                 if (split.Length == 1)
-                    expr.ResultName = $@"{this.dataModel.DefaultNamespace}\{expr.ResultName}";
+                    expr.ResultName = $@"{this._dataModel.DefaultNamespace}\{expr.ResultName}";
             }
             catch
             {

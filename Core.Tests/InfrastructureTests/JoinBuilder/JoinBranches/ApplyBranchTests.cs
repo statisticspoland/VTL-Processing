@@ -20,7 +20,7 @@
         [InlineData("or")]
         public void Build_NotAggrAnalyticOperatorExpr_Expr(string opSymbol)
         {
-            ApplyBranch applyBranch = new ApplyBranch(ModelResolvers.ExprResolver, this.exprTextGenerator);
+            ApplyBranch applyBranch = new ApplyBranch(ModelResolvers.ExprResolver, this._exprTextGenerator);
 
             Mock<IOperatorDefinition> opDefMock = new Mock<IOperatorDefinition>();
             opDefMock.SetupGet(opDef => opDef.Symbol).Returns(opSymbol);
@@ -57,7 +57,7 @@
 
             foreach (string opSymbol in opSymbols)
             {
-                ApplyBranch applyBranch = new ApplyBranch(ModelResolvers.ExprResolver, this.exprTextGenerator);
+                ApplyBranch applyBranch = new ApplyBranch(ModelResolvers.ExprResolver, this._exprTextGenerator);
 
                 Mock<IOperatorDefinition> opDefMock = new Mock<IOperatorDefinition>();
                 opDefMock.SetupGet(opDef => opDef.Symbol).Returns(opSymbol);

@@ -12,7 +12,7 @@
     {
         public string Name => "Aggregation";
 
-        public string Symbol => "aggr";
+        public string Symbol { get; set; } = "aggr";
 
         public string Keyword { get; set; }
 

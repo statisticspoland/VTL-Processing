@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("and", "or", "xor", "not")]
     internal sealed class BooleanOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BooleanOperatorRenderer"/> class.
@@ -22,12 +22,12 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public BooleanOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && !expr.IsApplyComponent && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && !expr.IsApplyComponent && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
 
@@ -37,7 +37,7 @@
                 expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.RulesCollection.Contains(expr.GetFirstAncestorExpr() ?? expr)) == null;
 
             string symbol = expr.OperatorSymbol.ToUpper();
-            string op1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
+            string op1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
 
             if (expr.OperandsCollection.ToArray()[0].OperatorSymbol.In("const", "get", "ref", "comp", "#")) op1 += " = 1";
 
@@ -46,7 +46,7 @@
                 IExpression expr2 = expr.OperandsCollection.ToArray()[1];
 
                 string result = string.Empty;
-                string op2 = this.opRendererResolver(expr2.OperatorSymbol).Render(expr2, component);
+                string op2 = this._opRendererResolver(expr2.OperatorSymbol).Render(expr2, component);
 
                 if (expr.OperandsCollection.ToArray()[1].OperatorSymbol.In("const", "ref", "comp")) op2 += " = 1";
 

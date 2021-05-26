@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("minus", "plus")]
     internal class UnaryArithmeticOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnaryArithmeticOperatorRenderer"/> class.
@@ -22,16 +22,16 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public UnaryArithmeticOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression operand = expr.OperandsCollection.First();
 
-            string op = this.opRendererResolver(operand.OperatorSymbol).Render(operand, component);
+            string op = this._opRendererResolver(operand.OperatorSymbol).Render(operand, component);
             string symbol = expr.OperatorSymbol == "minus" ? "-" : string.Empty;
             string result = $"{symbol}{op}";
 

@@ -13,8 +13,8 @@
     /// </summary>
     public sealed class TreeGenerator : ITreeGenerator
     {
-        private readonly ITreeTransformer transformer;
-        private readonly ILogger<ITreeGenerator> logger;
+        private readonly ITreeTransformer _transformer;
+        private readonly ILogger<ITreeGenerator> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TreeGenerator"/> class.
@@ -23,8 +23,8 @@
         /// <param name="logger">The syntax errors logger.</param>
         public TreeGenerator(ITreeTransformer transformer, ILogger<ITreeGenerator> logger = null)
         {
-            this.logger = logger;
-            this.transformer = transformer;
+            this._logger = logger;
+            this._transformer = transformer;
         }
 
         public ITransformationSchema BuildTransformationSchema(string vtlSource)
@@ -42,10 +42,10 @@
             VtlParser.StartContext cst = parser.start();
             foreach (VtlSyntaxError error in errListener.Errors)
             {
-                this.logger?.LogError(error, error.Message);
+                this._logger?.LogError(error, error.Message);
             }
 
-            return this.transformer.TransformToSchema(cst);
+            return this._transformer.TransformToSchema(cst);
         }        
     }
 }

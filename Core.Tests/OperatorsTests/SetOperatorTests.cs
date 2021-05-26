@@ -11,11 +11,11 @@
 
     public class SetOperatorTests
     {
-        private readonly List<string> operators;
+        private readonly List<string> _operators;
 
         public SetOperatorTests()
         {
-            this.operators = new List<string>() { "union", "intersect", "setdiff", "symdiff" };
+            this._operators = new List<string>() { "union", "intersect", "setdiff", "symdiff" };
         }
 
         [Fact]
@@ -26,7 +26,7 @@
 
             foreach (TestExprType[] datasetComb in datasetCombs.Where(comb => comb[0] == comb[1]))
             {
-                foreach (string opSymbol in this.operators)
+                foreach (string opSymbol in this._operators)
                 {
                     IExpression setExpr = ModelResolvers.ExprResolver();
                     setExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -49,7 +49,7 @@
 
             foreach (TestExprType[] datasetComb in datasetCombs.Where(comb => comb[0] != comb[1]))
             {
-                foreach (string opSymbol in this.operators)
+                foreach (string opSymbol in this._operators)
                 {
                     IExpression setExpr = ModelResolvers.ExprResolver();
                     setExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -70,7 +70,7 @@
 
             foreach (TestExprType[] mixedComb in mixedCombs)
             {
-                foreach (string opSymbol in this.operators)
+                foreach (string opSymbol in this._operators)
                 {
                     IExpression setExpr = ModelResolvers.ExprResolver();
                     setExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -91,7 +91,7 @@
 
             foreach (TestExprType[] mixedComb in mixedCombs)
             {
-                foreach (string opSymbol in this.operators)
+                foreach (string opSymbol in this._operators)
                 {
                     IExpression setExpr = ModelResolvers.ExprResolver();
                     setExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);
@@ -112,7 +112,7 @@
 
             foreach (TestExprType[] scalarComb in scalarCombs)
             {
-                foreach (string opSymbol in this.operators)
+                foreach (string opSymbol in this._operators)
                 {
                     IExpression setExpr = ModelResolvers.ExprResolver();
                     setExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);

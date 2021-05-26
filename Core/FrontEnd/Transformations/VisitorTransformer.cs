@@ -23,11 +23,11 @@
     /// </summary>
     public sealed class VisitorTransformer : VtlBaseVisitor<IExpression>, ITreeTransformer
     {
-        private readonly TransformationSchemaResolver schemaResolver;
-        private readonly DatapointRulesetResolver dprReslover;
-        private readonly IExpressionFactory exprFactory;
-        private readonly IJoinBuilder joinBuilder;
-        private readonly ILogger<VisitorTransformer> logger;
+        private readonly TransformationSchemaResolver _schemaResolver;
+        private readonly DatapointRulesetResolver _dprReslover;
+        private readonly IExpressionFactory _exprFactory;
+        private readonly IJoinBuilder _joinBuilder;
+        private readonly ILogger<VisitorTransformer> _logger;
         private List<string> currentRefs;
         private ITransformationSchema schema;
 
@@ -46,16 +46,16 @@
             IJoinBuilder joinBuilder, 
             ILogger<VisitorTransformer> logger = null)
         {
-            this.schemaResolver = schemaResolver;
-            this.dprReslover = dprReslover;
-            this.exprFactory = exprFactory;
-            this.joinBuilder = joinBuilder;
-            this.logger = logger;
+            this._schemaResolver = schemaResolver;
+            this._dprReslover = dprReslover;
+            this._exprFactory = exprFactory;
+            this._joinBuilder = joinBuilder;
+            this._logger = logger;
         }
 
         public ITransformationSchema TransformToSchema(IParseTree tree)
         {
-            this.schema = this.schemaResolver();
+            this.schema = this._schemaResolver();
 
             try
             {
@@ -63,7 +63,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.LogError(ex, ex.Message);
+                this._logger?.LogError(ex, ex.Message);
             }
 
             return this.schema;
@@ -116,7 +116,7 @@
         {
             IExpression datasetExpr;
             if (context.opSymbol == null) return this.Visit(context.ifThenElseDataset());
-            datasetExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            datasetExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
 
             if (context.unopenedDataset() != null) datasetExpr.AddOperand("ds_1", this.Visit(context.unopenedDataset()));
             else if (context.openedDatasetLeft != null) datasetExpr.AddOperand("ds_1", this.Visit(context.openedDatasetLeft));
@@ -157,7 +157,7 @@
                 if (context.closedDataset() != null)
                 {
                     if (context.datasetClause() == null) return this.Visit(context.closedDataset());
-                    datasetExpr = this.exprFactory.GetExpression("datasetClause", ExpressionFactoryNameTarget.OperatorSymbol);
+                    datasetExpr = this._exprFactory.GetExpression("datasetClause", ExpressionFactoryNameTarget.OperatorSymbol);
                     datasetExpr.AddOperand("ds_1", this.Visit(context.closedDataset()));
                     datasetExpr.AddOperand("ds_2", this.Visit(context.datasetClause()));
                 }
@@ -170,7 +170,7 @@
                 if (opSymbol == "+") return this.Visit(context.dataset()[0]);
                 if (opSymbol == "-") opSymbol = "minus";
 
-                datasetExpr = this.exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+                datasetExpr = this._exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
 
                 int index = 1;
                 foreach (VtlParser.DatasetContext datasetContext in context.dataset())
@@ -199,7 +199,7 @@
 
         public override IExpression VisitMembershipDataset([NotNull] VtlParser.MembershipDatasetContext context)
         {
-            IExpression membershipExpr = this.exprFactory.GetExpression("#", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression membershipExpr = this._exprFactory.GetExpression("#", ExpressionFactoryNameTarget.OperatorSymbol);
             membershipExpr.ExpressionText = this.GetOriginalText(context);
             membershipExpr.LineNumber = context.Start.Line;
             membershipExpr.AddOperand("ds_1", this.Visit(context.closedDataset()));
@@ -210,13 +210,13 @@
 
         public override IExpression VisitIfThenElseDataset([NotNull] VtlParser.IfThenElseDatasetContext context)
         {
-            IExpression ifThenElseExpr = this.exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression ifThenElseExpr = this._exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
             ifThenElseExpr.ExpressionText = this.GetOriginalText(context);
             ifThenElseExpr.LineNumber = context.Start.Line;
 
-            IExpression ifExpr = this.exprFactory.ExprResolver();
-            IExpression thenExpr = this.exprFactory.ExprResolver();
-            IExpression elseExpr = this.exprFactory.ExprResolver();
+            IExpression ifExpr = this._exprFactory.ExprResolver();
+            IExpression thenExpr = this._exprFactory.ExprResolver();
+            IExpression elseExpr = this._exprFactory.ExprResolver();
 
             if (context.ifDataset != null) ifExpr.AddOperand("ds_1", this.Visit(context.ifDataset));
             else ifExpr.AddOperand("ds_1", this.Visit(context.ifScalar));
@@ -249,7 +249,7 @@
             IExpression componentExpr;
             if (context.MEMBERSHIP() != null)
             {
-                componentExpr = this.exprFactory.GetExpression("#", ExpressionFactoryNameTarget.OperatorSymbol);
+                componentExpr = this._exprFactory.GetExpression("#", ExpressionFactoryNameTarget.OperatorSymbol);
                 componentExpr.AddOperand("ds_1", this.Visit(context.closedDataset()));
                 componentExpr.AddOperand("ds_2", this.Visit(context.componentID()));
             }
@@ -268,7 +268,7 @@
             {
                 if (context.opSymbol?.Text == "-")
                 {
-                    scalarExpr = this.exprFactory.GetExpression("minus", ExpressionFactoryNameTarget.OperatorSymbol);
+                    scalarExpr = this._exprFactory.GetExpression("minus", ExpressionFactoryNameTarget.OperatorSymbol);
                     scalarExpr.AddOperand("ds_1", this.Visit(context.component()));
                     return scalarExpr;
                 }
@@ -279,7 +279,7 @@
             if (context.constant() != null) return this.Visit(context.constant());
             if (context.ifThenElseScalar() != null) return this.Visit(context.ifThenElseScalar());
             if (context.opSymbol == null) return this.Visit(context.scalar()[0]);
-            scalarExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            scalarExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
 
             int index = 1;
             foreach (VtlParser.ScalarContext scalarContext in context.scalar())
@@ -302,13 +302,13 @@
 
         public override IExpression VisitIfThenElseScalar([NotNull] VtlParser.IfThenElseScalarContext context)
         {
-            IExpression ifThenElseExpr = this.exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression ifThenElseExpr = this._exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
             ifThenElseExpr.ExpressionText = this.GetOriginalText(context);
             ifThenElseExpr.LineNumber = context.Start.Line;
 
-            IExpression ifExpr = this.exprFactory.ExprResolver();
-            IExpression thenExpr = this.exprFactory.ExprResolver();
-            IExpression elseExpr = this.exprFactory.ExprResolver();
+            IExpression ifExpr = this._exprFactory.ExprResolver();
+            IExpression thenExpr = this._exprFactory.ExprResolver();
+            IExpression elseExpr = this._exprFactory.ExprResolver();
 
             ifExpr.AddOperand("ds_1", this.Visit(context.scalar()[0]));
             thenExpr.AddOperand("ds_1", this.Visit(context.scalar()[1]));
@@ -335,7 +335,7 @@
         {
             IExpression optionalExpr;
             if (context.scalar() != null) return this.Visit(context.scalar());
-            optionalExpr = this.exprFactory.GetExpression("optional", ExpressionFactoryNameTarget.OperatorSymbol);
+            optionalExpr = this._exprFactory.GetExpression("optional", ExpressionFactoryNameTarget.OperatorSymbol);
             
             optionalExpr.ExpressionText = this.GetOriginalText(context);
             optionalExpr.LineNumber = context.Start.Line;
@@ -344,7 +344,7 @@
 
         public override IExpression VisitSetExpr([NotNull] VtlParser.SetExprContext context)
         {
-            IExpression setExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression setExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
             setExpr.ExpressionText = this.GetOriginalText(context);
             setExpr.LineNumber = context.Start.Line;
             setExpr.AddOperand("ds_1", this.Visit(context.dataset()[0]));
@@ -368,11 +368,11 @@
 
         public override IExpression VisitAggrClause([NotNull] VtlParser.AggrClauseContext context)
         {
-            IExpression aggrClauseExpr = this.exprFactory.GetExpression("aggr", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression aggrClauseExpr = this._exprFactory.GetExpression("aggr", ExpressionFactoryNameTarget.OperatorSymbol);
             aggrClauseExpr.ExpressionText = this.GetOriginalText(context);
             aggrClauseExpr.LineNumber = context.Start.Line;
 
-            IExpression calcClauseExpr = this.exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression calcClauseExpr = this._exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
             calcClauseExpr.ExpressionText = $"calc {this.GetOriginalText(context).Split("aggr ")[1].Split("group")[0]}";
 
             for (int i = 0; i < context.aggrExpr().Length; i++)
@@ -389,7 +389,7 @@
 
         public override IExpression VisitAggrExpr([NotNull] VtlParser.AggrExprContext context)
         {
-            IExpression aggrExpr = this.exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression aggrExpr = this._exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
             aggrExpr.ExpressionText = this.GetOriginalText(context);
             aggrExpr.LineNumber = context.Start.Line;
 
@@ -414,7 +414,7 @@
 
         public override IExpression VisitRenameClause([NotNull] VtlParser.RenameClauseContext context)
         {
-            IExpression renameClauseExpr = this.exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression renameClauseExpr = this._exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
             renameClauseExpr.ExpressionText = this.GetOriginalText(context);
             renameClauseExpr.LineNumber = context.Start.Line;
 
@@ -428,7 +428,7 @@
 
         public override IExpression VisitRenameExpr([NotNull] VtlParser.RenameExprContext context)
         {
-            IExpression renameExpr = this.exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression renameExpr = this._exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
             renameExpr.ExpressionText = this.GetOriginalText(context);
             renameExpr.LineNumber = context.Start.Line;
             renameExpr.AddOperand("ds_1", this.Visit(context.component()));
@@ -439,7 +439,7 @@
 
         public override IExpression VisitCalcClause([NotNull] VtlParser.CalcClauseContext context)
         {
-            IExpression calcClauseExpr = this.exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression calcClauseExpr = this._exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
             calcClauseExpr.ExpressionText = this.GetOriginalText(context);
             calcClauseExpr.LineNumber = context.Start.Line;
 
@@ -453,7 +453,7 @@
 
         public override IExpression VisitCalcExpr([NotNull] VtlParser.CalcExprContext context)
         {
-            IExpression calcExpr = this.exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression calcExpr = this._exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
             calcExpr.ExpressionText = this.GetOriginalText(context);
             calcExpr.LineNumber = context.Start.Line;
 
@@ -468,7 +468,7 @@
 
         public override IExpression VisitKeepClause([NotNull] VtlParser.KeepClauseContext context)
         {
-            IExpression keepClauseExpr = this.exprFactory.GetExpression("keep", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression keepClauseExpr = this._exprFactory.GetExpression("keep", ExpressionFactoryNameTarget.OperatorSymbol);
             keepClauseExpr.ResultName = "Keep";
             keepClauseExpr.ExpressionText = this.GetOriginalText(context);
             keepClauseExpr.LineNumber = context.Start.Line;
@@ -483,7 +483,7 @@
 
         public override IExpression VisitDropClause([NotNull] VtlParser.DropClauseContext context)
         {
-            IExpression dropClauseExpr = this.exprFactory.GetExpression("drop", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression dropClauseExpr = this._exprFactory.GetExpression("drop", ExpressionFactoryNameTarget.OperatorSymbol);
             dropClauseExpr.ResultName = "Drop";
             dropClauseExpr.ExpressionText = this.GetOriginalText(context);
             dropClauseExpr.LineNumber = context.Start.Line;
@@ -498,7 +498,7 @@
 
         public override IExpression VisitPivotClause([NotNull] VtlParser.PivotClauseContext context)
         {
-            IExpression pivotClauseExpr = this.exprFactory.GetExpression("pivot", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression pivotClauseExpr = this._exprFactory.GetExpression("pivot", ExpressionFactoryNameTarget.OperatorSymbol);
             pivotClauseExpr.ExpressionText = this.GetOriginalText(context);
             pivotClauseExpr.LineNumber = context.Start.Line;
 
@@ -512,7 +512,7 @@
 
         public override IExpression VisitUnpivotClause([NotNull] VtlParser.UnpivotClauseContext context)
         {
-            IExpression unpivotClauseExpr = this.exprFactory.GetExpression("unpivot", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression unpivotClauseExpr = this._exprFactory.GetExpression("unpivot", ExpressionFactoryNameTarget.OperatorSymbol);
             unpivotClauseExpr.ExpressionText = this.GetOriginalText(context);
             unpivotClauseExpr.LineNumber = context.Start.Line;
 
@@ -526,7 +526,7 @@
 
         public override IExpression VisitSubspaceClause([NotNull] VtlParser.SubspaceClauseContext context)
         {
-            IExpression subspaceClauseExpr = this.exprFactory.GetExpression("sub", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression subspaceClauseExpr = this._exprFactory.GetExpression("sub", ExpressionFactoryNameTarget.OperatorSymbol);
             subspaceClauseExpr.ExpressionText = this.GetOriginalText(context);
             subspaceClauseExpr.LineNumber = context.Start.Line;
 
@@ -540,7 +540,7 @@
 
         public override IExpression VisitSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context)
         {
-            IExpression subspaceExpr = this.exprFactory.GetExpression("subExpr", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression subspaceExpr = this._exprFactory.GetExpression("subExpr", ExpressionFactoryNameTarget.OperatorSymbol);
             subspaceExpr.ExpressionText = this.GetOriginalText(context);
             subspaceExpr.LineNumber = context.Start.Line;
             subspaceExpr.AddOperand("ds_1", this.Visit(context.component()));
@@ -551,7 +551,7 @@
 
         public override IExpression VisitJoinExpr([NotNull] VtlParser.JoinExprContext context)
         {
-            IExpression joinExpr = this.exprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression joinExpr = this._exprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);
             joinExpr.ExpressionText = this.GetOriginalText(context);
             joinExpr.LineNumber = context.Start.Line;
             joinExpr.OperatorDefinition.Keyword = context.joinKeyword().GetText().Split('_')[0];
@@ -559,7 +559,7 @@
             this.Visit(context.joinClause());
             this.Visit(context.joinBody());
 
-            joinExpr = this.joinBuilder
+            joinExpr = this._joinBuilder
                 .AddMainExpr(joinExpr)
                 .Build();
 
@@ -568,13 +568,13 @@
                 if (membershipExpr.GetFirstAncestorExpr("Alias") == null) membershipExpr.OperatorDefinition.Keyword = "Component";
             }
 
-            this.joinBuilder.Clear();
+            this._joinBuilder.Clear();
             return joinExpr;
         }
 
         public override IExpression VisitJoinAliasesClause([NotNull] VtlParser.JoinAliasesClauseContext context)
         {
-            IExpression dsBranch = this.exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+            IExpression dsBranch = this._exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
             dsBranch.ExpressionText = this.GetOriginalText(context);
             dsBranch.LineNumber = context.Start.Line;
 
@@ -587,7 +587,7 @@
                 dsBranch.Operands[aliasExpr.ParamSignature].ExpressionText = dsBranch.Operands[aliasExpr.ParamSignature].ExpressionText.Split(" as")[0];
             }
 
-            this.joinBuilder.AddBranch("ds", dsBranch);
+            this._joinBuilder.AddBranch("ds", dsBranch);
             return dsBranch;
         }
 
@@ -605,7 +605,7 @@
 
         public override IExpression VisitJoinUsingClause([NotNull] VtlParser.JoinUsingClauseContext context)
         {
-            IExpression usingBranch = this.exprFactory.GetExpression("Using", ExpressionFactoryNameTarget.ResultName);
+            IExpression usingBranch = this._exprFactory.GetExpression("Using", ExpressionFactoryNameTarget.ResultName);
             usingBranch.ExpressionText = this.GetOriginalText(context);
             usingBranch.LineNumber = context.Start.Line;
 
@@ -614,7 +614,7 @@
                 usingBranch.AddOperand(context.componentID()[i].GetText(), this.Visit(context.componentID()[i]));
             }
 
-            this.joinBuilder.AddBranch("using", usingBranch);
+            this._joinBuilder.AddBranch("using", usingBranch);
             return usingBranch;
         }
 
@@ -622,7 +622,7 @@
         {
             IExpression calcBranch = this.Visit(context.calcClause());
 
-            this.joinBuilder.AddBranch("calc", calcBranch);
+            this._joinBuilder.AddBranch("calc", calcBranch);
             return calcBranch;
         }
 
@@ -630,7 +630,7 @@
         {
             IExpression aggrBranch = this.Visit(context.aggrClause());
 
-            this.joinBuilder.AddBranch("aggr", aggrBranch);
+            this._joinBuilder.AddBranch("aggr", aggrBranch);
             return aggrBranch;
         }
 
@@ -638,7 +638,7 @@
         {
             IExpression keepBranch = this.Visit(context.keepClause());
 
-            this.joinBuilder.AddBranch("keep", keepBranch);
+            this._joinBuilder.AddBranch("keep", keepBranch);
             return keepBranch;
         }
 
@@ -646,7 +646,7 @@
         {
             IExpression dropBranch = this.Visit(context.dropClause());
 
-            this.joinBuilder.AddBranch("drop", dropBranch);
+            this._joinBuilder.AddBranch("drop", dropBranch);
             return dropBranch;
         }
 
@@ -654,7 +654,7 @@
         {
             IExpression filterBranch = this.Visit(context.filterClause());
 
-            this.joinBuilder.AddBranch("filter", filterBranch);
+            this._joinBuilder.AddBranch("filter", filterBranch);
             return filterBranch;
         }
 
@@ -662,7 +662,7 @@
         {
             IExpression renameBranch = this.Visit(context.renameClause());
 
-            this.joinBuilder.AddBranch("rename", renameBranch);
+            this._joinBuilder.AddBranch("rename", renameBranch);
             return renameBranch;
         }
 
@@ -677,8 +677,8 @@
             bool aliasFound = false;
             foreach (IExpression expr in applyBranch.GetDescendantExprs("Component"))
             {
-                expr.OperatorDefinition = this.exprFactory.OperatorResolver("ref");
-                expr.ReferenceExpression = this.joinBuilder.Branches["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expr.ExpressionText);
+                expr.OperatorDefinition = this._exprFactory.OperatorResolver("ref");
+                expr.ReferenceExpression = this._joinBuilder.Branches["ds"].OperandsCollection.FirstOrDefault(alias => alias.ParamSignature == expr.ExpressionText);
                 if (expr.ReferenceExpression == null)
                 {
                     if (this.schema.AssignmentObjects.FirstOrDefault(ao => ao.Name == expr.ExpressionText) != null)
@@ -697,13 +697,13 @@
 
             if (!aliasFound) throw new VtlOperatorError(applyBranch, "apply", "Expected alias reference in apply operator expression.");
 
-            this.joinBuilder.AddBranch("apply", applyBranch);
+            this._joinBuilder.AddBranch("apply", applyBranch);
             return applyBranch;
         }
 
         public override IExpression VisitAggrInvocation([NotNull] VtlParser.AggrInvocationContext context)
         {
-            IExpression aggrInvocationExpr = this.exprFactory.GetExpression(context.aggrFunctionName().GetText(), ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression aggrInvocationExpr = this._exprFactory.GetExpression(context.aggrFunctionName().GetText(), ExpressionFactoryNameTarget.OperatorSymbol);
             aggrInvocationExpr.ExpressionText = this.GetOriginalText(context);
             aggrInvocationExpr.LineNumber = context.Start.Line;
 
@@ -716,7 +716,7 @@
 
         public override IExpression VisitAggrFunction([NotNull] VtlParser.AggrFunctionContext context)
         {
-            IExpression aggrFunctionExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression aggrFunctionExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
             aggrFunctionExpr.ExpressionText = this.GetOriginalText(context);
             aggrFunctionExpr.LineNumber = context.Start.Line;
             if (context.component() != null) aggrFunctionExpr.AddOperand("ds_1", this.Visit(context.component()));
@@ -726,7 +726,7 @@
 
         public override IExpression VisitGroupingClause([NotNull] VtlParser.GroupingClauseContext context)
         {
-            IExpression groupingClauseExpr = this.exprFactory.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression groupingClauseExpr = this._exprFactory.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
 
             if (groupingClauseExpr.OperatorDefinition.Keyword == null) groupingClauseExpr.OperatorDefinition.Keyword = context.groupKeyword().BY()?.GetText();
             if (groupingClauseExpr.OperatorDefinition.Keyword == null) groupingClauseExpr.OperatorDefinition.Keyword = context.groupKeyword().EXCEPT()?.GetText();
@@ -755,7 +755,7 @@
 
         public override IExpression VisitHavingExpr([NotNull] VtlParser.HavingExprContext context)
         {
-            IExpression havingExpr = this.exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression havingExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
             havingExpr.ExpressionText = this.GetOriginalText(context);
             havingExpr.LineNumber = context.Start.Line;
 
@@ -782,7 +782,7 @@
         {
             string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
             
-            IExpression analyticInvocationExpr = this.exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression analyticInvocationExpr = this._exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
             analyticInvocationExpr.ExpressionText = this.GetOriginalText(context);
             analyticInvocationExpr.LineNumber = context.Start.Line;
 
@@ -791,7 +791,7 @@
             if (!opSymbol.In("ratio_to_report", "lag", "lead")) analyticInvocationExpr.AddOperand("over", this.Visit(context.analyticClause()));
             else
             {
-                IExpression overExpr = this.exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
+                IExpression overExpr = this._exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
                 overExpr.ExpressionText = "over (";
                 overExpr.LineNumber = context.Start.Line;
 
@@ -823,7 +823,7 @@
         {
             string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
 
-            IExpression analyticFunctionExpr = this.exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression analyticFunctionExpr = this._exprFactory.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol);
             analyticFunctionExpr.ExpressionText = this.GetOriginalText(context);
             analyticFunctionExpr.LineNumber = context.Start.Line;
 
@@ -832,7 +832,7 @@
             if (!opSymbol.In("rank", "ration_to_report", "lag", "lead")) analyticFunctionExpr.AddOperand("over", this.Visit(context.analyticClause()));
             else
             {
-                IExpression overExpr = this.exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
+                IExpression overExpr = this._exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
                 overExpr.ExpressionText = "over (";
                 overExpr.LineNumber = context.Start.Line;
 
@@ -862,7 +862,7 @@
 
         public override IExpression VisitAnalyticClause([NotNull] VtlParser.AnalyticClauseContext context)
         {
-            IExpression analyticClauseExpr = this.exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
+            IExpression analyticClauseExpr = this._exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
             analyticClauseExpr.ExpressionText = $"over ({this.GetOriginalText(context)})";
             analyticClauseExpr.LineNumber = context.Start.Line;
 
@@ -875,7 +875,7 @@
 
         public override IExpression VisitPartitionClause([NotNull] VtlParser.PartitionClauseContext context)
         {
-            IExpression partitionClauseExpr = this.exprFactory.GetExpression("partition", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression partitionClauseExpr = this._exprFactory.GetExpression("partition", ExpressionFactoryNameTarget.OperatorSymbol);
             partitionClauseExpr.ExpressionText = this.GetOriginalText(context);
             partitionClauseExpr.LineNumber = context.Start.Line;
 
@@ -889,7 +889,7 @@
 
         public override IExpression VisitOrderClause([NotNull] VtlParser.OrderClauseContext context)
         {
-            IExpression orderClauseExpr = this.exprFactory.GetExpression("order", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression orderClauseExpr = this._exprFactory.GetExpression("order", ExpressionFactoryNameTarget.OperatorSymbol);
             orderClauseExpr.ExpressionText = this.GetOriginalText(context);
             orderClauseExpr.LineNumber = context.Start.Line;
 
@@ -911,7 +911,7 @@
 
         public override IExpression VisitWindowingClause([NotNull] VtlParser.WindowingClauseContext context)
         {
-            IExpression windowingClauseExpr = this.exprFactory.GetExpression("Window", ExpressionFactoryNameTarget.ResultName);
+            IExpression windowingClauseExpr = this._exprFactory.GetExpression("Window", ExpressionFactoryNameTarget.ResultName);
             windowingClauseExpr.ExpressionText = this.GetOriginalText(context);
             windowingClauseExpr.LineNumber = context.Start.Line;
 
@@ -923,7 +923,7 @@
 
         public override IExpression VisitFirstWindowLimit([NotNull] VtlParser.FirstWindowLimitContext context)
         {
-            IExpression windowLimitExpr = this.exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
+            IExpression windowLimitExpr = this._exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
             windowLimitExpr.ExpressionText = this.GetOriginalText(context);
             windowLimitExpr.LineNumber = context.Start.Line;
 
@@ -932,7 +932,7 @@
 
         public override IExpression VisitSecondWindowLimit([NotNull] VtlParser.SecondWindowLimitContext context)
         {
-            IExpression windowLimitExpr = this.exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
+            IExpression windowLimitExpr = this._exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
             windowLimitExpr.ExpressionText = this.GetOriginalText(context);
             windowLimitExpr.LineNumber = context.Start.Line;
 
@@ -941,7 +941,7 @@
 
         public override IExpression VisitList([NotNull] VtlParser.ListContext context)
         {
-            IExpression listExpr = this.exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression listExpr = this._exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
             listExpr.ExpressionText = this.GetOriginalText(context);
             listExpr.LineNumber = context.Start.Line;
 
@@ -957,10 +957,10 @@
         {
             IExpression datasetExpr;
             if (this.schema.AssignmentObjects[this.GetOriginalText(context)] == null)
-                datasetExpr = this.exprFactory.GetExpression("get", ExpressionFactoryNameTarget.OperatorSymbol);
+                datasetExpr = this._exprFactory.GetExpression("get", ExpressionFactoryNameTarget.OperatorSymbol);
             else
             {
-                datasetExpr = this.exprFactory.GetExpression("ref", ExpressionFactoryNameTarget.OperatorSymbol);
+                datasetExpr = this._exprFactory.GetExpression("ref", ExpressionFactoryNameTarget.OperatorSymbol);
                 datasetExpr.ReferenceExpression = this.schema.AssignmentObjects[this.GetOriginalText(context)].Expression;
                 this.currentRefs.Add(this.GetOriginalText(context));
             }
@@ -972,7 +972,7 @@
 
         public override IExpression VisitComponentID([NotNull] VtlParser.ComponentIDContext context)
         {
-            IExpression componentExpr = this.exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression componentExpr = this._exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
             componentExpr.ExpressionText = this.GetOriginalText(context);
             componentExpr.LineNumber = context.Start.Line;
 
@@ -981,7 +981,7 @@
 
         public override IExpression VisitConstant([NotNull] VtlParser.ConstantContext context)
         {
-            IExpression constantExpr = this.exprFactory.GetExpression("const", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression constantExpr = this._exprFactory.GetExpression("const", ExpressionFactoryNameTarget.OperatorSymbol);
             constantExpr.ExpressionText = this.GetOriginalText(context);
             constantExpr.LineNumber = context.Start.Line;
 
@@ -1000,12 +1000,12 @@
 
         public override IExpression VisitCheckDatapoint([NotNull] VtlParser.CheckDatapointContext context)
         {
-            IExpression checkExpr = this.exprFactory.GetExpression("check_datapoint", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression checkExpr = this._exprFactory.GetExpression("check_datapoint", ExpressionFactoryNameTarget.OperatorSymbol);
             checkExpr.ExpressionText = this.GetOriginalText(context);
             checkExpr.LineNumber = context.Start.Line;
             checkExpr.OperatorDefinition.Keyword = context.output?.Text ?? "invalid";
 
-            IExpression componentsExpr = this.exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
+            IExpression componentsExpr = this._exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
             componentsExpr.ExpressionText = "components ";
             componentsExpr.LineNumber = context.Start.Line;
 
@@ -1025,7 +1025,7 @@
 
         public override IExpression VisitDefDatapoint([NotNull] VtlParser.DefDatapointContext context)
         {
-            this.schema.Rulesets.Add(this.dprReslover(this.GetOriginalText(context.rulesetID()), this.GetOriginalText(context)));
+            this.schema.Rulesets.Add(this._dprReslover(this.GetOriginalText(context.rulesetID()), this.GetOriginalText(context)));
             base.VisitDefDatapoint(context);
 
             foreach (IExpression expr in this.schema.Rulesets.Last().RulesCollection)
@@ -1080,14 +1080,14 @@
 
             if (context.WHEN() != null)
             {
-                IExpression whenExpr = this.exprFactory.GetExpression("when", ExpressionFactoryNameTarget.OperatorSymbol);
+                IExpression whenExpr = this._exprFactory.GetExpression("when", ExpressionFactoryNameTarget.OperatorSymbol);
                 whenExpr.AddOperand("when", this.Visit(context.scalar()[0]));
                 whenExpr.AddOperand("then", this.Visit(context.scalar()[1]));
                 whenExpr.LineNumber = context.Start.Line;
 
-                ruleExpr = this.exprFactory.RuleExprResolver(whenExpr, ruleset, context.errorCode()?.GetText().Replace("errorcode", string.Empty), errorLevel);
+                ruleExpr = this._exprFactory.RuleExprResolver(whenExpr, ruleset, context.errorCode()?.GetText().Replace("errorcode", string.Empty), errorLevel);
             }
-            else ruleExpr = this.exprFactory.RuleExprResolver(this.Visit(context.scalar()[0]), ruleset, context.errorCode()?.GetText().Replace("errorcode", string.Empty), errorLevel);
+            else ruleExpr = this._exprFactory.RuleExprResolver(this.Visit(context.scalar()[0]), ruleset, context.errorCode()?.GetText().Replace("errorcode", string.Empty), errorLevel);
 
             if (context.ruleID() != null) ruleExpr.ResultName = this.GetOriginalText(context.ruleID());
             else
@@ -1108,7 +1108,7 @@
 
         public override IExpression VisitRulesetID([NotNull] VtlParser.RulesetIDContext context)
         {
-            IExpression rulesetExpr = this.exprFactory.GetExpression("Ruleset", ExpressionFactoryNameTarget.ResultName);
+            IExpression rulesetExpr = this._exprFactory.GetExpression("Ruleset", ExpressionFactoryNameTarget.ResultName);
             rulesetExpr.ExpressionText = this.GetOriginalText(context);
             rulesetExpr.LineNumber = context.Start.Line;
 

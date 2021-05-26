@@ -1,17 +1,10 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces
 {
-    using Microsoft.Extensions.DependencyInjection;
-
     /// <summary>
     /// The target builder interface.
     /// </summary>
     public interface ITargetBuilder
     {
-        /// <summary>
-        /// Gets the service collection.
-        /// </summary>
-        IServiceCollection Services { get; }
-
         /// <summary>
         /// Adds comments to the target translated TSQL code.
         /// </summary>

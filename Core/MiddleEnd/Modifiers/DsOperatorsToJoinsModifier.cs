@@ -20,9 +20,9 @@
     /// </summary>
     public class DsOperatorsToJoinsModifier : ISchemaModifier
     {
-        private readonly IExpressionFactory exprFactory;
-        private readonly JoinExpressionResolver joinExprResolver;
-        private readonly IJoinBuilder builder;
+        private readonly IExpressionFactory _exprFactory;
+        private readonly JoinExpressionResolver _joinExprResolver;
+        private readonly IJoinBuilder _builder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DsOperatorsToJoinsModifier"/> class.
@@ -32,9 +32,9 @@
         /// <param name="builder">The join builder.</param>
         public DsOperatorsToJoinsModifier(IExpressionFactory exprFactory, JoinExpressionResolver joinExprResolver, IJoinBuilder builder)
         {
-            this.exprFactory = exprFactory;
-            this.joinExprResolver = joinExprResolver;
-            this.builder = builder;
+            this._exprFactory = exprFactory;
+            this._joinExprResolver = joinExprResolver;
+            this._builder = builder;
         }
 
         /// <summary>
@@ -108,66 +108,66 @@
                 {
                     IExpression aggrExpr = expression.Operands["ds_2"];
 
-                    this.builder.AddBranch("calc", aggrExpr.Operands["calc"]);
-                    this.builder.AddBranch("group", aggrExpr.Operands["group"]);
-                    if (aggrExpr.Operands.ContainsKey("having")) this.builder.AddBranch("having", aggrExpr.Operands["having"]);
+                    this._builder.AddBranch("calc", aggrExpr.Operands["calc"]);
+                    this._builder.AddBranch("group", aggrExpr.Operands["group"]);
+                    if (aggrExpr.Operands.ContainsKey("having")) this._builder.AddBranch("having", aggrExpr.Operands["having"]);
 
-                    this.builder.Branches["calc"].OperatorDefinition.Keyword = "Aggr";
+                    this._builder.Branches["calc"].OperatorDefinition.Keyword = "Aggr";
                 }
                 else
                 {
-                    this.builder.AddBranch(resultName.ToLower(), expression.Operands["ds_2"]);
+                    this._builder.AddBranch(resultName.ToLower(), expression.Operands["ds_2"]);
                     if (resultName == "Filter")
                     {
-                        if (!this.builder.Branches["filter"].Structure.IsSingleComponent || this.builder.Branches["filter"].Structure.Components[0].ValueDomain.DataType != BasicDataType.Boolean)
+                        if (!this._builder.Branches["filter"].Structure.IsSingleComponent || this._builder.Branches["filter"].Structure.Components[0].ValueDomain.DataType != BasicDataType.Boolean)
                             throw new Exception("Expected boolean single component expression as filter branch.");
                     }
                 }
             }
-            else if (expression.OperatorSymbol.In(AnalyticFunctionOperator.Symbols)) this.builder.AddBranch("over", expression.Operands["over"]);
+            else if (expression.OperatorSymbol.In(AnalyticFunctionOperator.Symbols)) this._builder.AddBranch("over", expression.Operands["over"]);
             else if (expression.OperatorSymbol.In(AggrFunctionOperator.Symbols))
             {
                 if (expression.Operands.ContainsKey("group"))
                 {
-                    this.builder.AddBranch("group", expression.Operands["group"]);
-                    if (expression.Operands.ContainsKey("having")) this.builder.AddBranch("having", expression.Operands["having"]);
-                    if (expression.OperatorSymbol == "count") this.builder.BuildBranch("calc", expression);
+                    this._builder.AddBranch("group", expression.Operands["group"]);
+                    if (expression.Operands.ContainsKey("having")) this._builder.AddBranch("having", expression.Operands["having"]);
+                    if (expression.OperatorSymbol == "count") this._builder.BuildBranch("calc", expression);
                 }
-                else this.builder.AddBranch("over", expression.Operands["over"]);
+                else this._builder.AddBranch("over", expression.Operands["over"]);
             }
             else if (expression.OperatorSymbol.In(JoinOperators.ComparisonOperators) &&
                     (expression.Operands["ds_1"].Structure.Measures[0].ComponentName != "bool_var"
                     || expression.Operands["ds_2"].Structure.Measures[0].ComponentName != "bool_var"))
-                this.builder.BuildBranch("rename", expression);
+                this._builder.BuildBranch("rename", expression);
 
-            if (additionalAliasExpr == null) this.builder.BuildBranch("ds", expression);
-            if (expression.OperatorSymbol != "datasetClause" && !this.builder.Branches.ContainsKey("calc")) this.builder.BuildBranch("apply", expression);
+            if (additionalAliasExpr == null) this._builder.BuildBranch("ds", expression);
+            if (expression.OperatorSymbol != "datasetClause" && !this._builder.Branches.ContainsKey("calc")) this._builder.BuildBranch("apply", expression);
 
-            expression.OperatorDefinition = this.exprFactory.OperatorResolver("join");
+            expression.OperatorDefinition = this._exprFactory.OperatorResolver("join");
             expression.OperatorDefinition.Keyword = "inner";
             expression.Operands.Clear();
 
             if (additionalAliasExpr != null)
             {
-                IExpression dsBranch = this.exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+                IExpression dsBranch = this._exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
                 dsBranch.ExpressionText = $"{additionalAliasExpr.ExpressionText} as ds1";
                 dsBranch.AddOperand("ds1", additionalAliasExpr);
 
-                additionalAliasExpr.OperatorDefinition = this.exprFactory.OperatorResolver("join");
+                additionalAliasExpr.OperatorDefinition = this._exprFactory.OperatorResolver("join");
                 additionalAliasExpr.OperatorDefinition.Keyword = "inner";
                 additionalAliasExpr.ResultName = "Join";
 
-                this.builder.Branches.Add("ds", dsBranch);
+                this._builder.Branches.Add("ds", dsBranch);
             }
 
-            expression.AddOperand("ds", this.builder.Branches["ds"]);
-            expression = this.joinExprResolver(expression);
+            expression.AddOperand("ds", this._builder.Branches["ds"]);
+            expression = this._joinExprResolver(expression);
 
-            this.builder.BuildBranch("using", expression);
-            this.builder.AddMainExpr(expression);
+            this._builder.BuildBranch("using", expression);
+            this._builder.AddMainExpr(expression);
 
-            IJoinExpression joinExpr = this.builder.Build();
-            this.builder.Clear();
+            IJoinExpression joinExpr = this._builder.Build();
+            this._builder.Clear();
 
             joinExpr.Structure = joinExpr.OperatorDefinition.GetOutputStructure(joinExpr);
             return joinExpr;

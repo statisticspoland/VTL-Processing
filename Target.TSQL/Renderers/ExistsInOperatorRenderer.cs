@@ -16,8 +16,8 @@
     [OperatorRendererSymbol("exists_in")]
     internal sealed class ExistsInOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
-        private readonly IAttributePropagationAlgorithm propagationAlgorithm;
+        private readonly OperatorRendererResolver _opRendererResolver;
+        private readonly IAttributePropagationAlgorithm _propagationAlgorithm;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExistsInOperatorRenderer"/> class.
@@ -26,8 +26,8 @@
         /// <param name="propagationAlgorithm">The attribute propagation algorithm.</param>
         public ExistsInOperatorRenderer(OperatorRendererResolver opRendererResolver, IAttributePropagationAlgorithm propagationAlgorithm)
         {
-            this.opRendererResolver = opRendererResolver;
-            this.propagationAlgorithm = propagationAlgorithm;
+            this._opRendererResolver = opRendererResolver;
+            this._propagationAlgorithm = propagationAlgorithm;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -62,18 +62,18 @@
                         {
                             if (expr1.Structure.ViralAttributes.FirstOrDefault(at => at.ComponentName == attribute.ComponentName) != null &&
                                 expr2.Structure.ViralAttributes.FirstOrDefault(at => at.ComponentName == attribute.ComponentName) != null)
-                                    sb.AppendLine($"{this.propagationAlgorithm.Propagate(attribute, new string[] { "ds1", "ds2" })} AS {attribute.ComponentName.GetNameWithoutAlias()},");
+                                    sb.AppendLine($"{this._propagationAlgorithm.Propagate(attribute, new string[] { "ds1", "ds2" })} AS {attribute.ComponentName.GetNameWithoutAlias()},");
                         }
 
                         sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n"
                         sb.AppendLine();
 
-                        sb.AppendLine($"FROM {this.opRendererResolver(expr1.OperatorSymbol).Render(expr1)} AS ds1");
+                        sb.AppendLine($"FROM {this._opRendererResolver(expr1.OperatorSymbol).Render(expr1)} AS ds1");
 
                         if (expr.OperatorDefinition.Keyword == "true") sb.Append("INNER JOIN ");
                         else sb.Append("LEFT JOIN ");
 
-                        sb.AppendLine($"{this.opRendererResolver(expr2.OperatorSymbol).Render(expr2)} AS ds2");
+                        sb.AppendLine($"{this._opRendererResolver(expr2.OperatorSymbol).Render(expr2)} AS ds2");
                         sb.AppendLine("ON");
                         break;
                     case 3:

@@ -14,8 +14,8 @@
     [OperatorRendererSymbol("join")]
     internal sealed class JoinOperatorRenderer : IOperatorRenderer
     {
-        private readonly IJoinSelectBuilder joinSelectBuilder;
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly IJoinSelectBuilder _joinSelectBuilder;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JoinOperatorRenderer"/> class.
@@ -24,13 +24,13 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public JoinOperatorRenderer(IJoinSelectBuilder joinSelectBuilder, OperatorRendererResolver opRendererResolver)
         {
-            this.joinSelectBuilder = joinSelectBuilder;
-            this.opRendererResolver = opRendererResolver;
+            this._joinSelectBuilder = joinSelectBuilder;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            return this.joinSelectBuilder
+            return this._joinSelectBuilder
                 .AddJoinExpr((IJoinExpression)(expr))
                 .AddIdentifiers()
                 .AddMeasures(this.RenderApplyMeasures)
@@ -51,7 +51,7 @@
         /// <returns>The TSQL translated code with measures.</returns>
         private string RenderApplyMeasures(IExpression applyBranch, StructureComponent measure, StructureComponent renamedMeasure)
         {
-            string result = this.opRendererResolver(applyBranch.OperatorSymbol).Render(applyBranch, measure);
+            string result = this._opRendererResolver(applyBranch.OperatorSymbol).Render(applyBranch, measure);
 
             string leftParenthesis = string.Empty;
             string rightParenthesis = string.Empty;
@@ -66,7 +66,7 @@
             if (result.Split(',')[0].Length != 2 || result.Split(',')[0].Split('.')[1] != renamedMeasure.ComponentName)
             {
                 result = result.Remove(result.Length - 1); // usunięcie ","
-                if (applyBranch.CurrentJoinExpr.Operands.ContainsKey("over")) result += this.opRendererResolver("over").Render(applyBranch.CurrentJoinExpr.Operands["over"]);
+                if (applyBranch.CurrentJoinExpr.Operands.ContainsKey("over")) result += this._opRendererResolver("over").Render(applyBranch.CurrentJoinExpr.Operands["over"]);
                 result += $" AS {renamedMeasure.ComponentName},";
             }
 

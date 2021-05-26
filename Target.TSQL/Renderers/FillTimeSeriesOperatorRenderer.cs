@@ -18,7 +18,7 @@
     [OperatorRendererSymbol("fill_time_series")]
     internal sealed class FillTimeSeriesOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FillTimeSeriesOperatorRenderer"/> class.
@@ -26,7 +26,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public FillTimeSeriesOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -37,7 +37,7 @@
             StructureComponent[] measures = expr.Structure.Measures.ToArray();
             StructureComponent[] attributes = expr.Structure.ViralAttributes.ToArray();
             IExpression datasetExpr = expr.OperandsCollection.ToArray()[0];
-            string datasetName = this.opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
+            string datasetName = this._opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
             string timeIdName = timeId.ComponentName.GetNameWithoutAlias();
 
             result.AppendLine("SELECT");
@@ -174,7 +174,7 @@
             StructureComponent timeId = expr.Structure.Identifiers.First(comp => comp.ValueDomain.DataType.In(BasicDataType.Time, BasicDataType.Date, BasicDataType.TimePeriod));
             StructureComponent[] identifiers = expr.Structure.Identifiers.ToArray();
             IExpression datasetExpr = expr.OperandsCollection.ToArray()[0];
-            string datasetName = this.opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
+            string datasetName = this._opRendererResolver(datasetExpr.OperatorSymbol).Render(datasetExpr);
             string timeIdName = timeId.ComponentName.GetNameWithoutAlias();
 
             switch (timeId.ValueDomain.DataType)

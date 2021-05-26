@@ -29,22 +29,26 @@
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds the VtlProcessing services collection.
+        /// </summary>
+        /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
+        /// <returns>The service collection.</returns>
         internal static IServiceCollection AddVtlProcessing(this IServiceCollection services)
         {
-            services.AddSingleton<ITreeGenerator, TreeGenerator>();
-            services.AddSingleton<ITreeTransformer, VisitorTransformer>();
-            services.AddSingleton<IExpressionFactory, ExpressionFactory>();
+            services.AddScoped<ITreeGenerator, TreeGenerator>();
+            services.AddScoped<IExpressionTextGenerator, ExpressionTextGenerator>();
+            services.AddScoped<IExpressionFactory, ExpressionFactory>();
+            services.AddScoped<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
+            services.AddScoped<IComponentTypeInference, ComponentTypeInference>();
+            services.AddScoped<IJoinBranch, ApplyBranch>();
+            services.AddScoped<IJoinBranch, CalcBranch>();
+            services.AddScoped<IJoinBranch, DsBranch>();
+            services.AddScoped<IJoinBranch, RenameBranch>();
+            services.AddScoped<IJoinBranch, UsingBranch>();
 
-            services.AddSingleton<IJoinBranch, ApplyBranch>();
-            services.AddSingleton<IJoinBranch, CalcBranch>();
-            services.AddSingleton<IJoinBranch, DsBranch>();
-            services.AddSingleton<IJoinBranch, RenameBranch>();
-            services.AddSingleton<IJoinBranch, UsingBranch>();
-            services.AddSingleton<IJoinBuilder, JoinBuilder>();
-            services.AddSingleton<IExpressionTextGenerator, ExpressionTextGenerator>();
-
-            services.AddSingleton<IJoinApplyMeasuresOperator, JoinApplyMeasuresOperator>();
-            services.AddSingleton<IComponentTypeInference, ComponentTypeInference>();
+            services.AddTransient<ITreeTransformer, VisitorTransformer>();
+            services.AddTransient<IJoinBuilder, JoinBuilder>();
 
             services.AddResolvers();
 
@@ -61,29 +65,34 @@
                     services.AddTransient(type);
             }
 
-            services.AddSingleton<ISchemaModifiersApplier, SchemaModifiersApplier>();
+            services.AddScoped<ISchemaModifiersApplier, SchemaModifiersApplier>();
 
             // middle end schema modifier chain
-            //services.AddSingleton<ISchemaModifier, DeadCodeModifier>(); // Wyłączone do testów wyrażeń nietrwałego przypisania
-            services.AddSingleton<ISchemaModifier, TypeInferenceModifier>();
-            services.AddSingleton<ISchemaModifier, JoinUsingFillingModifier>();
-            services.AddSingleton<ISchemaModifier, DsOperatorsToJoinsModifier>();
+            //services.AddScoped<ISchemaModifier, DeadCodeModifier>(); // Wyłączone do testów wyrażeń nietrwałego przypisania
+            services.AddScoped<ISchemaModifier, TypeInferenceModifier>();
+            services.AddScoped<ISchemaModifier, JoinUsingFillingModifier>();
+            services.AddScoped<ISchemaModifier, DsOperatorsToJoinsModifier>();
 
             return services;
         }
 
-        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
+        /// <summary>
+        /// Adds the VtlProcessing services collection.
+        /// </summary>
+        /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
+        /// <returns>The service collection.</returns>
+        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config = null)
         {
             services.AddVtlProcessing();
 
             IVtlProcessingConfig configuration = new VtlProcessingConfig();
-            config(configuration);
+            if (config != null) config(configuration);
 
             IDataModelAggregator dataModelAggregator = configuration.DataModels;
             
-            services.AddSingleton(dataModelAggregator);
-            services.AddSingleton(typeof(IDataModel), dataModelAggregator);
-            services.AddSingleton(configuration.EnvironmentMapper);
+            services.AddScoped(p => dataModelAggregator);
+            services.AddScoped<IDataModel>(p => dataModelAggregator);
+            services.AddScoped(p => configuration.EnvironmentMapper);
 
             return services;
         }

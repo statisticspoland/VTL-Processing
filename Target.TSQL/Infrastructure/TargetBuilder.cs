@@ -2,52 +2,40 @@
 {
     using Infrastructure.Interfaces;
     using Microsoft.Extensions.DependencyInjection;
-    using System.Linq;
 
     /// <summary>
     /// The target builder.
     /// </summary>
-    public class TargetBuilder : ITargetBuilder
+    internal sealed class TargetBuilder : ITargetBuilder
     {
-        private TargetConfiguration configuration;
+        private readonly ITargetConfiguration _configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetBuilder"/> class.
         /// </summary>
-        /// <param name="services">The service collection.</param>
-        public TargetBuilder(IServiceCollection services)
+        public TargetBuilder()
         {
-            this.Services = services;
-            this.configuration = new TargetConfiguration();
+            this._configuration = new TargetConfiguration();
         }
-
-        public IServiceCollection Services { get; }
 
         public ITargetBuilder AddComments()
         {
-            this.configuration.UseComments = true;
-            this.ReloadTargetService();
+            this._configuration.UseComments = true;
 
             return this;
         }
 
         public ITargetBuilder SetAttributePropagationAlgorithm(IAttributePropagationAlgorithm propagationAlgorithm)
         {
-            this.Services.Remove(this.Services.FirstOrDefault(service => service.ServiceType == typeof(IAttributePropagationAlgorithm)));
-            this.Services.AddSingleton(propagationAlgorithm);
-
-            this.ReloadTargetService();
+            this._configuration.AttributePropagationAlgorithm = propagationAlgorithm;
 
             return this;
         }
 
-        /// <summary>
-        /// Reloads the target's service collection.
-        /// </summary>
-        private void ReloadTargetService()
+        public void UpdateServices(IServiceCollection services)
         {
-            this.Services.Remove(this.Services.FirstOrDefault(service => service.ServiceType == typeof(ITargetConfiguration)));
-            this.Services.AddSingleton<ITargetConfiguration, TargetConfiguration>(p => this.configuration);
+            services.AddScoped(p => this._configuration);
+            services.AddScoped(p => this._configuration.AttributePropagationAlgorithm);
         }
     }
 }

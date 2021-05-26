@@ -10,17 +10,17 @@
 
     public class InOperatorTests
     {
-        private readonly List<string> operators;
+        private readonly List<string> _operators;
 
         public InOperatorTests()
         { 
-            this.operators = new List<string>() { "in", "not_in" };
+            this._operators = new List<string>() { "in", "not_in" };
         }
 
         [Fact]
         public void GetOutputStructure_CorrectScalarCollectionExpr_BoolScalarStructure()
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression collectionExpr = ModelResolvers.ExprResolver();
                 collectionExpr.Structure = ModelResolvers.DsResolver();
@@ -44,7 +44,7 @@
         [Fact]
         public void GetOutputStructure_CorrectDatasetCollectionExpr_BoolScalarStructure()
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression collectionExpr = ModelResolvers.ExprResolver();
                 collectionExpr.Structure = ModelResolvers.DsResolver();

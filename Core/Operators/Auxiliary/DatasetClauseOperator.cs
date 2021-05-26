@@ -22,7 +22,7 @@
 
         public string Name => "Dataset clause";
 
-        public string Symbol => "datasetClause";
+        public string Symbol { get; set; } = "datasetClause";
 
         public string Keyword { get; set; }
 

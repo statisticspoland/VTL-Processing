@@ -13,8 +13,8 @@
     /// </summary>
     public sealed class DsBranch : IJoinBranch
     {
-        private readonly IExpressionFactory exprFactory;
-        private readonly IExpressionTextGenerator exprTextGen;
+        private readonly IExpressionFactory _exprFactory;
+        private readonly IExpressionTextGenerator _exprTextGen;
 
         /// <summary>
         /// Inittializes a new instance of the <see cref="DsBranch"/> class.
@@ -23,15 +23,15 @@
         /// <param name="exprTextGen">The epression text generator.</param>
         public DsBranch(IExpressionFactory exprFactory, IExpressionTextGenerator exprTextGen)
         {
-            this.exprFactory = exprFactory;
-            this.exprTextGen = exprTextGen;
+            this._exprFactory = exprFactory;
+            this._exprTextGen = exprTextGen;
         }
 
         public string Signature => "ds";
 
         public IExpression Build(IExpression datasetExpr)
         {
-            IExpression dsBranch = this.exprFactory.ExprResolver();
+            IExpression dsBranch = this._exprFactory.ExprResolver();
 
             dsBranch.ResultName = "Alias";
             dsBranch.ParamSignature = this.Signature;
@@ -79,10 +79,10 @@
                     {
                         // Jeżeli gałąź ds nie zawiera danego operandu
                         signature = $"ds{ds.Operands.Count + 1}";
-                        if (expr as IJoinExpression != null) dsExpr = this.exprFactory.JoinExprResolver(expr);
+                        if (expr as IJoinExpression != null) dsExpr = this._exprFactory.JoinExprResolver(expr);
                         else
                         {
-                            dsExpr = this.exprFactory.ExprResolver();
+                            dsExpr = this._exprFactory.ExprResolver();
                             dsExpr.ResultName = expr.ResultName;
                             dsExpr.ExpressionText = expr.ExpressionText;
                             dsExpr.LineNumber = expr.LineNumber;
@@ -100,7 +100,7 @@
                     expr.ExpressionText = signature;
                     expr.ParamSignature = signature;
                     expr.OperandsCollection = new List<IExpression>();
-                    expr.OperatorDefinition = this.exprFactory.GetExpression("ref", ExpressionFactoryNameTarget.OperatorSymbol).OperatorDefinition;
+                    expr.OperatorDefinition = this._exprFactory.GetExpression("ref", ExpressionFactoryNameTarget.OperatorSymbol).OperatorDefinition;
                     expr.ReferenceExpression = dsExpr;
                 }
 
@@ -118,7 +118,7 @@
                     }
                 }
 
-                this.exprTextGen.Generate(expr);
+                this._exprTextGen.Generate(expr);
             }
         }
     }

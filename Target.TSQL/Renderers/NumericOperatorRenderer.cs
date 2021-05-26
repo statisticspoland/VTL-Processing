@@ -16,7 +16,7 @@
     [OperatorRendererSymbol("ceil", "floor", "abs", "exp", "ln", "sqrt", "mod", "round", "power", "log", "trunc")]
     internal sealed class NumericOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NumericOperatorRenderer"/> class.
@@ -24,12 +24,12 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public NumericOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
             IExpression expr2 = expr.OperandsCollection.ToArray().Length > 1 ?
@@ -38,9 +38,9 @@
 
             string symbol = expr.OperatorSymbol.ToUpper();
 
-            string arg1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
+            string arg1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
             string arg2 = expr2 != null ?
-                this.opRendererResolver(expr2.OperatorSymbol).Render(expr2, component) :
+                this._opRendererResolver(expr2.OperatorSymbol).Render(expr2, component) :
                 null;
 
             if (symbol == "CEIL") return $"CEILING({arg1})";

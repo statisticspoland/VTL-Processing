@@ -13,7 +13,7 @@
     [OperatorRendererSymbol("ref")]
     internal sealed class ReferenceOperatorRenderer : IOperatorRenderer
     {
-        private readonly IEnvironmentMapper envMapper;
+        private readonly IEnvironmentMapper _envMapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceOperatorRenderer"/> class.
@@ -21,12 +21,12 @@
         /// <param name="envMapper">The environment names mapper.</param>
         public ReferenceOperatorRenderer(IEnvironmentMapper envMapper)
         {
-            this.envMapper = envMapper;
+            this._envMapper = envMapper;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (expr.ParamSignature == "<root>") return $"SELECT * FROM {this.envMapper.Map(expr.ReferenceExpression.ResultMappedName)}";
+            if (expr.ParamSignature == "<root>") return $"SELECT * FROM {this._envMapper.Map(expr.ReferenceExpression.ResultMappedName)}";
             if (expr.ResultName == "Alias")
             {
                 // join "if-then-else" operator support:

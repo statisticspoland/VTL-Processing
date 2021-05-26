@@ -1,72 +1,61 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using System.Linq;
     using Interfaces;
+    using Microsoft.Extensions.DependencyInjection;
 
-    public sealed class TargetBuilder : ITargetBuilder
+    internal sealed class TargetBuilder : ITargetBuilder
     {
-        private TargetConfiguration configuration;
+        private readonly ITargetConfiguration _configuration;
 
-        public TargetBuilder(IServiceCollection services)
+        public TargetBuilder()
         {
-            this.Services = services;
-            this.configuration = new TargetConfiguration();
+            this._configuration = new TargetConfiguration();
         }
-
-        public IServiceCollection Services { get; }
 
         public ITargetBuilder AddDataStructureObject()
         {
-            this.configuration.ShowDataStructure = true;
-            this.ReloadTargetService();
+            this._configuration.ShowDataStructure = true;
 
             return this;
         }
 
         public ITargetBuilder UseHorizontalView()
         {
-            this.configuration.UseHorizontalView = true;
-            this.ReloadTargetService();
+            this._configuration.UseHorizontalView = true;
 
             return this;
         }
 
         public ITargetBuilder UseArrowFirstToLast()
         {
-            this.configuration.Arrow = "-->";
-            this.ReloadTargetService();
+            this._configuration.Arrow = "-->";
 
             return this;
         }
 
         public ITargetBuilder UseArrowLastToFirst()
         {
-            this.configuration.Arrow = "<--";
-            this.ReloadTargetService();
+            this._configuration.Arrow = "<--";
 
             return this;
         }
         public ITargetBuilder ShowNumberLine()
         {
-            this.configuration.ShowNumberLine = true;
-            this.ReloadTargetService();
+            this._configuration.ShowNumberLine = true;
 
             return this;
         }
 
         public ITargetBuilder UseRuleExpressionsModel()
         {
-            this.configuration.ExprType = ExpressionsType.Rulesets;
-            this.ReloadTargetService();
+            this._configuration.ExprType = ExpressionsType.Rulesets;
 
             return this;
         }
 
-        private void ReloadTargetService()
+        public void UpdateServices(IServiceCollection services)
         {
-            this.Services.Remove(this.Services.FirstOrDefault(service => service.ServiceType == typeof(TargetConfiguration)));
-            this.Services.AddSingleton<ITargetConfiguration, TargetConfiguration>(p => this.configuration);
+            services.AddScoped(p => this._configuration);
         }
     }
 }

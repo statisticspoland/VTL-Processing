@@ -8,7 +8,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.ReferenceManualExamples.
 
     public class Check_datapoint : TSQLTestBase
     {
-        private readonly string rulesetSource;
+        private readonly string _rulesetSource;
 
         public Check_datapoint() : base("Check_datapoint")
         {
@@ -22,7 +22,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.ReferenceManualExamples.
 
             this.SqlFillData("[Check_datapoint].DS_1", ds1);
 
-            this.rulesetSource = new StringBuilder()
+            this._rulesetSource = new StringBuilder()
                 .AppendLine("define datapoint ruleset dpr1 ( variable Id_3, Me_1 ) is")
                 .AppendLine("     when Id_3 = \"CREDIT\" then Me_1 >= 0 errorcode \"Bad credit\"")
                 .AppendLine("   ; when Id_3 = \"DEBIT\" then Me_1 >= 0 errorcode \"Bad debit\"")
@@ -47,7 +47,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.ReferenceManualExamples.
             string source = "DS_r := check_datapoint(DS_1, dpr1)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -88,7 +88,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.ReferenceManualExamples.
             string source = "DS_r := check_datapoint(DS_1, dpr1 all)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetSource}{source}", out errors);
 
             Assert.Empty(errors);
 

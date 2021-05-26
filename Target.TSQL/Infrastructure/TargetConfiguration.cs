@@ -1,18 +1,17 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure
 {
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using Interfaces;
 
     internal class TargetConfiguration : ITargetConfiguration
     {
-        public TargetConfiguration(IEnvironmentMapper envMapper = null, bool useComments = false)
+        public TargetConfiguration( bool useComments = false)
         {
-            this.EnvMapper = envMapper;
+            this.AttributePropagationAlgorithm = new AttributePropagationAlgorithm();
             this.UseComments = useComments;
         }
 
-        public IEnvironmentMapper EnvMapper { get; set; }
-
         public bool UseComments { get; set; }
+
+        public IAttributePropagationAlgorithm AttributePropagationAlgorithm { get; set; }
     }
 }

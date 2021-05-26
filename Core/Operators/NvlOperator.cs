@@ -15,7 +15,7 @@
     [OperatorSymbol("nvl")]
     public class NvlOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="NvlOperator"/> class.
@@ -23,18 +23,18 @@
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         public NvlOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
         }
 
         public string Name => "Nvl";
 
-        public string Symbol => "nvl";
+        public string Symbol { get; set; } = "nvl";
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IDataStructure structure;
             IDataStructure ds1 = expression.OperandsCollection.ToArray()[0].Structure.GetCopy();

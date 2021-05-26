@@ -14,14 +14,14 @@
         [InlineData("count")]
         public void Build_Expr_Expr(string opSymbol)
         {
-            CalcBranch calcBranch = new CalcBranch(this.exprFac, this.exprTextGenerator);
+            CalcBranch calcBranch = new CalcBranch(this._exprFac, this._exprTextGenerator);
 
             IExpression operandExpr = ModelResolvers.ExprResolver();
             operandExpr.Structure = ModelResolvers.DsResolver();
             operandExpr.Structure.Measures.Add(new StructureComponent(BasicDataType.Integer, "Me1"));
             operandExpr.Structure.Measures.Add(new StructureComponent(BasicDataType.Integer, "Me2"));
 
-            IExpression expr = this.exprFac.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol); // local exprFac expected
+            IExpression expr = this._exprFac.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol); // local exprFac expected
             expr.AddOperand("ds_1", operandExpr);
 
             IExpression expected = TestExprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -31,7 +31,7 @@
             {
                 IExpression expected_sub = TestExprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
                 IExpression expected_sub_sub1 = TestExprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
-                IExpression expected_sub_sub2 = this.exprFac.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol); // local exprFac expected
+                IExpression expected_sub_sub2 = this._exprFac.GetExpression(opSymbol, ExpressionFactoryNameTarget.OperatorSymbol); // local exprFac expected
                 expected_sub_sub1.Structure = ModelResolvers.DsResolver(opSymbol == "test" ? $"Me{i + 1}" : "int_var", ComponentType.Measure, BasicDataType.Integer);
                 expected_sub_sub2.Structure = ModelResolvers.DsResolver(opSymbol == "test" ? $"Me{i + 1}" : "int_var", ComponentType.Measure, BasicDataType.Integer);
                 expected_sub.Operands.Add("ds_1", expected_sub_sub1);

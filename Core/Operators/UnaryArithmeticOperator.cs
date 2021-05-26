@@ -13,28 +13,27 @@
     [OperatorSymbol("minus", "plus")]
     public class UnaryArithmeticOperator : IOperatorDefinition
     {
-        private readonly IJoinApplyMeasuresOperator joinApplyMeasuresOp;
+        private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="UnaryArithmeticOperator"/> class.
         /// </summary>
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="symbol">The symbol of the operator.</param>
-        public UnaryArithmeticOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, string symbol)
+        public UnaryArithmeticOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp)
         {
-            this.joinApplyMeasuresOp = joinApplyMeasuresOp;
-            this.Symbol = symbol;
+            this._joinApplyMeasuresOp = joinApplyMeasuresOp;
         }
 
         public string Name => "Unary arithmetic";
 
-        public string Symbol { get; }
+        public string Symbol { get; set; }
 
         public string Keyword { get; set; }
 
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            if (expression.IsApplyComponent) return this.joinApplyMeasuresOp.GetMeasuresStructure(expression);
+            if (expression.IsApplyComponent) return this._joinApplyMeasuresOp.GetMeasuresStructure(expression);
 
             IExpression expr = expression.OperandsCollection.ToArray()[0];
 

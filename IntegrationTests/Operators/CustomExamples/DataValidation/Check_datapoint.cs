@@ -8,7 +8,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
 
     public class Check_datapoint : TSQLTestBase
     {
-        private readonly string rulesetsSource;
+        private readonly string _rulesetsSource;
 
         public Check_datapoint() : base("Custom_Check_datapoint")
         {
@@ -24,7 +24,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
 
             this.SqlFillData("[Custom_Check_datapoint].DS_1", ds1);
 
-            this.rulesetsSource = new StringBuilder()
+            this._rulesetsSource = new StringBuilder()
                 .AppendLine("define datapoint ruleset polish_names_dpr1 ( variable name, gender ) is")
                 .AppendLine("     first_big_lettter: substr(name, 1, 1) = upper(substr(name, 1, 1)) errorcode \"Name doesn't start with big letter\"")
                 .AppendLine("   ; girl_ends_with_a:  when gender = 2 then substr(name, length(name)) = \"a\" errorcode \"Name doesn't end with 'a'\"")
@@ -69,7 +69,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, polish_names_dpr1 components Id_2, Me_3 invalid)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -106,7 +106,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, polish_names_dpr1 components Id_2, Me_3 all)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -146,7 +146,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, polish_names_dpr1 components Id_2, Me_3 all_measures)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -175,7 +175,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, polish_names_dpr2 components Id_2, Me_3 invalid)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -212,7 +212,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, polish_names_dpr2 components Id_2, Me_3 all)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -252,7 +252,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, polish_names_dpr2 components Id_2, Me_3 all_measures)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -283,7 +283,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, heigth_dpr1 invalid)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -333,7 +333,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, heigth_dpr1 all)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -386,7 +386,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, heigth_dpr1 all_measures)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -414,7 +414,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, heigth_dpr2 invalid)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -451,7 +451,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, heigth_dpr2 all)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 
@@ -491,7 +491,7 @@ namespace VtlProcessing.IntegrationTests.TSQL.Operators.CustomExamples.DataValid
             string source = "DS_r := check_datapoint(DS_1, heigth_dpr2 all_measures)";
 
             List<Exception> errors;
-            string sql = this.TranslateVtl($"{this.rulesetsSource}{source}", out errors);
+            string sql = this.TranslateVtl($"{this._rulesetsSource}{source}", out errors);
 
             Assert.Empty(errors);
 

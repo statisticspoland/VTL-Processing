@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("union", "intersect", "setdiff", "symdiff")]
     internal sealed class SetOperatorRenderer : IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SetOperatorRenderer"/> class.
@@ -23,7 +23,7 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public SetOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
@@ -31,8 +31,8 @@
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
             IExpression expr2 = expr.OperandsCollection.ToArray()[1];
 
-            string op1 = $"SELECT * FROM {this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, component)}";
-            string op2 = $"SELECT * FROM {this.opRendererResolver(expr2.OperatorSymbol).Render(expr2, component)}";
+            string op1 = $"SELECT * FROM {this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component)}";
+            string op2 = $"SELECT * FROM {this._opRendererResolver(expr2.OperatorSymbol).Render(expr2, component)}";
 
             StringBuilder result = new StringBuilder();
 

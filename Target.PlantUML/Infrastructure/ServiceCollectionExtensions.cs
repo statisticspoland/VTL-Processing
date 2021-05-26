@@ -7,17 +7,21 @@
 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddPlantUmlTarget(this IServiceCollection services)
+        internal static IServiceCollection AddPlantUmlTarget(this IServiceCollection services)
         {
-            services.AddSingleton<ITargetRenderer, PlantUmlTargetRenderer>();
+            services.AddScoped<ITargetRenderer, PlantUmlTargetRenderer>();
 
             return services;
         }
 
-        public static IServiceCollection AddPlantUmlTarget(this IServiceCollection services, Action<ITargetBuilder> configure)
+        public static IServiceCollection AddPlantUmlTarget(this IServiceCollection services, Action<ITargetBuilder> config)
         {
             services.AddPlantUmlTarget();
-            configure(new TargetBuilder(services));
+
+            TargetBuilder configuration = new TargetBuilder();
+            config(configuration);
+
+            configuration.UpdateServices(services);
             return services;
         }
     }

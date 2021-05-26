@@ -9,8 +9,8 @@
     /// </summary>
     public class CompCollectorOperator
     {
-        private readonly DataStructureResolver dsResolver;
-        private readonly string name;
+        private readonly DataStructureResolver _dsResolver;
+        private readonly string _name;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="CompCollectorOperator"/> class.
@@ -19,8 +19,8 @@
         /// <param name="name">The name of a main operator.</param>
         public CompCollectorOperator(DataStructureResolver dsResolver, string name)
         {
-            this.dsResolver = dsResolver;
-            this.name = name;
+            this._dsResolver = dsResolver;
+            this._name = name;
         }
 
         /// <summary>
@@ -30,10 +30,10 @@
         /// <returns>A dynamically defined structure of the output parameter for the given input parameters.</returns>
         public IDataStructure GetOutputStructure(IExpression expression)
         {
-            IDataStructure dataStructure = this.dsResolver();
+            IDataStructure dataStructure = this._dsResolver();
             foreach (IExpression expr in expression.OperandsCollection)
             {
-                if (!expr.IsScalar) throw new VtlOperatorError(expression, this.name, "Expected scalar expression.");
+                if (!expr.IsScalar) throw new VtlOperatorError(expression, this._name, "Expected scalar expression.");
                 dataStructure.AddStructure(expr.Structure);
             }
 

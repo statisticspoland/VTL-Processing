@@ -15,7 +15,7 @@
     [OperatorRendererSymbol("=", "<>", "<", "<=", ">", ">=")]
     internal sealed class ComparisonOperatorRenderer :  IOperatorRenderer
     {
-        private readonly OperatorRendererResolver opRendererResolver;
+        private readonly OperatorRendererResolver _opRendererResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ComparisonOperatorRenderer"/> class.
@@ -23,18 +23,18 @@
         /// <param name="opRendererResolver">The operator renderer resolver.</param>
         public ComparisonOperatorRenderer(OperatorRendererResolver opRendererResolver)
         {
-            this.opRendererResolver = opRendererResolver;
+            this._opRendererResolver = opRendererResolver;
         }
 
         public string Render(IExpression expr, StructureComponent component)
         {
-            if (!expr.IsScalar && !expr.IsApplyComponent && component == null) return this.opRendererResolver("overall").Render(expr, component);
+            if (!expr.IsScalar && !expr.IsApplyComponent && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
             IExpression expr2 = expr.OperandsCollection.ToArray()[1];
 
-            string op1 = this.opRendererResolver(expr1.OperatorSymbol).Render(expr1, !expr.IsApplyComponent ? component : expr1.Structure.Measures[0]);
-            string op2 = this.opRendererResolver(expr2.OperatorSymbol).Render(expr2, !expr.IsApplyComponent ? component : expr2.Structure.Measures[0]);
+            string op1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, !expr.IsApplyComponent ? component : expr1.Structure.Measures[0]);
+            string op2 = this._opRendererResolver(expr2.OperatorSymbol).Render(expr2, !expr.IsApplyComponent ? component : expr2.Structure.Measures[0]);
 
             string result = string.Empty;
             string symbol = expr.OperatorSymbol;

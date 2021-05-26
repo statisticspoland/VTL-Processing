@@ -17,8 +17,8 @@
 
     public class CompCreateOperatorTests
     {
-        private readonly List<string> operators;
-        private readonly OperatorResolver opResolver;
+        private readonly List<string> _operators;
+        private readonly OperatorResolver _opResolver;
 
         public CompCreateOperatorTests()
         {
@@ -27,9 +27,9 @@
             opResolverMock.Setup(o => o("comp")).Returns(new ComponentOperator(ModelResolvers.DsResolver, new ComponentTypeInference(ModelResolvers.DsResolver)));
             opResolverMock.Setup(o => o("join")).Returns(new JoinOperator(ModelResolvers.DsResolver));
 
-            this.opResolver = opResolverMock.Object;
+            this._opResolver = opResolverMock.Object;
 
-            this.operators = new List<string>() { "calcExpr" };
+            this._operators = new List<string>() { "calcExpr" };
         }
 
         private StructureComponent[] GetComponentsByCompType(IDataStructure dataStructure, ComponentType compType)
@@ -182,7 +182,7 @@
         [InlineData(ComponentType.NonViralAttribute, TestExprType.None, TestExprType.Duration)]
         public void GetOutputStructure_CorrectExpr_FirstCompStructure(ComponentType compType, params TestExprType[] dataTypes)
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 this.StartTest(true, opSymbol, compType, dataTypes);
                 this.StartTest(false, opSymbol, compType, dataTypes);
@@ -206,7 +206,7 @@
             TestExprType[][] combinations = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().GetCombinations(2);
             TestExprType[][] wrongCombs = combinations.Without(correctCombs);
 
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 foreach (TestExprType[] wrongComb in wrongCombs)
                 {
@@ -271,7 +271,7 @@
             TestExprType[][] combinations = Enum.GetValues(typeof(TestExprType)).Cast<TestExprType>().GetCombinations(2);
             TestExprType[][] wrongCombs = combinations.Without(correctCombs);
 
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 foreach (string keyword in keywords)
                 {
@@ -301,7 +301,7 @@
         [Fact]
         public void GetOutputStructure_WrongOperatorKeyword_ThrowsException()
         {
-            foreach (string opSymbol in this.operators)
+            foreach (string opSymbol in this._operators)
             {
                 IExpression compCreateExpr = TestExprFactory.GetExpression(TestExprType.Integer, TestExprType.Integer);
                 compCreateExpr.OperatorDefinition = ModelResolvers.OperatorResolver(opSymbol);

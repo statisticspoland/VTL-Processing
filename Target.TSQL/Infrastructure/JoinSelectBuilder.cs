@@ -26,9 +26,9 @@
     /// </summary>
     internal sealed class JoinSelectBuilder : IJoinSelectBuilder
     {
-        private readonly OperatorRendererResolver opRendererResolver;
-        private readonly IEnvironmentMapper envMapper;
-        private readonly IAttributePropagationAlgorithm propagationAlgorithm;
+        private readonly OperatorRendererResolver _opRendererResolver;
+        private readonly IEnvironmentMapper _envMapper;
+        private readonly IAttributePropagationAlgorithm _propagationAlgorithm;
         private Dictionary<string, string> parts;
         private IJoinExpression joinExpr;
         private bool ifThenElse;
@@ -41,9 +41,9 @@
         /// <param name="propagationAlgorithm">The attribute propagation algorithm.</param>
         public JoinSelectBuilder(OperatorRendererResolver opRendererResolver, IEnvironmentMapper envMapper, IAttributePropagationAlgorithm propagationAlgorithm)
         {
-            this.opRendererResolver = opRendererResolver;
-            this.envMapper = envMapper;
-            this.propagationAlgorithm = propagationAlgorithm;
+            this._opRendererResolver = opRendererResolver;
+            this._envMapper = envMapper;
+            this._propagationAlgorithm = propagationAlgorithm;
 
             this.parts = new Dictionary<string, string>();
             this.parts.Add("identifiers", string.Empty);
@@ -99,7 +99,7 @@
                     IExpression calcExpr = this.joinExpr.Operands["calc"].GetDescendantExprs("Calc expression").FirstOrDefault(expr => expr.Structure.Components.FirstOrDefault(comp => comp.ComponentName == identifiers[i].ComponentName) != null);
                     if (calcExpr != null)
                     {
-                        sb.Append($"{this.opRendererResolver(calcExpr.OperatorSymbol).Render(calcExpr)}");
+                        sb.Append($"{this._opRendererResolver(calcExpr.OperatorSymbol).Render(calcExpr)}");
                         isCalc = true;
                     }
                 }
@@ -163,7 +163,7 @@
                     IExpression calcExpr = this.joinExpr.Operands["calc"].GetDescendantExprs("Calc expression").FirstOrDefault(expr => expr.Structure.Components.FirstOrDefault(comp => comp.ComponentName == measures[i].ComponentName) != null);
                     if (calcExpr != null)
                     {
-                        sb.Append($"{this.opRendererResolver(calcExpr.OperatorSymbol).Render(calcExpr)}");
+                        sb.Append($"{this._opRendererResolver(calcExpr.OperatorSymbol).Render(calcExpr)}");
                         isCalc = true;
                     }
                 }
@@ -205,7 +205,7 @@
                         IExpression calcExpr = this.joinExpr.Operands["calc"].GetDescendantExprs("Calc expression").FirstOrDefault(expr => expr.Structure.Components.FirstOrDefault(comp => comp.ComponentName == attributes[i].ComponentName) != null);
                         if (calcExpr != null)
                         {
-                            sb.Append($"{this.opRendererResolver(calcExpr.OperatorSymbol).Render(calcExpr)}");
+                            sb.Append($"{this._opRendererResolver(calcExpr.OperatorSymbol).Render(calcExpr)}");
                             isCalc = true;
                         }
                     }
@@ -262,7 +262,7 @@
                         }
                         else propagate = true;
 
-                        if (propagate) sb.AppendLine($"{this.propagationAlgorithm.Propagate(attributes[i], aliases)} AS {attributes[i].ComponentName.GetNameWithoutAlias()},");
+                        if (propagate) sb.AppendLine($"{this._propagationAlgorithm.Propagate(attributes[i], aliases)} AS {attributes[i].ComponentName.GetNameWithoutAlias()},");
                         if (this.joinExpr.Operands.ContainsKey("group"))
                         {
                             // TODO: Obsługa agregacji z propagacją atrybutów
@@ -338,7 +338,7 @@
             if (this.joinExpr.Operands.ContainsKey("filter"))
             {
                 sb.AppendLine("WHERE");
-                sb.Append(this.opRendererResolver(this.joinExpr.Operands["filter"].OperatorSymbol).Render(this.joinExpr.Operands["filter"]));
+                sb.Append(this._opRendererResolver(this.joinExpr.Operands["filter"].OperatorSymbol).Render(this.joinExpr.Operands["filter"]));
             }
             else if (this.joinExpr.Operands.ContainsKey("subspace"))
             {
@@ -346,7 +346,7 @@
                 List<IExpression> subFilters = this.joinExpr.Operands["subspace"].OperandsCollection.ToList();
                 for (int i = 0; i < subFilters.Count(); i++)
                 {
-                    sb.Append(this.opRendererResolver(subFilters[i].OperatorSymbol).Render(subFilters[i]));
+                    sb.Append(this._opRendererResolver(subFilters[i].OperatorSymbol).Render(subFilters[i]));
                     if (i != subFilters.Count() - 1) sb.Append(" AND ");
                 }
             }
@@ -366,7 +366,7 @@
                 {
                     foreach (IExpression identifierExpr in this.joinExpr.Operands["group"].OperandsCollection)
                     {
-                        sb.AppendLine($"{this.opRendererResolver(identifierExpr.OperatorSymbol).Render(identifierExpr)},");
+                        sb.AppendLine($"{this._opRendererResolver(identifierExpr.OperatorSymbol).Render(identifierExpr)},");
                     }
                 }
                 else
@@ -405,7 +405,7 @@
             {
                 IExpression havingExpr = this.joinExpr.Operands["having"];
                 sb.AppendLine("HAVING");
-                sb.Append(this.opRendererResolver(havingExpr.OperatorSymbol).Render(havingExpr));
+                sb.Append(this._opRendererResolver(havingExpr.OperatorSymbol).Render(havingExpr));
             }
 
             this.parts["having"] = sb.ToString();
@@ -423,19 +423,19 @@
             if (alias.OperatorSymbol == "ref")
             {
                 // Jeżeli operator ref
-                sb.AppendLine($"{this.envMapper.Map(alias.ResultMappedName)} AS {alias.ParamSignature} ");
+                sb.AppendLine($"{this._envMapper.Map(alias.ResultMappedName)} AS {alias.ParamSignature} ");
             }
             else if (alias.OperatorSymbol.In("join", "#"))
             {
                 // Jeżeli operator join
                 sb.AppendLine($"(");
-                sb.Append(this.opRendererResolver(alias.OperatorSymbol).Render(alias));
+                sb.Append(this._opRendererResolver(alias.OperatorSymbol).Render(alias));
                 sb.AppendLine($") AS {alias.ParamSignature} ");
             }
             else
             {
                 // Jeżeli inny operator
-                sb.AppendLine($"{this.envMapper.Map(this.GetExprSource(alias).ExpressionText)} AS {alias.ParamSignature} ");
+                sb.AppendLine($"{this._envMapper.Map(this.GetExprSource(alias).ExpressionText)} AS {alias.ParamSignature} ");
             }
 
             return sb.ToString();
@@ -507,7 +507,7 @@
                 string suffix = ifSubExpr.OperatorSymbol.In("ref", "const") ? " = 1" : string.Empty;
 
                 return
-                    $"IIF({this.opRendererResolver(ifSubExpr.OperatorSymbol).Render(ifSubExpr, ifExprAlias?.Structure.Measures[0] ?? this.joinExpr.Operands["apply"].Operands["then"].Structure.Measures[0])}{suffix}, " +
+                    $"IIF({this._opRendererResolver(ifSubExpr.OperatorSymbol).Render(ifSubExpr, ifExprAlias?.Structure.Measures[0] ?? this.joinExpr.Operands["apply"].Operands["then"].Structure.Measures[0])}{suffix}, " +
                     $"{thenExprAlias.ParamSignature}.{identifier.ComponentName}, " +
                     $"{elseExprAlias.ParamSignature}.{identifier.ComponentName}) AS {identifier.ComponentName},";
             }
