@@ -49,7 +49,7 @@
                     datasetName = split[1];
                     @namespace = split[0];
                     break;
-                default: throw new Exception($"Invalid DataSet identifier: {datasetName}");
+                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {datasetName}");
             }
 
             if (!this._mapper.Mapping.ContainsKey(@namespace)) 

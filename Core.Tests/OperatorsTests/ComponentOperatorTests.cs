@@ -59,7 +59,7 @@
                 case "measure": compType = ComponentType.Measure; break;
                 case "attribute": compType = ComponentType.NonViralAttribute; break;
                 case "viral attribute": compType = ComponentType.ViralAttribute; break;
-                default: throw new Exception();
+                default: throw new ArgumentOutOfRangeException("keyword");
             }
 
             IDataStructure dataStructure = compExpr.OperatorDefinition.GetOutputStructure(compExpr);

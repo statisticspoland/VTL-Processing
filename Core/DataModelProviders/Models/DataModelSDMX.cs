@@ -101,7 +101,7 @@
                     if (split[0] != this.Namespace) return null;
                     datasetName = split[1];
                     break;
-                default: throw new Exception($"Invalid DataSet identifier: {datasetName}");
+                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {datasetName}");
             }
 
             ISet<IMaintainableObject> maintainable = this.GetMaintainableObjects();

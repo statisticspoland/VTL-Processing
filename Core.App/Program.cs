@@ -15,7 +15,7 @@
     using System.IO;
     using System.Linq;
 
-    public sealed class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -43,14 +43,11 @@
                 configure.UseArrowFirstToLast();
                 configure.ShowNumberLine();
                 configure.UseRuleExpressionsModel();
-                //configure.UseArrowLastToFirst();
-                //configure.UseHorizontalView();
             });
 
             services.AddTsqlTarget((configure) =>
             {
                 configure.AddComments();
-                //configure.SetAttributePropagationAlgorithm(new AttributePropagationAlgorithm());
             });
 
             services.AddLogging((configure) =>
@@ -67,7 +64,6 @@
 
             provider.GetMiddleEnd().Process(schema); // middle-end
 
-            //var vtlErrors = errColector.GetErrorsOfType<IVtlError>().ToList()
             bool areErrors = errColector.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
 
             // back-end:

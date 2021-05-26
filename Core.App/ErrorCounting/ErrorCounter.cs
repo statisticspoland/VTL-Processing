@@ -14,7 +14,7 @@ namespace Core.App.ErrorCounting
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            return logLevel == (LogLevel.Error | LogLevel.Critical);
+            return logLevel == LogLevel.Error || logLevel == LogLevel.Critical;
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
