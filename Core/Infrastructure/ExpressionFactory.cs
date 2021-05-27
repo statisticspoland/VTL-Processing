@@ -34,11 +34,11 @@
 
         public OperatorResolver OperatorResolver { get; }
 
-        public IExpression GetExpression(string name, ExpressionFactoryNameTarget nameTarget)
+        public IExpression GetExpression(string name, ExpressionFactoryNameTarget field)
         {
             IExpression expr = this.ExprResolver();
 
-            if (nameTarget == ExpressionFactoryNameTarget.ResultName)
+            if (field == ExpressionFactoryNameTarget.ResultName)
             {
                 expr.ResultName = name;
             }

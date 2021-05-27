@@ -30,7 +30,7 @@
             this._propagationAlgorithm = propagationAlgorithm;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             IExpression expr1 = expr.Operands["ds_1"];
             IExpression expr2 = expr.Operands["ds_2"];

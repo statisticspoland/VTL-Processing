@@ -17,7 +17,7 @@
     /// <summary>
     /// The "Period indicator" operator definition.
     /// </summary>
-    [OperatorSymbol("period_indicator")]
+    [OperatorSymbolAttribute("period_indicator")]
     public class PeriodIndicatorOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

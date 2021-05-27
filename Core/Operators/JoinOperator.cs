@@ -15,7 +15,7 @@
     /// <summary>
     /// The "Join" operator definition.
     /// </summary>
-    [OperatorSymbol("join")]
+    [OperatorSymbolAttribute("join")]
     public class JoinOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;
@@ -40,7 +40,7 @@
             IJoinExpression joinExpr = (IJoinExpression)expression;
             IDataStructure mergedStructure = this._dsResolver();
 
-            if (!joinExpr.Operands["ds"].Operands.All(ds => ds.Value.Structure.IsSingleComponent == false)) throw new VtlOperatorError(joinExpr, this.Name, "Scalar joinExprs cannot be joined.");
+            if (!joinExpr.Operands["ds"].Operands.All(ds => !ds.Value.Structure.IsSingleComponent)) throw new VtlOperatorError(joinExpr, this.Name, "Scalar joinExprs cannot be joined.");
 
             this.ProcessDsBranch(joinExpr, mergedStructure);
             if (joinExpr.Operands.ContainsKey("apply")) mergedStructure = this.ProcessApplyBranch(joinExpr, mergedStructure);
@@ -119,7 +119,6 @@
             IExpression calcBranch = expression.Operands["calc"];
             if (calcBranch.OperatorDefinition.Keyword == "Aggr")
             {
-                List<string> compNames = new List<string>();
                 foreach (StructureComponent component in calcBranch.Structure.Components.Where(comp => comp.ComponentType != ComponentType.Identifier))
                 {
                     List<StructureComponent> comps = mergedStructure.Components as List<StructureComponent>;

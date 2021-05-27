@@ -8,7 +8,7 @@
     /// <summary>
     /// The "Calc expression" operator definition.
     /// </summary>
-    [OperatorSymbol("calcExpr")]
+    [OperatorSymbolAttribute("calcExpr")]
     public class CalcExprOperator : CompCreateOperator, IOperatorDefinition
     {
         /// <summary>

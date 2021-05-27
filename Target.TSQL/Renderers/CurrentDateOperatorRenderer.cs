@@ -11,7 +11,7 @@
     [OperatorRendererSymbol("current_date")]
     internal sealed class CurrentDateOperatorRenderer : IOperatorRenderer
     {
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             return "CONVERT(VARCHAR, GETDATE(), 23)";
         }

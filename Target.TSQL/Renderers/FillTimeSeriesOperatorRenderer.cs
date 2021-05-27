@@ -29,7 +29,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             StringBuilder result = new StringBuilder();
             StructureComponent timeId = expr.Structure.Identifiers.First(comp => comp.ValueDomain.DataType.In(BasicDataType.Time, BasicDataType.Date, BasicDataType.TimePeriod));

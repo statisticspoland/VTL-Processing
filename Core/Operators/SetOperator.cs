@@ -8,7 +8,7 @@
     /// <summary>
     /// The "Set" operator definition.
     /// </summary>
-    [OperatorSymbol("union", "intersect", "setdiff", "symdiff")]
+    [OperatorSymbolAttribute("union", "intersect", "setdiff", "symdiff")]
     public class SetOperator : IOperatorDefinition
     {
         public string Name => "Set";

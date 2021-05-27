@@ -11,7 +11,7 @@
     [OperatorRendererSymbol("opt")]
     internal sealed class OptionalOperatorRenderer : IOperatorRenderer
     {
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             return expr.ExpressionText;
         }

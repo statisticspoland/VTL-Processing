@@ -26,7 +26,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             IExpression expr1 = expr.OperandsCollection.ToArray()[0];
             IExpression expr2 = expr.OperandsCollection.ToArray()[1];

@@ -14,7 +14,7 @@
     /// <summary>
     /// The "Check datapoint" operator definition.
     /// </summary>
-    [OperatorSymbol("check_datapoint")]
+    [OperatorSymbolAttribute("check_datapoint")]
     public class CheckDatapointOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

@@ -105,7 +105,7 @@
 
             services.AddScoped<OperatorResolver>(ServiceProvider => key =>
             {
-                Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
+                Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbolAttribute>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) throw new NotImplementedException($"Operator {key} is not implemented.");
                 

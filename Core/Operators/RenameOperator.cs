@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Change of Component name" operator definition.
     /// </summary>
-    [OperatorSymbol("rename")]
+    [OperatorSymbolAttribute("rename")]
     public class RenameOperator : CompCollectorOperator, IOperatorDefinition
     {
         /// <summary>

@@ -12,7 +12,7 @@
 
         public List<ErrorCounter> ErrorCounters { get; set; }
 
-        public ILogger CreateLogger(string categoryName = null)
+        public ILogger CreateLogger(string categoryName)
         {
             ErrorCounter errorCounter = new ErrorCounter();
             this.ErrorCounters.Add(errorCounter);
@@ -22,6 +22,7 @@
 
         public void Dispose()
         {
+            // nothing to dispose of
         }
     }
 }

@@ -14,7 +14,7 @@
     [OperatorRendererSymbol("const")]
     internal sealed class ConstantOperatorRenderer : IOperatorRenderer
     {
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             BasicDataType type = expr.Structure.Components[0].ValueDomain.DataType;
 

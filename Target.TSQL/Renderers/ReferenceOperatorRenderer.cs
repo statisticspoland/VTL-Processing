@@ -24,7 +24,7 @@
             this._envMapper = envMapper;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             if (expr.ParamSignature == "<root>") return $"SELECT * FROM {this._envMapper.Map(expr.ReferenceExpression.ResultMappedName)}";
             if (expr.ResultName == "Alias")

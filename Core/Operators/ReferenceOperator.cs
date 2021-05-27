@@ -9,7 +9,7 @@
     /// <summary>
     /// The "Reference" operator definition.
     /// </summary>
-    [OperatorSymbol("ref")]
+    [OperatorSymbolAttribute("ref")]
     public class ReferenceOperator : IOperatorDefinition
     {
         public string Name => "Reference";

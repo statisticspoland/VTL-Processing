@@ -9,7 +9,7 @@
     /// <summary>
     /// The "When" operator definition.
     /// </summary>
-    [OperatorSymbol("when")]
+    [OperatorSymbolAttribute("when")]
     public class WhenOperator : IOperatorDefinition
     {
         public string Name => "When";

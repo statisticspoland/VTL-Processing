@@ -261,7 +261,7 @@
 
             componentExpr.ExpressionText = this.GetOriginalText(context);
             componentExpr.LineNumber = context.Start.Line;
-            //componentExpr.OperatorDefinition.Keyword = "Component";
+            
             return componentExpr;
         }
 
@@ -993,7 +993,7 @@
             constantExpr.ExpressionText = constantExpr.ExpressionText.Replace("(", string.Empty);
             constantExpr.ExpressionText = constantExpr.ExpressionText.Replace(")", string.Empty);
 
-            int unaryCount = constantExpr.ExpressionText.Where(chr => chr == '-').Count();
+            int unaryCount = constantExpr.ExpressionText.Count(chr => chr == '-');
             if (unaryCount > 1)
             {
                 constantExpr.ExpressionText = constantExpr.ExpressionText.Remove(0, unaryCount - unaryCount % 2);

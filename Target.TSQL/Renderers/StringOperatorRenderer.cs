@@ -26,7 +26,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 

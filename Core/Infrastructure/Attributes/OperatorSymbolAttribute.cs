@@ -8,13 +8,13 @@
     /// </summary>
     /// <seealso cref="Attribute" />
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class OperatorSymbol : Attribute
+    public sealed class OperatorSymbolAttribute : Attribute
     {
         /// <summary>
-        /// Initialises a new instance of the <see cref="OperatorSymbol"/> class.
+        /// Initialises a new instance of the <see cref="OperatorSymbolAttribute"/> class.
         /// </summary>
         /// <param name="symbols">The symbol of the operator.</param>
-        public OperatorSymbol(params string[] symbols)
+        public OperatorSymbolAttribute(params string[] symbols)
         {
             this.Symbols = symbols;
         }

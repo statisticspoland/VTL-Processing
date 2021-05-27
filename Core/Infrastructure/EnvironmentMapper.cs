@@ -23,7 +23,7 @@
         /// <param name="namespaceMapping">The dictionary of mapped names.</param>
         public EnvironmentMapper(Dictionary<string, string> namespaceMapping)
         {
-            if (namespaceMapping == null) throw new ArgumentNullException("mapping");
+            if (namespaceMapping == null) throw new ArgumentNullException("namespaceMapping");
             this.Mapping = namespaceMapping;
         }
 

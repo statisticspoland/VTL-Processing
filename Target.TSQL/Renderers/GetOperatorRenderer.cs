@@ -23,7 +23,7 @@
             this._envMapper = envMapper;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             if (component != null) return component.BaseComponentName;
             if (expr.ParentExpression == null) return $"SELECT * FROM {this._envMapper.Map(expr.ExpressionText)}";

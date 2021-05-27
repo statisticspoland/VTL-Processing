@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Element of" operator definition.
     /// </summary>
-    [OperatorSymbol("in", "not_in")]
+    [OperatorSymbolAttribute("in", "not_in")]
     public class InOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

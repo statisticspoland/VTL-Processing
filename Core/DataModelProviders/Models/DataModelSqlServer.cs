@@ -62,8 +62,8 @@
                 if (sqlAddress.Database != null && conn.Database != string.Empty && sqlAddress.Database != conn.Database) return null;
 
                 Server server = new Server(new ServerConnection(conn));
-                string dbName = sqlAddress.Database.In(string.Empty, null) == true ? conn.Database : sqlAddress.Database;
-                string schema = sqlAddress.Schema.In(string.Empty, null) == true ? "dbo" : sqlAddress.Schema;
+                string dbName = sqlAddress.Database.In(string.Empty, null) ? conn.Database : sqlAddress.Database;
+                string schema = sqlAddress.Schema.In(string.Empty, null) ? "dbo" : sqlAddress.Schema;
                 string tableName = $"{sqlAddress.TablePrefix}{datasetName}";
 
                 if (server.Databases.Contains(dbName))

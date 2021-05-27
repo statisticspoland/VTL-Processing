@@ -13,7 +13,7 @@
     /// <summary>
     /// The "If-Then-Else" operator definition.
     /// </summary>
-    [OperatorSymbol("if")]
+    [OperatorSymbolAttribute("if")]
     public class IfThenElseOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

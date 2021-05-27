@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Arithmetic" operator definition.
     /// </summary>
-    [OperatorSymbol("+", "-", "*", "/")]
+    [OperatorSymbolAttribute("+", "-", "*", "/")]
     public class ArithmeticOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

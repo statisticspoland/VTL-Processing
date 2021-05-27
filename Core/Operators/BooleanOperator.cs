@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Boolean" operator definition.
     /// </summary>
-    [OperatorSymbol("and", "or", "xor", "not")]
+    [OperatorSymbolAttribute("and", "or", "xor", "not")]
     public class BooleanOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

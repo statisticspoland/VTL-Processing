@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Aggregation function" operator definition.
     /// </summary>
-    [OperatorSymbol("count", "min", "max", "median", "sum", "avg", "stddev_pop", "stddev_samp", "var_pop", "var_samp")]
+    [OperatorSymbolAttribute("count", "min", "max", "median", "sum", "avg", "stddev_pop", "stddev_samp", "var_pop", "var_samp")]
     public class AggrFunctionOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;
@@ -56,7 +56,6 @@
             if (operand.IsScalar)
             {
                 StructureComponent component = operand.Structure.Components[0];
-                //if (!operand.OperatorSymbol.In("comp", "#")) throw new VtlOperatorError(expression, this.Name, "Expected component.");
                 if (this.Symbol != "count" && !component.ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.Number, BasicDataType.None))
                     throw new VtlOperatorError(expression, this.Name, "Expected numeric component.");
 

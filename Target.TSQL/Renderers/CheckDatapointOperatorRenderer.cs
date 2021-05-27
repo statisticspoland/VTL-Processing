@@ -26,7 +26,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             IRuleset ruleset = expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.Name == expr.Operands["ruleset"].ExpressionText);
             string opSymbol = expr.OperatorDefinition.Keyword;

@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Analytic function" operator definition.
     /// </summary>
-    [OperatorSymbol("first_value", "last_value", "lag", "rank", "ratio_to_report", "lead")]
+    [OperatorSymbolAttribute("first_value", "last_value", "lag", "rank", "ratio_to_report", "lead")]
     public class AnalyticFunctionOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

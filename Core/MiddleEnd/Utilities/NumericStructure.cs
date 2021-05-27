@@ -21,14 +21,14 @@
             if (structure.IsSingleComponent)
             {
                 if (!structure.Components[0].ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.Number) &&
-                    (!allowNulls || (allowNulls && structure.Components[0].ValueDomain.DataType != BasicDataType.None))) return false;
+                    (!allowNulls || (structure.Components[0].ValueDomain.DataType != BasicDataType.None))) return false;
             }
             else
             {
                 foreach (StructureComponent measure in structure.Measures)
                 {
                     if (!measure.ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.Number) &&
-                    (!allowNulls || (allowNulls && measure.ValueDomain.DataType != BasicDataType.None))) return false;
+                    (!allowNulls || (measure.ValueDomain.DataType != BasicDataType.None))) return false;
                 }
             }
 

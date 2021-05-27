@@ -17,7 +17,7 @@
     /// </summary>
     public class ComponentTypeInference : IComponentTypeInference
     {
-        private DataStructureResolver dsResolver;
+        private readonly DataStructureResolver dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ComponentTypeInference"/> class.
