@@ -4,7 +4,7 @@
 
     public static class Example
     {
-        public static string Source = "define datapoint ruleset dpr1 ( variable x, Id1, Me2 as var ) is " +
+        public const string Source = "define datapoint ruleset dpr1 ( variable x, Id1, Me2 as var ) is " +
             "x = \"123\"; " +
             "var >= 15 errorcode \"Bad credit\" errorlevel 5; " +
             "rule123: when Id1 = Id1 and Id1 > 2 then var >= 15; " +
@@ -18,9 +18,5 @@
             "end datapoint ruleset;" +
             "" +
             "DS_r := check_datapoint(Y, dpr2 components Id1, At_string)";
-
-        //public static string Source = new StringBuilder()
-        //    .AppendLine("DS_r := Pivot\\DS_1 [pivot Id_2, Me_1]")
-        //    .ToString();
     }
 }

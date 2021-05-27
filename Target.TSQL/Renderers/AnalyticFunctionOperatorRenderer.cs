@@ -26,7 +26,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             string opSymbol = expr.OperatorSymbol;
             string compName = expr.OperandsCollection.ToArray()[0].OperatorSymbol != null ?

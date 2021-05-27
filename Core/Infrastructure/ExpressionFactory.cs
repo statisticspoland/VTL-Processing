@@ -34,11 +34,11 @@
 
         public OperatorResolver OperatorResolver { get; }
 
-        public IExpression GetExpression(string name, ExpressionFactoryNameTarget nameTarget)
+        public IExpression GetExpression(string name, ExpressionFactoryNameTarget field)
         {
             IExpression expr = this.ExprResolver();
 
-            if (nameTarget == ExpressionFactoryNameTarget.ResultName)
+            if (field == ExpressionFactoryNameTarget.ResultName)
             {
                 expr.ResultName = name;
             }
@@ -47,7 +47,7 @@
                 expr.OperatorDefinition = this.OperatorResolver(name);
                 if (expr.OperatorDefinition == null)
                 {
-                    throw new Exception($"Unsuported operator: {name}");
+                    throw new ArgumentOutOfRangeException("name", $"Unsuported operator: {name}");
                 }
 
                 expr.ResultName = expr.OperatorDefinition.Name;

@@ -32,7 +32,7 @@
             return this.ErrorCollectors.SelectMany(s => s.Errors).ToList().OfType<TResult>();
         }
 
-        public ILogger CreateLogger(string categoryName = null)
+        public ILogger CreateLogger(string categoryName)
         {
             ErrorCollector errorCollector = new ErrorCollector();
             this.ErrorCollectors.Add(errorCollector);
@@ -42,6 +42,7 @@
 
         public void Dispose()
         {
+            // nothing to dispose of
         }
     }
 }

@@ -79,7 +79,7 @@
                     {
                         // Jeżeli gałąź ds nie zawiera danego operandu
                         signature = $"ds{ds.Operands.Count + 1}";
-                        if (expr as IJoinExpression != null) dsExpr = this._exprFactory.JoinExprResolver(expr);
+                        if (expr is IJoinExpression) dsExpr = this._exprFactory.JoinExprResolver(expr);
                         else
                         {
                             dsExpr = this._exprFactory.ExprResolver();

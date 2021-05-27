@@ -11,7 +11,7 @@
     /// <summary>
     /// The "Pivoting" operator definition.
     /// </summary>
-    [OperatorSymbol("pivot")]
+    [OperatorSymbolAttribute("pivot")]
     public class PivotOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

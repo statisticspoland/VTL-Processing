@@ -10,7 +10,7 @@
     /// <summary>
     /// The "Maintaining/Removing Components" operator definition.
     /// </summary>
-    [OperatorSymbol("keep", "drop")]
+    [OperatorSymbolAttribute("keep", "drop")]
     public class KeepDropOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

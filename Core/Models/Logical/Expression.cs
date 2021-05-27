@@ -58,7 +58,7 @@
 
         public ITransformationSchema ContainingSchema { get; set; }
 
-        public IExpression ParentExpression { get; private set; }
+        public IExpression ParentExpression { get; set; }
 
         public IJoinExpression CurrentJoinExpr => this.GetCurrentJoinExpr(this);
 
@@ -82,7 +82,7 @@
                 Dictionary<string, int> names = new Dictionary<string, int>();
                 for (byte q = 0; q < 2; q++)
                 {
-                    foreach (Expression ex in value)
+                    foreach (IExpression ex in value)
                     {
                         if (q == 0)
                         {
@@ -130,7 +130,7 @@
         {
             if (expression == null)
             {
-                throw new Exception("Try to add non-existent (null) operand");
+                throw new ArgumentNullException("expression", "Try to add non-existent (null) operand");
             }
 
             (expression as Expression).ParentExpression = this;

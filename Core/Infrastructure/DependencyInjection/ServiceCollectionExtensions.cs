@@ -79,7 +79,7 @@
         /// </summary>
         /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
         /// <returns>The service collection.</returns>
-        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config = null)
+        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
         {
             services.AddVtlProcessing();
 

@@ -13,6 +13,6 @@
         /// <param name="namespace">The name of namespace.</param>
         /// <param name="name">The name of dataset.</param>
         /// <param name="componentSetting">The tuple defining an element of structure of the dataset.</param>
-        IRegularModelConfiguration AddDataSet(string @namespace, string name, params (ComponentType, BasicDataType, string)[] componentSetting);
+        IRegularModelConfiguration AddDataSet(string @namespace, string name, params (ComponentType, BasicDataType, string)[] componentSettings);
     }
 }

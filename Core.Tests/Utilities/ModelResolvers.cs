@@ -148,7 +148,7 @@
                     else if (key == "renameExpr") op = new RenameExprOperator(ModelResolvers.DsResolver);
                     else if (key == "subExpr") op = new SubspaceExprOperator();
                     else if (key == "when") op = new WhenOperator();
-                    else throw new Exception("Operator not found");
+                    else throw new InvalidOperationException("Operator not found");
 
                     op.Symbol = key;
                     return op;

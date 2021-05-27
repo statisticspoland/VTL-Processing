@@ -8,6 +8,7 @@
     /// <summary>
     /// The VTL 2.0 translation target representation.
     /// </summary>
+    [Serializable]
     public class VtlTargetError : ApplicationException, IVtlError
     {
         /// <summary>

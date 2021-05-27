@@ -122,7 +122,7 @@
         private string RenderPersistentExpr(IExpression expr)
         {
             StringBuilder sb = new StringBuilder();
-            string resultName = this._envMapper.Map(expr.ResultName); //expr.ParamSignature == "<root>" ? expr.ResultName : expr.ResultMappedName;
+            string resultName = this._envMapper.Map(expr.ResultName);
             string renderResult = this._opRendererResolver(expr.OperatorSymbol).Render(expr);
 
             if (this._conf.UseComments) sb.AppendLine($"-- Raw: {expr.ResultName} <- {expr.ExpressionText}");

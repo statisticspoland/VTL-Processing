@@ -24,7 +24,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(" OVER (");

@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Dataset clause" operator definition.
     /// </summary>
-    [OperatorSymbol("datasetClause")]
+    [OperatorSymbolAttribute("datasetClause")]
     public class DatasetClauseOperator : IOperatorDefinition
     {
         /// <summary>
@@ -112,7 +112,6 @@
             (structure.ViralAttributes as List<StructureComponent>).Clear();
             structure.AddStructure(pivotExpr.Structure);
             structure.DatasetType = DatasetType.Pivoted;
-            structure = structure.GetCopy();
         }
 
         /// <summary>
@@ -126,7 +125,6 @@
             (structure.NonViralAttributes as List<StructureComponent>).Clear();
             (structure.ViralAttributes as List<StructureComponent>).Clear();
             structure.AddStructure(unpivotExpr.Structure);
-            structure = structure.GetCopy();
         }
 
         /// <summary>

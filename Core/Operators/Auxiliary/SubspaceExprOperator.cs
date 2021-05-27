@@ -10,7 +10,7 @@
     /// <summary>
     /// The "Subspace expression" operator definition.
     /// </summary>
-    [OperatorSymbol("subExpr")]
+    [OperatorSymbolAttribute("subExpr")]
     public class SubspaceExprOperator : IOperatorDefinition
     {
         public string Name => "Subspace expression";

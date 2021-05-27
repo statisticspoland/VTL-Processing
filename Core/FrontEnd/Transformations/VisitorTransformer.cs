@@ -76,7 +76,11 @@
         /// <returns>Null.</returns>
         public override IExpression VisitStart(VtlParser.StartContext context)
         {
-            context.statement().Select(op => this.Visit(op)).Where(op => op != null).ToList();
+            foreach(VtlParser.StatementContext op in context.statement())
+            {
+                this.Visit(op);
+            }
+            
             return null;
         }
 
@@ -161,7 +165,7 @@
                     datasetExpr.AddOperand("ds_1", this.Visit(context.closedDataset()));
                     datasetExpr.AddOperand("ds_2", this.Visit(context.datasetClause()));
                 }
-                else throw new Exception("Missing context in ClosedDatasetContext.");
+                else throw new ArgumentException("context", "Missing context in ClosedDatasetContext.");
             }
             else
             {
@@ -257,7 +261,7 @@
 
             componentExpr.ExpressionText = this.GetOriginalText(context);
             componentExpr.LineNumber = context.Start.Line;
-            //componentExpr.OperatorDefinition.Keyword = "Component";
+            
             return componentExpr;
         }
 
@@ -989,7 +993,7 @@
             constantExpr.ExpressionText = constantExpr.ExpressionText.Replace("(", string.Empty);
             constantExpr.ExpressionText = constantExpr.ExpressionText.Replace(")", string.Empty);
 
-            int unaryCount = constantExpr.ExpressionText.Where(chr => chr == '-').Count();
+            int unaryCount = constantExpr.ExpressionText.Count(chr => chr == '-');
             if (unaryCount > 1)
             {
                 constantExpr.ExpressionText = constantExpr.ExpressionText.Remove(0, unaryCount - unaryCount % 2);

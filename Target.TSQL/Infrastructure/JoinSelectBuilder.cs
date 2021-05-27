@@ -271,7 +271,10 @@
                             string lastAttribute = split[split.Length - 2];
 
                             int asIndex = lastAttribute.LastIndexOf(" AS");
-                            if (asIndex != -1) lastAttribute.Remove(asIndex).Replace(",\r\n", string.Empty);
+                            if (asIndex != -1)
+                            {
+                                lastAttribute = lastAttribute.Remove(asIndex).Replace(",\r\n", string.Empty);
+                            }
 
                             lastAttribute = $"MIN({lastAttribute}) AS {baseName}";
                             split[split.Length - 2] = lastAttribute;

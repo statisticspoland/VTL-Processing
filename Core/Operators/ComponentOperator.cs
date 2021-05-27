@@ -14,7 +14,7 @@
     /// <summary>
     /// The "Component" operator definition.
     /// </summary>
-    [OperatorSymbol("comp")]
+    [OperatorSymbolAttribute("comp")]
     public class ComponentOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;
@@ -63,7 +63,10 @@
                         BasicDataType type = parentExpr.ParentExpression.Operands["ds_1"].Structure.Measures.First().ValueDomain.DataType;
                         structure = this._dsResolver(expression.ExpressionText, ComponentType.Measure, type);
                     }
-                    structure = this._dsResolver(expression.ExpressionText, ComponentType.Measure, BasicDataType.None);
+                    else
+                    {
+                        structure = this._dsResolver(expression.ExpressionText, ComponentType.Measure, BasicDataType.None);
+                    }
                 }
             }
             else if ((parentExpr.OperatorSymbol != "calcExpr" || parentExpr.Operands["ds_1"] != expression) &&

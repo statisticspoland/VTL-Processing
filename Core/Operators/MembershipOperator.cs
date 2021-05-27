@@ -14,7 +14,7 @@
     /// <summary>
     /// The "Membership" operator definition.
     /// </summary>
-    [OperatorSymbol("#")]
+    [OperatorSymbolAttribute("#")]
     public class MembershipOperator : IOperatorDefinition
     {
         /// <summary>

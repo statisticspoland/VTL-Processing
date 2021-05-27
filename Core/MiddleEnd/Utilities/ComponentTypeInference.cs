@@ -17,7 +17,7 @@
     /// </summary>
     public class ComponentTypeInference : IComponentTypeInference
     {
-        private DataStructureResolver dsResolver;
+        private readonly DataStructureResolver dsResolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ComponentTypeInference"/> class.
@@ -52,7 +52,7 @@
         private BasicDataType? InferByJoinDsBranch(IExpression expr, ComponentType? componentType)
         {
             BasicDataType? dataType = null;
-            if (expr.CurrentJoinExpr?.Operands["ds"]?.OperandsCollection?.Count >= 0)
+            if (expr.CurrentJoinExpr?.Operands["ds"]?.OperandsCollection != null)
             {
                 foreach (IExpression alias in expr.CurrentJoinExpr.Operands["ds"].OperandsCollection)
                 {

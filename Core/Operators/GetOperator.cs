@@ -7,7 +7,7 @@
     /// <summary>
     /// The "Get" operator definition.
     /// </summary>
-    [OperatorSymbol("get")]
+    [OperatorSymbolAttribute("get")]
     public class GetOperator : IOperatorDefinition
     {
         private readonly IDataModel _dataModel;

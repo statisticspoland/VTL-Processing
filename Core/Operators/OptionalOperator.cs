@@ -9,7 +9,7 @@
     /// <summary>
     /// The "Optional" operator definition.
     /// </summary>
-    [OperatorSymbol("optional")]
+    [OperatorSymbolAttribute("optional")]
     public class OptionalOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

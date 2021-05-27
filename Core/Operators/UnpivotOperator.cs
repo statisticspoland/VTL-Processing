@@ -10,7 +10,7 @@
     /// <summary>
     /// The "Unpivoting" operator definition.
     /// </summary>
-    [OperatorSymbol("unpivot")]
+    [OperatorSymbolAttribute("unpivot")]
     public class UnpivotOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

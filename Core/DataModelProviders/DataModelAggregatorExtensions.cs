@@ -40,7 +40,7 @@
 
         public static void AddSdmxModel(this IDataModelAggregator aggregator, string url, string namespaceName)
         {
-            IDataModel dataModel = new DataModelSDMX(aggregator, namespaceName, url);
+            IDataModel dataModel = new DataModelSdmx(aggregator, namespaceName, url);
             aggregator.DataModels.Add(dataModel);
         }
     }

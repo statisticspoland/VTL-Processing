@@ -88,10 +88,10 @@
             }
             catch
             {
-                if (structure == null) throw new Exception($"'{expr.ResultName}' doesn't exist in the data model.");
+                if (structure == null) throw new InvalidOperationException($"'{expr.ResultName}' doesn't exist in the data model.");
             }
 
-            if (!structure.IsSupersetOf(expr.Structure, true, true)) throw new Exception("Structures of datasets don't match.");
+            if (!structure.IsSupersetOf(expr.Structure, true, true)) throw new InvalidOperationException("Structures of datasets don't match.");
         }
     }
 }

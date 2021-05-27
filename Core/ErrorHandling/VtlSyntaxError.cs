@@ -7,6 +7,7 @@
     /// <summary>
     /// The VTL 2.0 syntax error representation.
     /// </summary>
+    [Serializable]
     public class VtlSyntaxError : ApplicationException, IVtlError
     {
         /// <summary>

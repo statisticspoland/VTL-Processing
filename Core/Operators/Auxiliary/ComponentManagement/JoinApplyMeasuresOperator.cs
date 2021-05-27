@@ -37,20 +37,26 @@
 
             foreach (IExpression expr in expression.OperandsCollection)
             {
-                IDataStructure structure = expr.Structure;
-                if (structure == null && expr.OperatorSymbol != null) 
-                    structure = expr.Operands["ds_1"].Structure;
-
                 operands.Add(new List<IExpression>());
+
                 if (expr.IsApplyComponent)
                 {
-                    for (int i = 0; i < structure.Measures.Count; i++)
+                    IDataStructure structure = expr.Structure;
+                    if (structure == null && expr.OperatorSymbol != null)
                     {
-                        StructureComponent measure = structure.Measures[i];
-                        IExpression operand = this._exprFac.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+                        structure = expr.Operands["ds_1"].Structure;
+                    }
 
-                        operand.Structure = this._dsResolver(measure.ComponentName, measure.ComponentType, measure.ValueDomain.DataType);
-                        operands.Last().Add(operand);
+                    if (structure != null)
+                    {
+                        for (int i = 0; i < structure.Measures.Count; i++)
+                        {
+                            StructureComponent measure = structure.Measures[i];
+                            IExpression operand = this._exprFac.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
+
+                            operand.Structure = this._dsResolver(measure.ComponentName, measure.ComponentType, measure.ValueDomain.DataType);
+                            operands.Last().Add(operand);
+                        }
                     }
                 }
                 else operands.Last().Add(expr);

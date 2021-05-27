@@ -28,7 +28,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             return this._joinSelectBuilder
                 .AddJoinExpr((IJoinExpression)(expr))

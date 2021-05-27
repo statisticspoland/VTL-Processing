@@ -69,7 +69,7 @@
 
                 foreach (IRuleExpression expr in value)
                 {
-                    if (this.Rules.ContainsKey(expr.ResultName)) throw new Exception("Trying to add a rule which name exists in the rules collection.");
+                    if (this.Rules.ContainsKey(expr.ResultName)) throw new ArgumentException("Trying to add a rule which name exists in the rules collection.");
                     this.Rules.Add(expr.ResultName, expr);
                 }
             }
@@ -93,7 +93,7 @@
                             if (dataType == BasicDataType.Integer && comp.ValueDomain.DataType == BasicDataType.Number) comp.ValueDomain = new ValueDomain(dataType);
                             else if (comp.ValueDomain.DataType == BasicDataType.None) comp.ValueDomain = new ValueDomain(dataType);
                             else if (dataType == BasicDataType.None) dataType = comp.ValueDomain.DataType;
-                            else throw new Exception($"Something went wrong during a types inference of ruleset {this.Name}.");
+                            else throw new InvalidOperationException($"Something went wrong during a types inference of ruleset {this.Name}.");
                         }
                     }
 

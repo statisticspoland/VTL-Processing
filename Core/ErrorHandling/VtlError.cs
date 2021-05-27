@@ -8,6 +8,7 @@
     /// <summary>
     /// The VTL 2.0 error representation.
     /// </summary>
+    [Serializable]
     public class VtlError : ApplicationException, IVtlError
     {
         /// <summary>

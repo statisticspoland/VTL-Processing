@@ -22,13 +22,13 @@
     using System.Net;
     using System.Net.Http;
 
-    public class DataModelSDMX : DataModel
+    public class DataModelSdmx : DataModel
     {
         private readonly IStructureParsingManager _structureParsingManager;
         private readonly IReadableDataLocationFactory _dataLocationFactory;
         private readonly IReadableDataLocation _readableDataLocation;
 
-        private DataModelSDMX(IDataModel rootModel, string namespaceName)
+        private DataModelSdmx(IDataModel rootModel, string namespaceName)
             : base(rootModel)
         {
             this.Namespace = namespaceName;
@@ -37,19 +37,19 @@
             this._dataLocationFactory = new ReadableDataLocationFactory();
         }
 
-        public DataModelSDMX(IDataModel rootModel, string namespaceName, FileInfo structureFile)
+        public DataModelSdmx(IDataModel rootModel, string namespaceName, FileInfo structureFile)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureFile);
         }
 
-        public DataModelSDMX(IDataModel rootModel, string namespaceName, Uri structureUri)
+        public DataModelSdmx(IDataModel rootModel, string namespaceName, Uri structureUri)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureUri);
         }
 
-        public DataModelSDMX(IDataModel rootModel, string namespaceName, string strUrl)
+        public DataModelSdmx(IDataModel rootModel, string namespaceName, string strUrl)
             : this(rootModel, namespaceName)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(strUrl);
@@ -61,13 +61,13 @@
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(response.GetResponseStream());
         }
 
-        public DataModelSDMX(IDataModel rootModel, string namespaceName, byte[] bytes)
+        public DataModelSdmx(IDataModel rootModel, string namespaceName, byte[] bytes)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(bytes);
         }
 
-        public DataModelSDMX(IDataModel rootModel, string namespaceName, Stream stream)
+        public DataModelSdmx(IDataModel rootModel, string namespaceName, Stream stream)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(stream);
@@ -101,7 +101,7 @@
                     if (split[0] != this.Namespace) return null;
                     datasetName = split[1];
                     break;
-                default: throw new Exception($"Invalid DataSet identifier: {datasetName}");
+                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {datasetName}");
             }
 
             ISet<IMaintainableObject> maintainable = this.GetMaintainableObjects();
@@ -186,7 +186,7 @@
                 TextEnumType.TimesRange => BasicDataType.Time,
                 TextEnumType.IdentifiableReference => BasicDataType.None,
                 TextEnumType.Xhtml => BasicDataType.None,
-                _ => throw new ArgumentException()
+                _ => throw new ArgumentOutOfRangeException("type")
             };
 
             return basicDataType;
