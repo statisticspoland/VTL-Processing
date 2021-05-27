@@ -130,7 +130,7 @@
         {
             if (expression == null)
             {
-                throw new Exception("Try to add non-existent (null) operand");
+                throw new ArgumentNullException("expression", "Try to add non-existent (null) operand");
             }
 
             (expression as Expression).ParentExpression = this;

@@ -36,7 +36,7 @@
         {
             if (space < 0)
             {
-                throw new Exception("Podana liczba musi być nieujemna.");
+                throw new ArgumentOutOfRangeException("space", "Podana liczba musi być nieujemna.");
             }
 
             string result = string.Empty;
@@ -76,7 +76,7 @@
                 case BasicDataType.TimePeriod: return "period_var"; 
                 case BasicDataType.Duration: return "duration_var";
                 case BasicDataType.None: return "NULL";
-                default: throw new Exception("Unknown data type.");
+                default: throw new ArgumentOutOfRangeException("instance", "Unknown data type.");
             }
         }
     }

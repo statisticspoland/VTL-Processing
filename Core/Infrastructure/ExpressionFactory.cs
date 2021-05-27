@@ -47,7 +47,7 @@
                 expr.OperatorDefinition = this.OperatorResolver(name);
                 if (expr.OperatorDefinition == null)
                 {
-                    throw new Exception($"Unsuported operator: {name}");
+                    throw new ArgumentOutOfRangeException("name", $"Unsuported operator: {name}");
                 }
 
                 expr.ResultName = expr.OperatorDefinition.Name;

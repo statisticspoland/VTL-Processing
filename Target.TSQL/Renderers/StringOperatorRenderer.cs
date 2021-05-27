@@ -75,14 +75,14 @@
 
             if (symbol == "INSTR")
             {
-                if (arg4 != null && arg4 != "_") throw new Exception($"Parameter 'occurrence' (arg4) is unsupported in T-SQL : {symbol}"); //TODO
+                if (arg4 != null && arg4 != "_") throw new InvalidOperationException($"Parameter 'occurrence' (arg4) is unsupported in T-SQL : {symbol}"); //TODO
                 return string.Format("CHARINDEX({0},{1}{2})",
                     arg2,
                     arg1,
                     arg3.In("_", null) ? ", 1" : $", {arg3}");
             }
                 
-            throw new Exception($"Unknown operator symbol: {symbol}");
+            throw new ArgumentException("expr", $"Unknown operator symbol: {symbol}");
         }
     }
 }
