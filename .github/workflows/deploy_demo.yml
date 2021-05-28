@@ -21,4 +21,3 @@ jobs:
         heroku_app_name: "vtl-processing-demo"
         heroku_email: "m.bobinski@stat.gov.pl"
         usedocker: true
-        appdir: "Service"
