@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Group" operator definition.
     /// </summary>
-    [OperatorSymbol("group")]
+    [OperatorSymbolAttribute("group")]
     public class GroupOperator : CompCollectorOperator, IOperatorDefinition
     {
         /// <summary>

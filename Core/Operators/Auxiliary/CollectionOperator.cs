@@ -11,7 +11,7 @@
     /// <summary>
     /// The "Collection" operator definition.
     /// </summary>
-    [OperatorSymbol("collection")]
+    [OperatorSymbolAttribute("collection")]
     public class CollectionOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

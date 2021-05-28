@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Match characters" operator definition.
     /// </summary>
-    [OperatorSymbol("match_characters")]
+    [OperatorSymbolAttribute("match_characters")]
     public class MatchCharactersOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

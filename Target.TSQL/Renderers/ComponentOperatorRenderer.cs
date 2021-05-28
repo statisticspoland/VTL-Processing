@@ -11,7 +11,7 @@
     [OperatorRendererSymbol("comp")]
     internal sealed class ComponentOperatorRenderer : IOperatorRenderer
     {
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             return expr.ExpressionText;
         }

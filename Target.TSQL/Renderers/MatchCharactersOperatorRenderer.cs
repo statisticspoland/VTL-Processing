@@ -25,7 +25,7 @@
             this._opRendererResolver = opRendererResolver;
         }
 
-        public string Render(IExpression expr, StructureComponent component)
+        public string Render(IExpression expr, StructureComponent component = null)
         {
             if (!expr.IsScalar && component == null) return this._opRendererResolver("overall").Render(expr, component);
 
@@ -35,9 +35,6 @@
             string op1 = this._opRendererResolver(expr1.OperatorSymbol).Render(expr1, component);
 
             string result = string.Empty;
-            string symbol = expr.OperatorSymbol;
-
-            if (symbol == "<>") symbol = "!=";
 
             result = $"{op1} LIKE '%{expr2.ExpressionText.Split("\"")[1]}%'";
 

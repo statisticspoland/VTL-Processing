@@ -9,7 +9,7 @@
     /// <summary>
     /// The "Current date" operator definition.
     /// </summary>
-    [OperatorSymbol("current_date")]
+    [OperatorSymbolAttribute("current_date")]
     public class CurrentDateOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

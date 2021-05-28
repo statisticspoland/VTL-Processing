@@ -19,7 +19,7 @@
                     case 1: this.Schema = addressList[i].Replace("[", string.Empty).Replace("]", string.Empty); break;
                     case 2: this.Database = addressList[i].Replace("[", string.Empty).Replace("]", string.Empty); break;
                     case 3: this.Server = addressList[i].Replace("[", string.Empty).Replace("]", string.Empty); break;
-                    default: throw new Exception("Too many items in address array.");
+                    default: throw new ArgumentOutOfRangeException("address", "Too many items in address array.");
                 }
             }
         }

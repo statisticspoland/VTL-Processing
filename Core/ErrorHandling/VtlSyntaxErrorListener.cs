@@ -9,7 +9,7 @@
     /// </summary>
     public class VtlSyntaxErrorListener : IAntlrErrorListener<IToken>
     {
-        private List<VtlSyntaxError> errors;
+        private readonly List<VtlSyntaxError> errors;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VtlSyntaxErrorListener"/> class.

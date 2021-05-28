@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Isnull" operator definition.
     /// </summary>
-    [OperatorSymbol("isnull")]
+    [OperatorSymbolAttribute("isnull")]
     public class IsNullOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

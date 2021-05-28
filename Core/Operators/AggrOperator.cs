@@ -7,7 +7,7 @@
     /// <summary>
     /// The "Aggregation" operator definition.
     /// </summary>
-    [OperatorSymbol("aggr")]
+    [OperatorSymbolAttribute("aggr")]
     public class AggrOperator : IOperatorDefinition
     {
         public string Name => "Aggregation";

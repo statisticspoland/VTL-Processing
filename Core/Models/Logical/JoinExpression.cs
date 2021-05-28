@@ -18,7 +18,7 @@
         /// <param name="expression">The base expression with a "join" operator.</param>
         public JoinExpression(IExpression expression) : base(expression.ParentExpression)
         {
-            if (expression.OperatorSymbol != "join") throw new Exception("Expected \"join\" operator symbol when creating \"join\" expression.");
+            if (expression.OperatorSymbol != "join") throw new ArgumentException("expression", "Expected \"join\" operator symbol when creating \"join\" expression.");
 
             this.ContainingSchema = expression.ContainingSchema;
             this.ExpressionText = expression.ExpressionText;
@@ -112,13 +112,13 @@
 
         public IDataStructure GetSubsetAliasStructure()
         {
-            if (!this.Operands.ContainsKey("ds")) throw new Exception("Join expression must contain \"ds\" branch.");
+            if (!this.Operands.ContainsKey("ds")) throw new InvalidOperationException("Join expression must contain \"ds\" branch.");
             return JoinExpression.GetSubsetAlias(this.Operands["ds"].OperandsCollection.ToList()).Structure.GetCopy();
         }
 
         public IDataStructure GetSupersetAliasStructure()
         {
-            if (!this.Operands.ContainsKey("ds")) throw new Exception("Join expression must contain \"ds\" branch.");
+            if (!this.Operands.ContainsKey("ds")) throw new InvalidOperationException("Join expression must contain \"ds\" branch.");
             return JoinExpression.GetSupersetAlias(this.Operands["ds"].OperandsCollection.ToList()).Structure.GetCopy();
         }
 
@@ -131,13 +131,13 @@
 
         public string[] GetAliasesSignatures(string compName = null)
         {
-            if (!this.Operands.ContainsKey("ds")) throw new Exception("Join expression must contain \"ds\" branch.");
+            if (!this.Operands.ContainsKey("ds")) throw new InvalidOperationException("Join expression must contain \"ds\" branch.");
             return this.GetAliasesSignatures(this, compName);
         }
 
         public IExpression GetAliasExpression(string name)
         {
-            if (!this.Operands.ContainsKey("ds")) throw new Exception("Join expression must contain \"ds\" branch.");
+            if (!this.Operands.ContainsKey("ds")) throw new InvalidOperationException("Join expression must contain \"ds\" branch.");
             return this.GetAliasExpression(this.Operands["ds"], name);
         }
 

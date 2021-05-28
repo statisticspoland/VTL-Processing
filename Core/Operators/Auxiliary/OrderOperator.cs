@@ -8,7 +8,7 @@
     /// <summary>
     /// The "Order" operator definition.
     /// </summary>
-    [OperatorSymbol("order")]
+    [OperatorSymbolAttribute("order")]
     public class OrderOperator : CompCollectorOperator, IOperatorDefinition
     {
         /// <summary>

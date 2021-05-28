@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Nvl" operator definition.
     /// </summary>
-    [OperatorSymbol("nvl")]
+    [OperatorSymbolAttribute("nvl")]
     public class NvlOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

@@ -10,7 +10,7 @@
     /// <summary>
     /// The "Unary arithmetic" operator definition.
     /// </summary>
-    [OperatorSymbol("minus", "plus")]
+    [OperatorSymbolAttribute("minus", "plus")]
     public class UnaryArithmeticOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

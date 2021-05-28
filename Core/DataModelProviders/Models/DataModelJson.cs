@@ -12,7 +12,7 @@
     /// </summary>
     public class DataModelJson: DataModel
     {
-        private Dictionary<string, IDataStructure> dataStructures;
+        private readonly Dictionary<string, IDataStructure> dataStructures;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModelJson"/> class.
@@ -48,7 +48,7 @@
                     if (split[0] != this.Namespace) return null;
                     datasetName = split[1];
                     break;
-                default: throw new Exception($"Invalid DataSet identifier: {datasetName}");
+                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {datasetName}");
             }
 
             if (this.dataStructures.ContainsKey(datasetName))
@@ -78,7 +78,7 @@
                 }
                 catch
                 {
-                    throw new NullReferenceException("Dane zawarte w pliku JSON nie pasują do modelu.");
+                    throw new InvalidDataException("Dane zawarte w pliku JSON nie pasują do modelu.");
                 }
             }
             else

@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Constant" operator definition.
     /// </summary>
-    [OperatorSymbol("const")]
+    [OperatorSymbolAttribute("const")]
     public class ConstantOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

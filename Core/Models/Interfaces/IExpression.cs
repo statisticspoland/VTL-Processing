@@ -56,7 +56,7 @@
         /// <summary>
         /// Gets the parent expression of this expression.
         /// </summary>
-        IExpression ParentExpression { get; }
+        IExpression ParentExpression { get; set; }
 
         /// <summary>
         /// Gets the "join" expression that this expression is inside it.

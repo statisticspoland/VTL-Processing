@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Comparison" operator definition.
     /// </summary>
-    [OperatorSymbol("=", "<>", "<", "<=", ">", ">=")]
+    [OperatorSymbolAttribute("=", "<>", "<", "<=", ">", ">=")]
     public class ComparisonOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

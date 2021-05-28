@@ -74,7 +74,7 @@
             services.AddScoped<DataStructureResolver>(ServiceProvider => (compName, compType, dataType) =>
             {
                 if (compName == null && compType == null && dataType == null) return new DataStructure(ServiceProvider.GetService<ILogger<IDataStructure>>());
-                else if (compName == null || compType == null || dataType == null) throw new Exception("DataStructureResolver expects 0 or 3 nullable arguments");
+                else if (compName == null || compType == null || dataType == null) throw new ArgumentNullException(string.Empty, "DataStructureResolver expects 0 or 3 nullable arguments");
                 return new DataStructure(compName, (ComponentType)compType, (BasicDataType)dataType, ServiceProvider.GetService<ILogger<IDataStructure>>());
             });
 
@@ -105,7 +105,7 @@
 
             services.AddScoped<OperatorResolver>(ServiceProvider => key =>
             {
-                Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbol>(true)?.Symbols.Contains(key) == true);
+                Type type = Assembly.GetExecutingAssembly().GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorSymbolAttribute>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) throw new NotImplementedException($"Operator {key} is not implemented.");
                 

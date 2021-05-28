@@ -9,7 +9,7 @@
     /// <summary>
     /// The "Reference" operator definition.
     /// </summary>
-    [OperatorSymbol("ref")]
+    [OperatorSymbolAttribute("ref")]
     public class ReferenceOperator : IOperatorDefinition
     {
         public string Name => "Reference";
@@ -29,7 +29,7 @@
 
             IDataStructure structure = expression.ReferenceExpression?.Structure.GetCopy(true);
 
-            if (expression.GetFirstAncestorExpr("Apply") != null)
+            if (expression.GetFirstAncestorExpr("Apply") != null && structure != null)
             {
                 structure.DatasetName = null;
                 structure.Identifiers.Clear();

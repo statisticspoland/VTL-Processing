@@ -8,7 +8,7 @@
     /// <summary>
     /// The "Calculation of a Component" operator definition.
     /// </summary>
-    [OperatorSymbol("calc")]
+    [OperatorSymbolAttribute("calc")]
     public class CalcOperator : CompCollectorOperator, IOperatorDefinition
     {
         /// <summary>

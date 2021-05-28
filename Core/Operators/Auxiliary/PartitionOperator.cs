@@ -8,7 +8,7 @@
     /// <summary>
     /// The "Partition" operator definition class.
     /// </summary>
-    [OperatorSymbol("partition")]
+    [OperatorSymbolAttribute("partition")]
     public class PartitionOperator : CompCollectorOperator, IOperatorDefinition
     {
         /// <summary>

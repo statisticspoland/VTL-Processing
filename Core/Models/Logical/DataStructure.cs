@@ -61,7 +61,7 @@
                 case ComponentType.Measure: this.measures = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
                 case ComponentType.NonViralAttribute: this.nonViralAttributes = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
                 case ComponentType.ViralAttribute: this.viralAttributes = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
-                default: throw new Exception("Wrong component type.");
+                default: throw new ArgumentOutOfRangeException("compType", "Wrong component type.");
             }
         }
 

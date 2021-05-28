@@ -64,7 +64,7 @@
         public IDataStructure GetDatasetStructure(string datasetName)
         {
             IDataStructure structure;
-            if (this.DataModels == null) throw new NullReferenceException("DataModels in DataModelAggregator.");
+            if (this.DataModels == null) throw new ArgumentNullException("datasetName", "DataModels in DataModelAggregator.");
             foreach (IDataModel dataModel in this.DataModels)
             {
                 structure = dataModel.GetDatasetStructure(datasetName);
@@ -74,8 +74,8 @@
             string[] split = datasetName.Split(@"\");
             switch (split.Length)
             {
-                case 1: throw new Exception($@"Dataset {this.DefaultNamespace}\{datasetName} has been not found in any data model.");
-                default: throw new Exception($"Dataset {datasetName} has been not found in any data model.");
+                case 1: throw new ArgumentOutOfRangeException("datasetName", $@"Dataset {this.DefaultNamespace}\{datasetName} has been not found in any data model.");
+                default: throw new ArgumentOutOfRangeException("datasetName", $"Dataset {datasetName} has been not found in any data model.");
             }
         }
     }

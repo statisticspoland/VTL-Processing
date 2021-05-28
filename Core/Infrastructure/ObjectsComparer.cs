@@ -28,9 +28,9 @@
             foreach (StructureComponent component in instance.Components)
             {
                 if (structure.Components
-                    .Where(c => c.ComponentType == component.ComponentType && c.ValueDomain.DataType == component.ValueDomain.DataType).Count() !=
+                        .Count(c => c.ComponentType == component.ComponentType && c.ValueDomain.DataType == component.ValueDomain.DataType) != 
                     instance.Components
-                    .Where(c => c.ComponentType == component.ComponentType && c.ValueDomain.DataType == component.ValueDomain.DataType).Count())
+                        .Count(c => c.ComponentType == component.ComponentType && c.ValueDomain.DataType == component.ValueDomain.DataType))
                 {
                     return false;
                 }
@@ -93,10 +93,11 @@
         public static bool EqualsObj(this BasicDataType instance, BasicDataType dataType, bool allNumsEqual = true, bool allEqualsToNull = true)
         {
             if (instance != dataType
-                && (!allNumsEqual || (allNumsEqual &&
-                !(instance == BasicDataType.Integer && dataType == BasicDataType.Number) &&
-                !(instance == BasicDataType.Number && dataType == BasicDataType.Integer)))
-                && (!allEqualsToNull || (allEqualsToNull && instance != BasicDataType.None && dataType != BasicDataType.None))) return false;
+                && (!allNumsEqual || (
+                    !(instance == BasicDataType.Integer && dataType == BasicDataType.Number) 
+                    && !(instance == BasicDataType.Number && dataType == BasicDataType.Integer)))
+                && (!allEqualsToNull || (instance != BasicDataType.None && dataType != BasicDataType.None))
+                ) return false;
 
             return true;
         }

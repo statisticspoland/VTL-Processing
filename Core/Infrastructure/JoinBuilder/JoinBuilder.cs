@@ -152,7 +152,7 @@
         {
             IJoinBranch joinBranch = this._joinBranches.FirstOrDefault(jb => jb.Signature == key);
 
-            if (joinBranch == null) throw new Exception($"Join branch named \"{key}\" has been not found.");
+            if (joinBranch == null) throw new ArgumentOutOfRangeException("key", $"Join branch named \"{key}\" has been not found.");
 
             this.Branches.Remove(key);
             this.Branches.Add(key, joinBranch.Build(datasetExpr));

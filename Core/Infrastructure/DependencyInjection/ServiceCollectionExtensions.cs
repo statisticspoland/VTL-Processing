@@ -3,6 +3,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
@@ -13,6 +14,7 @@
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Transformations;
@@ -77,7 +79,7 @@
         /// </summary>
         /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
         /// <returns>The service collection.</returns>
-        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config = null)
+        public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
         {
             services.AddVtlProcessing();
 

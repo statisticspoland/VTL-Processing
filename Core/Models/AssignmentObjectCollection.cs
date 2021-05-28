@@ -10,7 +10,7 @@
     /// </summary>
     public sealed class AssignmentObjectCollection : ICollection<AssignmentObject>
     {
-        private ICollection<AssignmentObject> items;
+        private readonly ICollection<AssignmentObject> items;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="AssignmentObjectCollection"/> class.

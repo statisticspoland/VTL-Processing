@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Exists in" operator definition.
     /// </summary>
-    [OperatorSymbol("exists_in")]
+    [OperatorSymbolAttribute("exists_in")]
     public class ExistsInOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

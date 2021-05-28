@@ -8,7 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="TestJson.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestJson.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Target.PlantUML\Target.PlantUML.csproj" />
+    <ProjectReference Include="..\Target.TSQL\Target.TSQL.csproj" />
   </ItemGroup>
 
 

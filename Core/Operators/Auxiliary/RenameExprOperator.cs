@@ -11,7 +11,7 @@
     /// <summary>
     /// The "Rename expression" operator definition.
     /// </summary>
-    [OperatorSymbol("renameExpr")]
+    [OperatorSymbolAttribute("renameExpr")]
     public class RenameExprOperator : IOperatorDefinition
     {
         private readonly DataStructureResolver _dsResolver;

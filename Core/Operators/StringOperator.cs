@@ -13,7 +13,7 @@
     /// <summary>
     /// The "String" operator definition.
     /// </summary>
-    [OperatorSymbol("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")]
+    [OperatorSymbolAttribute("||", "trim", "rtrim", "ltrim", "upper", "lower", "substr", "replace", "instr", "length")]
     public class StringOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

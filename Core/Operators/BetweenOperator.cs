@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Between" operator definition.
     /// </summary>
-    [OperatorSymbol("between")]
+    [OperatorSymbolAttribute("between")]
     public class BetweenOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

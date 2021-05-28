@@ -8,10 +8,11 @@
     /// <summary>
     /// The VTL 2.0 operator error representation.
     /// </summary>
+    [Serializable]
     public class VtlOperatorError : ApplicationException, IVtlError
     {
-        private string msg;
-        private string opName;
+        private readonly string msg;
+        private readonly string opName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VtlOperatorError"/> class.

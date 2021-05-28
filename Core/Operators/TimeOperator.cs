@@ -13,7 +13,7 @@
     /// <summary>
     /// The "Time" operator definition.
     /// </summary>
-    [OperatorSymbol("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")]
+    [OperatorSymbolAttribute("fill_time_series", "flow_to_stock", "stock_to_flow", "timeshift", "time_agg")]
     public class TimeOperator : IOperatorDefinition
     {
         public string Name => "Time";

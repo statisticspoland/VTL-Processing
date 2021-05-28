@@ -12,7 +12,7 @@
     /// </summary>
     public sealed class UsingBranch : IJoinBranch
     {
-        private IExpressionFactory exprFactory;
+        private readonly IExpressionFactory exprFactory;
 
         /// <summary>
         /// Inittializes a new instance of the <see cref="UsingBranch"/> class.

@@ -15,7 +15,7 @@
     /// <summary>
     /// The "Numeric" operator definition.
     /// </summary>
-    [OperatorSymbol("ceil", "floor", "abs", "exp", "ln", "sqrt", "mod", "round", "power", "log", "trunc")]
+    [OperatorSymbolAttribute("ceil", "floor", "abs", "exp", "ln", "sqrt", "mod", "round", "power", "log", "trunc")]
     public class NumericOperator : IOperatorDefinition
     {
         private readonly IJoinApplyMeasuresOperator _joinApplyMeasuresOp;

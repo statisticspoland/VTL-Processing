@@ -12,7 +12,7 @@
     /// <summary>
     /// The "Subspace" operator definition.
     /// </summary>
-    [OperatorSymbol("sub")]
+    [OperatorSymbolAttribute("sub")]
     public class SubspaceOperator : CompCollectorOperator, IOperatorDefinition
     {
         /// <summary>
