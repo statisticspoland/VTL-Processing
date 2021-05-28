@@ -62,9 +62,7 @@ namespace Service
             }
 
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
