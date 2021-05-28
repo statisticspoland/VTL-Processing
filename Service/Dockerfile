@@ -6,6 +6,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY . .
+WORKDIR /src/Service
 RUN dotnet build "Service.csproj" -c Release -o /app/build
 
 FROM build AS publish
