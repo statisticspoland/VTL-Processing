@@ -28,7 +28,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
             return BuildCommand().InvokeAsync(args).Result;
         }
 
-        private static ServiceProvider ConfigureServices()
+        private static ServiceProvider ConfigureServices(TranslateOptions options)
         {
             IServiceCollection services = new ServiceCollection();
 
@@ -91,7 +91,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
 
         private static void Run(TranslateOptions options)
         {
-            var serviceProvider = ConfigureServices();
+             var serviceProvider = ConfigureServices(options);
             var translator = serviceProvider.GetRequiredService<ITranslationService>();
             var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
             var loggerProviders = serviceProvider.GetRequiredService<IEnumerable<ILoggerProvider>>();
@@ -102,7 +102,16 @@ namespace StatisticsPoland.VtlProcessing.Cli
             try
             {
                 string result = translator.Translate(options);
-                Console.WriteLine(result);
+                if (options.Output == null)
+                {
+                    Console.WriteLine(result);
+                }
+                else
+                {
+                    var file = options.Output.CreateText();
+                    file.Write(result);
+                    file.Close();
+                }
             }
             catch(Exception ex)
             {
