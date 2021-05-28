@@ -74,11 +74,11 @@ namespace StatisticsPoland.VtlProcessing.Cli
                 new Option<string>(
                     new string[] {"--model", "-m" },
                     description: "Data model source (connection string or JSON file path)"),
-                new Option<FileInfo>(
-                    new string[] { "--namespace-mapping", "-n" },
+                new Option<string>(
+                    new string[] {"--namespace-mapping", "-n" },
                     description: "Namespace mapping json file path"),
                 new Option<string>(
-                    new string[] { "defaultNamespace", "--default-manespace", "-d" },
+                    new string[] { "--default-namespace", "-d" },
                     description: "Default data model namespace")
             };
 
@@ -91,7 +91,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
 
         private static void Run(TranslateOptions options)
         {
-             var serviceProvider = ConfigureServices(options);
+            var serviceProvider = ConfigureServices(options);
             var translator = serviceProvider.GetRequiredService<ITranslationService>();
             var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
             var loggerProviders = serviceProvider.GetRequiredService<IEnumerable<ILoggerProvider>>();

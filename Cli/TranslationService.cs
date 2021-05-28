@@ -14,46 +14,68 @@
 
     class TranslationService : ITranslationService
     {
-        private readonly ILogger<TranslationService> _logger;
-        private readonly ITreeGenerator _treeGenerator;
-        private readonly ISchemaModifiersApplier _schemaModifiersApplier;
-        private readonly ErrorCollectorProvider _errorCollectorProvider;
-        private readonly IDataModelAggregator _dataModelAggregator;
-        private readonly IEnumerable<ITargetRenderer> _targetRenderers;
+        private readonly ILogger<TranslationService> logger;
+        private readonly ITreeGenerator treeGenerator;
+        private readonly ISchemaModifiersApplier schemaModifiersApplier;
+        private readonly ErrorCollectorProvider errorCollectorProvider;
+        private readonly IDataModelAggregator dataModelAggregator;
+        private readonly IEnvironmentMapper mapper;
+        private readonly IEnumerable<ITargetRenderer> targetRenderers;
 
         public TranslationService(ILogger<TranslationService> logger,
             ITreeGenerator treeGenerator,
             ISchemaModifiersApplier schemaModifiersApplier,
             IEnumerable<ILoggerProvider> loggerProviders,
             IEnumerable<ITargetRenderer> targetRenderers,
-            IDataModelAggregator dataModelAggregator)
+            IDataModelAggregator dataModelAggregator,
+            IEnvironmentMapper mapper)
         {
-            _logger = logger;
-            _treeGenerator = treeGenerator;
-            _schemaModifiersApplier = schemaModifiersApplier;
-            _errorCollectorProvider = (ErrorCollectorProvider)loggerProviders.SingleOrDefault(l => l.GetType() == typeof(ErrorCollectorProvider));
-            _dataModelAggregator = dataModelAggregator;
-            _targetRenderers = targetRenderers;
+            this.logger = logger;
+            this.treeGenerator = treeGenerator;
+            this.schemaModifiersApplier = schemaModifiersApplier;
+            errorCollectorProvider = (ErrorCollectorProvider)loggerProviders.SingleOrDefault(l => l.GetType() == typeof(ErrorCollectorProvider));
+            this.dataModelAggregator = dataModelAggregator;
+            this.mapper = mapper;
+            this.targetRenderers = targetRenderers;
         }
         public string Translate(TranslateOptions parameters)
         {
-            _dataModelAggregator.DefaultNamespace = parameters.DefaultNamespace;
-            _dataModelAggregator.DataModels.Clear();
-            _dataModelAggregator.AddJsonModel(parameters.Model);
-            
+            dataModelAggregator.DefaultNamespace = parameters.DefaultNamespace;
+            dataModelAggregator.DataModels.Clear();
+            dataModelAggregator.AddJsonModel(parameters.Model);
 
-            ITransformationSchema schema = _treeGenerator.BuildTransformationSchema(parameters.Input.OpenText().ReadToEnd());
+            if (parameters.NamespaceMapping != null && parameters.NamespaceMapping != string.Empty)
+            {
+                // example mapping: "Json;Regular;Namespace=[DbSchema].[DbTable]."
+                foreach (string map in parameters.NamespaceMapping.Split(';'))
+                {
+                    var sp = map.Split('=');
+                    switch(sp.Length)
+                    {
+                        case 1:
+                            this.mapper.Mapping.Add(sp[0], string.Empty);
+                            break;
+                        case 2:
+                            this.mapper.Mapping.Add(sp[0], sp[1]);
+                            break;
+                        default:
+                            throw new ArgumentException("Invalid format of namespace mapping argument");
+                    }
+                }
+            }
 
-            _schemaModifiersApplier.Process(schema);
+            ITransformationSchema schema = treeGenerator.BuildTransformationSchema(parameters.Input.OpenText().ReadToEnd());
 
-            bool areErrors = _errorCollectorProvider.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
+            schemaModifiersApplier.Process(schema);
+
+            bool areErrors = errorCollectorProvider.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
 
             if (areErrors)
             {
                 throw new InvalidOperationException("Translation error");
             }
 
-            ITargetRenderer target = _targetRenderers.FirstOrDefault(tr => tr.Name.ToLower() == parameters.Target.ToLower());
+            ITargetRenderer target = targetRenderers.FirstOrDefault(tr => tr.Name.ToLower() == parameters.Target.ToLower());
 
             if (target == null)
                 throw new ArgumentException("Unexpected target type.");

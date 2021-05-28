@@ -12,7 +12,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
             FileInfo output, 
             string target, 
             string model, 
-            FileInfo namespaceMapping, 
+            string namespaceMapping, 
             string defaultNamespace)
         {
             this.Input = input;
@@ -28,6 +28,6 @@ namespace StatisticsPoland.VtlProcessing.Cli
         public string Target { get; private set; }
         public string Model { get; private set; }
         public string DefaultNamespace { get; private set; }
-        public FileInfo NamespaceMapping { get; private set; }
+        public string NamespaceMapping { get; private set; }
     }
 }
