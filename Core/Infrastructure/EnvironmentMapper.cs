@@ -36,7 +36,7 @@
             switch (split.Length)
             {
                 case 1: return datasetName;
-                case 2: 
+                case 2:
                     if (!this.Mapping.ContainsKey(split[0]))
                         throw new ArgumentOutOfRangeException("datasetName", $"DataSet identifier {datasetName} has been not found in the environment mapper dictionary.");
                     return $"{this.Mapping[split[0]]}{split[1]}";
