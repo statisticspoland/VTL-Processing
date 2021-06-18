@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Net;
 
     /// <summary>
     /// The JSON VTL 2.0 data model.
@@ -28,7 +29,7 @@
         /// Initializes a new instance of the <see cref="DataModelJson"/> class.
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
-        /// <param name="jsonFilePath">The JSON file path.</param>
+        /// <param name="jsonFilePath">The JSON file path/url.</param>
         public DataModelJson(IDataModel rootModel, string jsonFilePath) : this(rootModel)
         {
             this.LoadData(jsonFilePath);
@@ -63,28 +64,42 @@
         /// <param name="jsonFilePath">The JSON file path</param>
         private void LoadData(string jsonFilePath)
         {
-            if (File.Exists(jsonFilePath))
-            {
-                try
-                {
-                    DataModelJson jsonObject = JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(File.ReadAllText(jsonFilePath))["DataModel"];
-                    this.Namespace = jsonObject.Namespace;
-                    this.DataStructuresCollection = jsonObject.DataStructuresCollection;
+            DataModelJson jsonObject;
 
-                    foreach (DataStructure ds in this.DataStructuresCollection)
-                    {
-                        this.dataStructures.Add(ds.DatasetName, ds);
-                    }
-                }
-                catch
-                {
-                    throw new InvalidDataException("Dane zawarte w pliku JSON nie pasują do modelu.");
-                }
-            }
-            else
+            try
             {
-                throw new FileNotFoundException("Nie znaleziono pliku", jsonFilePath);
+                if (File.Exists(jsonFilePath))
+                    jsonObject = JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(File.ReadAllText(jsonFilePath))["DataModel"];
+                else
+                {
+                    if ((jsonObject = this.GetFromUrl(jsonFilePath)) == null)
+                        throw new FileNotFoundException($"Nie znaleziono ścieżki {jsonFilePath}", jsonFilePath);
+                }
+            
+                this.Namespace = jsonObject.Namespace;
+                this.DataStructuresCollection = jsonObject.DataStructuresCollection;
+
+                foreach (DataStructure ds in this.DataStructuresCollection)
+                {
+                    this.dataStructures.Add(ds.DatasetName, ds);
+                }
             }
+            catch (Exception ex)
+            {
+                if (ex.GetType() == typeof(FileNotFoundException)) throw ex;
+                throw new InvalidDataException("Dane zawarte w pliku JSON nie pasują do modelu.");
+            }
+        }
+
+        private DataModelJson GetFromUrl(string url)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(new WebClient().DownloadString(url))["DataModel"];
+            }
+            catch { }
+
+            return null;
         }
     }
 }
