@@ -10,7 +10,7 @@
     using System.Linq;
     using Xunit;
 
-    public partial class BooleanOperatorTests
+    public class BooleanOperatorTests
     {
         private readonly List<string> _operators;
 
@@ -24,7 +24,7 @@
         [InlineData(TestExprType.BoolsDataset, TestExprType.NonesDataset)]
         [InlineData(TestExprType.NonesDataset, TestExprType.NonesDataset)]
         [InlineData(TestExprType.NonesDataset, TestExprType.BoolsDataset)]
-        public void GetOutputStructure_Correct2DatasetsExpr_BoolScalarStructre(params TestExprType[] types)
+        public void GetOutputStructure_Correct2DatasetsExpr_BoolDatasetStructre(params TestExprType[] types)
         {
             foreach (string opSymbol in _operators)
             {
@@ -48,7 +48,7 @@
         [InlineData(TestExprType.BoolsDataset, TestExprType.None)]
         [InlineData(TestExprType.NonesDataset, TestExprType.None)]
         [InlineData(TestExprType.NonesDataset, TestExprType.Boolean)]
-        public void GetOutputStructure_CorrectDatasetScalarExpr_BoolScalarStructre(params TestExprType[] types)
+        public void GetOutputStructure_CorrectDatasetScalarExpr_BoolDatasetStructre(params TestExprType[] types)
         {
             foreach (string opSymbol in this._operators)
             {
