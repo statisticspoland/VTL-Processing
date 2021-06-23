@@ -38,7 +38,7 @@ jobs:
           /o:"vtl-processing"
           /d:sonar.verbose="true"
           /d:sonar.cs.opencover.reportsPaths='"results/**/coverage.opencover.xml"'
-          /d:sonar.coverage.exclusions='"Core.App/**/*", Core.Tests/**/*'
+          /d:sonar.coverage.exclusions='"Core.App/**/*", "Core.Tests/**/*", "Target.PlantUML/**/*", "Cli/**/*", "TestDatabase/**/*", "IntegrationTests/**/*", "ExampleApp/**/*"'
     - name: Build
       run: dotnet build
     - name: Run tests
