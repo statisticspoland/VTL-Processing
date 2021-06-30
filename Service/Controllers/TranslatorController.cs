@@ -49,11 +49,9 @@
             return stream;
         }
 
-        private JObject GenerateJsonFromString(string s)
+        private JsonResponse GenerateJsonFromString(string s)
         {
-            dynamic jsonObject = new JObject();
-            jsonObject.result = s;
-            return jsonObject;
+            return new JsonResponse() { result = s };
         }
     }
 }
