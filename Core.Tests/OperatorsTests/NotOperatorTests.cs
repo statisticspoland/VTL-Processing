@@ -10,7 +10,7 @@
     using System.Linq;
     using Xunit;
 
-    public partial class NotOperatorTests
+    public class NotOperatorTests
     {
         [Theory]
         [InlineData(TestExprType.Boolean)]

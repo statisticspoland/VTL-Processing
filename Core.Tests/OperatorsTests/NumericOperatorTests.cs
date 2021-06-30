@@ -9,7 +9,7 @@
     using System.Linq;
     using Xunit;
 
-    public partial class NumericOperatorTests
+    public class NumericOperatorTests
     {
         [Theory]
         [InlineData("ceil", TestExprType.Integer)]
