@@ -57,10 +57,10 @@
         {
             switch (compType)
             {
-                case ComponentType.Identifier: this.identifiers = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
-                case ComponentType.Measure: this.measures = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
-                case ComponentType.NonViralAttribute: this.nonViralAttributes = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
-                case ComponentType.ViralAttribute: this.viralAttributes = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; ; break;
+                case ComponentType.Identifier: this.identifiers = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; break;
+                case ComponentType.Measure: this.measures = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; break;
+                case ComponentType.NonViralAttribute: this.nonViralAttributes = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; break;
+                case ComponentType.ViralAttribute: this.viralAttributes = new List<StructureComponent>() { new StructureComponent(dataType, compName) }; break;
                 default: throw new ArgumentOutOfRangeException("compType", "Wrong component type.");
             }
         }

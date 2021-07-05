@@ -19,7 +19,7 @@ namespace Service
 
                     webBuilder
                     .UseStartup<Startup>()
-                    .UseUrls("http://*:" + port); ;
+                    .UseUrls("http://*:" + port);
                 });
     }
 }

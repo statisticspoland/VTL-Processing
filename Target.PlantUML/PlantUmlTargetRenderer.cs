@@ -193,7 +193,7 @@
 
             sb.AppendLine("object shema {");
             sb.AppendLine($"  <size:{this._fontSize}> {objectsName}");
-            sb.AppendLine("}"); ;
+            sb.AppendLine("}");
 
             return sb.ToString();
         }
