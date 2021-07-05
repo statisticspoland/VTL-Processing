@@ -35,7 +35,7 @@
         {
             IDataStructure structure = this._dsResolver();
 
-            if (expression.OperandsCollection.Count() != 2) throw new VtlOperatorError(expression, this.Name, "Expected two components.");
+            if (expression.OperandsCollection.Count != 2) throw new VtlOperatorError(expression, this.Name, "Expected two components.");
 
             IExpression identiefierExpr = expression.OperandsCollection.First();
             IExpression measureExpr = expression.OperandsCollection.Last();

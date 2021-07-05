@@ -30,7 +30,7 @@
         /// <param name="services">The services to inject.</param>
         internal void AddTarget(Type targetType, IServiceCollection services = null)
         {
-            if (!typeof(ITargetRenderer).IsAssignableFrom(targetType)) throw new ArgumentException("targetType", "Wrong type of a target instance.");
+            if (!typeof(ITargetRenderer).IsAssignableFrom(targetType)) throw new ArgumentException("Wrong type of a target instance.", "targetType");
 
             this._targets.AddScoped(typeof(ITargetRenderer), targetType);
             this._services.AddScoped(typeof(ITargetRenderer), targetType);

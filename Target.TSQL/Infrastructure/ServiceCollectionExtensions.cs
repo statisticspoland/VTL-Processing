@@ -43,7 +43,7 @@
 
             services.AddTransient<OperatorRendererResolver>(ServiceProvider => key =>
             {
-                Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbol>(true)?.Symbols.Contains(key) == true);
+                Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbolAttribute>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) return null;
 

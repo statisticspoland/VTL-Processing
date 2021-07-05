@@ -102,7 +102,7 @@
                 string resultName = expression.Operands["ds_2"].ResultName;
 
                 if (!resultName.In(DatasetClauseOperator.ClauseNames))
-                    throw new ArgumentException("expression", $"Unknown dataset clause symbol: {resultName}");
+                    throw new ArgumentException($"Unknown dataset clause symbol: {resultName}", "expression");
 
                 if (resultName == "Aggregation")
                 {
@@ -120,7 +120,7 @@
                     if (resultName == "Filter")
                     {
                         if (!this._builder.Branches["filter"].Structure.IsSingleComponent || this._builder.Branches["filter"].Structure.Components[0].ValueDomain.DataType != BasicDataType.Boolean)
-                            throw new ArgumentException("expression", "Expected boolean single component expression as filter branch.");
+                            throw new ArgumentException("Expected boolean single component expression as filter branch.", "expression");
                     }
                 }
             }

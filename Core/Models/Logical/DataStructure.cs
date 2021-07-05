@@ -24,8 +24,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DataStructure"/> class.
         /// </summary>
+        /// <param name="logger">The errors logger.</param>
         [JsonConstructor]
-        public DataStructure()
+        public DataStructure(ILogger<IDataStructure> logger = null)
         {
             this.DatasetName = string.Empty;
             this.DatasetType = DatasetType.Regular;
@@ -33,15 +34,6 @@
             this.measures = new List<StructureComponent>();
             this.viralAttributes = new List<StructureComponent>();
             this.nonViralAttributes = new List<StructureComponent>();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DataStructure"/> class.
-        /// </summary>
-        /// <param name="logger">The errors logger.</param>
-        public DataStructure(ILogger<IDataStructure> logger = null)
-            : this()
-        {
             this._logger = logger;
         }
 

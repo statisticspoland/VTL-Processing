@@ -97,9 +97,10 @@
             IExpression[] aliases = expression.Operands["ds"].OperandsCollection.ToArray();
             for (int i = 0; i < aliases.Length; i++)
             {
-                if (i + 1 != aliases.Length)
+                if (i + 1 != aliases.Length
+                    && aliases[i].Structure.IsSupersetOf(aliases[i + 1].Structure) 
+                    && !aliases[i + 1].Structure.IsSupersetOf(aliases[i].Structure))
                 {
-                    if (!aliases[i].Structure.IsSupersetOf(aliases[i + 1].Structure) && !aliases[i + 1].Structure.IsSupersetOf(aliases[i].Structure))
                         throw new VtlOperatorError(expression, this.Symbol, "Datasets doesn't fit");
                 }
 

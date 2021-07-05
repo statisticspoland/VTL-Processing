@@ -58,45 +58,36 @@
 
             this.ValidateDataStructure(expression, expr1.Structure);
 
-            if (expr2 != null)
+            if (expr2 != null && expr2.ExpressionText != "_")
             {
-                if (expr2.ExpressionText != "_")
+                if (this.Symbol.In("substr", "replace", "instr") && !(expr2.Structure.IsSingleComponent)) throw new VtlOperatorError(expression, this.Name, $"Expected single component (arg2)");
+                if (this.Symbol.In("replace", "instr") && !expr2.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be string (arg2)");
+                if (this.Symbol.In("substr") && !expr2.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be integer (arg2)");
+                if (this.Symbol == "||")
                 {
-                    if (this.Symbol.In("substr", "replace", "instr") && !(expr2.Structure.IsSingleComponent)) throw new VtlOperatorError(expression, this.Name, $"Expected single component (arg2)");
-                    if (this.Symbol.In("replace", "instr") && !expr2.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be string (arg2)");
-                    if (this.Symbol.In("substr") && !expr2.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be integer (arg2)");
-                    if (this.Symbol == "||")
+                    this.ValidateDataStructure(expression, expr2.Structure);
+                    if (!expr2.IsScalar && expr1.IsScalar) structure = expr2.Structure.GetCopy();
+                    else if (!expr1.IsScalar && !expr2.IsScalar)
                     {
-                        this.ValidateDataStructure(expression, expr2.Structure);
-                        if (!expr2.IsScalar && expr1.IsScalar) structure = expr2.Structure.GetCopy();
-                        else if (!expr1.IsScalar && !expr2.IsScalar)
-                        {
-                            IDataStructure ds1 = expr1.Structure.GetCopy();
-                            IDataStructure ds2 = expr2.Structure.GetCopy();
+                        IDataStructure ds1 = expr1.Structure.GetCopy();
+                        IDataStructure ds2 = expr2.Structure.GetCopy();
 
-                            if (ds1.IsSupersetOf(ds2, true, false, true)) structure = ds1.WithAttributesOf(ds2);
-                            else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = ds2.WithAttributesOf(ds1);
-                            else throw new VtlOperatorError(expression, this.Name, "Structures of datasets don't match.");
-                        }
+                        if (ds1.IsSupersetOf(ds2, true, false, true)) structure = ds1.WithAttributesOf(ds2);
+                        else if (ds2.IsSupersetOf(ds1, true, false, true)) structure = ds2.WithAttributesOf(ds1);
+                        else throw new VtlOperatorError(expression, this.Name, "Structures of datasets don't match.");
                     }
                 }
             }
-            if (expr3 != null)
+            if (expr3 != null && expr3.ExpressionText != "_")
             {
-                if (expr3.ExpressionText != "_")
-                {
-                    if (this.Symbol.In("substr", "replace", "instr") && !(expr3.Structure.IsSingleComponent)) throw new VtlOperatorError(expression, this.Name, $"Expected single component (arg3)");
-                    if (this.Symbol.In("substr", "instr") && !expr3.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be integer (arg3)");
-                    if (this.Symbol.In("replace") && !expr3.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be string (arg3)");
-                }
+                if (this.Symbol.In("substr", "replace", "instr") && !(expr3.Structure.IsSingleComponent)) throw new VtlOperatorError(expression, this.Name, $"Expected single component (arg3)");
+                if (this.Symbol.In("substr", "instr") && !expr3.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be integer (arg3)");
+                if (this.Symbol.In("replace") && !expr3.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.String, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be string (arg3)");
             }
-            if (expr4 != null)
+            if (expr4 != null && expr4.ExpressionText != "_")
             {
-                if (expr4.ExpressionText != "_")
-                {
-                    if (this.Symbol == "instr" && !(expr4.Structure.IsSingleComponent)) throw new VtlOperatorError(expression, this.Name, $"Expected single component (arg4)");
-                    if (this.Symbol == "instr" && !expr4.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be integer (arg4)");
-                }
+                if (this.Symbol == "instr" && !(expr4.Structure.IsSingleComponent)) throw new VtlOperatorError(expression, this.Name, $"Expected single component (arg4)");
+                if (this.Symbol == "instr" && !expr4.Structure.Components.First().ValueDomain.DataType.In(BasicDataType.Integer, BasicDataType.None)) throw new VtlOperatorError(expression, this.Name, $"Type of component must be integer (arg4)");
             }
 
             if (structure == null) structure = expr1.Structure.GetCopy().WithAttributesOf(expr2?.Structure);

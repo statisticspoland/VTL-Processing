@@ -7,13 +7,13 @@
     /// </summary>
     /// <seealso cref="Attribute" />
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class OperatorRendererSymbol : Attribute
+    public sealed class OperatorRendererSymbolAttribute : Attribute
     {
         /// <summary>
         /// Initialises a new instance of the <see cref="OperatorRendererSymbol"/> class.
         /// </summary>
         /// <param name="symbols">The symbol of the operator renderer used by a "join" operator.</param>
-        public OperatorRendererSymbol(params string[] symbols)
+        public OperatorRendererSymbolAttribute(params string[] symbols)
         {
             this.Symbols = symbols;
         }

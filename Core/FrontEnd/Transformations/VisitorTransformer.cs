@@ -165,7 +165,7 @@
                     datasetExpr.AddOperand("ds_1", this.Visit(context.closedDataset()));
                     datasetExpr.AddOperand("ds_2", this.Visit(context.datasetClause()));
                 }
-                else throw new ArgumentException("context", "Missing context in ClosedDatasetContext.");
+                else throw new ArgumentException("Missing context in ClosedDatasetContext.", "context");
             }
             else
             {

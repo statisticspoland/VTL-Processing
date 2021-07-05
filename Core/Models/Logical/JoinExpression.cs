@@ -18,7 +18,7 @@
         /// <param name="expression">The base expression with a "join" operator.</param>
         public JoinExpression(IExpression expression) : base(expression.ParentExpression)
         {
-            if (expression.OperatorSymbol != "join") throw new ArgumentException("expression", "Expected \"join\" operator symbol when creating \"join\" expression.");
+            if (expression.OperatorSymbol != "join") throw new ArgumentException("Expected \"join\" operator symbol when creating \"join\" expression.", "expression");
 
             this.ContainingSchema = expression.ContainingSchema;
             this.ExpressionText = expression.ExpressionText;

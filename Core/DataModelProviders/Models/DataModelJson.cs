@@ -85,8 +85,8 @@
             }
             catch (Exception ex)
             {
-                if (ex.GetType() == typeof(FileNotFoundException)) throw ex;
-                throw new InvalidDataException("Dane zawarte w pliku JSON nie pasują do modelu.");
+                if (ex.GetType() == typeof(FileNotFoundException)) throw;
+                throw new InvalidDataException("Invalid model of JSON file");
             }
         }
 

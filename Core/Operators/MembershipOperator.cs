@@ -42,7 +42,7 @@
             {
                 StructureComponent component = expr2.Structure.Components[0];
 
-                this.TransformStructrure(expression, structure, component);
+                this.TransformStructrure(structure, component);
                 if (structure.IsSingleComponent) throw new VtlOperatorError(expression, this.Name, $"Expected dataset as first parameter.");
                 structure.Measures[0].BaseComponentName = component.BaseComponentName;
 
@@ -64,7 +64,7 @@
         /// <param name="expr">The membership operator expression.</param>
         /// <param name="structure">The data structure./param>
         /// <param name="component">The membership component.</param>
-        private void TransformStructrure(IExpression expr, IDataStructure structure, StructureComponent component)
+        private void TransformStructrure(IDataStructure structure, StructureComponent component)
         {
             ComponentType componentType = component.ComponentType;
             string componentName = component.ComponentName;

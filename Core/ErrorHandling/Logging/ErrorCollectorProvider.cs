@@ -7,7 +7,7 @@
     /// <summary>
     /// Creates and stores instances of <see cref="ErrorCollector"/> - <see cref="ILogger"/> representation.
     /// </summary>
-    public class ErrorCollectorProvider : ILoggerProvider
+    public sealed class ErrorCollectorProvider : ILoggerProvider
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorCollectorProvider"/> class.
