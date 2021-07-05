@@ -2,6 +2,6 @@
 {
     public static class Example
     {
-        public static string Source = "A := X + Y";
+        public static readonly string Source = "A := X + Y";
     }
 }

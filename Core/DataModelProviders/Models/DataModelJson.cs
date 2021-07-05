@@ -72,8 +72,7 @@
                     jsonObject = JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(File.ReadAllText(jsonFilePath))["DataModel"];
                 else
                 {
-                    if ((jsonObject = this.GetFromUrl(jsonFilePath)) == null)
-                        throw new FileNotFoundException($"Nie znaleziono ścieżki {jsonFilePath}", jsonFilePath);
+                    jsonObject = this.GetFromUrl(jsonFilePath);
                 }
             
                 this.Namespace = jsonObject.Namespace;
@@ -97,9 +96,10 @@
             {
                 return JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(new WebClient().DownloadString(url))["DataModel"];
             }
-            catch { }
-
-            return null;
+            catch(Exception ex)
+            {
+                throw new IOException($"Error loading model definition: {url}", ex);
+            }
         }
     }
 }

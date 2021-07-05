@@ -234,8 +234,7 @@
                                 operand.Structure = operand.OperatorDefinition.GetOutputStructure(operand);
                                 dataType = operand.Structure.Components[0].ValueDomain.DataType;
                             }
-                            else
-                            if (expr.ParentExpression.Operands["else"].ExpressionText == expr.ExpressionText && expr.ParentExpression.Operands["then"].ExpressionText != expr.ExpressionText)
+                            else if (expr.ParentExpression.Operands["else"].ExpressionText == expr.ExpressionText && expr.ParentExpression.Operands["then"].ExpressionText != expr.ExpressionText)
                             {
                                 IExpression operand = expr.ParentExpression.Operands["else"];
                                 operand.Structure = operand.OperatorDefinition.GetOutputStructure(operand);
