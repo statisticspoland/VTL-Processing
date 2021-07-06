@@ -29,12 +29,12 @@ namespace StatisticsPoland.VtlProcessing.Cli
             var logConf = new LoggerConfiguration()
                 .WriteTo.File(new CompactJsonFormatter(), "log.txt");
 
-            if(options.Verbose)
+            if(options.Console)
             {
                 logConf.WriteTo.Console();
             }
 
-            if(options.Console)
+            if(options.Verbose)
             {
                 logConf.MinimumLevel.Debug();
             }
@@ -96,10 +96,10 @@ namespace StatisticsPoland.VtlProcessing.Cli
                     description: "Default data model namespace"),
                 new Option(
                     new string[] { "--verbose", "-v"},
-                    description: "Print logs to console output"),
+                    description: "Logs debug information"),
                 new Option(
                     new string[] { "--console", "-c"},
-                    description: "Logs debug information")
+                    description: "Print logs to console output")
             };
 
             root.AddArgument(new Argument<FileInfo>("input"));
