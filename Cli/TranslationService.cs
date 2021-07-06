@@ -17,7 +17,7 @@
         private readonly ILogger<TranslationService> logger;
         private readonly ITreeGenerator treeGenerator;
         private readonly ISchemaModifiersApplier schemaModifiersApplier;
-        private readonly ErrorCollectorProvider errorCollectorProvider;
+        //private readonly ErrorCollectorProvider errorCollectorProvider;
         private readonly IDataModelAggregator dataModelAggregator;
         private readonly IEnvironmentMapper mapper;
         private readonly IEnumerable<ITargetRenderer> targetRenderers;
@@ -33,7 +33,6 @@
             this.logger = logger;
             this.treeGenerator = treeGenerator;
             this.schemaModifiersApplier = schemaModifiersApplier;
-            errorCollectorProvider = (ErrorCollectorProvider)loggerProviders.SingleOrDefault(l => l.GetType() == typeof(ErrorCollectorProvider));
             this.dataModelAggregator = dataModelAggregator;
             this.mapper = mapper;
             this.targetRenderers = targetRenderers;
@@ -67,13 +66,6 @@
             ITransformationSchema schema = treeGenerator.BuildTransformationSchema(parameters.Input.OpenText().ReadToEnd());
 
             schemaModifiersApplier.Process(schema);
-
-            bool areErrors = errorCollectorProvider.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
-
-            if (areErrors)
-            {
-                throw new InvalidOperationException("Translation error");
-            }
 
             ITargetRenderer target = targetRenderers.FirstOrDefault(tr => tr.Name.ToLower() == parameters.Target.ToLower());
 

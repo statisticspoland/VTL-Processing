@@ -16,7 +16,6 @@
 
     public class Translator
     {
-        private readonly IServiceCollection _services;
         private readonly ServiceProvider _provider;
 
         public Translator(Action<ITranslatorConfig> configuration)
@@ -24,25 +23,25 @@
             this.EnvironmentMapper = new EnvironmentMapper();
             this.DataModels = new DataModelAggregator(this.EnvironmentMapper);
 
-            this._services = new ServiceCollection().AddVtlProcessing();
-            this._services.AddScoped(typeof(IDataModel), p => this.DataModels);
-            this._services.AddScoped(p => this.DataModels);
-            this._services.AddScoped(p => this.EnvironmentMapper);
+            var services = new ServiceCollection().AddVtlProcessing();
+            services.AddScoped(typeof(IDataModel), p => this.DataModels);
+            services.AddScoped(p => this.DataModels);
+            services.AddScoped(p => this.EnvironmentMapper);
 
-            ITranslatorConfig translatorConfig = new TranslatorConfig(this._services);
+            ITranslatorConfig translatorConfig = new TranslatorConfig(services);
             configuration(translatorConfig);
 
             this.Targets = translatorConfig.Targets;
 
             ErrorCollectorProvider errorCollectorProvider = new ErrorCollectorProvider();
-            this._services.AddLogging((config) =>
+            services.AddLogging((config) =>
             {
                 config.AddProvider(errorCollectorProvider);
             });
 
             this.Errors = new ErrorsCollection(errorCollectorProvider);
 
-            this._provider = this._services.BuildServiceProvider();
+            this._provider = services.BuildServiceProvider();
         }
 
         public IDataModelAggregator DataModels { get; }

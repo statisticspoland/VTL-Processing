@@ -34,15 +34,15 @@
         {
             IDataStructure structure = this._dsResolver();
 
-            if (expression.OperandsCollection.Count() != 2) throw new VtlOperatorError(expression, this.Name, "Expected two components.");
+            if (expression.OperandsCollection.Count != 2) throw new VtlOperatorError(expression, this.Name, "Expected two components.");
 
             IExpression identiefierExpr = expression.OperandsCollection.First();
             IExpression measureExpr = expression.OperandsCollection.Last();
 
             if (!identiefierExpr.IsScalar || !measureExpr.IsScalar) throw new VtlOperatorError(expression, this.Name, "Expected scalar expression.");
 
-            if (identiefierExpr.Structure.Identifiers.Count() != 1) throw new VtlOperatorError(expression, this.Name, "Expected identifier.");
-            if (measureExpr.Structure.Measures.Count() != 1) throw new VtlOperatorError(expression, this.Name, "Expected measure.");
+            if (identiefierExpr.Structure.Identifiers.Count != 1) throw new VtlOperatorError(expression, this.Name, "Expected identifier.");
+            if (measureExpr.Structure.Measures.Count != 1) throw new VtlOperatorError(expression, this.Name, "Expected measure.");
 
             if (expression.ParentExpression?.Operands["ds_1"]?.Structure.Measures.GroupBy(g => g.ValueDomain.DataType).Count() != 1)
                 throw new VtlOperatorError(expression, this.Name, "All types of Measure must be that same");

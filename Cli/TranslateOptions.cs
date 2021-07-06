@@ -13,7 +13,9 @@ namespace StatisticsPoland.VtlProcessing.Cli
             string target, 
             string model, 
             string namespaceMapping, 
-            string defaultNamespace)
+            string defaultNamespace,
+            bool verbose,
+            bool console)
         {
             this.Input = input;
             this.Output = output;
@@ -21,6 +23,8 @@ namespace StatisticsPoland.VtlProcessing.Cli
             this.Model = model;
             this.NamespaceMapping = namespaceMapping;
             this.DefaultNamespace = defaultNamespace;
+            this.Verbose = verbose;
+            this.Console = console;
         }
 
         public FileInfo Input { get; private set; }
@@ -29,5 +33,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
         public string Model { get; private set; }
         public string DefaultNamespace { get; private set; }
         public string NamespaceMapping { get; private set; }
+        public bool Verbose { get; private set; }
+        public bool Console { get; private set; }
     }
 }

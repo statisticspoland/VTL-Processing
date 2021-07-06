@@ -29,7 +29,7 @@
         private readonly OperatorRendererResolver _opRendererResolver;
         private readonly IEnvironmentMapper _envMapper;
         private readonly IAttributePropagationAlgorithm _propagationAlgorithm;
-        private Dictionary<string, string> parts;
+        private readonly Dictionary<string, string> parts;
         private IJoinExpression joinExpr;
         private bool ifThenElse;
 
@@ -347,10 +347,10 @@
             {
                 sb.AppendLine("WHERE");
                 List<IExpression> subFilters = this.joinExpr.Operands["subspace"].OperandsCollection.ToList();
-                for (int i = 0; i < subFilters.Count(); i++)
+                for (int i = 0; i < subFilters.Count; i++)
                 {
                     sb.Append(this._opRendererResolver(subFilters[i].OperatorSymbol).Render(subFilters[i]));
-                    if (i != subFilters.Count() - 1) sb.Append(" AND ");
+                    if (i != subFilters.Count - 1) sb.Append(" AND ");
                 }
             }
 

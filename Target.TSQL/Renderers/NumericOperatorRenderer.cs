@@ -55,7 +55,7 @@
             if (symbol == "ROUND") return string.Format("ROUND({0}, {1})", arg1, arg2.In("_", null) ? "0" : arg2);
             if (symbol == "TRUNC") throw new VtlTargetError(expr, $"[{symbol}] is not supported in T-SQL "); //TODO
 
-            throw new ArgumentException("expr", $"Unknown operator symbol: {symbol}");
+            throw new ArgumentException($"Unknown operator symbol: {symbol}", "expr");
         }
     }
 }

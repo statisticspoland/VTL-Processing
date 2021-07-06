@@ -45,8 +45,6 @@
             if (expr1.Structure.Components[0].ValueDomain.DataType == BasicDataType.String && expr2.Structure.Components[0].ValueDomain.DataType == BasicDataType.String)
                 result += " COLLATE Latin1_General_BIN"; // TODO
 
-            var x = expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.RulesCollection.Contains(expr.GetFirstAncestorExpr() ?? expr));
-
             if (!expr.ParamSignature.In("filter", "having") &&
                 (expr.ParentExpression == null || (!expr.ParentExpression.OperatorSymbol.In("and", "or", "xor", "not") && !expr.ParentExpression.ParamSignature.In("if", "subspace"))) &&
                 expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.RulesCollection.Contains(expr.GetFirstAncestorExpr() ?? expr)) == null)

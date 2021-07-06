@@ -23,8 +23,8 @@
 
             IDataStructure dataStructure = expr.OperatorDefinition.GetOutputStructure(expr);
 
-            Assert.True(dataStructure.Identifiers.Count() == 1);
-            Assert.True(dataStructure.Components.Count() == 1);
+            Assert.True(dataStructure.Identifiers.Count == 1);
+            Assert.True(dataStructure.Components.Count == 1);
             Assert.True(dataStructure.Identifiers.First().ComponentName == compExpr.Structure.Identifiers.First().ComponentName);
             Assert.True(dataStructure.Identifiers.First().ValueDomain.DataType == constExpr.Structure.Measures.First().ValueDomain.DataType);
         }

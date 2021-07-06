@@ -36,17 +36,17 @@
         {
             List<IExpression> aliases = joinExpr.Operands["ds"].OperandsCollection.Where(d => d.Structure.Measures.FirstOrDefault(me => 
                 me.ComponentName.GetNameWithoutAlias() == measureName.GetNameWithoutAlias()) != null).ToList();
-            if (aliases.Count == 0)
+            if (aliases.Count == 0
+                && joinExpr.Operands.ContainsKey("apply")
+                && joinExpr.Operands["apply"].OperatorSymbol.In("#", "period_indicator"))
             {
-                if (joinExpr.Operands.ContainsKey("apply") && joinExpr.Operands["apply"].OperatorSymbol.In("#", "period_indicator"))
-                {
                     aliases = joinExpr.Operands["ds"].OperandsCollection.Where(d => d.Structure.Components.FirstOrDefault(me =>
                         me.ComponentName.GetNameWithoutAlias() == measureName.GetNameWithoutAlias()) != null).ToList();
-                }
             }
-            if (aliases.Count > 1)
+            if (aliases.Count > 1
+                && measureName.Split('#').Length > 1)
             {
-                if (measureName.Split('#').Length > 1) return aliases.First(alias => alias.ParamSignature == measureName.Split('#')[0]);
+                return aliases.First(alias => alias.ParamSignature == measureName.Split('#')[0]);
             }
 
             return aliases.FirstOrDefault();

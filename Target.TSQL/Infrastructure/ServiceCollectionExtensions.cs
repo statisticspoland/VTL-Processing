@@ -20,7 +20,7 @@
 
     public static class ServiceCollectionExtensions
     {
-        internal static IServiceCollection AddTsqlTarget(this IServiceCollection services)
+        public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> config = null)
         {
             services.AddScoped<ITargetRenderer, TsqlTargetRenderer>();
             services.AddScoped<IMapper, Mapper>();
@@ -43,24 +43,18 @@
 
             services.AddTransient<OperatorRendererResolver>(ServiceProvider => key =>
             {
-                Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbol>(true)?.Symbols.Contains(key) == true);
+                Type type = executingAssembly.GetTypes().SingleOrDefault(t => t.GetCustomAttribute<OperatorRendererSymbolAttribute>(true)?.Symbols.Contains(key) == true);
 
                 if (type == null) return null;
 
                 return (IOperatorRenderer)ServiceProvider.GetService(type);
             });
 
-            return services;
-        }
-
-        public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> config = null)
-        {
-            services.AddTsqlTarget();
-
             TargetBuilder configuration = new TargetBuilder();
             if (config != null) config(configuration);
 
             configuration.UpdateServices(services);
+
             return services;
         }
     }

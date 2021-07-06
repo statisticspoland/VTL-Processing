@@ -82,7 +82,7 @@
                     arg3.In("_", null) ? ", 1" : $", {arg3}");
             }
                 
-            throw new ArgumentException("expr", $"Unknown operator symbol: {symbol}");
+            throw new ArgumentException($"Unknown operator symbol: {symbol}", "expr");
         }
     }
 }

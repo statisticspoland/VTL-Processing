@@ -19,7 +19,7 @@
     {
         private readonly OperatorRendererResolver _opRendererResolver;
         private readonly ITargetConfiguration _conf;
-        private Dictionary<IExpression, string> nonPersistentExprs;
+        private readonly Dictionary<IExpression, string> nonPersistentExprs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferencesManager"/> class.

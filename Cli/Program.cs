@@ -1,28 +1,24 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Formatting.Compact;
+using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
+using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
+using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
+using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
-using System.IO;
-using System.Threading.Tasks;
-using System.CommandLine.Builder;
-using System.CommandLine.Hosting;
-using Microsoft.Extensions.Hosting;
 using System.CommandLine.Parsing;
-using Microsoft.Extensions.DependencyInjection;
-using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
-using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
-using Microsoft.Extensions.Logging;
-using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
-using System.Collections.Generic;
-using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
-using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
-using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
-using System.Linq;
+using System.IO;
 
 namespace StatisticsPoland.VtlProcessing.Cli
 {
     class Program
     {
+        protected Program()
+        {
+        }
+
         static int Main(string[] args)
         {
             return BuildCommand().InvokeAsync(args).Result;
@@ -30,6 +26,25 @@ namespace StatisticsPoland.VtlProcessing.Cli
 
         private static ServiceProvider ConfigureServices(TranslateOptions options)
         {
+            var logConf = new LoggerConfiguration()
+                .WriteTo.File(new CompactJsonFormatter(), "log.txt");
+
+            if(options.Verbose)
+            {
+                logConf.WriteTo.Console();
+            }
+
+            if(options.Console)
+            {
+                logConf.MinimumLevel.Debug();
+            }
+            else
+            {
+                logConf.MinimumLevel.Information();
+            }
+
+            Log.Logger = logConf.CreateLogger();
+
             IServiceCollection services = new ServiceCollection();
 
             services.AddVtlProcessing((configure) =>
@@ -52,8 +67,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
 
             services.AddLogging((configure) =>
             {
-                configure.AddDebug();
-                configure.AddProvider(new ErrorCollectorProvider());
+                configure.AddSerilog();
             });
 
             services.AddSingleton<ITranslationService, TranslationService>();
@@ -79,7 +93,13 @@ namespace StatisticsPoland.VtlProcessing.Cli
                     description: "Namespace mapping json file path"),
                 new Option<string>(
                     new string[] { "--default-namespace", "-d" },
-                    description: "Default data model namespace")
+                    description: "Default data model namespace"),
+                new Option(
+                    new string[] { "--verbose", "-v"},
+                    description: "Print logs to console output"),
+                new Option(
+                    new string[] { "--console", "-c"},
+                    description: "Logs debug information")
             };
 
             root.AddArgument(new Argument<FileInfo>("input"));
@@ -94,8 +114,6 @@ namespace StatisticsPoland.VtlProcessing.Cli
             var serviceProvider = ConfigureServices(options);
             var translator = serviceProvider.GetRequiredService<ITranslationService>();
             var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-            var loggerProviders = serviceProvider.GetRequiredService<IEnumerable<ILoggerProvider>>();
-            var errorCollectorProvider = (ErrorCollectorProvider)loggerProviders.SingleOrDefault(l => l.GetType() == typeof(ErrorCollectorProvider));
 
             logger.LogDebug("translating...");
 
@@ -115,24 +133,8 @@ namespace StatisticsPoland.VtlProcessing.Cli
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                logger.LogCritical(ex, "Translation error");
             }
-            finally
-            {
-                var errors = errorCollectorProvider.ErrorCollectors.SelectMany(ec => ec.Errors).Where(e => e != null);
-                var warnings = errorCollectorProvider.ErrorCollectors.SelectMany(ec => ec.Warnings).Where(e => e != null);
-
-                foreach (var error in errors)
-                {
-                    Console.WriteLine(error.Message);
-                }
-
-                foreach (var warning in warnings)
-                {
-                    Console.WriteLine(warning.Message);
-                }
-            }
-
         }
     }
 }

@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     public class TranslationResponse
     {
-        private List<Exception> _exceptions;
-        private string _result;
+        private readonly List<Exception> _exceptions;
+        private readonly string _result;
 
         public TranslationResponse(IEnumerable<Exception> exceptions)
         {
