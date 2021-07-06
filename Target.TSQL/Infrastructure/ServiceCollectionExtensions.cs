@@ -20,7 +20,7 @@
 
     public static class ServiceCollectionExtensions
     {
-        internal static IServiceCollection AddTsqlTarget(this IServiceCollection services)
+        public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> config = null)
         {
             services.AddScoped<ITargetRenderer, TsqlTargetRenderer>();
             services.AddScoped<IMapper, Mapper>();
@@ -50,17 +50,11 @@
                 return (IOperatorRenderer)ServiceProvider.GetService(type);
             });
 
-            return services;
-        }
-
-        public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> config = null)
-        {
-            services.AddTsqlTarget();
-
             TargetBuilder configuration = new TargetBuilder();
             if (config != null) config(configuration);
 
             configuration.UpdateServices(services);
+
             return services;
         }
     }

@@ -42,8 +42,8 @@
 
             if (!identiefierExpr.IsScalar || !measureExpr.IsScalar) throw new VtlOperatorError(expression, this.Name, "Expected scalar expression.");
 
-            if (identiefierExpr.Structure.Identifiers.Count() != 1) throw new VtlOperatorError(expression, this.Name, "Expected identifier.");
-            if (measureExpr.Structure.Measures.Count() != 1) throw new VtlOperatorError(expression, this.Name, "Expected measure.");
+            if (identiefierExpr.Structure.Identifiers.Count != 1) throw new VtlOperatorError(expression, this.Name, "Expected identifier.");
+            if (measureExpr.Structure.Measures.Count != 1) throw new VtlOperatorError(expression, this.Name, "Expected measure.");
 
             structure.AddStructure(measureExpr.Structure.GetCopy());
             structure.Measures.First().ComponentName = $"pivot_{identiefierExpr.Structure.Identifiers.First().ComponentName}";
