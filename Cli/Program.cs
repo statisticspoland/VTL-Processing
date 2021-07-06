@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Formatting.Compact;
 using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
 using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
 using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
@@ -26,7 +27,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
         private static ServiceProvider ConfigureServices(TranslateOptions options)
         {
             var logConf = new LoggerConfiguration()
-                .WriteTo.File("log.txt");
+                .WriteTo.File(new CompactJsonFormatter(), "log.txt");
 
             if(options.Verbose)
             {
