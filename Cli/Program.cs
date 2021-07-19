@@ -57,7 +57,7 @@ namespace StatisticsPoland.VtlProcessing.Cli
                 configure.AddDataStructureObject();
                 configure.UseArrowFirstToLast();
                 configure.ShowNumberLine();
-                configure.UseRuleExpressionsModel();
+                //configure.UseRuleExpressionsModel();
             });
 
             services.AddTsqlTarget((configure) =>

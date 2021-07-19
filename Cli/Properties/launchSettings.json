@@ -2,7 +2,7 @@
   "profiles": {
     "Cli": {
       "commandName": "Project",
-      "commandLineArgs": "source.vtl -m model.json -d Json -t tsql -n Json -o output.sql -c -v"
+      "commandLineArgs": "source.vtl -m test_model.json -d Json -t tsql -n Json -o output.sql -c -v"
     }
   }
 }

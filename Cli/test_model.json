@@ -1,0 +1,63 @@
+﻿{
+  "DataModel": {
+    "Namespace": "Json",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "X",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ]
+      },
+      {
+        "DatasetName": "Y",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Id2",
+            "ComponentName": "Id2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "number_default"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
