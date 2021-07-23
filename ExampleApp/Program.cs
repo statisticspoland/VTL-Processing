@@ -2,7 +2,6 @@
 {
     using ExampleApp.VtlSources;
     using Microsoft.Extensions.Logging;
-    using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.UserInterface;
@@ -48,18 +47,16 @@
             translator.DataModels.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
             translator.DataModels.DefaultNamespace = "Json";
 
-            ITransformationSchema schema = translator.GetFrontEnd().BuildTransformationSchema(Example.Source);
-            translator.GetMiddleEnd().Process(schema);
+            ITransformationSchema schema = translator.CreateSchema(Example.Source);
 
             if (translator.Errors.Count == 0)
             {
-                ITargetRenderer plantUmlRenderer = translator.GetTargetRenderer("PlantUML");
-                string plantUmlResult = plantUmlRenderer.Render(schema);
+                string plantUmlResult = translator.Translate(schema, "PlantUML");
                 PlantUmlUrlConverter converter = new PlantUmlUrlConverter(plantUmlResult);
                 Process.Start("cmd.exe", $"/C start {converter.SVGUrl}");
 
-                ITargetRenderer tsqlRenderer = translator.GetTargetRenderer("TSQL");
-                Debug.WriteLine(tsqlRenderer.Render(schema));
+                string tsqlResult = translator.Translate(schema, "TSQL");
+                Debug.WriteLine(tsqlResult);
             }
         }
     }
