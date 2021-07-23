@@ -21,8 +21,6 @@
             }
         }
 
-        public ITargetRenderer this[string name] => (ITargetRenderer)this._targets.First(target => (target as ITargetRenderer).Name == name);
-
         /// <summary>
         /// Adds a target to the target collection and injects its depentent services.
         /// </summary>
