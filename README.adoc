@@ -16,6 +16,8 @@ WARNING: docs is still work in progress
 
 == Example usage
 
+Just use the `Translator` class:
+
 [source,c#]
 ----
     Translator translator = new Translator((configure) =>
@@ -39,7 +41,7 @@ WARNING: docs is still work in progress
     string tsqlResult = translator.Translate(vtlSource, "TSQL");
 ----
 
-This will result in target T-SQL code:
+This will result in the following target T-SQL code:
 
 [source,sql]
 ----
