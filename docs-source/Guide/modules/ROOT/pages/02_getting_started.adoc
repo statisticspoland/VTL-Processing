@@ -27,6 +27,8 @@ We will need two Nuget packages: *StatisticsPoland.VtlProcessing.Core* and *Stat
 
 image::new_project5.jpg[]
 
+=== Create and configure translator
+
 With dependencies added, let's create a new object of class _Translator_. 
 It is found in the "_StatisticsPoland.VtlProcessing.Core_" namespace.
 
@@ -70,6 +72,8 @@ Translator translator = new Translator((configure) =>
     });
 });
 ----
+
+=== Setup data model
 
 The translation process need information about data structures it work with.
 This need to be configured.
@@ -213,7 +217,7 @@ translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataMode
 translator.DataModels.DefaultNamespace = "JsonTest";
 ----
 
-Kolejnym etapem jest po zadeklarowaniu przestrzeni nazw "System.Collections.Generic" skonfigurowanie mapera obiektu translatora poprzez utworzenia słownika mapowania. W słowniku umieszczamy pozycję o kluczu "JsonTests" i przykładowej wartości, np. "[SqlDatabase].". Informuje to translator, że do nazw struktur danych z przestrzeni nazw modelu danych "JsonTests" ma być dopisywany przedrostek "[SqlDatabase]." w kodzie wynikowym.
+=== Setup environment mapping
 
 Next phase is to configure environment mapper of the translator.
 It is done by providing a `Dictionary<string, string>` object.
@@ -235,6 +239,8 @@ translator.EnvironmentMapper.Mapping = new Dictionary<string, string>()
     { "JsonTest", "[SqlDatabase]." }
 };
 ----
+
+=== Run translation
 
 Translator object is now ready to use.
 Let's do the translation of simple VTL expression:  `Z := X + Y`
