@@ -38,3 +38,35 @@ WARNING: docs is still work in progress
     string vtlSource = "Z := X + Y";
     string tsqlResult = translator.Translate(vtlSource, "TSQL");
 ----
+
+This will result in target T-SQL code:
+
+[source,sql]
+----
+-- Script generated: 23.07.2021 12:13:04
+BEGIN TRANSACTION
+
+IF OBJECT_ID (N'tempdb..#Z', N'U') IS NOT NULL
+DROP TABLE #Z
+
+
+-- Raw: Z := X + Y
+SELECT * INTO #Z FROM (
+SELECT
+ds1.Id1,
+ds2.Id2,
+ds1.Me1 + ds2.Me1 AS Me1,
+ds1.Me2 + ds2.Me2 AS Me2,
+(SELECT MIN(VALUE) FROM
+(SELECT ds1.At1 AS VALUE UNION
+SELECT ds2.At1 AS VALUE) AS t) AS At1
+FROM [SqlDatabase].X AS ds1
+INNER JOIN [SqlDatabase].Y AS ds2
+ON
+ds1.Id1 = ds2.Id1
+) AS t
+
+
+COMMIT TRANSACTION
+GO
+----
