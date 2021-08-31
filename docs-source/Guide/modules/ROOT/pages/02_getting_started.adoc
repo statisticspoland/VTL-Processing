@@ -296,7 +296,9 @@ COMMIT TRANSACTION
 GO
 ----
 
-Complete source code of sample application:
+=== Complete sample
+
+Here we have complete source code of sample application:
 
 [source,c#]
 ----
