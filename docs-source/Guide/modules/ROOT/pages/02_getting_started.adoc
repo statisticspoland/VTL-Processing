@@ -1,2 +1,342 @@
 == Getting Started
 
+VtlProcessing is a .NET Core library, which allows to perform translations between VTL and selected target languages.
+In this step-by-step guide we will create a simple console application utilizing VTL Processing to generate T-SQL target code from VTL source.
+VtlProcessing provides support for .NET Core IoC containers.
+However, in this guide we will use different, simplified set of API.
+This is the provided facade class. 
+
+=== Project setup
+
+VtlProcessing is divided into few modules:
+
+* *VtlProcessing.Core* - transformation od VTL expressions to the form of intermediate representation (IR)
+* *VtlProcessing.Targets.TSQL* - generation of Transact SQL target code from supplied IR objects
+* *VtlProcessing.Targets.PlantUml* - generation of Transact SQL target code from supplied IR objects, helps to visualize and debug VTL code
+
+Each of these modules has separate Nuget package and need to be referenced individually.
+
+Let's start by creating new console application .Net Core 3.1 project.
+
+image::new_project1.jpg[]
+
+image::new_project3.jpg[]
+
+Next, add required VtlProcessing dependencies.
+We will need two Nuget packages: *StatisticsPoland.VtlProcessing.Core* and *StatisticsPoland.VtlProcessing.Targets.TSQL*
+
+image::new_project5.jpg[]
+
+=== Create and configure translator
+
+With dependencies added, let's create a new object of class _Translator_. 
+It is found in the "_StatisticsPoland.VtlProcessing.Core_" namespace.
+
+[source,c#]
+----
+using StatisticsPoland.VtlProcessing.Core;
+
+namespace VtlTestApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Translator translator = new Translator((configure) =>
+            {
+            });
+        }
+    }
+}
+----
+
+Next, we need to configure the use of the T-SQL translation target language.
+If we want comments to be generated in target code, include appropriate setting.
+
+[source,c#]
+----
+...
+using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
+
+namespace VtlTestApp
+{ ...
+----
+
+[source,c#]
+----
+Translator translator = new Translator((configure) =>
+{
+    configure.AddTsqlTarget((config) =>
+    {
+        config.AddComments();
+    });
+});
+----
+
+=== Setup data model
+
+The translation process need information about data structures it work with.
+This need to be configured.
+In our simple case, we will use a json file containing all necessary metadata.
+Let's create an empty _DataModel.json_ file.
+
+image::new_project7.jpg[]
+
+Paste the following content into the _DataModel.json_ file.
+
+[source,json]
+----
+{
+  "DataModel": {
+    "Namespace": "JsonTest",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "X",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "ViralAttributes":
+        [
+            {
+                "BaseComponentName": "At1",
+                "ComponentName": "At1",
+                "ValueDomain": {
+                  "Signature": "string_default"
+                }
+            }
+        ]
+      }
+      {
+        "DatasetName": "Y",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Id2",
+            "ComponentName": "Id2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "number_default"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+----
+
+It holds all necessary structure metadata about two datasets _X_ and _Y_ in data model namespace _JsonTest_.
+It can be visualized as following:
+
+.Data structures in the namespace "JsonTest"
+[plantuml]
+----
+@startuml
+hide circle
+
+class X {
+    -<color:Navy>Integer</color> Id1
+    +<color:Navy>Integer</color> Me1
+    +<color:Navy>Integer</color> Me2
+    ~<color:Navy>String</color> At1
+}
+
+class Y {
+    -<color:Navy>Integer</color> Id_1
+    -<color:Navy>Integer</color> Id_2
+    +<color:Navy>Integer</color> Me_1
+    +<color:Navy>Number</color> Me_2
+}
+
+@enduml
+----
+
+Set `Copy to Output Directory` property to `Copy if newer` value.
+
+image::new_project8.jpg[]
+
+Next, we need to link our Json file as a data model source to the translator object.
+Also set the default namespace used by the translator to "JsonTest".
+
+[source,c#]
+----
+...
+using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
+using System.IO;
+
+namespace VtlTestApp
+{ ...
+----
+
+[source,c#]
+----
+translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
+translator.DataModels.DefaultNamespace = "JsonTest";
+----
+
+=== Setup environment mapping
+
+Next phase is to configure environment mapper of the translator.
+It is done by providing a `Dictionary<string, string>` object.
+In the following example we will map _JsonTests_ namespace to _SqlDatabase_ of the target database.
+
+[source,c#]
+----
+...
+using System.Collections.Generic;
+
+namespace VtlTestApp
+{ ...
+----
+
+[source,c#]
+----
+translator.EnvironmentMapper.Mapping = new Dictionary<string, string>()
+{
+    { "JsonTest", "[SqlDatabase]." }
+};
+----
+
+=== Run translation
+
+Translator object is now ready to use.
+Let's do the translation of simple VTL expression:  `Z := X + Y`
+Just call the `Translate` method to get the result string containing executable T-SQL code.
+Finally, we put the result into the console output. 
+
+[source,c#]
+----
+...
+using System;
+
+namespace VtlTestApp
+{ ...
+----
+
+[source,c#]
+----
+string vtlSource = "Z := X + Y";
+string tsqlResult = translator.Translate(vtlSource, "TSQL");
+
+Console.WriteLine(tsqlResult);
+----
+
+The printed result should look like the following:
+
+[source,sql]
+----
+-- Script generated: 23.07.2021 12:13:04
+BEGIN TRANSACTION
+
+IF OBJECT_ID (N'tempdb..#Z', N'U') IS NOT NULL
+DROP TABLE #Z
+
+
+-- Raw: Z := X + Y
+SELECT * INTO #Z FROM (
+SELECT
+ds1.Id1,
+ds2.Id2,
+ds1.Me1 + ds2.Me1 AS Me1,
+ds1.Me2 + ds2.Me2 AS Me2,
+(SELECT MIN(VALUE) FROM
+(SELECT ds1.At1 AS VALUE UNION
+SELECT ds2.At1 AS VALUE) AS t) AS At1
+FROM [SqlDatabase].X AS ds1
+INNER JOIN [SqlDatabase].Y AS ds2
+ON
+ds1.Id1 = ds2.Id1
+) AS t
+
+
+COMMIT TRANSACTION
+GO
+----
+
+=== Complete sample
+
+Here we have complete source code of sample application:
+
+[source,c#]
+----
+using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
+using StatisticsPoland.VtlProcessing.Core.UserInterface;
+using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace VtlTestApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Translator translator = new Translator((configure) =>
+            {
+                configure.AddTsqlTarget((config) =>
+                {
+                    config.AddComments();
+                });
+            });
+
+            translator.DataModels.AddJsonModel(
+                $"{Directory.GetCurrentDirectory()}\\DataModel.json");
+            translator.DataModels.DefaultNamespace = "JsonTest";
+
+            translator.EnvironmentMapper.Mapping = new Dictionary<string, string>()
+            {
+                { "JsonTest", "[SqlDatabase]." }
+            };
+
+            string vtlSource = "Z := X + Y";
+            string tsqlResult = translator.Translate(vtlSource, "TSQL");
+
+            Console.WriteLine(tsqlResult);
+        }
+    }
+}
+----

@@ -1,12 +1,74 @@
-# VTL Processing
+= VTL Processing
+:source-highlighter: highlight.js
 :gitplant: http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/statisticspoland/VTL-Processing/master/
 
 image:https://github.com/statisticspoland/VTL-Processing/workflows/Build/badge.svg[link=https://github.com/statisticspoland/VTL-Processing/actions?query=workflow%3ABuild]
 image:https://sonarcloud.io/api/project_badges/measure?project=StatisticsPoland.VtlProcessing.Core&metric=alert_status[link=https://sonarcloud.io/dashboard?id=StatisticsPoland.VtlProcessing.Core]
 image:https://sonarcloud.io/api/project_badges/measure?project=StatisticsPoland.VtlProcessing.Core&metric=coverage[link=https://sonarcloud.io/dashboard?id=StatisticsPoland.VtlProcessing.Core]
 
-_VTL Processing_ is a .NET Core library for translation of validation and transformation rules written in the VTL language (see https://sdmx.org/?page_id=5096).
-The first translation target language available will be T-SQL (Microsoft SQL Server).
+*VTL Processing* is a .NET Core library for translating VTL (see https://sdmx.org/?page_id=5096) expressions into various target languages. 
+The generated code can be then executed in a data processing environment to perform data validation or transformation. 
+The library is DI-friendly and comes with built in support for .NET IOC container.
 
-It is still work in progress.
-However we aim at full VTL 2.0 specs coverage. 
+For full documentation see https://statisticspoland.github.io/VTL-Processing
+
+WARNING: docs is still work in progress
+
+== Example usage
+
+Just use the `Translator` class:
+
+[source,c#]
+----
+    Translator translator = new Translator((configure) =>
+    {
+        configure.AddTsqlTarget((config) =>
+        {
+            config.AddComments();
+        });
+    });
+
+    translator.DataModels.AddJsonModel(
+        $"{Directory.GetCurrentDirectory()}\\DataModel.json");
+    translator.DataModels.DefaultNamespace = "JsonTest";
+
+    translator.EnvironmentMapper.Mapping = new Dictionary<string, string>()
+    {
+        { "JsonTest", "[SqlDatabase]." }
+    };
+
+    string vtlSource = "Z := X + Y";
+    string tsqlResult = translator.Translate(vtlSource, "TSQL");
+----
+
+This will result in the following target T-SQL code:
+
+[source,sql]
+----
+-- Script generated: 23.07.2021 12:13:04
+BEGIN TRANSACTION
+
+IF OBJECT_ID (N'tempdb..#Z', N'U') IS NOT NULL
+DROP TABLE #Z
+
+
+-- Raw: Z := X + Y
+SELECT * INTO #Z FROM (
+SELECT
+ds1.Id1,
+ds2.Id2,
+ds1.Me1 + ds2.Me1 AS Me1,
+ds1.Me2 + ds2.Me2 AS Me2,
+(SELECT MIN(VALUE) FROM
+(SELECT ds1.At1 AS VALUE UNION
+SELECT ds2.At1 AS VALUE) AS t) AS At1
+FROM [SqlDatabase].X AS ds1
+INNER JOIN [SqlDatabase].Y AS ds2
+ON
+ds1.Id1 = ds2.Id1
+) AS t
+
+
+COMMIT TRANSACTION
+GO
+----
