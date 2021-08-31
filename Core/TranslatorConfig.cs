@@ -1,9 +1,9 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.UserInterface
+﻿namespace StatisticsPoland.VtlProcessing.Core
 {
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
-    using StatisticsPoland.VtlProcessing.Core.UserInterface.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Interfaces;
     using System;
 
     internal class TranslatorConfig : ITranslatorConfig

@@ -62,6 +62,10 @@
                     }
                 }
             }
+            else
+            {
+                this.mapper.Mapping.Add(parameters.DefaultNamespace, string.Empty);
+            }
 
             ITransformationSchema schema = treeGenerator.BuildTransformationSchema(parameters.Input.OpenText().ReadToEnd());
 

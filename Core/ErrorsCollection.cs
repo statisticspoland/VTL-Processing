@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.UserInterface
+﻿namespace StatisticsPoland.VtlProcessing.Core
 {
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
     using System;
