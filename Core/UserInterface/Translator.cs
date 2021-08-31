@@ -5,11 +5,9 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging;
-    using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.UserInterface.Interfaces;
     using System;
@@ -52,10 +50,23 @@
 
         public IEnvironmentMapper EnvironmentMapper { get; }
 
-        public ITreeGenerator GetFrontEnd() => this._provider.GetFrontEnd();
+        public ITransformationSchema CreateSchema(string vtlSource) => this._provider.GetFrontEnd().BuildTransformationSchema(vtlSource);
 
-        public ISchemaModifiersApplier GetMiddleEnd() => this._provider.GetMiddleEnd();
+        public string Translate(string vtlSource, string targetName)
+        {
+            ITransformationSchema schema = this.CreateSchema(vtlSource);
 
-        public ITargetRenderer GetTargetRenderer(string name) => this._provider.GetTargetRenderer(name);
+            return this.Translate(schema, targetName);
+        }
+
+        public string Translate(ITransformationSchema schema, string targetName, bool schemaProcessed = false)
+        {
+            ITargetRenderer targetRenderer = this._provider.GetTargetRenderer(targetName);
+
+            if (!schemaProcessed) this._provider.GetMiddleEnd().Process(schema);
+            if (targetRenderer == null) throw new NullReferenceException($"Target renderer named \"{targetName}\" has been not found.");
+
+            return this._provider.GetTargetRenderer(targetName).Render(schema);
+        }
     }
 }
