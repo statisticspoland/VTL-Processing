@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.UserInterface
+﻿namespace StatisticsPoland.VtlProcessing.Core
 {
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.BackEnd;

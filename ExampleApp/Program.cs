@@ -4,7 +4,7 @@
     using Microsoft.Extensions.Logging;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.UserInterface;
+    using StatisticsPoland.VtlProcessing.Core;
     using StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using System.Collections.Generic;

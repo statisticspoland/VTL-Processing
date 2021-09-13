@@ -2,7 +2,7 @@
 {
     using Interfaces;
     using Microsoft.Extensions.DependencyInjection;
-    using StatisticsPoland.VtlProcessing.Core.UserInterface.Interfaces;
+    using StatisticsPoland.VtlProcessing.Core.Interfaces;
     using System;
 
     public static class TranslatorConfigExtensions
