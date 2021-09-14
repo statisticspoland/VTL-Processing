@@ -39,18 +39,8 @@
 
         public override IDataStructure GetDatasetStructure(string datasetName)
         {
-            string[] split = datasetName.Split(@"\");
             string @namespace;
-
-            switch (split.Length)
-            {
-                case 1: @namespace = this.DefaultNamespace; break;
-                case 2:
-                    datasetName = split[1];
-                    @namespace = split[0];
-                    break;
-                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {datasetName}");
-            }
+            this.SplitDatasetName(datasetName, out @namespace, out datasetName);
 
             if (!this._mapper.Mapping.ContainsKey(@namespace)) 
                 return null;

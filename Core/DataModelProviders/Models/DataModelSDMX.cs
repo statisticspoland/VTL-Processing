@@ -90,19 +90,10 @@
 
         public override IDataStructure GetDatasetStructure(string datasetName)
         {
+            string @namespace;
+            this.SplitDatasetName(datasetName, out @namespace, out datasetName);
 
-            string[] split = datasetName.Split(@"\");
-            switch (split.Length)
-            {
-                case 1:
-                    if (this.DefaultNamespace != this.Namespace) return null;
-                    break;
-                case 2:
-                    if (split[0] != this.Namespace) return null;
-                    datasetName = split[1];
-                    break;
-                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {datasetName}");
-            }
+            if (@namespace != this.Namespace) return null;
 
             ISet<IMaintainableObject> maintainable = this.GetMaintainableObjects();
 

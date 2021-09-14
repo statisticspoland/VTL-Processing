@@ -9,7 +9,6 @@ namespace VtlProcessing.IntegrationTests.TSQL
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using StatisticsPoland.VtlProcessing.Target.TSQL;
     using StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure;
     using System;
     using System.Collections.Generic;

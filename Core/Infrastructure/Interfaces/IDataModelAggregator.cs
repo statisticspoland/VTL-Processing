@@ -16,7 +16,7 @@
         /// <summary>
         /// Gets or sets the data model collection.
         /// </summary>
-        ICollection<IDataModel> DataModels { get; set; }
+        ICollection<IDataModel> DataModelsCollection { get; set; }
 
         /// <summary>
         /// Gets the environmentm names mapper.

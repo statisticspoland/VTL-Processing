@@ -27,5 +27,22 @@
         {
             throw new NotImplementedException();
         }
+
+        protected void SplitDatasetName(string fullDatasetName, out string namespaceName, out string datasetName)
+        {
+            string[] split = fullDatasetName.Split(@"\");
+            switch (split.Length)
+            {
+                case 1:
+                    namespaceName = this.DefaultNamespace;
+                    datasetName = split[0];
+                    break;
+                case 2:
+                    namespaceName = split[0];
+                    datasetName = split[1];
+                    break;
+                default: throw new ArgumentOutOfRangeException("datasetName", $"Invalid DataSet identifier: {fullDatasetName}");
+            }
+        }
     }
 }

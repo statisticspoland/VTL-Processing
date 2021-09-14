@@ -40,7 +40,7 @@
         public string Translate(TranslateOptions parameters)
         {
             dataModelAggregator.DefaultNamespace = parameters.DefaultNamespace;
-            dataModelAggregator.DataModels.Clear();
+            dataModelAggregator.DataModelsCollection.Clear();
             dataModelAggregator.AddJsonModel(parameters.Model);
 
             if (parameters.NamespaceMapping != null && parameters.NamespaceMapping != string.Empty)

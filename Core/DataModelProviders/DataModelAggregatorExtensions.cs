@@ -16,7 +16,7 @@
     {
         public static void AddJsonModel(this IDataModelAggregator aggregator, string filePath)
         {
-            aggregator.DataModels.Add(new DataModelJson(aggregator, filePath));
+            aggregator.DataModelsCollection.Add(new DataModelJson(aggregator, filePath));
         }
 
         public static void AddSqlServerModel(this IDataModelAggregator aggregator, string connectionString)
@@ -27,7 +27,7 @@
                 connectionString,
                 aggregator.EnvironmentMapper);
 
-            aggregator.DataModels.Add(dataModel);
+            aggregator.DataModelsCollection.Add(dataModel);
         }
 
         public static void AddRegularModel(this IDataModelAggregator aggregator, Action<IRegularModelConfiguration> modelConfiguration, string namespaceName)
@@ -35,13 +35,13 @@
             Dictionary<string, IDataStructure> dataStructures = new Dictionary<string, IDataStructure>();
             modelConfiguration(new RegularModelConfiguration(dataStructures));
             IDataModel dataModel = new DataModelRegular(aggregator, namespaceName, dataStructures);
-            aggregator.DataModels.Add(dataModel);
+            aggregator.DataModelsCollection.Add(dataModel);
         }
 
         public static void AddSdmxModel(this IDataModelAggregator aggregator, string url, string namespaceName)
         {
             IDataModel dataModel = new DataModelSdmx(aggregator, namespaceName, url);
-            aggregator.DataModels.Add(dataModel);
+            aggregator.DataModelsCollection.Add(dataModel);
         }
     }
 }
