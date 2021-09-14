@@ -24,7 +24,7 @@
             loggerProviders.Add(new ErrorCollectorProvider());
 
             var dataModelAggregatorMock = new Mock<IDataModelAggregator>();
-            dataModelAggregatorMock.Setup(m => m.DataModels.Clear()).Verifiable();
+            dataModelAggregatorMock.Setup(m => m.DataModelsCollection.Clear()).Verifiable();
             dataModelAggregatorMock.SetupSet(m => m.DefaultNamespace = It.IsAny<string>());
             dataModelAggregatorMock.SetupSet(m => m.EnvironmentMapper.Mapping = It.IsAny<Dictionary<string, string>>());
             

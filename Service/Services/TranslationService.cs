@@ -42,7 +42,7 @@
 
             _dataModelAggregator.DefaultNamespace = parameters.DefaultNamespace;
 
-            _dataModelAggregator.DataModels.Clear();
+            _dataModelAggregator.DataModelsCollection.Clear();
 
             foreach (var dataSource in parameters.DataSources)
             {

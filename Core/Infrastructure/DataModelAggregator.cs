@@ -17,7 +17,7 @@
         public DataModelAggregator(IEnvironmentMapper mapper)
         {
             this.EnvironmentMapper = mapper;
-            this.DataModels = new List<IDataModel>();
+            this.DataModelsCollection = new List<IDataModel>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@
         public DataModelAggregator(IEnvironmentMapper mapper, params IDataModel[] dataModels)
             : this(mapper)
         {
-            if (dataModels != null) this.DataModels = dataModels.ToList();
+            if (dataModels != null) this.DataModelsCollection = dataModels.ToList();
         }
 
         /// <summary>
@@ -52,20 +52,20 @@
         public DataModelAggregator(string defaultNamespace, IEnvironmentMapper mapper, params IDataModel[] dataModels)
             : this(defaultNamespace, mapper)
         {
-            if (dataModels != null) this.DataModels = dataModels.ToList();
+            if (dataModels != null) this.DataModelsCollection = dataModels.ToList();
         }
 
         public string DefaultNamespace { get; set;  }
 
-        public ICollection<IDataModel> DataModels { get; set; }
+        public ICollection<IDataModel> DataModelsCollection { get; set; }
 
         public IEnvironmentMapper EnvironmentMapper { get; }
 
         public IDataStructure GetDatasetStructure(string datasetName)
         {
             IDataStructure structure;
-            if (this.DataModels == null) throw new ArgumentNullException("datasetName", "DataModels in DataModelAggregator.");
-            foreach (IDataModel dataModel in this.DataModels)
+            if (this.DataModelsCollection == null) throw new ArgumentNullException("datasetName", "DataModels in DataModelAggregator.");
+            foreach (IDataModel dataModel in this.DataModelsCollection)
             {
                 structure = dataModel.GetDatasetStructure(datasetName);
                 if (structure != null) return structure;
