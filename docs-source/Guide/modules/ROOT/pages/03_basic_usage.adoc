@@ -1,2 +1,141 @@
 == Basic Usage
 
+=== .NET Core Dependency Injection
+
+Usage of the Translator class, as shown in the Tutorial section, is just a simplified approach to use the library.
+...
+
+=== Modele danych
+
+Niezależnie od tego, czy używamy w projekcie obiektu klasy Translator, czy korzystamy ze wstrzykiwania zależności, modele danych deklaruje się poprzez dodanie reprezentacji interfejsu *IDataModel* do agregatora modeli danych reprezentującego interfejs *IDataModelAggregator*.
+
+==== Available data model providers
+
+Przestrzeń nazw StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models oferuje cztery domyślne typy modeli danych, które można w łatwy sposób dodać do reprezentacji interfejsu IDataModelAggregator dzięki dodatkowym metodom rozszerzającym ze statycznej klasy DataModelAggregatorExtension z przestrzeni nazw StatisticsPoland.VtlProcessing.Core.DataModelProviders.
+
+===== Model danych JSON
+
+Model danych JSON wczytuje struktury danych z pliku o rozszerzeniu JSON o schemacie przedstawionym poniżej. Plik powinien zawierać obiekt "DataModel", w którym zawarte będą informacje takie jak nazwa przestrzeni nazw VTL oraz kolekcja struktur danych, zawierających nazwane kolekcje komponentów wraz z informacjami o ich nazwach i domenach wartości.
+
+[source,json]
+----
+{
+  "DataModel": {
+    "Namespace": "",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "",
+        "Identifiers": [
+          {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "ViralAttributes": [
+            {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "NonViralAttributes": [
+            {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ]
+      }, ...
+    ]
+  }
+}
+----
+
+===== Model danych wyrażeń regularnych
+
+Model danych wyrażeń regularnych wczytuje struktury danych z podanego mu wcześniej słownika o kluczach nazw struktur oraz wartościach struktur danych.
+
+[source,c#]
+----
+Dictionary<string, IDataStructure>
+----
+
+Pozwala to na tworzenie struktur danych z poziomu kodu. Nazwa przestrzeni nazw VTL jest nadawana w konstruktorze.
+
+===== Model danych SQL Server
+
+Model danych SQL Server wczytuje struktury danych na podstawie struktur tabel podanej bazy danych Transact SQL. Przestrzenie nazw danego modelu danych należy zadeklarować i zmapować w maperze przestrzeni nazw VTL.
+
+Na podstawie typu danych kolumny TSQL dobierana jest odpowiadająca mu domena wartości komponentu VTL. Standardowy sposób dobierania przedstawiony został w tabeli poniżej.
+
+[%header,cols=2*] 
+|===
+|Typy danych TSQL
+|Domena wartości VTL
+
+|TinyInt, SmallInt, Int, BigInt
+|Integer
+
+|Numeric, Decimal
+|Number
+
+|Bit
+|Boolean
+
+|Char, NChar, NText, NVarChar, NVarCharMax, Text, VarChar, VarCharMax
+|String
+
+|Date, DateTime, DateTime2, SmallDateTime, Time, Timestamp
+|Date
+|===
+
+Tekstowe typy danych TSQL mogą być interpretowane jako czasowe domeny wartości VTL:
+
+* "Date"
+* "Time"
+* "TimePeriod"
+* "Duration". 
+
+Można to uzyskać poprzez dodanie rozszerzonej wartości "vtl_time_type" dla odpowiedniej kolumny tabeli TSQL. Schemat dodania rozszerzonej wartości przedstawiono poniżej.
+
+[source,sql]
+----
+EXEC sp_addextendedproperty   
+	@name = N'vtl_time_type',   
+	@value = '',  
+	@level0type = N'Schema', @level0name = '',  
+	@level1type = N'Table',  @level1name = '',  
+	@level2type = N'Column', @level2name = '';  
+GO
+----
+
+Nazwą rozszerznej wartości ma być "vtl_time_type". Jako wartość podajemy nazwę jednej z wyżej wymienionych czasowych domen wartości VTL. Wartości pola "level0name" należy przypisać nazwę schematu, do którego należy dana tabela. Wartość pola "level1name" odpowiada nazwie tabeli, natomiast "level2name" nazwie kolumny, dla której określamy czasową domenę wartości VTL.
+
+Przy pomocy rozszerzonej wartości można okreslić dla kolumny tabeli TSQL [.underline]#typ komponentu VTL#, który ma reprezentować. Domyślnie kolumny oznaczone jako klucz główny są traktowane jako identyfikatory, a pozostałe jako miary, więc głównie stosuje się to do oznaczania atrybutów. 
+
+W tym przypadku nazwą rozszerzonej wartości ma być "vtl_component_role", a wartością jedna z nazw typu komponentu VTL:
+
+* "identifier"
+* "measure"
+* "attribute"
+* "attribute.viral".
+
+===== Model danych SDMX
+
+#Mateusz Pluta :D#

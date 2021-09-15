@@ -1,0 +1,67 @@
+== Supported Operators
+
+// TODO: lista operatorów wraz ze statusem
+
+=== Obsługa czasowych domen wartości VTL
+
+==== Obsługiwane maski czasowych domen wartości VTL
+
+Poprawna obsługa czasowych domen wartości VTL przez translator VTL jest ograniczona do masek podanych w tabeli poniżej. Wprowadzając czasową wartość w kodzie VTL oraz przechowując dane o czasowej domenie wartości należy przestrzegać danych masek, w przeciwnym razie wynik działania translatora na danych wartościach będzie nieprawidłowy.
+
+[%header,cols=2*] 
+|===
+|Czasowa domena wartości
+|Obsługiwane maski
+
+|Date
+|"yyyy-mm-dd", +
+"yyyy-mm"
+
+|Time
+|"yyyy-mm-dd/yyyy-mm-dd", +
+"yyyy-mm/yyyy-mm"
+
+|TimePeriod
+|"yyyy", +
+"yyyyA" +
+"yyyyS{s}" +
+"yyyyQ{q}" +
+"yyyyM{mm}" +
+"yyyyW{ww}" +
+"yyyyD{ddd}" +
+
+|Duration
+|"A", "S", "Q", "M", "W", "D"
+|===
+
+==== Uproszczone użycie typów czasowych
+
+Zagłębiając się w przykłady z dokumentu
+
+> > SMDX Technical Working Group +
+VTL Task Force +
+VTL – version 2.0 +
+(Validation & Transformation Language) +
+Part 2 – Reference Manual
+
+można dojść do wniosku, że do użycia skalarnego wyrażenia czasowego, należy przy użyciu operatora konwersji typów (CAST) przekonwertować skalarne wyrażenie typu string na oczekiwany typ czasowy.
+
+.Przykład użycia operatora CAST do uzyskania skalarnych wyrażeń czasowych
+[source]
+----
+cast("2000Q1", time_period, "YYYY\QQ")
+cast("20120213", date, "YYYYMMDD")
+----
+
+W celu uproszczenia zapytań VTL translator posiada funkcjonalność rozpoznawania czasowych wyrażeń skalarnych. Należy je podawać w postaci wyrażenia reprezentującego ciąg znaków poprzedzonego literą "t".
+
+.Przykład uproszczonego uzyskania skalarnych wyrażeń czasowych za pomocą przedrostka "t"
+[source]
+----
+t"2000Q1"
+t"2012-02-13"
+----
+
+WARNING: Funkcjonalność działa poprawnie tylko dla masek z powyższej tabeli.
+
+NOTE: Documentation under construction
