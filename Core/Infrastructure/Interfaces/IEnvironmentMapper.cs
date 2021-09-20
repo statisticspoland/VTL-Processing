@@ -13,6 +13,16 @@
         Dictionary<string, string> Mapping { get; set; }
 
         /// <summary>
+        /// Gets or sets the default namespace.
+        /// </summary>
+        string DefaultNamespace { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default target prefix.
+        /// </summary>
+        string DefaultTargetPrefix { get; set; }
+
+        /// <summary>
         /// Maps a dataset name between a data model and a physical environment.
         /// </summary>
         /// <param name="datasetName">The logical name of the dataset in the data model.</param>
