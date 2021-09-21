@@ -7,11 +7,13 @@ Usage of the Translator class, as shown in the Tutorial section, is just a simpl
 
 === Modele danych
 
-Niezależnie od tego, czy używamy w projekcie obiektu klasy Translator, czy korzystamy ze wstrzykiwania zależności, modele danych deklaruje się poprzez dodanie reprezentacji interfejsu *IDataModel* do agregatora modeli danych reprezentującego interfejs *IDataModelAggregator*.
+==== Deklaracja modeli danych
 
-==== Available data model providers
+Modele danych deklaruje się poprzez dodanie reprezentacji interfejsu ``StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModel`` do agregatora modeli danych reprezentującego interfejs ``StatisticsPoland.VtlProcessing.Core.Infrastructure.InterfacesIDataModelAggregator``.
 
-Przestrzeń nazw StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models oferuje cztery domyślne typy modeli danych, które można w łatwy sposób dodać do reprezentacji interfejsu IDataModelAggregator dzięki dodatkowym metodom rozszerzającym ze statycznej klasy DataModelAggregatorExtension z przestrzeni nazw StatisticsPoland.VtlProcessing.Core.DataModelProviders.
+==== Domyślne modele danych
+
+Przestrzeń nazw ``StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models`` oferuje cztery domyślne typy modeli danych, które można w łatwy sposób dodać do reprezentacji interfejsu IDataModelAggregator dzięki dodatkowym metodom rozszerzającym ze statycznej klasy DataModelAggregatorExtension z przestrzeni nazw ``StatisticsPoland.VtlProcessing.Core.DataModelProviders``.
 
 ===== Model danych JSON
 
@@ -138,4 +140,110 @@ W tym przypadku nazwą rozszerzonej wartości ma być "vtl_component_role", a wa
 
 ===== Model danych SDMX
 
-#Mateusz Pluta :D#
+Model danych SDMX wczytuje struktury danych z pliku struktury danych SDMX, a dokładnie z części Dataset Stucture Definition.
+
+Na podstawie tekstowych typów danych SDMX dobierana jest odpowiadająca mu domena wartości komponentu VTL. Standardowy sposób dobierania przedstawiony został w tabeli poniżej.
+
+[%header,cols=2*] 
+|===
+|Tekstowe typy danych SDMX
+|Domena wartości VTL
+
+|Null, AttachmentConstraintReference, DataSetReference, KeyValues, IdentifiableReference, Xhtml
+|None
+
+|Alpha, Alphanumeric, String, Time, Year, Month, Numeric, Day, MonthDay, YearMonth, Uri, Timespan
+|String
+
+|BasicTimePeriod, DateTime, Date, GregorianDay, GregorianTimePeriod, GregorianYear, GregorianYearMonth
+|Date
+
+|BigInteger, Integer, Long, Short, Count
+|Integer
+
+|Decimal, Float, Double, InclusiveValueRange, ExclusiveValueRange, Incremental
+|Number
+
+|Boolean
+|Boolean
+
+|Duration
+|Duration
+
+|ObservationalTimePeriod, StandardTimePeriod, TimesRange
+|Time
+
+|TimePeriod, ReportingDay, ReportingMonth, ReportingQuarter, ReportingSemester, ReportingTimePeriod, ReportingTrimester, ReportingWeek, ReportingYear
+|TimePeriod
+
+|===
+
+Na podstawie elementów struktury danych SDMX dobierane są odpowiadające im elementy struktury VTL.  Standardowy sposób dobierania przedstawiony został w tabeli poniżej.
+
+[%header,cols=2*] 
+|===
+|Element struktury SDMX
+|Element struktury VTL
+
+|Dimension
+|Identifier
+
+|PrimaryMeasure
+|Measure
+
+|Attribute
+|Attribute
+
+|===
+
+==== Niestandardowe modele danych
+
+Proces tworzenia niestandardowych modeli danych wraz z wymogami oraz wskazówkami znajduje się w kolejnej części dokumentu "04_custom_models".
+
+=== Renderery języków docelowych
+
+==== Deklaracja rendererów języków docelowych
+
+Renderery języków docelowe deklaruje się poprzez wstrzyknięcie zależności reprezentacji interfejsu ``StatisticsPoland.VtlProcessing.Core.BackEnd.ITargetRenderer`` do kolekcji serwisów ``Microsoft.Extensions.DependencyInjection.ServiceCollection``. Można to zrobić bezpośrednio lub poprzez konfigurację obiektu klasy ``StatisticsPoland.VtlProcessing.Core.Translator``.
+
+==== Standardowe renderery języków docelowych
+
+Wyrózniamy dwa standardowe renderery języków docelowych, które wewnątrz swoich przestrzeni nazw ``nazwa_renderera.Infrastructure`` posiadają metody rozszerzające dla ``StatisticsPoland.VtlProcessing.Core.ITranslatorConfig`` oraz ``Microsoft.Extensions.DependencyInjection.IServiceCollection``, pozwalające na proste wstrzyknięcie renderera jako zależność projektu.
+
+===== Renderer języka TSQL
+
+Jest to renderer przetwarzający schematy reprezentacji pośredniej na kod wynikowy języka TSQL.
+
+Podczas dodawania tego renderera do kolekcji serwisów są dostępne następujące metody konfiguracyjne:
+
+* ``AddComments`` - wywołanie tej metody konfiguracyjnej dodaje komentarze do kodu wynikowego
+
+* ``SetAttributePropagationAlgorithm`` - przy pomocy tej metody można zmienić algorytm propagacji atrybutów VTL w kodzie wynikowym poprzez podanie niestandardowej reprezentacji interfejsu ``StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm`` (więcej w rozdziale "04_custom_models"). Standardowo używany jest algorytm działający według zasad opisanych w rozdziale "Behaviour for Attribute Components" dokumentu
+
+> > SMDX Technical Working Group +
+VTL Task Force +
+VTL – version 2.0 +
+(Validation & Transformation Language) +
+Part 1 – User Manual
+
+===== Renderer języka PlantUml
+
+Jest to renderer przetwarzazjący schematy reprezentajci pośrenidej na kod wynikowy PlantUml w celu graficzengo przedstawienia schematu reprezentacji pośredniej.
+
+Podczas dodawania tego renderera do kolekcji serwisów są dostępne następujące metody konfiguracyjne:
+
+* ``UseHorizontalView`` - wywołanie tej metody konfiguracyjnej zmienia sposób graficznej prezentacji schematu transformacji pośredniej na horyzontalny. Domyślnie jest on prezentowany wertykalnie.
+
+* ``AddDataStructureObject`` - wywołanie tej metody konfiguracyjnej dodaje do graficznej prezentacji schematu transformacji pośredniej dodatkowe obiekty opisujące struktury danych zawartych w nim wyrażeń.
+
+* ``UseArrowFirstToLast`` - wywołanie tej metody konfiguracyjnej zmienia połączenia pomiędzy obiektami graficznej prezentacji schematu transformacji pośredniej na strzałki wskazujące według metody "od korzenia do liści". Domyślnie połączenia są zwyczajnymi liniami.
+
+* ``UseArrowLastToFirst`` - wywołanie tej metody konfiguracyjnej zmienia połączenia pomiędzy obiektami graficznej prezentacji schematu transformacji pośredniej na strzałki wskazujące według metody "od liści do korzenia". Domyślnie połączenia są zwyczajnymi liniami.
+
+* ``ShowNumberLine`` - wywołanie tej metody konfiguracyjnej dodaje do każdego wyrażenia graficznej prezentacji schematu transformacji pośredniej pole odpowiadające za numer linii, w którym znajduje się dane wyrażenie w kodzie źródłowym VTL.
+
+* ``UseRuleExpressionsModel`` - wywołanie tej metody konfiguracyjnej zmienia tryb wyświetlania graficznej prezentacji schematu transformacji pośredniej ze zwykłych wyrażeń na wyrażenia zestawów zasad (rulesety).
+
+==== Niestandardowe renderery języków docelowych
+
+Proces tworzenia niestandardowych rendererów języków docelowych wraz z wymogami oraz wskazówkami znajduje się w kolejnej części dokumentu "04_custom_models".
