@@ -17,7 +17,7 @@
         public DataModelAggregator(IEnvironmentMapper mapper)
         {
             this.EnvironmentMapper = mapper;
-            this.DataModelsCollection = new List<IDataModel>();
+            this.DataModelsCollection = new List<IDataModelProvider>();
         }
 
         /// <summary>
@@ -37,7 +37,7 @@
         /// </summary>
         /// <param name="mapper">The environment names mapper.</param>
         /// <param name="dataModels">The data model collection.</param>
-        public DataModelAggregator(IEnvironmentMapper mapper, params IDataModel[] dataModels)
+        public DataModelAggregator(IEnvironmentMapper mapper, params IDataModelProvider[] dataModels)
             : this(mapper)
         {
             if (dataModels != null) this.DataModelsCollection = dataModels.ToList();
@@ -49,7 +49,7 @@
         /// <param name="defaultNamespace">The default namespace name.</param>
         /// <param name="mapper">The environment names mapper.</param>
         /// <param name="dataModels">The data model collection.</param>
-        public DataModelAggregator(string defaultNamespace, IEnvironmentMapper mapper, params IDataModel[] dataModels)
+        public DataModelAggregator(string defaultNamespace, IEnvironmentMapper mapper, params IDataModelProvider[] dataModels)
             : this(defaultNamespace, mapper)
         {
             if (dataModels != null) this.DataModelsCollection = dataModels.ToList();
@@ -57,7 +57,7 @@
 
         public string DefaultNamespace { get; set;  }
 
-        public ICollection<IDataModel> DataModelsCollection { get; set; }
+        public ICollection<IDataModelProvider> DataModelsCollection { get; set; }
 
         public IEnvironmentMapper EnvironmentMapper { get; }
 
@@ -65,7 +65,7 @@
         {
             IDataStructure structure;
             if (this.DataModelsCollection == null) throw new ArgumentNullException("datasetName", "DataModels in DataModelAggregator.");
-            foreach (IDataModel dataModel in this.DataModelsCollection)
+            foreach (IDataModelProvider dataModel in this.DataModelsCollection)
             {
                 structure = dataModel.GetDatasetStructure(datasetName);
                 if (structure != null) return structure;

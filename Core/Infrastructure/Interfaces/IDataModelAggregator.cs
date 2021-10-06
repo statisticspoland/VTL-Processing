@@ -6,7 +6,7 @@
     /// <summary>
     /// Interface of an aggregator of data models.
     /// </summary>
-    public interface IDataModelAggregator : IDataModel
+    public interface IDataModelAggregator : IDataModelProvider
     {
         /// <summary>
         /// Gets or sets the default namespace name.
@@ -16,7 +16,7 @@
         /// <summary>
         /// Gets or sets the data model collection.
         /// </summary>
-        ICollection<IDataModel> DataModelsCollection { get; set; }
+        ICollection<IDataModelProvider> DataModelsCollection { get; set; }
 
         /// <summary>
         /// Gets the environmentm names mapper.

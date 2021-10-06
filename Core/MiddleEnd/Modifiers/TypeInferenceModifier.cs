@@ -13,14 +13,14 @@
     public class TypeInferenceModifier : ISchemaModifier
     {
         private readonly OperatorResolver _opResolver;
-        private readonly IDataModel _dataModel;
+        private readonly IDataModelProvider _dataModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeInferenceModifier"/> class.
         /// </summary>
         /// <param name="opResolver">The operator resolver.</param>
         /// <param name="dataModel">The data model.</param>
-        public TypeInferenceModifier(OperatorResolver opResolver, IDataModel dataModel)
+        public TypeInferenceModifier(OperatorResolver opResolver, IDataModelProvider dataModel)
         {
             this._opResolver = opResolver;
             this._dataModel = dataModel;

@@ -5,7 +5,7 @@
     /// <summary>
     /// The VTL 2.0 regular model configuration interface.
     /// </summary>
-    public interface IRegularModelConfiguration
+    public interface IDictionaryModelConfiguration
     {
         /// <summary>
         /// Adds a dataset to the model.
@@ -13,6 +13,6 @@
         /// <param name="namespace">The name of namespace.</param>
         /// <param name="name">The name of dataset.</param>
         /// <param name="componentSetting">The tuple defining an element of structure of the dataset.</param>
-        IRegularModelConfiguration AddDataSet(string @namespace, string name, params (ComponentType, BasicDataType, string)[] componentSettings);
+        IDictionaryModelConfiguration AddDataSet(string name, params (ComponentType, BasicDataType, string)[] componentSettings);
     }
 }

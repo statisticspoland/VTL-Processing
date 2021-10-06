@@ -10,12 +10,12 @@
     [OperatorSymbolAttribute("get")]
     public class GetOperator : IOperatorDefinition
     {
-        private readonly IDataModel _dataModel;
+        private readonly IDataModelProvider _dataModel;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="GetOperator"/> class.
         /// </summary>
-        public GetOperator(IDataModel dataModel)
+        public GetOperator(IDataModelProvider dataModel)
         {
             this._dataModel = dataModel;
         }

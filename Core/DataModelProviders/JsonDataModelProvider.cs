@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders
 {
     using Newtonsoft.Json;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
@@ -11,26 +11,26 @@
     /// <summary>
     /// The JSON VTL 2.0 data model.
     /// </summary>
-    public class DataModelJson: DataModel
+    public class JsonDataModelProvider: DataModelProviderBase
     {
         private readonly Dictionary<string, IDataStructure> dataStructures;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataModelJson"/> class.
+        /// Initializes a new instance of the <see cref="JsonDataModelProvider"/> class.
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
         [JsonConstructor]
-        private DataModelJson(IDataModel rootModel = null) : base(rootModel)
+        private JsonDataModelProvider(IDataModelProvider rootModel = null) : base(rootModel)
         {
             this.dataStructures = new Dictionary<string, IDataStructure>();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataModelJson"/> class.
+        /// Initializes a new instance of the <see cref="JsonDataModelProvider"/> class.
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
         /// <param name="jsonFilePath">The JSON file path/url.</param>
-        public DataModelJson(IDataModel rootModel, string jsonFilePath) : this(rootModel)
+        public JsonDataModelProvider(IDataModelProvider rootModel, string jsonFilePath) : this(rootModel)
         {
             this.LoadData(jsonFilePath);
         }
@@ -54,12 +54,12 @@
         /// <param name="jsonFilePath">The JSON file path</param>
         private void LoadData(string jsonFilePath)
         {
-            DataModelJson jsonObject;
+            JsonDataModelProvider jsonObject;
 
             try
             {
                 if (File.Exists(jsonFilePath))
-                    jsonObject = JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(File.ReadAllText(jsonFilePath))["DataModel"];
+                    jsonObject = JsonConvert.DeserializeObject<Dictionary<string, JsonDataModelProvider>>(File.ReadAllText(jsonFilePath))["DataModel"];
                 else
                 {
                     jsonObject = this.GetFromUrl(jsonFilePath);
@@ -80,11 +80,11 @@
             }
         }
 
-        private DataModelJson GetFromUrl(string url)
+        private JsonDataModelProvider GetFromUrl(string url)
         {
             try
             {
-                return JsonConvert.DeserializeObject<Dictionary<string, DataModelJson>>(new WebClient().DownloadString(url))["DataModel"];
+                return JsonConvert.DeserializeObject<Dictionary<string, JsonDataModelProvider>>(new WebClient().DownloadString(url))["DataModel"];
             }
             catch(Exception ex)
             {

@@ -39,9 +39,9 @@
         /// </summary>
         /// <param name="provider">The service provider.</param>
         /// <returns>The VTL 2.0 data model.</returns>
-        public static IDataModel GetDataModel(this IServiceProvider provider)
+        public static IDataModelProvider GetDataModel(this IServiceProvider provider)
         {
-            return provider.GetService<IDataModel>();
+            return provider.GetService<IDataModelProvider>();
         }
 
         /// <summary>
