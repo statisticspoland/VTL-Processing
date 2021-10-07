@@ -245,7 +245,7 @@ SDMX to VTL component role mapping:
 |Attribute
 |===
 
-=== Target language renderers
+=== Target Language Renderers
 
 To perform translation to the target language of your choice, it is necessary to register a renderer.
 A renderer is a class that implements the `ITargetRenderer` interface.
@@ -254,39 +254,48 @@ Every renderer is packaged individually as a separate nuget package.
 
 At the time of writing this documentation, there are two render targets: T-SQL and PlantUml 
 
-==== TSQL
+==== T-SQL Target Renderer
 
-Jest to renderer przetwarzający schematy reprezentacji pośredniej na kod wynikowy języka TSQL.
+Generates translated T-SQL code, which can be executed on existing SQL Server database.
+It can be registered as following:
 
-Podczas dodawania tego renderera do kolekcji serwisów są dostępne następujące metody konfiguracyjne:
+[source,c#]
+----
+services.AddTsqlTarget((configure) =>
+  {
+    // here configure T-SQL target renderer
+  });
+----
 
-* ``AddComments`` - wywołanie tej metody konfiguracyjnej dodaje komentarze do kodu wynikowego
+The following configuration methods are available:
 
-* ``SetAttributePropagationAlgorithm`` - przy pomocy tej metody można zmienić algorytm propagacji atrybutów VTL w kodzie wynikowym poprzez podanie niestandardowej reprezentacji interfejsu ``StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm`` (więcej w rozdziale "04_custom_models"). Standardowo używany jest algorytm działający według zasad opisanych w rozdziale "Behaviour for Attribute Components" dokumentu
+`AddComments` :: Adds comments in generated T-SQL code
+`SetAttributePropagationAlgorithm` :: Modifies the VTL attribute propagation algorithm implementation in generated code.
 
-> > SMDX Technical Working Group +
-VTL Task Force +
-VTL – version 2.0 +
-(Validation & Transformation Language) +
-Part 1 – User Manual
+==== PlantUml target renderer
 
-==== Renderer języka PlantUml
+Generates PlantUml representation of the Transformation Schema.
+Then, you can render a diagram externally with PlantUml tools.
+It allows to visualize the structure of VTL expressions - mostly for debugging purposes.
 
-Jest to renderer przetwarzazjący schematy reprezentajci pośrenidej na kod wynikowy PlantUml w celu graficzengo przedstawienia schematu reprezentacji pośredniej.
+Can be registered as following:
 
-Podczas dodawania tego renderera do kolekcji serwisów są dostępne następujące metody konfiguracyjne:
+[source,c#]
+----
+services.AddPlantUmlTarget((configure) =>
+  {
+    // here configure PlantUml target renderer
+  });
+----
 
-* ``UseHorizontalView`` - wywołanie tej metody konfiguracyjnej zmienia sposób graficznej prezentacji schematu transformacji pośredniej na horyzontalny. Domyślnie jest on prezentowany wertykalnie.
+The following configuration methods are available:
 
-* ``AddDataStructureObject`` - wywołanie tej metody konfiguracyjnej dodaje do graficznej prezentacji schematu transformacji pośredniej dodatkowe obiekty opisujące struktury danych zawartych w nim wyrażeń.
-
-* ``UseArrowFirstToLast`` - wywołanie tej metody konfiguracyjnej zmienia połączenia pomiędzy obiektami graficznej prezentacji schematu transformacji pośredniej na strzałki wskazujące według metody "od korzenia do liści". Domyślnie połączenia są zwyczajnymi liniami.
-
-* ``UseArrowLastToFirst`` - wywołanie tej metody konfiguracyjnej zmienia połączenia pomiędzy obiektami graficznej prezentacji schematu transformacji pośredniej na strzałki wskazujące według metody "od liści do korzenia". Domyślnie połączenia są zwyczajnymi liniami.
-
-* ``ShowNumberLine`` - wywołanie tej metody konfiguracyjnej dodaje do każdego wyrażenia graficznej prezentacji schematu transformacji pośredniej pole odpowiadające za numer linii, w którym znajduje się dane wyrażenie w kodzie źródłowym VTL.
-
-* ``UseRuleExpressionsModel`` - wywołanie tej metody konfiguracyjnej zmienia tryb wyświetlania graficznej prezentacji schematu transformacji pośredniej ze zwykłych wyrażeń na wyrażenia zestawów zasad (rulesety).
+`UseHorizontalView` :: Changes orientation of the diagram to horizontal.
+`AddDataStructureObject` :: Adds additional objects describing data structures to the diagram.
+`UseArrowFirstToLast` :: Changes diagram connection stile from simple lines to arrows (pointing from root to leafs).
+`UseArrowLastToFirst` :: Changes diagram connection stile from simple lines to arrows (pointing from leafs to root).
+`ShowNumberLine` :: Adds field with VTL source code line number to every diagram object.
+`UseRuleExpressionsModel` :: Changes diagram display mode to ruleset expression model.
 
 === Translation process
 
@@ -296,7 +305,7 @@ This can be done simply by injecting these into your class as constructor parame
 
 [source,c#]
 ----
-  class TranslationService : ITranslationService
+  class TranslationService
   {
     private readonly ITreeGenerator treeGenerator;
     private readonly ISchemaModifiersApplier schemaModifiersApplier;
@@ -313,7 +322,7 @@ This can be done simply by injecting these into your class as constructor parame
     }
 ----
 
-the translation itself takes place in three steps.
+The translation itself takes place in three steps.
 
 [source,c#]
 ----
