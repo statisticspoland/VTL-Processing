@@ -16,7 +16,7 @@ services.AddVtlProcessing((configure) =>
 
 To get things working, it is necessary to setup some configuration options.
 
-==== Provide Data Model
+=== Provide Data Model
 
 VtlProcessing translation engine, in order to perform type inference, need to be aware of a model of data.
 You must to provide information about the structure of all input and output persistent data sets on witch your VTL expressions work.
@@ -24,7 +24,7 @@ It is possible to provide your own data model provider by implementing the `IDat
 VtlProcessing provides several out of the box data model provider implementations.
 It is also possible to combine different providers by using `IDataModelAggregator`.
 
-===== JSON Data Model Provider
+==== JSON Data Model Provider
 
 It allows to load dataset structure information from JSON file with the following schema:
 
@@ -89,7 +89,7 @@ configure.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\your_file
 
 It allows to programmatically fill data model metadata.
 The default namespace name should be passed as a parameter.
-The following example provides data model for dat sets `R1` and `R2` in namespace `def_ns`.
+The following example provides data model for dat sets `R1` and `R2` in `def_ns` namespace.
 
 [source,c#]
 ----
@@ -115,16 +115,24 @@ configure.DataModels.AddDictionaryModel((config) =>
   , "def_ns");
 ----
 
-===== Model danych SQL Server
+===== Sql Server Data Model Provider
 
-Model danych SQL Server wczytuje struktury danych na podstawie struktur tabel podanej bazy danych Transact SQL. Przestrzenie nazw danego modelu danych należy zadeklarować i zmapować w maperze przestrzeni nazw VTL.
+It loads data model from the provided Sql Server database.
 
-Na podstawie typu danych kolumny TSQL dobierana jest odpowiadająca mu domena wartości komponentu VTL. Standardowy sposób dobierania przedstawiony został w tabeli poniżej.
+[source,c#]
+----
+configure.DataModels.AddSqlServerModel(connectionString);
+----
+
+Each of the tables is mapped to VTL Persistent Dataset witch the same structures.
+Columns becomes structure components.
+The appropriate VTL Scalar Type for each component is selected based on the column's SQL data type.
+The standard type mapping is as follows:
 
 [%header,cols=2*] 
 |===
-|Typy danych TSQL
-|Domena wartości VTL
+|Relational data type
+|VTL data type
 
 |TinyInt, SmallInt, Int, BigInt
 |Integer
@@ -142,47 +150,54 @@ Na podstawie typu danych kolumny TSQL dobierana jest odpowiadająca mu domena wa
 |Date
 |===
 
-Tekstowe typy danych TSQL mogą być interpretowane jako czasowe domeny wartości VTL:
+Textual SQL data types may be interpreted as VTL time scalar types:
 
-* "Date"
-* "Time"
-* "TimePeriod"
-* "Duration". 
+* `Date`
+* `Time`
+* `TimePeriod`
+* `Duration`. 
 
-Można to uzyskać poprzez dodanie rozszerzonej wartości "vtl_time_type" dla odpowiedniej kolumny tabeli TSQL. Schemat dodania rozszerzonej wartości przedstawiono poniżej.
+This can be achieved by adding an extended property `vtl_time_type` on column.
+It's value should be type name from the list above. 
+Here is the example setting the column `Me1` of the table 'dbo.R1' to be mapped as `TimePeriod` VTL data type.
 
 [source,sql]
 ----
 EXEC sp_addextendedproperty   
 	@name = N'vtl_time_type',   
-	@value = '',  
-	@level0type = N'Schema', @level0name = '',  
-	@level1type = N'Table',  @level1name = '',  
-	@level2type = N'Column', @level2name = '';  
+	@value = 'TimePeriod',  
+	@level0type = N'Schema', @level0name = 'dbo',  
+	@level1type = N'Table',  @level1name = 'R1',  
+	@level2type = N'Column', @level2name = 'Me1';  
 GO
 ----
 
-Nazwą rozszerznej wartości ma być "vtl_time_type". Jako wartość podajemy nazwę jednej z wyżej wymienionych czasowych domen wartości VTL. Wartości pola "level0name" należy przypisać nazwę schematu, do którego należy dana tabela. Wartość pola "level1name" odpowiada nazwie tabeli, natomiast "level2name" nazwie kolumny, dla której określamy czasową domenę wartości VTL.
+By default, table's primary key columns are mapped as VTL Identifier Components and the rest becomes VTL Measure Components.
+However, you can manually specify the role for each component.
+This is done by adding an extended property `vtl_component_role` for the column with one of the following values:
 
-Przy pomocy rozszerzonej wartości można okreslić dla kolumny tabeli TSQL [.underline]#typ komponentu VTL#, który ma reprezentować. Domyślnie kolumny oznaczone jako klucz główny są traktowane jako identyfikatory, a pozostałe jako miary, więc głównie stosuje się to do oznaczania atrybutów. 
+* `identifier`
+* `measure`
+* `attribute`
+* `attribute.viral`
 
-W tym przypadku nazwą rozszerzonej wartości ma być "vtl_component_role", a wartością jedna z nazw typu komponentu VTL:
+It is necessary when you need to declare certain columns as VTL Attribute Components.
 
-* "identifier"
-* "measure"
-* "attribute"
-* "attribute.viral".
+==== SDMX Data Model Provider
 
-===== Model danych SDMX
+This model provider loads the structural metadata from an external SDMX REST service.
 
-Model danych SDMX wczytuje struktury danych z pliku struktury danych SDMX, a dokładnie z części Dataset Stucture Definition.
+[source,c#]
+----
+configure.DataModels.AddSdmxModel(serviceUrl, defaultNamespace);
+----
 
-Na podstawie tekstowych typów danych SDMX dobierana jest odpowiadająca mu domena wartości komponentu VTL. Standardowy sposób dobierania przedstawiony został w tabeli poniżej.
+The mapping of types between SDMX DSD and VTL is as following:
 
 [%header,cols=2*] 
 |===
-|Tekstowe typy danych SDMX
-|Domena wartości VTL
+|SDMX data type
+|VTL data type
 
 |Null, AttachmentConstraintReference, DataSetReference, KeyValues, IdentifiableReference, Xhtml
 |None
@@ -213,12 +228,12 @@ Na podstawie tekstowych typów danych SDMX dobierana jest odpowiadająca mu dome
 
 |===
 
-Na podstawie elementów struktury danych SDMX dobierane są odpowiadające im elementy struktury VTL.  Standardowy sposób dobierania przedstawiony został w tabeli poniżej.
+SDMX to VTL component role mapping:
 
 [%header,cols=2*] 
 |===
-|Element struktury SDMX
-|Element struktury VTL
+|SDMX role
+|VTL role
 
 |Dimension
 |Identifier
@@ -228,24 +243,18 @@ Na podstawie elementów struktury danych SDMX dobierane są odpowiadające im el
 
 |Attribute
 |Attribute
-
 |===
 
-==== Niestandardowe modele danych
+=== Target language renderers
 
-Proces tworzenia niestandardowych modeli danych wraz z wymogami oraz wskazówkami znajduje się w kolejnej części dokumentu "04_custom_models".
+To perform translation to the target language of your choice, it is necessary to register a renderer.
+A renderer is a class that implements the `ITargetRenderer` interface.
+It is possible to register multiple renderers, so you can translate a single VTL expression to multiple target languages in one go.
+Every renderer is packaged individually as a separate nuget package.
 
-=== Renderery języków docelowych
+At the time of writing this documentation, there are two render targets: T-SQL and PlantUml 
 
-==== Deklaracja rendererów języków docelowych
-
-Renderery języków docelowe deklaruje się poprzez wstrzyknięcie zależności reprezentacji interfejsu ``StatisticsPoland.VtlProcessing.Core.BackEnd.ITargetRenderer`` do kolekcji serwisów ``Microsoft.Extensions.DependencyInjection.ServiceCollection``. Można to zrobić bezpośrednio lub poprzez konfigurację obiektu klasy ``StatisticsPoland.VtlProcessing.Core.Translator``.
-
-==== Standardowe renderery języków docelowych
-
-Wyrózniamy dwa standardowe renderery języków docelowych, które wewnątrz swoich przestrzeni nazw ``nazwa_renderera.Infrastructure`` posiadają metody rozszerzające dla ``StatisticsPoland.VtlProcessing.Core.ITranslatorConfig`` oraz ``Microsoft.Extensions.DependencyInjection.IServiceCollection``, pozwalające na proste wstrzyknięcie renderera jako zależność projektu.
-
-===== Renderer języka TSQL
+==== TSQL
 
 Jest to renderer przetwarzający schematy reprezentacji pośredniej na kod wynikowy języka TSQL.
 
@@ -261,7 +270,7 @@ VTL – version 2.0 +
 (Validation & Transformation Language) +
 Part 1 – User Manual
 
-===== Renderer języka PlantUml
+==== Renderer języka PlantUml
 
 Jest to renderer przetwarzazjący schematy reprezentajci pośrenidej na kod wynikowy PlantUml w celu graficzengo przedstawienia schematu reprezentacji pośredniej.
 
@@ -279,6 +288,41 @@ Podczas dodawania tego renderera do kolekcji serwisów są dostępne następują
 
 * ``UseRuleExpressionsModel`` - wywołanie tej metody konfiguracyjnej zmienia tryb wyświetlania graficznej prezentacji schematu transformacji pośredniej ze zwykłych wyrażeń na wyrażenia zestawów zasad (rulesety).
 
-==== Niestandardowe renderery języków docelowych
+=== Translation process
 
-Proces tworzenia niestandardowych rendererów języków docelowych wraz z wymogami oraz wskazówkami znajduje się w kolejnej części dokumentu "04_custom_models".
+Now we have configured the translator.
+To perform a full translation of VTL expressions, you need to acquire instances of `ITreeGenerator`,      `ISchemaModifiersApplier` and `ITargetRenderer` interfaces.
+This can be done simply by injecting these into your class as constructor parameters.
+
+[source,c#]
+----
+  class TranslationService : ITranslationService
+  {
+    private readonly ITreeGenerator treeGenerator;
+    private readonly ISchemaModifiersApplier schemaModifiersApplier;
+    private readonly ITargetRenderer targetRenderer;
+
+    public TranslationService(
+      ITreeGenerator treeGenerator,
+      ISchemaModifiersApplier schemaModifiersApplier,
+      ITargetRenderer targetRenderer)
+    {
+      this.treeGenerator = treeGenerator;
+      this.schemaModifiersApplier = schemaModifiersApplier;
+      this.targetRenderer = targetRenderer;
+    }
+----
+
+the translation itself takes place in three steps.
+
+[source,c#]
+----
+  ITransformationSchema schema = this.treeGenerator.BuildTransformationSchema(sourceVtl); // <1>
+  this.schemaModifiersApplier.Process(schema); // <2>
+  string targetSql = this.targetRenderer.Render(schema); // <3>
+----
+<1> Front end - Generation of intermediate representation object (Transformation Schema) from VTL expression.
+<2> Middle end - Application of a series of transformations to the Transformation Schema. 
+  Type inference happens in this step.
+<3> Back end - Generation of target.
+
