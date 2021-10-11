@@ -22,7 +22,7 @@
             this.DataModels = new DataModelAggregator(this.EnvironmentMapper);
 
             var services = new ServiceCollection().AddVtlProcessing();
-            services.AddScoped(typeof(IDataModel), p => this.DataModels);
+            services.AddScoped(typeof(IDataModelProvider), p => this.DataModels);
             services.AddScoped(p => this.DataModels);
             services.AddScoped(p => this.EnvironmentMapper);
 

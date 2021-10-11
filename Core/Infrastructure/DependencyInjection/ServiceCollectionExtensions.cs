@@ -89,7 +89,7 @@
             IDataModelAggregator dataModelAggregator = configuration.DataModels;
             
             services.AddScoped(p => dataModelAggregator);
-            services.AddScoped<IDataModel>(p => dataModelAggregator);
+            services.AddScoped<IDataModelProvider>(p => dataModelAggregator);
             services.AddScoped(p => configuration.EnvironmentMapper);
 
             return services;

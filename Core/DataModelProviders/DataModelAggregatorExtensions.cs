@@ -2,7 +2,6 @@
 {
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Models.Logical;
@@ -16,12 +15,12 @@
     {
         public static void AddJsonModel(this IDataModelAggregator aggregator, string filePath)
         {
-            aggregator.DataModelsCollection.Add(new DataModelJson(aggregator, filePath));
+            aggregator.DataModelsCollection.Add(new JsonDataModelProvider(aggregator, filePath));
         }
 
         public static void AddSqlServerModel(this IDataModelAggregator aggregator, string connectionString)
         {
-            IDataModel dataModel = new DataModelSqlServer(
+            IDataModelProvider dataModel = new SqlServerDataModelProvider(
                 aggregator,
                 (compName, compType, dataType) => { return new DataStructure(); },
                 connectionString,
@@ -30,17 +29,17 @@
             aggregator.DataModelsCollection.Add(dataModel);
         }
 
-        public static void AddRegularModel(this IDataModelAggregator aggregator, Action<IRegularModelConfiguration> modelConfiguration, string namespaceName)
+        public static void AddDictionaryModel(this IDataModelAggregator aggregator, Action<IDictionaryModelConfiguration> modelConfiguration, string namespaceName)
         {
             Dictionary<string, IDataStructure> dataStructures = new Dictionary<string, IDataStructure>();
-            modelConfiguration(new RegularModelConfiguration(dataStructures));
-            IDataModel dataModel = new DataModelRegular(aggregator, namespaceName, dataStructures);
+            modelConfiguration(new DictionaryModelConfiguration(dataStructures));
+            IDataModelProvider dataModel = new DictionaryDataModelProvider(aggregator, namespaceName, dataStructures);
             aggregator.DataModelsCollection.Add(dataModel);
         }
 
         public static void AddSdmxModel(this IDataModelAggregator aggregator, string url, string namespaceName)
         {
-            IDataModel dataModel = new DataModelSdmx(aggregator, namespaceName, url);
+            IDataModelProvider dataModel = new SdmxDataModelProvider(aggregator, namespaceName, url);
             aggregator.DataModelsCollection.Add(dataModel);
         }
     }

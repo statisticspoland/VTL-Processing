@@ -3,7 +3,7 @@
     /// <summary>
     /// The VTL 2.0 data model interface.
     /// </summary>
-    public interface IDataModel
+    public interface IDataModelProvider
     {
         /// <summary>
         /// Gets the default namespace name.

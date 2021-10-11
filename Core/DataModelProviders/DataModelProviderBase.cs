@@ -1,17 +1,17 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders
 {
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System;
 
-    public class DataModel : IDataModel
+    public abstract class DataModelProviderBase : IDataModelProvider
     {
-        private readonly IDataModel _rootModel;
+        private readonly IDataModelProvider _rootModel;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataModel"/> class.
+        /// Initializes a new instance of the <see cref="DataModelProviderBase"/> class.
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
-        public DataModel(IDataModel rootModel)
+        public DataModelProviderBase(IDataModelProvider rootModel)
         {
             this._rootModel = rootModel;
         }

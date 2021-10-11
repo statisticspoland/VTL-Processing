@@ -13,15 +13,15 @@
     /// <summary>
     /// The VTL 2.0 regular model configuration.
     /// </summary>
-    public class RegularModelConfiguration : IRegularModelConfiguration
+    public class DictionaryModelConfiguration : IDictionaryModelConfiguration
     {
         private readonly Dictionary<string, IDataStructure> dataStructures;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegularModelConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="DictionaryModelConfiguration"/> class.
         /// </summary>
         /// <param name="dataStructures">The dictionary of structures.</param>
-        public RegularModelConfiguration(Dictionary<string, IDataStructure> dataStructures)
+        public DictionaryModelConfiguration(Dictionary<string, IDataStructure> dataStructures)
         {
             this.dataStructures = dataStructures;
         }
@@ -32,10 +32,8 @@
         /// <param name="namespace">The name of namespace.</param>
         /// <param name="name">The name of dataset.</param>
         /// <param name="componentSettings">Tuple defining the element of structure of the dataset (Component Type, VTL data type, Component name).</param>
-        public IRegularModelConfiguration AddDataSet(string @namespace, string name, params (ComponentType, BasicDataType, string)[] componentSettings)
+        public IDictionaryModelConfiguration AddDataSet(string name, params (ComponentType, BasicDataType, string)[] componentSettings)
         {
-            if (@namespace.In(string.Empty, null)) throw new ArgumentNullException("namespace", "A namespace is required.");
-
             DataStructure structure = new DataStructure();
             structure.DatasetName = name;
 

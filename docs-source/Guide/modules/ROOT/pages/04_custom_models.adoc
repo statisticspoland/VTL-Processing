@@ -1,2 +1,73 @@
-== Using Custom Data Models
+== Custom data model providers
 
+=== Niestandardowe modele danych
+
+==== Implementacja i użycie
+
+Użytkownik ma możliwość tworzenia niestandardowych modeli danych i używania ich przy pomocy biblioteki. W tym celu należy zaimplementować reprezentację interfejsu ``StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModel``, następnie przekazać go do używanego w projekcie agregatora modeli danych reprezentującego interfejs ``StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator``.
+
+==== Wskazówki implementacyjne
+
+===== Sposób i moment pobierania struktur danych z modeli
+
+Tworząc niestandardową reprezentację modelu danych należy wiedzieć, jak i kiedy działa pobieranie struktur danych z agregatora modeli danych.
+
+W drugiej fazie tworzenia schematu reprezentacji pośredniej, czyli tzw. "inferencji typów" wywoływane są zgodnie z zasadą "od liści do korzenia" metody dedukujące/pobierające struktury danych poszczególnych wyrażeń składających się na schemat reprezentacji pośredniej. Są to metody *operatorów*, czyli obiektów reprezentujących interfejs ``StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IOperatorDefinition``, zawierających się we wspomnianych wyrażeniach - reprezentacjach interfejsu ``StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression``.
+
+Jedynym operatorem, który pobiera struktury danych, zamiast je dedukować jest operator "*get*". Wyrażenia z operatorem "get" są zawsze liściami drzewa odpowiadającego za schemat reprezentacji pośredniej, więc metody tych operatorów są wywoływane jako pierwsze zgodnie z zasadą "od liści do korzenia".
+
+Operator "get" wczytuje obiekt wstrzyknięty jako reprezentującę interfejsu ``StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModel``.
+Standardowo jest to obiekt reprezentujący ``StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator`` - interfejs dziedziczący po ``IDataModel``. Przy wywołaniu metody operatora pobierającej strukturę danych dla wyrażenia - ``GetOutputStructure`` - użyta zostaje metoda wspomnianego wyżej obiektu reprezentacji ``IDataModel`` pobierająca dane z modelu danych - ``GetDatasetStructure``.
+
+Gdyby jako reprezentację ``IDataModel`` wstrzyknięto pojedynczy model danych, to zostałaby po prostu pobrana z niego strutkura danych. Jednak w celu umożliwienia użycia w projekcie wielu modeli danych na raz, wstrzyknięty został agregator modeli danych, który po wywołaniu metody ``GetDatasetStructure`` przeszukuje zawarte w nim modele danych w celu znalezienia struktury o podanej przestrzeni nazw VTL oraz nazwie. Przeszukiwanie odbywa się w kolejności, w jakiej modele zostały dodane do agregatora. Pojedynczy model danych powinien więc zawierać przestrzeń nazw VTL w celu identyfikacji zawartych w nim struktur danych.
+
+Działanie metody ``GetDatasetStructure`` domyślnego modelu danych polega na sprawdzeniu, czy przestrzeń nazw VTL szukanej struktury danych odpowiada przestrzeni nazw VTL danego modelu danych. Jeżeli tak, zwracana jest struktura o szukanej nazwie, natomiast jeśli szukana przestrzeń nazw nie jest przestrzenią modelu danych lub nie istnieje struktura o szukanej nazwie, zwracana jest wartość null. Przeszukiwanie modeli danych w agregatorze trwa do momentu, gdy zostanie otrzymana wartość inna niż null lub gdy przeszuka wszystkie modele.
+
+Poniżej została przedstawiona metoda pobierania struktury danych z modelu danych, która jest taka sama dla większości domyślnych modeli danych. Wprowadzona pełna nazwa szukanej struktury danych zostaje rozdzielona na przestrzeń nazw VTL oraz nazwę struktury. Jeżeli przestrzeń nazw odpowiada przestrzeni nazw danego modelu danych i istnieje w nim struktura o podanej nazwie to zwracana jest struktura. W przeciwnym wypadku zwracany jest null.
+
+[source,c#]
+----
+public override IDataStructure GetDatasetStructure(string datasetName)
+{
+    string @namespace;
+    this.SplitDatasetName(datasetName, out @namespace, out datasetName);
+
+    if (@namespace == this.Namespace && this.dataStructures.ContainsKey(datasetName))
+        return this.dataStructures[datasetName];
+
+    return null;
+}
+----
+
+Jak widać powyższa metoda jest nadpisywana. Jest tak dlatego, że każda domyślna reprezentacja modelu danych dziedziczy po klasie ``StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models.DataModel`` z wirtualną metodą ``GetDatasetStructure``. Klasa oferuje również użyte we wcześniej zaprezentowanym kodzie metodę ``SplitDatasetName`` oraz pole typu string ``Namespace``. Po podaniu w konstruktorze używanego agregatora modeli danych zostaje automatycznie sczytana domyslna przestrzeń nazw VTL. Przy zmianie tej nazwy w agregatorze zostanie ona również zmieniona w każdej instancji ``DataModel``, do której został wczytany.
+
+===== Zalecana implementacja
+
+Zalecane jest, aby niestandardowa reprezentacja ``IDataModel`` dziedziczyła po klasie ``DataModel``, która obsługuje mechanizmy wymagane do prawidłowego działania agregatora modeli danych ``IDataModelAggregator``. Metoda ``GetDatasetStructure`` powinna zwracać wartość null, jeżeli żadna ze struktur danych w danym modelu danych nie zawiera się w przestrzeni nazw VTL składającej się na wprowadzoną jako parametr nazwę szukanej struktury lub struktura o podanej nazwie nie zostanie znaleziona. W przypadku istniejścej przestrzeni nazw VTL oraz nazwy struktury, należy zwrócić daną strukturę danych.
+
+===== Dodanie niestandardowego modelu danych do agregatora modeli danych
+
+W celu dodania niestandardowego modelu danych do agregatora modeli danych należy użyć metody ``Add`` dla pola ``DataModelsCollection`` przypadającego dla używanego w projekcie obiektu reprezentującego ``IDataModelAggregator``. Jako parametr konstruktora ``rootModel`` należy podać użyty wcześniej obiekt reprezentacji ``IDataModelAggregator``.
+
+[source,c#]
+----
+aggregator.DataModelsCollection.Add(new CustomDataModel(aggregator, ...));
+----
+
+=== Niestandardowe algorytmy propagacji atrybutów
+
+==== Implementacja i użycie
+
+Użytkownik ma możliwość tworzenia niestandardowych algorytmów propagacji atrybutów i używania ich przy pomocy biblioteki. W tym celu należy zaimplementować reprezentację interfejsu ``StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm``, następnie przekazać go w metodzie konfiguracyjnej ``SetAttributePropagationAlgorithm`` podczas dodawania renderera języka docelowego TSQL do kolekcji serwisów ``Microsoft.Extensions.DependencyInjection.IServiceCollection``.
+
+[source,c#]
+----
+services.AddTsqlTarget((configure) =>
+{
+    configure.SetAttributePropagationAlgorithm(new CustomAttributePropagationAlgorithm());
+});
+----
+
+==== Wskażówki implementacyjne
+
+Metoda ``Propagate`` powinna zwrócić część kodu TSQL, która umieszczona w części zapytania ``SELECT`` wybierze odpowiednią wartość podanego atrybutu wirusowego spośród podanych aliasów odpowiadających za struktury danych - tabel TSQL.

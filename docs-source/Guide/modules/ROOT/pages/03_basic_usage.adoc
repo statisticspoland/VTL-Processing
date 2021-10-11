@@ -1,2 +1,337 @@
 == Basic Usage
 
+=== .NET Core Dependency Injection
+
+The Translator class, as shown in the Getting Started section, is just a simplified approach to use the library.
+To utilize all the features of VtlProcessing and fully integrate it with your application, you should register it in .NET Core DI container.
+This can be done simply by calling `AddVtlProcessing` method of your `IServiceCollection` object.
+
+[source,c#]
+----
+services.AddVtlProcessing((configure) =>
+  {
+    // translator config goes here
+  });
+----
+
+To get things working, it is necessary to setup some configuration options.
+
+=== Provide Data Model
+
+VtlProcessing translation engine, in order to perform type inference, need to be aware of a model of data.
+You must to provide information about the structure of all input and output persistent data sets on witch your VTL expressions work.
+It is possible to provide your own data model provider by implementing the `IDataModel` interface.
+VtlProcessing provides several out of the box data model provider implementations.
+It is also possible to combine different providers by using `IDataModelAggregator`.
+
+==== JSON Data Model Provider
+
+It allows to load dataset structure information from JSON file with the following schema:
+
+[source,json]
+----
+{
+  "DataModel": {
+    "Namespace": "",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "",
+        "Identifiers": [
+          {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "ViralAttributes": [
+            {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "NonViralAttributes": [
+            {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ]
+      }, ...
+    ]
+  }
+}
+----
+
+It is registered by using:
+
+[source,c#]
+----
+configure.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\your_file_name.json");
+----
+
+===== Dictionary Data Model Provider
+
+It allows to programmatically fill data model metadata.
+The default namespace name should be passed as a parameter.
+The following example provides data model for dat sets `R1` and `R2` in `def_ns` namespace.
+
+[source,c#]
+----
+configure.DataModels.AddDictionaryModel((config) =>
+  {
+    config
+    .AddDataSet(
+      "R1",
+      (ComponentType.Identifier, BasicDataType.Integer, "Id1"),
+      (ComponentType.Identifier, BasicDataType.Integer, "Id2"),
+      (ComponentType.Measure, BasicDataType.Integer, "Me1"),
+      (ComponentType.Measure, BasicDataType.Integer, "Me2"),
+      (ComponentType.NonViralAttribute, BasicDataType.String, "At1"),
+      (ComponentType.ViralAttribute, BasicDataType.Integer, "At2")
+      )
+    .AddDataSet(
+      "R2",
+      (ComponentType.Identifier, BasicDataType.Integer, "Id1"),
+      (ComponentType.Measure, BasicDataType.String, "Me1"),
+      (ComponentType.Measure, BasicDataType.Integer, "Me2")
+      )
+  }
+  , "def_ns");
+----
+
+===== Sql Server Data Model Provider
+
+It loads data model from the provided Sql Server database.
+
+[source,c#]
+----
+configure.DataModels.AddSqlServerModel(connectionString);
+----
+
+Each of the tables is mapped to VTL Persistent Dataset witch the same structures.
+Columns becomes structure components.
+The appropriate VTL Scalar Type for each component is selected based on the column's SQL data type.
+The standard type mapping is as follows:
+
+[%header,cols=2*] 
+|===
+|Relational data type
+|VTL data type
+
+|TinyInt, SmallInt, Int, BigInt
+|Integer
+
+|Numeric, Decimal
+|Number
+
+|Bit
+|Boolean
+
+|Char, NChar, NText, NVarChar, NVarCharMax, Text, VarChar, VarCharMax
+|String
+
+|Date, DateTime, DateTime2, SmallDateTime, Time, Timestamp
+|Date
+|===
+
+Textual SQL data types may be interpreted as VTL time scalar types:
+
+* `Date`
+* `Time`
+* `TimePeriod`
+* `Duration`. 
+
+This can be achieved by adding an extended property `vtl_time_type` on column.
+It's value should be type name from the list above. 
+Here is the example setting the column `Me1` of the table 'dbo.R1' to be mapped as `TimePeriod` VTL data type.
+
+[source,sql]
+----
+EXEC sp_addextendedproperty   
+	@name = N'vtl_time_type',   
+	@value = 'TimePeriod',  
+	@level0type = N'Schema', @level0name = 'dbo',  
+	@level1type = N'Table',  @level1name = 'R1',  
+	@level2type = N'Column', @level2name = 'Me1';  
+GO
+----
+
+By default, table's primary key columns are mapped as VTL Identifier Components and the rest becomes VTL Measure Components.
+However, you can manually specify the role for each component.
+This is done by adding an extended property `vtl_component_role` for the column with one of the following values:
+
+* `identifier`
+* `measure`
+* `attribute`
+* `attribute.viral`
+
+It is necessary when you need to declare certain columns as VTL Attribute Components.
+
+==== SDMX Data Model Provider
+
+This model provider loads the structural metadata from an external SDMX REST service.
+
+[source,c#]
+----
+configure.DataModels.AddSdmxModel(serviceUrl, defaultNamespace);
+----
+
+The mapping of types between SDMX DSD and VTL is as following:
+
+[%header,cols=2*] 
+|===
+|SDMX data type
+|VTL data type
+
+|Null, AttachmentConstraintReference, DataSetReference, KeyValues, IdentifiableReference, Xhtml
+|None
+
+|Alpha, Alphanumeric, String, Time, Year, Month, Numeric, Day, MonthDay, YearMonth, Uri, Timespan
+|String
+
+|BasicTimePeriod, DateTime, Date, GregorianDay, GregorianTimePeriod, GregorianYear, GregorianYearMonth
+|Date
+
+|BigInteger, Integer, Long, Short, Count
+|Integer
+
+|Decimal, Float, Double, InclusiveValueRange, ExclusiveValueRange, Incremental
+|Number
+
+|Boolean
+|Boolean
+
+|Duration
+|Duration
+
+|ObservationalTimePeriod, StandardTimePeriod, TimesRange
+|Time
+
+|TimePeriod, ReportingDay, ReportingMonth, ReportingQuarter, ReportingSemester, ReportingTimePeriod, ReportingTrimester, ReportingWeek, ReportingYear
+|TimePeriod
+
+|===
+
+SDMX to VTL component role mapping:
+
+[%header,cols=2*] 
+|===
+|SDMX role
+|VTL role
+
+|Dimension
+|Identifier
+
+|PrimaryMeasure
+|Measure
+
+|Attribute
+|Attribute
+|===
+
+=== Target Language Renderers
+
+To perform translation to the target language of your choice, it is necessary to register a renderer.
+A renderer is a class that implements the `ITargetRenderer` interface.
+It is possible to register multiple renderers, so you can translate a single VTL expression to multiple target languages in one go.
+Every renderer is packaged individually as a separate nuget package.
+
+At the time of writing this documentation, there are two render targets: T-SQL and PlantUml 
+
+==== T-SQL Target Renderer
+
+Generates translated T-SQL code, which can be executed on existing SQL Server database.
+It can be registered as following:
+
+[source,c#]
+----
+services.AddTsqlTarget((configure) =>
+  {
+    // here configure T-SQL target renderer
+  });
+----
+
+The following configuration methods are available:
+
+`AddComments` :: Adds comments in generated T-SQL code
+`SetAttributePropagationAlgorithm` :: Modifies the VTL attribute propagation algorithm implementation in generated code.
+
+==== PlantUml target renderer
+
+Generates PlantUml representation of the Transformation Schema.
+Then, you can render a diagram externally with PlantUml tools.
+It allows to visualize the structure of VTL expressions - mostly for debugging purposes.
+
+Can be registered as following:
+
+[source,c#]
+----
+services.AddPlantUmlTarget((configure) =>
+  {
+    // here configure PlantUml target renderer
+  });
+----
+
+The following configuration methods are available:
+
+`UseHorizontalView` :: Changes orientation of the diagram to horizontal.
+`AddDataStructureObject` :: Adds additional objects describing data structures to the diagram.
+`UseArrowFirstToLast` :: Changes diagram connection stile from simple lines to arrows (pointing from root to leafs).
+`UseArrowLastToFirst` :: Changes diagram connection stile from simple lines to arrows (pointing from leafs to root).
+`ShowNumberLine` :: Adds field with VTL source code line number to every diagram object.
+`UseRuleExpressionsModel` :: Changes diagram display mode to ruleset expression model.
+
+=== Translation process
+
+Now we have configured the translator.
+To perform a full translation of VTL expressions, you need to acquire instances of `ITreeGenerator`,      `ISchemaModifiersApplier` and `ITargetRenderer` interfaces.
+This can be done simply by injecting these into your class as constructor parameters.
+
+[source,c#]
+----
+  class TranslationService
+  {
+    private readonly ITreeGenerator treeGenerator;
+    private readonly ISchemaModifiersApplier schemaModifiersApplier;
+    private readonly ITargetRenderer targetRenderer;
+
+    public TranslationService(
+      ITreeGenerator treeGenerator,
+      ISchemaModifiersApplier schemaModifiersApplier,
+      ITargetRenderer targetRenderer)
+    {
+      this.treeGenerator = treeGenerator;
+      this.schemaModifiersApplier = schemaModifiersApplier;
+      this.targetRenderer = targetRenderer;
+    }
+----
+
+The translation itself takes place in three steps.
+
+[source,c#]
+----
+  ITransformationSchema schema = this.treeGenerator.BuildTransformationSchema(sourceVtl); // <1>
+  this.schemaModifiersApplier.Process(schema); // <2>
+  string targetSql = this.targetRenderer.Render(schema); // <3>
+----
+<1> Front end - Generation of intermediate representation object (Transformation Schema) from VTL expression.
+<2> Middle end - Application of a series of transformations to the Transformation Schema. 
+  Type inference happens in this step.
+<3> Back end - Generation of target.
+
