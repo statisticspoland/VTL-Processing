@@ -41,16 +41,7 @@
     <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="04_custom_models.html">Custom Data Models</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="05_vtl_basics.html">VTL Basics</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="07_cli.html">CLI</a>
   </li>
 </ul>
   </li>
@@ -96,7 +87,480 @@
 <div class="sect1">
 <h2 id="_basic_usage"><a class="anchor" href="#_basic_usage"></a>Basic Usage</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_net_core_dependency_injection"><a class="anchor" href="#_net_core_dependency_injection"></a>.NET Core Dependency Injection</h3>
+<div class="paragraph">
+<p>The Translator class, as shown in the Getting Started section, is just a simplified approach to use the library.
+To utilize all the features of VtlProcessing and fully integrate it with your application, you should register it in .NET Core DI container.
+This can be done simply by calling <code>AddVtlProcessing</code> method of your <code>IServiceCollection</code> object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">services.AddVtlProcessing((configure) =&gt;
+  {
+    // translator config goes here
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To get things working, it is necessary to setup some configuration options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provide_data_model"><a class="anchor" href="#_provide_data_model"></a>Provide Data Model</h3>
+<div class="paragraph">
+<p>VtlProcessing translation engine, in order to perform type inference, need to be aware of a model of data.
+You must to provide information about the structure of all input and output persistent data sets on witch your VTL expressions work.
+It is possible to provide your own data model provider by implementing the <code>IDataModel</code> interface.
+VtlProcessing provides several out of the box data model provider implementations.
+It is also possible to combine different providers by using <code>IDataModelAggregator</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_json_data_model_provider"><a class="anchor" href="#_json_data_model_provider"></a>JSON Data Model Provider</h4>
+<div class="paragraph">
+<p>It allows to load dataset structure information from JSON file with the following schema:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "DataModel": {
+    "Namespace": "",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "",
+        "Identifiers": [
+          {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "ViralAttributes": [
+            {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ],
+        "NonViralAttributes": [
+            {
+            "BaseComponentName": "",
+            "ComponentName": "",
+            "ValueDomain": {
+              "Signature": ""
+            }
+          }, ...
+        ]
+      }, ...
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is registered by using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">configure.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\your_file_name.json");</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_dictionary_data_model_provider"><a class="anchor" href="#_dictionary_data_model_provider"></a>Dictionary Data Model Provider</h5>
+<div class="paragraph">
+<p>It allows to programmatically fill data model metadata.
+The default namespace name should be passed as a parameter.
+The following example provides data model for dat sets <code>R1</code> and <code>R2</code> in <code>def_ns</code> namespace.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">configure.DataModels.AddDictionaryModel((config) =&gt;
+  {
+    config
+    .AddDataSet(
+      "R1",
+      (ComponentType.Identifier, BasicDataType.Integer, "Id1"),
+      (ComponentType.Identifier, BasicDataType.Integer, "Id2"),
+      (ComponentType.Measure, BasicDataType.Integer, "Me1"),
+      (ComponentType.Measure, BasicDataType.Integer, "Me2"),
+      (ComponentType.NonViralAttribute, BasicDataType.String, "At1"),
+      (ComponentType.ViralAttribute, BasicDataType.Integer, "At2")
+      )
+    .AddDataSet(
+      "R2",
+      (ComponentType.Identifier, BasicDataType.Integer, "Id1"),
+      (ComponentType.Measure, BasicDataType.String, "Me1"),
+      (ComponentType.Measure, BasicDataType.Integer, "Me2")
+      )
+  }
+  , "def_ns");</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sql_server_data_model_provider"><a class="anchor" href="#_sql_server_data_model_provider"></a>Sql Server Data Model Provider</h5>
+<div class="paragraph">
+<p>It loads data model from the provided Sql Server database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">configure.DataModels.AddSqlServerModel(connectionString);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each of the tables is mapped to VTL Persistent Dataset witch the same structures.
+Columns becomes structure components.
+The appropriate VTL Scalar Type for each component is selected based on the column&#8217;s SQL data type.
+The standard type mapping is as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Relational data type</th>
+<th class="tableblock halign-left valign-top">VTL data type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TinyInt, SmallInt, Int, BigInt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric, Decimal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Char, NChar, NText, NVarChar, NVarCharMax, Text, VarChar, VarCharMax</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date, DateTime, DateTime2, SmallDateTime, Time, Timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Textual SQL data types may be interpreted as VTL time scalar types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Date</code></p>
+</li>
+<li>
+<p><code>Time</code></p>
+</li>
+<li>
+<p><code>TimePeriod</code></p>
+</li>
+<li>
+<p><code>Duration</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This can be achieved by adding an extended property <code>vtl_time_type</code> on column.
+It&#8217;s value should be type name from the list above.
+Here is the example setting the column <code>Me1</code> of the table 'dbo.R1' to be mapped as <code>TimePeriod</code> VTL data type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">EXEC sp_addextendedproperty
+	@name = N'vtl_time_type',
+	@value = 'TimePeriod',
+	@level0type = N'Schema', @level0name = 'dbo',
+	@level1type = N'Table',  @level1name = 'R1',
+	@level2type = N'Column', @level2name = 'Me1';
+GO</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, table&#8217;s primary key columns are mapped as VTL Identifier Components and the rest becomes VTL Measure Components.
+However, you can manually specify the role for each component.
+This is done by adding an extended property <code>vtl_component_role</code> for the column with one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>identifier</code></p>
+</li>
+<li>
+<p><code>measure</code></p>
+</li>
+<li>
+<p><code>attribute</code></p>
+</li>
+<li>
+<p><code>attribute.viral</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It is necessary when you need to declare certain columns as VTL Attribute Components.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sdmx_data_model_provider"><a class="anchor" href="#_sdmx_data_model_provider"></a>SDMX Data Model Provider</h4>
+<div class="paragraph">
+<p>This model provider loads the structural metadata from an external SDMX REST service.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">configure.DataModels.AddSdmxModel(serviceUrl, defaultNamespace);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The mapping of types between SDMX DSD and VTL is as following:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SDMX data type</th>
+<th class="tableblock halign-left valign-top">VTL data type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null, AttachmentConstraintReference, DataSetReference, KeyValues, IdentifiableReference, Xhtml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alpha, Alphanumeric, String, Time, Year, Month, Numeric, Day, MonthDay, YearMonth, Uri, Timespan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BasicTimePeriod, DateTime, Date, GregorianDay, GregorianTimePeriod, GregorianYear, GregorianYearMonth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BigInteger, Integer, Long, Short, Count</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decimal, Float, Double, InclusiveValueRange, ExclusiveValueRange, Incremental</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Duration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ObservationalTimePeriod, StandardTimePeriod, TimesRange</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimePeriod, ReportingDay, ReportingMonth, ReportingQuarter, ReportingSemester, ReportingTimePeriod, ReportingTrimester, ReportingWeek, ReportingYear</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimePeriod</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>SDMX to VTL component role mapping:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SDMX role</th>
+<th class="tableblock halign-left valign-top">VTL role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dimension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PrimaryMeasure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Measure</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_target_language_renderers"><a class="anchor" href="#_target_language_renderers"></a>Target Language Renderers</h3>
+<div class="paragraph">
+<p>To perform translation to the target language of your choice, it is necessary to register a renderer.
+A renderer is a class that implements the <code>ITargetRenderer</code> interface.
+It is possible to register multiple renderers, so you can translate a single VTL expression to multiple target languages in one go.
+Every renderer is packaged individually as a separate nuget package.</p>
+</div>
+<div class="paragraph">
+<p>At the time of writing this documentation, there are two render targets: T-SQL and PlantUml</p>
+</div>
+<div class="sect3">
+<h4 id="_t_sql_target_renderer"><a class="anchor" href="#_t_sql_target_renderer"></a>T-SQL Target Renderer</h4>
+<div class="paragraph">
+<p>Generates translated T-SQL code, which can be executed on existing SQL Server database.
+It can be registered as following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">services.AddTsqlTarget((configure) =&gt;
+  {
+    // here configure T-SQL target renderer
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following configuration methods are available:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>AddComments</code> </dt>
+<dd>
+<p>Adds comments in generated T-SQL code</p>
+</dd>
+<dt class="hdlist1"><code>SetAttributePropagationAlgorithm</code> </dt>
+<dd>
+<p>Modifies the VTL attribute propagation algorithm implementation in generated code.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_plantuml_target_renderer"><a class="anchor" href="#_plantuml_target_renderer"></a>PlantUml target renderer</h4>
+<div class="paragraph">
+<p>Generates PlantUml representation of the Transformation Schema.
+Then, you can render a diagram externally with PlantUml tools.
+It allows to visualize the structure of VTL expressions - mostly for debugging purposes.</p>
+</div>
+<div class="paragraph">
+<p>Can be registered as following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">services.AddPlantUmlTarget((configure) =&gt;
+  {
+    // here configure PlantUml target renderer
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following configuration methods are available:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>UseHorizontalView</code> </dt>
+<dd>
+<p>Changes orientation of the diagram to horizontal.</p>
+</dd>
+<dt class="hdlist1"><code>AddDataStructureObject</code> </dt>
+<dd>
+<p>Adds additional objects describing data structures to the diagram.</p>
+</dd>
+<dt class="hdlist1"><code>UseArrowFirstToLast</code> </dt>
+<dd>
+<p>Changes diagram connection stile from simple lines to arrows (pointing from root to leafs).</p>
+</dd>
+<dt class="hdlist1"><code>UseArrowLastToFirst</code> </dt>
+<dd>
+<p>Changes diagram connection stile from simple lines to arrows (pointing from leafs to root).</p>
+</dd>
+<dt class="hdlist1"><code>ShowNumberLine</code> </dt>
+<dd>
+<p>Adds field with VTL source code line number to every diagram object.</p>
+</dd>
+<dt class="hdlist1"><code>UseRuleExpressionsModel</code> </dt>
+<dd>
+<p>Changes diagram display mode to ruleset expression model.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_translation_process"><a class="anchor" href="#_translation_process"></a>Translation process</h3>
+<div class="paragraph">
+<p>Now we have configured the translator.
+To perform a full translation of VTL expressions, you need to acquire instances of <code>ITreeGenerator</code>,      <code>ISchemaModifiersApplier</code> and <code>ITargetRenderer</code> interfaces.
+This can be done simply by injecting these into your class as constructor parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">  class TranslationService
+  {
+    private readonly ITreeGenerator treeGenerator;
+    private readonly ISchemaModifiersApplier schemaModifiersApplier;
+    private readonly ITargetRenderer targetRenderer;
 
+    public TranslationService(
+      ITreeGenerator treeGenerator,
+      ISchemaModifiersApplier schemaModifiersApplier,
+      ITargetRenderer targetRenderer)
+    {
+      this.treeGenerator = treeGenerator;
+      this.schemaModifiersApplier = schemaModifiersApplier;
+      this.targetRenderer = targetRenderer;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The translation itself takes place in three steps.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">  ITransformationSchema schema = this.treeGenerator.BuildTransformationSchema(sourceVtl); <i class="conum" data-value="1"></i><b>(1)</b>
+  this.schemaModifiersApplier.Process(schema); <i class="conum" data-value="2"></i><b>(2)</b>
+  string targetSql = this.targetRenderer.Render(schema); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Front end - Generation of intermediate representation object (Transformation Schema) from VTL expression.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Middle end - Application of a series of transformations to the Transformation Schema.
+Type inference happens in this step.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Back end - Generation of target.</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </article>

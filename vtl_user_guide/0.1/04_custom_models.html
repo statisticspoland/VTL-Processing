@@ -40,17 +40,8 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="04_custom_models.html">Custom Data Models</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="05_vtl_basics.html">VTL Basics</a>
-  </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="07_cli.html">CLI</a>
   </li>
 </ul>
   </li>
@@ -81,10 +72,6 @@
 <button class="nav-toggle"></button>
   <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
-  <ul>
-    <li><a href="index.html">User guide</a></li>
-    <li><a href="04_custom_models.html">Custom Data Models</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/master/docs-source/Guide/modules/ROOT/pages/04_custom_models.adoc">Edit this Page</a></div>
   </div>
@@ -94,9 +81,102 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_using_custom_data_models"><a class="anchor" href="#_using_custom_data_models"></a>Using Custom Data Models</h2>
+<h2 id="_custom_data_model_providers"><a class="anchor" href="#_custom_data_model_providers"></a>Custom data model providers</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_niestandardowe_modele_danych"><a class="anchor" href="#_niestandardowe_modele_danych"></a>Niestandardowe modele danych</h3>
+<div class="sect3">
+<h4 id="_implementacja_i_użycie"><a class="anchor" href="#_implementacja_i_użycie"></a>Implementacja i użycie</h4>
+<div class="paragraph">
+<p>Użytkownik ma możliwość tworzenia niestandardowych modeli danych i używania ich przy pomocy biblioteki. W tym celu należy zaimplementować reprezentację interfejsu <code>StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModel</code>, następnie przekazać go do używanego w projekcie agregatora modeli danych reprezentującego interfejs <code>StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wskazówki_implementacyjne"><a class="anchor" href="#_wskazówki_implementacyjne"></a>Wskazówki implementacyjne</h4>
+<div class="sect4">
+<h5 id="_sposób_i_moment_pobierania_struktur_danych_z_modeli"><a class="anchor" href="#_sposób_i_moment_pobierania_struktur_danych_z_modeli"></a>Sposób i moment pobierania struktur danych z modeli</h5>
+<div class="paragraph">
+<p>Tworząc niestandardową reprezentację modelu danych należy wiedzieć, jak i kiedy działa pobieranie struktur danych z agregatora modeli danych.</p>
+</div>
+<div class="paragraph">
+<p>W drugiej fazie tworzenia schematu reprezentacji pośredniej, czyli tzw. "inferencji typów" wywoływane są zgodnie z zasadą "od liści do korzenia" metody dedukujące/pobierające struktury danych poszczególnych wyrażeń składających się na schemat reprezentacji pośredniej. Są to metody <strong>operatorów</strong>, czyli obiektów reprezentujących interfejs <code>StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IOperatorDefinition</code>, zawierających się we wspomnianych wyrażeniach - reprezentacjach interfejsu <code>StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression</code>.</p>
+</div>
+<div class="paragraph">
+<p>Jedynym operatorem, który pobiera struktury danych, zamiast je dedukować jest operator "<strong>get</strong>". Wyrażenia z operatorem "get" są zawsze liściami drzewa odpowiadającego za schemat reprezentacji pośredniej, więc metody tych operatorów są wywoływane jako pierwsze zgodnie z zasadą "od liści do korzenia".</p>
+</div>
+<div class="paragraph">
+<p>Operator "get" wczytuje obiekt wstrzyknięty jako reprezentującę interfejsu <code>StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModel</code>.
+Standardowo jest to obiekt reprezentujący <code>StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator</code> - interfejs dziedziczący po <code>IDataModel</code>. Przy wywołaniu metody operatora pobierającej strukturę danych dla wyrażenia - <code>GetOutputStructure</code> - użyta zostaje metoda wspomnianego wyżej obiektu reprezentacji <code>IDataModel</code> pobierająca dane z modelu danych - <code>GetDatasetStructure</code>.</p>
+</div>
+<div class="paragraph">
+<p>Gdyby jako reprezentację <code>IDataModel</code> wstrzyknięto pojedynczy model danych, to zostałaby po prostu pobrana z niego strutkura danych. Jednak w celu umożliwienia użycia w projekcie wielu modeli danych na raz, wstrzyknięty został agregator modeli danych, który po wywołaniu metody <code>GetDatasetStructure</code> przeszukuje zawarte w nim modele danych w celu znalezienia struktury o podanej przestrzeni nazw VTL oraz nazwie. Przeszukiwanie odbywa się w kolejności, w jakiej modele zostały dodane do agregatora. Pojedynczy model danych powinien więc zawierać przestrzeń nazw VTL w celu identyfikacji zawartych w nim struktur danych.</p>
+</div>
+<div class="paragraph">
+<p>Działanie metody <code>GetDatasetStructure</code> domyślnego modelu danych polega na sprawdzeniu, czy przestrzeń nazw VTL szukanej struktury danych odpowiada przestrzeni nazw VTL danego modelu danych. Jeżeli tak, zwracana jest struktura o szukanej nazwie, natomiast jeśli szukana przestrzeń nazw nie jest przestrzenią modelu danych lub nie istnieje struktura o szukanej nazwie, zwracana jest wartość null. Przeszukiwanie modeli danych w agregatorze trwa do momentu, gdy zostanie otrzymana wartość inna niż null lub gdy przeszuka wszystkie modele.</p>
+</div>
+<div class="paragraph">
+<p>Poniżej została przedstawiona metoda pobierania struktury danych z modelu danych, która jest taka sama dla większości domyślnych modeli danych. Wprowadzona pełna nazwa szukanej struktury danych zostaje rozdzielona na przestrzeń nazw VTL oraz nazwę struktury. Jeżeli przestrzeń nazw odpowiada przestrzeni nazw danego modelu danych i istnieje w nim struktura o podanej nazwie to zwracana jest struktura. W przeciwnym wypadku zwracany jest null.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public override IDataStructure GetDatasetStructure(string datasetName)
+{
+    string @namespace;
+    this.SplitDatasetName(datasetName, out @namespace, out datasetName);
 
+    if (@namespace == this.Namespace &amp;&amp; this.dataStructures.ContainsKey(datasetName))
+        return this.dataStructures[datasetName];
+
+    return null;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Jak widać powyższa metoda jest nadpisywana. Jest tak dlatego, że każda domyślna reprezentacja modelu danych dziedziczy po klasie <code>StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models.DataModel</code> z wirtualną metodą <code>GetDatasetStructure</code>. Klasa oferuje również użyte we wcześniej zaprezentowanym kodzie metodę <code>SplitDatasetName</code> oraz pole typu string <code>Namespace</code>. Po podaniu w konstruktorze używanego agregatora modeli danych zostaje automatycznie sczytana domyslna przestrzeń nazw VTL. Przy zmianie tej nazwy w agregatorze zostanie ona również zmieniona w każdej instancji <code>DataModel</code>, do której został wczytany.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_zalecana_implementacja"><a class="anchor" href="#_zalecana_implementacja"></a>Zalecana implementacja</h5>
+<div class="paragraph">
+<p>Zalecane jest, aby niestandardowa reprezentacja <code>IDataModel</code> dziedziczyła po klasie <code>DataModel</code>, która obsługuje mechanizmy wymagane do prawidłowego działania agregatora modeli danych <code>IDataModelAggregator</code>. Metoda <code>GetDatasetStructure</code> powinna zwracać wartość null, jeżeli żadna ze struktur danych w danym modelu danych nie zawiera się w przestrzeni nazw VTL składającej się na wprowadzoną jako parametr nazwę szukanej struktury lub struktura o podanej nazwie nie zostanie znaleziona. W przypadku istniejścej przestrzeni nazw VTL oraz nazwy struktury, należy zwrócić daną strukturę danych.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_dodanie_niestandardowego_modelu_danych_do_agregatora_modeli_danych"><a class="anchor" href="#_dodanie_niestandardowego_modelu_danych_do_agregatora_modeli_danych"></a>Dodanie niestandardowego modelu danych do agregatora modeli danych</h5>
+<div class="paragraph">
+<p>W celu dodania niestandardowego modelu danych do agregatora modeli danych należy użyć metody <code>Add</code> dla pola <code>DataModelsCollection</code> przypadającego dla używanego w projekcie obiektu reprezentującego <code>IDataModelAggregator</code>. Jako parametr konstruktora <code>rootModel</code> należy podać użyty wcześniej obiekt reprezentacji <code>IDataModelAggregator</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">aggregator.DataModelsCollection.Add(new CustomDataModel(aggregator, ...));</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_niestandardowe_algorytmy_propagacji_atrybutów"><a class="anchor" href="#_niestandardowe_algorytmy_propagacji_atrybutów"></a>Niestandardowe algorytmy propagacji atrybutów</h3>
+<div class="sect3">
+<h4 id="_implementacja_i_użycie_2"><a class="anchor" href="#_implementacja_i_użycie_2"></a>Implementacja i użycie</h4>
+<div class="paragraph">
+<p>Użytkownik ma możliwość tworzenia niestandardowych algorytmów propagacji atrybutów i używania ich przy pomocy biblioteki. W tym celu należy zaimplementować reprezentację interfejsu <code>StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm</code>, następnie przekazać go w metodzie konfiguracyjnej <code>SetAttributePropagationAlgorithm</code> podczas dodawania renderera języka docelowego TSQL do kolekcji serwisów <code>Microsoft.Extensions.DependencyInjection.IServiceCollection</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">services.AddTsqlTarget((configure) =&gt;
+{
+    configure.SetAttributePropagationAlgorithm(new CustomAttributePropagationAlgorithm());
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wskażówki_implementacyjne"><a class="anchor" href="#_wskażówki_implementacyjne"></a>Wskażówki implementacyjne</h4>
+<div class="paragraph">
+<p>Metoda <code>Propagate</code> powinna zwrócić część kodu TSQL, która umieszczona w części zapytania <code>SELECT</code> wybierze odpowiednią wartość podanego atrybutu wirusowego spośród podanych aliasów odpowiadających za struktury danych - tabel TSQL.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>

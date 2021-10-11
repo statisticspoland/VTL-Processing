@@ -40,17 +40,8 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="04_custom_models.html">Custom Data Models</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="05_vtl_basics.html">VTL Basics</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="07_cli.html">CLI</a>
   </li>
 </ul>
   </li>
@@ -96,7 +87,652 @@
 <div class="sect1">
 <h2 id="_supported_operators"><a class="anchor" href="#_supported_operators"></a>Supported Operators</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>The table below contains all the VTL 2.0 operators with their VtlProcessing implementation status.</p>
+</div>
+<div class="paragraph">
+<p>Operators marked as VtlProcessing.Core are supported by this part of library.
+It means that the operator will be recognized by the front and middle-end parts of the translator and proper intermediate representation will be generated.
+If an operators is marked as VtlProcessing.Target.TSQL then it can be translated to T-SQL target code.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Symbol</th>
+<th class="tableblock halign-left valign-top">Obsługa VtlProcessing.Core</th>
+<th class="tableblock halign-left valign-top">Obsługa VtlProcessing.Target.TSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parentheses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Persistent assignment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Non-persistent assignment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Membership</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">#</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User-definied operator call</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Evaluation of an external routine</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type conversion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cast</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Join</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inner_join, left_join, full_join, cross_join</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String concatenation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">||</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whitespace removal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trim, rtrim, ltrim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Character case conversion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upper/lower</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sub-string extraction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">substr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String pattern replacement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">replace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String pattern location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String length</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">length</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unary plus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unary minus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Addition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Substraction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiplication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Division</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounding</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">round</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Truncation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trunc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ceiling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ceil</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Floor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">floor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Absolute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">abs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exponential</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">exp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Natural logarithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ln</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Power</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">power</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logarithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Square root</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sqrt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equal to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not equal to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Greater than</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; &gt;=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Less than</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; &lt;=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Between</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">between</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element of</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">in/not_in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">match_characters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">match_characters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">isnull</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">isnull</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exists in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">exists_in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logical conjunction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">and</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logical disjunction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">or</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exclusive disjunction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logical negation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Period indicator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">period_indicator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fill time series</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fill_time_series</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flow to stock</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flow_to_stock</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stock to flow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stock_to_flow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time shift</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timeshift</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time aggregation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">time_agg</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actual time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Union</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">union</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intersection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">intersect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set difference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">setdiff</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simmetric difference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">symdiff</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hierarchical roll-up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hierarchy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aggregate invocation</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analytic invocation</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Counting the number of data points</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">count</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Median value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">median</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sum</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sum</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Average value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">avg</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Population standard deviation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stddev_pop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sample standard deviation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stddev_samp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Population variance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var_pop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sample variance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var_samp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">First value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">first_value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Last value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">last_value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lead</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lead</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rank</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rank</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio to report</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ratio_to_report</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check_datapoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check_datapoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check_hierarchy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check_hierarchy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if-then-else</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nvl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nvl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtering Data Points</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculation of a Component</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">calc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aggregation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aggr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintaining Components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removal of Components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">drop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change of Component name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rename</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pivoting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pivot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unpivoting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unpivot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="red"><span class="icon"><i class="fa fa-times"></i></span></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subspace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lime"><span class="icon"><i class="fa fa-check"></i></span></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_time_value_domains_support"><a class="anchor" href="#_time_value_domains_support"></a>Time Value Domains Support</h3>
+<div class="sect3">
+<h4 id="_time_data_type_masks"><a class="anchor" href="#_time_data_type_masks"></a>Time Data Type Masks</h4>
+<div class="paragraph">
+<p>Proper support for VTL time data types is limited to masks described in the table below.
+When using a time data type in VTL code or storing data on time value domain field, you need to respect these masks.
+Otherwise, translation will not be correct.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Time data type</th>
+<th class="tableblock halign-left valign-top">Supported masks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"yyyy-mm-dd",<br>
+"yyyy-mm"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"yyyy-mm-dd/yyyy-mm-dd",<br>
+"yyyy-mm/yyyy-mm"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimePeriod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"yyyy",<br>
+"yyyyA"<br>
+"yyyyS{s}"<br>
+"yyyyQ{q}"<br>
+"yyyyM{mm}"<br>
+"yyyyW{ww}"<br>
+"yyyyD{ddd}"<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"A", "S", "Q", "M", "W", "D"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_simplified_usage_of_time_data_types"><a class="anchor" href="#_simplified_usage_of_time_data_types"></a>Simplified Usage of Time Data Types</h4>
+<div class="paragraph">
+<p>Originally, scalar time data type literal required a usage of the type conversion operator (<code>cast</code>).
+String literal can be converted to a time value, respecting proper mask.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of using the CAST operator to acquire scalar time value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>cast("2000Q1", time_period, "YYYY\QQ")
+cast("20120213", date, "YYYYMMDD")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to simplify this task, VTL Processing provides functionality to automatically recognize time literals without using <code>cast</code> operator.
+The masked string need to be preceded by letter <code>t</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of simplified literals for time data types</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>t"2000Q1"
+t"2012-02-13"</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Functionality works properly only for masks from the table above.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
