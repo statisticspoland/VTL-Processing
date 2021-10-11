@@ -333,5 +333,5 @@ The translation itself takes place in three steps.
 <1> Front end - Generation of intermediate representation object (Transformation Schema) from VTL expression.
 <2> Middle end - Application of a series of transformations to the Transformation Schema. 
   Type inference happens in this step.
-<3> Back end - Generation of target.
+<3> Back end - Generation of target code.
 
