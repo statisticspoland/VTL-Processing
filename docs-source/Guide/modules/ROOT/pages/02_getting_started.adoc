@@ -75,7 +75,7 @@ Translator translator = new Translator((configure) =>
 
 === Setup data model
 
-The translation process need information about data structures it work with.
+The translation process need information about data structures it will work with.
 This need to be configured.
 In our simple case, we will use a json file containing all necessary metadata.
 Let's create an empty _DataModel.json_ file.
@@ -220,8 +220,8 @@ translator.DataModels.DefaultNamespace = "JsonTest";
 === Setup environment mapping
 
 Next phase is to configure environment mapper of the translator.
-It is done by providing a `Dictionary<string, string>` object.
-In the following example we will map _JsonTests_ namespace to _SqlDatabase_ of the target database.
+It can be done by providing a `Dictionary<string, string>` object.
+In the following example we will map _JsonTests_ namespace to the _SqlDatabase_ schema of the target database.
 
 [source,c#]
 ----
