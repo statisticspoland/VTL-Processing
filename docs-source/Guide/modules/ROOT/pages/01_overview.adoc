@@ -59,7 +59,7 @@ Front-end and Middle-end parts of the translator are packaged in the *Statistics
 StatisticsPoland.VtlProcessing.Target.Tsql :: Produces a Transact SQL code executable under Sql Server databases.
 StatisticsPoland.VtlProcessing.Target.PlantUml :: Generates a PlantUML diagram of the provided intermediate representation. Helpful for debugging purposes.
 
-VTL Processing also sames with simple command line application to perform translation without the need to build your own app.
+VTL Processing also comes with a simple command line application to perform translation without the need to build your own app.
 
 === Example translation
 
