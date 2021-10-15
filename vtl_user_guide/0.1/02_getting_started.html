@@ -190,7 +190,7 @@ namespace VtlTestApp
 <div class="sect2">
 <h3 id="_setup_data_model"><a class="anchor" href="#_setup_data_model"></a>Setup data model</h3>
 <div class="paragraph">
-<p>The translation process need information about data structures it work with.
+<p>The translation process need information about data structures it will work with.
 This need to be configured.
 In our simple case, we will use a json file containing all necessary metadata.
 Let&#8217;s create an empty <em>DataModel.json</em> file.</p>
@@ -330,8 +330,8 @@ translator.DataModels.DefaultNamespace = "JsonTest";</code></pre>
 <h3 id="_setup_environment_mapping"><a class="anchor" href="#_setup_environment_mapping"></a>Setup environment mapping</h3>
 <div class="paragraph">
 <p>Next phase is to configure environment mapper of the translator.
-It is done by providing a <code>Dictionary&lt;string, string&gt;</code> object.
-In the following example we will map <em>JsonTests</em> namespace to <em>SqlDatabase</em> of the target database.</p>
+It can be done by providing a <code>Dictionary&lt;string, string&gt;</code> object.
+In the following example we will map <em>JsonTests</em> namespace to the <em>SqlDatabase</em> schema of the target database.</p>
 </div>
 <div class="listingblock">
 <div class="content">
