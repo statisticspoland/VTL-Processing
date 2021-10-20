@@ -13,7 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Antora
-        uses: ./docs-source/antora-action-env
+        uses: kameshsampath/antora-site-action@v0.3.0
+        with:
+            antora_playbook: ./docs-source/site.yml
+            antora_generator: 'antora-site-generator-lunr'
+            antora_docsearch_enabled: 'true'
       - name: Upload generated site
         uses: actions/upload-artifact@v1.0.0
         with:
