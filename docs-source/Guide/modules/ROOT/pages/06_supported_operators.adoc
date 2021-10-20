@@ -17,447 +17,447 @@ Obsługa VtlProcessing.Target.TSQL oznacza, że przy użyciu operatora translato
 
 |Parentheses
 |()
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Persistent assignment
 |$$<-$$
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Non-persistent assignment
 |:=
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Membership
 |#
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |User-definied operator call
 |
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |Evaluation of an external routine
 |eval
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |Type conversion
 |cast
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |Join
 |inner_join, left_join, full_join, cross_join
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |String concatenation
 |$$\|\|$$
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Whitespace removal
 |trim, rtrim, ltrim
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Character case conversion
 |upper/lower
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Sub-string extraction
 |substr
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |String pattern replacement
 |replace
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |String pattern location
 |instr
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |String length
 |length
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Unary plus
 |+
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Unary minus
 |-
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Addition
 |+
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Substraction
 |-
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Multiplication
 |*
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Division
 |/
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Modulo
 |mod
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Rounding
 |round
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Truncation
 |trunc
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Ceiling
 |ceil
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Floor
 |floor
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Absolute value
 |abs
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Exponential
 |exp
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Natural logarithm
 |ln
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Power
 |power
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Logarithm
 |log
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Square root
 |sqrt
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Equal to
 |=
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Not equal to
 |<>
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Greater than
 |> >=
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Less than
 |< $$<=$$
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Between
 |between
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Element of
 |in/not_in
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |match_characters
 |match_characters
-|[lime]#icon:check[]#
-|[red]#icon:times[]#
+|[lime]#Tak#
+|[red]#Nie#
 
 |isnull
 |isnull
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Exists in
 |exists_in
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Logical conjunction
 |and
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Logical disjunction
 |or
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Exclusive disjunction
 |xor
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Logical negation
 |not
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Period indicator
 |period_indicator
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Fill time series
 |fill_time_series
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Flow to stock
 |flow_to_stock
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 |Stock to flow
 |stock_to_flow
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Time shift
 |timeshift
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Time aggregation
 |time_agg
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |Actual time
 |current_date
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Union
 |union
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Intersection
 |intersect
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Set difference
 |setdiff
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Simmetric difference
 |symdiff
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Hierarchical roll-up
 |hierarchy
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |Aggregate invocation
 |
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Analytic invocation
 |
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Counting the number of data points
 |count
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Minimum value
 |min
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Maximum value
 |max
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Median value
 |median
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Sum
 |sum
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Average value
 |avg
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Population standard deviation
 |stddev_pop
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Sample standard deviation
 |stddev_samp
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Population variance
 |var_pop
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Sample variance
 |var_samp
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |First value
 |first_value
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Last value
 |last_value
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Lag
 |lag
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Lead
 |lead
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Rank
 |rank
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Ratio to report
 |ratio_to_report
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |check_datapoint
 |check_datapoint
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |check_hierarchy
 |check_hierarchy
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |check
 |check
-|[red]#icon:times[]#
-|[red]#icon:times[]#
+|[red]#Nie#
+|[red]#Nie#
 
 |if-then-else
 |if
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Nvl
 |nvl
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Filtering Data Points
 |filter
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Calculation of a Component
 |calc
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Aggregation
 |aggr
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Maintaining Components
 |keep
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Removal of Components
 |drop
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Change of Component name
 |rename
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |Pivoting
 |pivot
-|[lime]#icon:check[]#
-|[red]#icon:times[]#
+|[lime]#Tak#
+|[red]#Nie#
 
 |Unpivoting
 |unpivot
-|[lime]#icon:check[]#
-|[red]#icon:times[]#
+|[lime]#Tak#
+|[red]#Nie#
 
 |Subspace
 |sub
-|[lime]#icon:check[]#
-|[lime]#icon:check[]#
+|[lime]#Tak#
+|[lime]#Tak#
 
 |===
 
