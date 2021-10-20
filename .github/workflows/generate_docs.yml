@@ -15,6 +15,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Run Antora
         uses: ./docs-source/antora-action-env
+      - uses: nikeee/docfx-action@v1.0.0
+        name: Run DocFx
+        with:
+          args: ./docs-source/docfx.json
       - name: Upload generated site
         uses: actions/upload-artifact@v1.0.0
         with:
