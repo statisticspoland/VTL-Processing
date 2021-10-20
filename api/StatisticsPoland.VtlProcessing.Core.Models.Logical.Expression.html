@@ -1,0 +1,705 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Expression
+   | VTL Processing API documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Expression
+   | VTL Processing API documentation ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression">
+  
+  
+  <h1 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression" class="text-break">Class Expression
+  </h1>
+  <div class="markdown level0 summary"><p>The single VTL 2.0 expression representation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Expression</span></div>
+      <div class="level2"><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Logical.JoinExpression.html">JoinExpression</a></div>
+      <div class="level2"><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Logical.RuleExpression.html">RuleExpression</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Logical.html">StatisticsPoland.VtlProcessing.Core.Models.Logical</a></h6>
+  <h6><strong>Assembly</strong>: StatisticsPoland.VtlProcessing.Core.dll</h6>
+  <h5 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Expression : object, IExpression</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression__ctor_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.#ctor*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression__ctor_StatisticsPoland_VtlProcessing_Core_Models_Interfaces_IExpression_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.#ctor(StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression)">Expression(IExpression)</h4>
+  <div class="markdown level1 summary"><p>Initialises a new instance of the <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.html">Expression</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Expression(IExpression parentExpr = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td><span class="parametername">parentExpr</span></td>
+        <td><p>The parent expression.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ContainingSchema_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ContainingSchema*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ContainingSchema" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ContainingSchema">ContainingSchema</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITransformationSchema ContainingSchema { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.ITransformationSchema.html">ITransformationSchema</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_CurrentJoinExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.CurrentJoinExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_CurrentJoinExpr" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.CurrentJoinExpr">CurrentJoinExpr</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IJoinExpression CurrentJoinExpr { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IJoinExpression.html">IJoinExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ExpressionText_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ExpressionText*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ExpressionText" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ExpressionText">ExpressionText</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ExpressionText { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_IsApplyComponent_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.IsApplyComponent*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_IsApplyComponent" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.IsApplyComponent">IsApplyComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsApplyComponent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_IsScalar_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.IsScalar*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_IsScalar" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.IsScalar">IsScalar</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsScalar { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_LineNumber_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.LineNumber*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_LineNumber" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.LineNumber">LineNumber</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LineNumber { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_Operands_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.Operands*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_Operands" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.Operands">Operands</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;string, IExpression&gt; Operands { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_OperandsCollection_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.OperandsCollection*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_OperandsCollection" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.OperandsCollection">OperandsCollection</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;IExpression&gt; OperandsCollection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_OperatorDefinition_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.OperatorDefinition*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_OperatorDefinition" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.OperatorDefinition">OperatorDefinition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IOperatorDefinition OperatorDefinition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IOperatorDefinition.html">IOperatorDefinition</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_OperatorSymbol_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.OperatorSymbol*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_OperatorSymbol" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.OperatorSymbol">OperatorSymbol</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string OperatorSymbol { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ParamSignature_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ParamSignature*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ParamSignature" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ParamSignature">ParamSignature</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ParamSignature { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ParentExpression_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ParentExpression*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ParentExpression" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ParentExpression">ParentExpression</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExpression ParentExpression { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ReferenceExpression_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ReferenceExpression*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ReferenceExpression" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ReferenceExpression">ReferenceExpression</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExpression ReferenceExpression { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ResultMappedName_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ResultMappedName*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ResultMappedName" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ResultMappedName">ResultMappedName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ResultMappedName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ResultName_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ResultName*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_ResultName" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.ResultName">ResultName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ResultName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_Structure_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.Structure*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_Structure" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.Structure">Structure</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDataStructure Structure { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataStructure.html">IDataStructure</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_AddOperand_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.AddOperand*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_AddOperand_System_String_StatisticsPoland_VtlProcessing_Core_Models_Interfaces_IExpression_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.AddOperand(System.String,StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression)">AddOperand(String, IExpression)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddOperand(string signature, IExpression expression)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">signature</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td><span class="parametername">expression</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_GetDescendantExprs_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.GetDescendantExprs*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_GetDescendantExprs_System_String_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.GetDescendantExprs(System.String)">GetDescendantExprs(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;IExpression&gt; GetDescendantExprs(string resultName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">resultName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_GetFirstAncestorExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.GetFirstAncestorExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_GetFirstAncestorExpr" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.GetFirstAncestorExpr">GetFirstAncestorExpr()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExpression GetFirstAncestorExpr()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_GetFirstAncestorExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.GetFirstAncestorExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_GetFirstAncestorExpr_System_String_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.GetFirstAncestorExpr(System.String)">GetFirstAncestorExpr(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExpression GetFirstAncestorExpr(string resultName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">resultName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_SetContainingSchema_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.SetContainingSchema*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Models_Logical_Expression_SetContainingSchema_StatisticsPoland_VtlProcessing_Core_Models_Interfaces_ITransformationSchema_" data-uid="StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.SetContainingSchema(StatisticsPoland.VtlProcessing.Core.Models.Interfaces.ITransformationSchema)">SetContainingSchema(ITransformationSchema)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetContainingSchema(ITransformationSchema schema)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.ITransformationSchema.html">ITransformationSchema</a></td>
+        <td><span class="parametername">schema</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.Utilities.html#StatisticsPoland_VtlProcessing_Core_Infrastructure_Utilities_In__1___0___0___">Utilities.In&lt;T&gt;(T, T[])</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

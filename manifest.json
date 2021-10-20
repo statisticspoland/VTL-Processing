@@ -1,0 +1,3563 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/docs-source",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.BackEnd.IMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.BackEnd.IMapper.html",
+          "hash": "15o/Q/uVZVE5P2XyS18YHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.BackEnd.ITargetRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.BackEnd.ITargetRenderer.html",
+          "hash": "ebmOr2BOeigvklCFwLfnJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.BackEnd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.BackEnd.html",
+          "hash": "ImGcMNgHk4gTSkpzmF2ihQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DataModelAggregatorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DataModelAggregatorExtensions.html",
+          "hash": "lpgrSY93SvGSrX8MDnhFiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DataModelProviderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DataModelProviderBase.html",
+          "hash": "lnhnP2baUKH07BJyeccy0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DictionaryDataModelProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DictionaryDataModelProvider.html",
+          "hash": "ExI2vdyyc3hR9IX/a5HDSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.DictionaryModelConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.DictionaryModelConfiguration.html",
+          "hash": "tOBXuwDee21dFhJiAR87Jg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.html",
+          "hash": "GjjwlkUYktDaktGiHk/9Qw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces.IDictionaryModelConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces.IDictionaryModelConfiguration.html",
+          "hash": "ScNNxWpzoqc5Pns9YMHiNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces.html",
+          "hash": "UfPXXwrEs5ZuiSf1UTNBRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.html",
+          "hash": "ddBy92RAVJbcw+T2c3/TSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.JsonDataModelProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.JsonDataModelProvider.html",
+          "hash": "PtIVQwy/n+gfI8DIMiFBQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.SdmxDataModelProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.SdmxDataModelProvider.html",
+          "hash": "azuo0cAI4M3yk+7gC6Cu0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.SqlServerDataModelProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.SqlServerDataModelProvider.html",
+          "hash": "U2HBNBlZx1S/oIk21EltmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.html",
+          "hash": "paaD0cJDHLscx+FypHFlOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Interfaces.IVtlError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Interfaces.IVtlError.html",
+          "hash": "FGNCXVgJ2fQlOnoGyYF1nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Interfaces.html",
+          "hash": "XrcGRrAyCwh04OwvgpGznA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging.ErrorCollector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging.ErrorCollector.html",
+          "hash": "RRrhzjmKy6Vxbw4uU5VU9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging.ErrorCollectorProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging.ErrorCollectorProvider.html",
+          "hash": "QZgV1F+X+OWwgd1qacAMHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.Logging.html",
+          "hash": "LPgTsweNDAeP6QSIT8XxCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlError.html",
+          "hash": "buHscQX+w7F7NlPeHLbXpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlOperatorError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlOperatorError.html",
+          "hash": "ZT1ludF6DEGkwk476EB5MQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlSyntaxError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlSyntaxError.html",
+          "hash": "TpHguSKBkITe2uTKgWc3fw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlSyntaxErrorListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlSyntaxErrorListener.html",
+          "hash": "lWdBxS5Lfcje9rC5Z0vQEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlTargetError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.VtlTargetError.html",
+          "hash": "nZvMptf5kY4keb5cz7LoeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorHandling.html",
+          "hash": "vRG2FPV10POy/N9At2z15Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorsCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorsCollection.html",
+          "hash": "nmXH9HDcC8GmRa5TAL9+lw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlListener.html",
+          "hash": "pvSqEP1Jv1HENqbCnrQTCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.html",
+          "hash": "ME/3R3/TEzPWH8t0bbBuZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseListener.html",
+          "hash": "85eIds5T18ijzKswnnxrtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html",
+          "hash": "j3gUXTkYnIkyvrLhB9jwpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlLexer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlLexer.html",
+          "hash": "oxlKHXGAkZ/XHwl925z8cQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext.html",
+          "hash": "RKDYaMg7BExScqucnkB5vA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext.html",
+          "hash": "iBP7GBXFKcYodo5jb5Zw+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext.html",
+          "hash": "Zrg9cKQ/xC2a44ikxkNXHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionNameContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionNameContext.html",
+          "hash": "J4TnEqi3eGyvZbcffCPZow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext.html",
+          "hash": "mHF6ZrttwthvZjzyUUxa9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext.html",
+          "hash": "zWX1EIrwz7ecIQnAbHG6EQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext.html",
+          "hash": "C1fHglSCPs84khD0bT5IFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionNameContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionNameContext.html",
+          "hash": "WOZJ3Zu5yic9Rx1uvqtXjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext.html",
+          "hash": "ML09Pa/fFoO/VHtnpxYrWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext.html",
+          "hash": "rlYzEEbFkwZ5ZSASg5RHcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext.html",
+          "hash": "d1YwL9SjGG5HeySUgzy0ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext.html",
+          "hash": "B5Jed/m9vJckzTvsC0WcPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext.html",
+          "hash": "SPlNAFl7+nvnVQRll97osw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext.html",
+          "hash": "7hVL4Za7gvTgWW2dRpagmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext.html",
+          "hash": "GY2cARpdTs1sSZF6KP5tug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentRoleContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentRoleContext.html",
+          "hash": "REw7W5RbBTKHil6dOKj6OQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext.html",
+          "hash": "FzBr8JDdio+L9eDLr2y6Xg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext.html",
+          "hash": "HzXMRbnd2d4aeEM3qdQLLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetComplexContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetComplexContext.html",
+          "hash": "tM6GlR4O43UWkupfHjookg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetContext.html",
+          "hash": "tOlKlqpX//qNYgZKOzZ+eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext.html",
+          "hash": "7kE7xk8Z+VH2ubnuoJURfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext.html",
+          "hash": "wUZBnxfSUcxnnGUj6XUXIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefExprContext.html",
+          "hash": "vSzRdhubnMBlby9x1EfD8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext.html",
+          "hash": "pbwgRbHqXT/TN8f/RA43yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorCodeContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorCodeContext.html",
+          "hash": "BXsQX0xtHy0TB3T0P07lJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorLevelContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorLevelContext.html",
+          "hash": "7wYNaj+yxLWTFJG8NUSpNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext.html",
+          "hash": "GIA7hS7uv7NB4A1Ndeufpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext.html",
+          "hash": "WmiHY45TatoFmwvTfoU1aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupKeywordContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupKeywordContext.html",
+          "hash": "VDzL7Ywf7zvVsIWouIaMVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext.html",
+          "hash": "3/lOoLwUyG9t6D2ytgcTow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext.html",
+          "hash": "5OeM52yQPDiuZkuUgEUTKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext.html",
+          "hash": "/FmI2c+/yfQtE59xvvoq9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext.html",
+          "hash": "I6LS5dzw8v4zmBj7zoxppA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext.html",
+          "hash": "E75sOgaV4mvvikYfQdaq+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext.html",
+          "hash": "S0F3e0aVb/kI8/04Oxk7Gg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext.html",
+          "hash": "lw5I6K2bsTbr546VlWGmiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext.html",
+          "hash": "h8/X/0JSYFvgUAXER3FDqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext.html",
+          "hash": "F8fm7tlhCofVM+V30Vgyqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinBodyContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinBodyContext.html",
+          "hash": "rQufEKv05dnxl9LO8KcKHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext.html",
+          "hash": "CQoNMOJfutlpORbXcfIUSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinClauseContext.html",
+          "hash": "dRSfSLGOOPqxOLC8Ct/dDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext.html",
+          "hash": "RNs8aOxpbpRk5dmsVIhr4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext.html",
+          "hash": "7VINpAysweKayIpTzJRtBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext.html",
+          "hash": "+bfEF8NlITkslsWf61KEJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext.html",
+          "hash": "gqvnZ/0H/An5xM/IJwb4KQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeywordContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeywordContext.html",
+          "hash": "tGJrFWaLTSDgTA83YJbVIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext.html",
+          "hash": "HQ1i9HhYu/yHDiei1HedEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext.html",
+          "hash": "epP/KH+f7ci7Soh+DZTT9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext.html",
+          "hash": "TISPXLs2JOwWlLxbdw4vOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.LimitsMethodContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.LimitsMethodContext.html",
+          "hash": "kFJQjJFaR8kQKOjZeElKbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext.html",
+          "hash": "Dtr8WKx/NDqMpao95RcRDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext.html",
+          "hash": "T3b2xzzlEBbk7xsnnsFjFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext.html",
+          "hash": "E4Jou4VCZWFNS5+qCY1p7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext.html",
+          "hash": "A5nzI7JpxFTCdn6pbCeRLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext.html",
+          "hash": "UISACoMyq+DJfT9Iafo/Hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext.html",
+          "hash": "lYxZOlVDXRxqfu8OzKCTaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext.html",
+          "hash": "leH/kaYdUDtp+6Knt2JxHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext.html",
+          "hash": "7Mh2AwPS5c0UJycigj+bKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext.html",
+          "hash": "uL6XiIs99N9uu3tAfr2AKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext.html",
+          "hash": "ToLs9UbXcoZS0MA+5d/1dQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RetainTypeContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RetainTypeContext.html",
+          "hash": "mtYR0+EdzCw6GcLl9S9GkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleClauseDatapointContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleClauseDatapointContext.html",
+          "hash": "5xFYpKdcUcQ/LaNpvKuSPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleIDContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleIDContext.html",
+          "hash": "fbNE4b/rh24tk527cf/WGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext.html",
+          "hash": "aDfcwmuCoYPM7Wk7SBKZ3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext.html",
+          "hash": "jTbJ1o6e/0ZKS8XFSB/lbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext.html",
+          "hash": "5bncL3+z8ZUGmpuXI+c/1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext.html",
+          "hash": "ug47kWNZf60gRPVtwHiDBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext.html",
+          "hash": "xZBXpEjtbfVMXk1UaWD7+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext.html",
+          "hash": "i3JUR9vmRWh4LAf2p/sJ7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext.html",
+          "hash": "rffs+PO0Gq8vFCwwXc+szA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext.html",
+          "hash": "QG+8VORqeVHQCEJ2P+RmVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext.html",
+          "hash": "uldneXyx9QEh/ubaQcx0yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext.html",
+          "hash": "+rbjBS+zKg8Z8ji27RJIUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnopenedDatasetContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnopenedDatasetContext.html",
+          "hash": "9zvovKErIV59hG/lGgciyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext.html",
+          "hash": "JI/j5qB75INrmBI9PBvUEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ValueDomainNameContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ValueDomainNameContext.html",
+          "hash": "Ha2Y2vwhXC5WdrzdpMUcHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarIDContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarIDContext.html",
+          "hash": "UKGkXB2sBRY/4tfGdlsmpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext.html",
+          "hash": "z+Zv2w06Bx70biBn6IcR3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext.html",
+          "hash": "4pNftwILvZh+Bdi5ciNpig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html",
+          "hash": "BuE7XmXyqWz7eiWHwL+l7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.html",
+          "hash": "2axauvolZfX2w/GYkJ3oHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces.ITreeGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces.ITreeGenerator.html",
+          "hash": "DzgIJ1NAyr1ILGc18yWQYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces.html",
+          "hash": "boE6ywZV3fc7CHjpYXjlxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.TreeGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.TreeGenerator.html",
+          "hash": "qoCIvgMV/3glKWGkXiNSwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.html",
+          "hash": "84dxALsq5aoJScmsQee4zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes.OperatorSymbolAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes.OperatorSymbolAttribute.html",
+          "hash": "Dc3onseBX+hDv9xxscix/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes.html",
+          "hash": "eiru6FnwfCT5EGTvl954Rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools.ComponentName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools.ComponentName.html",
+          "hash": "7NlklL/9QjTrOXll5Rwvtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ComponentTools.html",
+          "hash": "h87LsG6IS8YFwQh80+J1Uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.DataStructureResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.DataStructureResolver.html",
+          "hash": "lJ4S1mBIKyFITopZTQayMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.DatapointRulesetResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.DatapointRulesetResolver.html",
+          "hash": "bN/2pmHgoMLsPFFBSGDUiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ExpressionResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ExpressionResolver.html",
+          "hash": "Mz7jgz4O3a8oPZ0trAOejg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.JoinExpressionResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.JoinExpressionResolver.html",
+          "hash": "+8rXnWC9kjJuUEAT/X6L+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.OperatorResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.OperatorResolver.html",
+          "hash": "24iX+eSL7/zql9MeBwChog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.Resolvers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.Resolvers.html",
+          "hash": "h4Rc91A6ISfoBFye7Krl+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.RuleExpressionResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.RuleExpressionResolver.html",
+          "hash": "p5Y+nIBEjqj96tvvBQa2Cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ServiceCollectionExtensions.html",
+          "hash": "P5dM8wutf0Muqtq9TT/nlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ServiceProviderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ServiceProviderExtensions.html",
+          "hash": "XV5MU/6pYmgN5xNCflTISA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.TransformationSchemaResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.TransformationSchemaResolver.html",
+          "hash": "EAXGTvCiE1wLNqg3NBAhtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.html",
+          "hash": "I/Sl6O0rNNNENkLY5UMyqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ExpressionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ExpressionFactory.html",
+          "hash": "IyNEwzbQKicEmkqI81+xUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator.html",
+          "hash": "iLhbYGdG4sptM7220J1QCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IEnvironmentMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IEnvironmentMapper.html",
+          "hash": "SArvBcNCOSrLCWruNvuzKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IExpressionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IExpressionFactory.html",
+          "hash": "rNh8vLe4VM9A7Rb14Q+HdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.html",
+          "hash": "cBU5Z1DMRYoQBU70LroTCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.html",
+          "hash": "IR1TMFhfheZnUCnrTTkyew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.ExpressionTextGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.ExpressionTextGenerator.html",
+          "hash": "DD3VeeO5EQsF65Jn/qyO4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IExpressionTextGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IExpressionTextGenerator.html",
+          "hash": "Lnkhyh4bB5tsYfYYWOXaJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IJoinBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IJoinBuilder.html",
+          "hash": "AkXEJb5TjfR0uRbB6WJNbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.html",
+          "hash": "Hu6N+sBjLDxHPBaOyR/VKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.ApplyBranch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.ApplyBranch.html",
+          "hash": "lhFdaLeeJT8lzyGFbrgTZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.CalcBranch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.CalcBranch.html",
+          "hash": "05FNecePlnGLcIqY1zh3OA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.DsBranch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.DsBranch.html",
+          "hash": "S/B8UyZGlU+cljAenU2rjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces.IJoinBranch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces.IJoinBranch.html",
+          "hash": "l3AnUGfh4SpJEEZ52jpbCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.Interfaces.html",
+          "hash": "pIoKVbo5AqIsM7kGl8F6Ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.RenameBranch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.RenameBranch.html",
+          "hash": "gPJFtm+s9jiBsJ1jlfu5uQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.UsingBranch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.UsingBranch.html",
+          "hash": "l1DBuTe5Pcf0/IBDdQr42g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.html",
+          "hash": "eTZjr4XQGh/GMNc2Vd124g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBuilder.html",
+          "hash": "cVKAQbc3o3NIHvUcdS28Og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.html",
+          "hash": "WA79++RLk9vVNebAAgJSiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ObjectsComparer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ObjectsComparer.html",
+          "hash": "U06LbNJOYG9/PIcaeWUHdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Utilities.html",
+          "hash": "uuo6/W+eoH3dkX4AytKfSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.html",
+          "hash": "xSyZeXr/jRQm89S1HgwTwg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.html",
+          "hash": "Ta6l0uWC82MttyiuTahPIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Interfaces.html",
+          "hash": "0bNvjwNz3huqQMvXdCmjJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.DeadCodeModifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.DeadCodeModifier.html",
+          "hash": "n1PohfDqKQ5M/YEF6GOdtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.DsOperatorsToJoinsModifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.DsOperatorsToJoinsModifier.html",
+          "hash": "Vs+/XxoZz9psHy1SHYwmDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces.ISchemaModifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces.ISchemaModifier.html",
+          "hash": "e4b866Q+rcqWPPRKbNBA0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces.ISchemaModifiersApplier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces.ISchemaModifiersApplier.html",
+          "hash": "/qw8mdGxHm/QsXqYTXbQ9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.Interfaces.html",
+          "hash": "HouKU305/1xzwnCPvNSUqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.JoinUsingFillingModifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.JoinUsingFillingModifier.html",
+          "hash": "8gSmZ2TcDKsDkVQenQCjmg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.SchemaModifiersApplier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.SchemaModifiersApplier.html",
+          "hash": "NFMY/BLHIoCQKJpqOx1cLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.TypeInferenceModifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.TypeInferenceModifier.html",
+          "hash": "Bpp68FphwwhZval/ulptaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.html",
+          "hash": "OARt6FkRzfVaMvQm1h3PiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.ComponentTypeInference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.ComponentTypeInference.html",
+          "hash": "64nl7QEnob5/3nT8Eaf1sw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.JoinOperators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.JoinOperators.html",
+          "hash": "hl199h5KlmlYuzoWWswPNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.NumericStructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.NumericStructure.html",
+          "hash": "gUJWApf7mdBD/2mpkbpcBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.html",
+          "hash": "V7GFA9B5KroZRGGCzk5OdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.AssignmentObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.AssignmentObject.html",
+          "hash": "c03JuT/OcvCnY38AWW+KkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.AssignmentObjectCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.AssignmentObjectCollection.html",
+          "hash": "lv2OpRCainDXkKVzOSDX8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModelProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataModelProvider.html",
+          "hash": "h/aGNYSSFJBTQznYgpz50w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataStructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataStructure.html",
+          "hash": "JRsfTAtFZU5FCYZ6ixrgPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html",
+          "hash": "c0Sf5u4jVg8Lu5AwwDqMpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IJoinExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IJoinExpression.html",
+          "hash": "fhpEOR/L1gMBnRlBds43hQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IRuleExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IRuleExpression.html",
+          "hash": "Pzz2+2iFCg4JuvNyPPVhZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IRuleset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IRuleset.html",
+          "hash": "ZwMpQeR1lTjZh1zZ0fX74A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.ITransformationSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.ITransformationSchema.html",
+          "hash": "9QIHXmh35ENlBR3XV6v2IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.html",
+          "hash": "FFovyjG0Q7xrGCDd7A0QHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.DataStructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.DataStructure.html",
+          "hash": "MQtdXGLgDsyjhhzxRXYeHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.DatapointRuleset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.DatapointRuleset.html",
+          "hash": "k7aCt4e5x8hxxrzlwGuQqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.Expression.html",
+          "hash": "XedHBEL+bw4KUSbjEUg/dg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.JoinExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.JoinExpression.html",
+          "hash": "z4OFaKL8MDz2NBQlSzW+XQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.RuleExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.RuleExpression.html",
+          "hash": "o26FOVptYQ2R/r8R8DjVHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.TransformationSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.TransformationSchema.html",
+          "hash": "95QFaRpi6JPXcvPqGDqTig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Logical.html",
+          "hash": "Qz7dqmKm0twawyBZxCgSdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.StructureComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.StructureComponent.html",
+          "hash": "mCmNhYK5PH7GeBErE4nuMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.BasicDataType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.BasicDataType.html",
+          "hash": "C6RVKtJrJd/3UpaAEgRnnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.ComponentType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.ComponentType.html",
+          "hash": "5plmGATN7/9CYSL3nq5tfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.DatasetType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.DatasetType.html",
+          "hash": "HIqm7iI5uEqKGYC8ieu18Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.ErrorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.ErrorType.html",
+          "hash": "KUk+RfdX9GLBmk5s8AQMdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.ExpressionFactoryNameTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.ExpressionFactoryNameTarget.html",
+          "hash": "lmtVIYXWwIxRd95w+P4bUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Types.html",
+          "hash": "DFWLyEuiwbAfiAGeHP51mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.ValueDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.ValueDomain.html",
+          "hash": "P5+x6J7EF/e/nBWLzZjb7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.html",
+          "hash": "+1EO6YIXrKLIjWbnSiNgcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces.IComponentTypeInference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces.IComponentTypeInference.html",
+          "hash": "c+PpyUuEOyJtH9xOnomshw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces.html",
+          "hash": "Gy8IPZSaT3U4cbUVQq/BOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.AggrFunctionOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.AggrFunctionOperator.html",
+          "hash": "jEV6DQMY9YCce2lhR7Kgvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.AggrOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.AggrOperator.html",
+          "hash": "pEi7A8B1Vavlxsrk3/BBAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.AnalyticFunctionOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.AnalyticFunctionOperator.html",
+          "hash": "2Rzrz074TaU1en5EMw9R4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ArithmeticOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ArithmeticOperator.html",
+          "hash": "3/wiZDMm/Z0yGSLDYFJyiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.CalcExprOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.CalcExprOperator.html",
+          "hash": "KPhZRcf2uKs8UdIogT4pjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.CollectionOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.CollectionOperator.html",
+          "hash": "uVsoWE8SoRvdA2HjlneX6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.CompCollectorOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.CompCollectorOperator.html",
+          "hash": "8Ft+/inCeHVRVlqChU+I8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.CompCreateOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.CompCreateOperator.html",
+          "hash": "1nADfzNyWcdI8xLS5yH34Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.JoinApplyMeasuresOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.JoinApplyMeasuresOperator.html",
+          "hash": "O+OmTWmr7BZME9/Olgmaxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.html",
+          "hash": "iw3vDtzZh5TU6wkHSpgaVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.DatasetClauseOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.DatasetClauseOperator.html",
+          "hash": "xsMjQ/tPUmgvAnZFrFJCqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.GroupOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.GroupOperator.html",
+          "hash": "kPgixqNVccr/oaYvVMAjkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.OrderOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.OrderOperator.html",
+          "hash": "Td6Nu0VE5qujkJuhteR6+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.PartitionOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.PartitionOperator.html",
+          "hash": "Yz47Cfg8hiswZ2BYVanUDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.RenameExprOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.RenameExprOperator.html",
+          "hash": "QPEbe9tcfR6lnHphqqbQKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.SubspaceExprOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.SubspaceExprOperator.html",
+          "hash": "KoVapgSVKqal6fLoqznz5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.WhenOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.WhenOperator.html",
+          "hash": "r3ZSG+RY5kcAlO997ab2+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.html",
+          "hash": "4yVmAQ0IAL+9/QGQ3c6afw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.BetweenOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.BetweenOperator.html",
+          "hash": "OiDjEW+hSd7irp9oJkypPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.BooleanOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.BooleanOperator.html",
+          "hash": "cajxedLpKPLMvx0u9gWeNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.CalcOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.CalcOperator.html",
+          "hash": "cqnwBFgc0rrP07HTRBmmAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.CheckDatapointOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.CheckDatapointOperator.html",
+          "hash": "glWJa7o+ySt/X53JtS3PaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ComparisonOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ComparisonOperator.html",
+          "hash": "TBDGiTPRgRRkTV0TkOeflA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ComponentOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ComponentOperator.html",
+          "hash": "XmtywIo3WaWQf+C/hZavww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ConstantOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ConstantOperator.html",
+          "hash": "twggRRVI5aJDfi7tIb5BPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.CurrentDateOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.CurrentDateOperator.html",
+          "hash": "2irhgXc5Eu95AfnuzgT4wA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ExistsInOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ExistsInOperator.html",
+          "hash": "MP8ULZ3dW5ZM0kMP9+JVXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.GetOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.GetOperator.html",
+          "hash": "j/1eobnj+pI+HwSWWAxLxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.IfThenElseOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.IfThenElseOperator.html",
+          "hash": "jMHlonNYB3ezfQFkjvk3uQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.InOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.InOperator.html",
+          "hash": "dFy6LW84wKcfzaSKcgcPlA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IJoinApplyMeasuresOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IJoinApplyMeasuresOperator.html",
+          "hash": "aOgq/zug7TH0xRl7NgVReA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IOperatorDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.IOperatorDefinition.html",
+          "hash": "GqcbV933Umn/NiXDuPHiHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Interfaces.html",
+          "hash": "RrvPgrAlqyZDBUVQ+CKxGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.IsNullOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.IsNullOperator.html",
+          "hash": "vrDM/3+lVkvDItbdMS3KNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.JoinOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.JoinOperator.html",
+          "hash": "JlpUuEtQSA/wx7h/Fuc+vA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.KeepDropOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.KeepDropOperator.html",
+          "hash": "kWLo5DzmRZhIoNDEhcT0pA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.MatchCharactersOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.MatchCharactersOperator.html",
+          "hash": "zSW+ECWzg5qFRKv8L2O8IQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.MembershipOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.MembershipOperator.html",
+          "hash": "vSZ7HPnOR7QqLSCaHqziIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.NumericOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.NumericOperator.html",
+          "hash": "CBumAFiB44NBfaOdMAprqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.NvlOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.NvlOperator.html",
+          "hash": "J8dZMk1ZoFZfkPUE/TUv0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.OptionalOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.OptionalOperator.html",
+          "hash": "BLWwiDbWuPWlv9VK8BLMfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.PeriodIndicatorOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.PeriodIndicatorOperator.html",
+          "hash": "vhuv6TR9CrRROZcRt3vLSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.PivotOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.PivotOperator.html",
+          "hash": "GTNypDimcipwSQpYOrgJJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ReferenceOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.ReferenceOperator.html",
+          "hash": "a9kaa9/6GF9UvWa+byDMmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.RenameOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.RenameOperator.html",
+          "hash": "jCEEMGhTLprLpekLy5ZxEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.SetOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.SetOperator.html",
+          "hash": "6VcdXHv/t3H42qRslzwj6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.StringOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.StringOperator.html",
+          "hash": "P2G89shK+k6GmRfElyJgHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.SubspaceOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.SubspaceOperator.html",
+          "hash": "zdfj6CppTbCe5Nh7pHu9gg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.TimeOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.TimeOperator.html",
+          "hash": "mk8Uivx0UoW3fAbiIyEYjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.UnaryArithmeticOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.UnaryArithmeticOperator.html",
+          "hash": "tOF5XnAIEJObNshC/EoD+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.UnpivotOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.UnpivotOperator.html",
+          "hash": "8dFGtst83YJMNg4SVEkdlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.html",
+          "hash": "wJys57OxJ+H5sR/xvg9Nww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.TargetsCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.TargetsCollection.html",
+          "hash": "5FwX05Z4t2M6dgr9Sutbyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces.ITreeTransformer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces.ITreeTransformer.html",
+          "hash": "mJosfvdCSuwV18JThax8Cg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces.html",
+          "hash": "6+uzrziu4mdul0MCKcwarw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.html",
+          "hash": "OCKG6BMKIr5LI7YUk33+qQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.html",
+          "hash": "25Rxzza6waOT3RLlYvLYAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.Translator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Translator.html",
+          "hash": "bH0V2NTzQgC1QQf6FuiKGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Core.html",
+          "hash": "yQOJkB0RjPKTkZHn3AiFDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ExpressionsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ExpressionsType.html",
+          "hash": "iSXDDyzHlNUSjqQOawUV2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetBuilder.html",
+          "hash": "MAjzlurb4SoGjThKH0A45w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html",
+          "hash": "JaPxQ+c2lCCWrYgTewRwuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.html",
+          "hash": "DQL3A23tj56aIVyJmyx03w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.PlantUmlUrlConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.PlantUmlUrlConverter.html",
+          "hash": "wNq/nv5bnKX6WfOe1kM04g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html",
+          "hash": "qVCto7ukm86XALmDbBC1tQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ServiceCollectionExtensions.html",
+          "hash": "+2F/Ax4AW1SVkFT6LtgpNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.TranslatorConfigExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.TranslatorConfigExtensions.html",
+          "hash": "krrokVO9eJynL2+PQk25Nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.html",
+          "hash": "Ar+LrhrX2uBDvWU/s3nAsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.PlantUmlTargetRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.PlantUmlTargetRenderer.html",
+          "hash": "oTqYOs9cmDmQDHZEBF9hLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.html",
+          "hash": "vw1ZrIZymfb7Yfu8/Hw42A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.AttributePropagationAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.AttributePropagationAlgorithm.html",
+          "hash": "LD8iJo6fgRp+Mc4NphecPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes.OperatorRendererSymbolAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes.OperatorRendererSymbolAttribute.html",
+          "hash": "Gy10qmJAyQUOEI36UyjS8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes.html",
+          "hash": "Ckm3GqxfzuFQYTBL84vtRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm.html",
+          "hash": "xW8amVcRkOwwWUt/KdGXZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.ITargetBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.ITargetBuilder.html",
+          "hash": "v4SqAdP/8txnVit3hR2glA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.ITargetConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.ITargetConfiguration.html",
+          "hash": "UKHim3ppnT7CNYIeYAKqMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.html",
+          "hash": "TAsy212wIGhwcxnGJDsS1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.JoinExpressionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.JoinExpressionExtensions.html",
+          "hash": "FF2A+fRsrBy2xPbjKTHz+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.JoinMeasuresRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.JoinMeasuresRenderer.html",
+          "hash": "mrtN2tPkkxKW2s4NdPX/eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.OperatorRendererResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.OperatorRendererResolver.html",
+          "hash": "acdjRHGh50XIxQrZW9gVJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.ServiceCollectionExtensions.html",
+          "hash": "N21g2IbtABJ5MtkzyQ5S9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.TemporaryTables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.TemporaryTables.html",
+          "hash": "8HRBkoid85ZUfKB5XfZzMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.TranslatorConfigExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.TranslatorConfigExtensions.html",
+          "hash": "WwP69DBioohxxHO6meCJ3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.html",
+          "hash": "7MNResHJTrZJ8QAN397nSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Interfaces.IReferencesManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Interfaces.IReferencesManager.html",
+          "hash": "HMtdL8FH/HEGbKbDXutO8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Interfaces.html",
+          "hash": "gZwBtJ3HKvMDjb1S2UXrvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Mapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Mapper.html",
+          "hash": "3q9iUif3Ba0FOw3ImtxSPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.ReferencesManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.ReferencesManager.html",
+          "hash": "/iKWor2HJjLFx+5ulydwWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.html",
+          "hash": "MrA1JcL90oD3F8mjD8vFdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces.IOperatorRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces.IOperatorRenderer.html",
+          "hash": "+6BaPn14YUWjY1UUjUSNaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Renderers.Interfaces.html",
+          "hash": "6h6R4SBNw05uYEwEbMv7Vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.TsqlTargetRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.TsqlTargetRenderer.html",
+          "hash": "jOkloLj3d91XjOb3IUGrtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.html",
+          "hash": "C51e3IzMyxgiokrhQhgr2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "ZTHx6YtTmgbn5HRvWuz6Zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 291,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

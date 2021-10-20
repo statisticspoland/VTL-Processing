@@ -1,0 +1,3803 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class VtlBaseVisitor&lt;Result&gt;
+   | VTL Processing API documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class VtlBaseVisitor&lt;Result&gt;
+   | VTL Processing API documentation ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1">
+  
+  
+  <h1 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1" class="text-break">Class VtlBaseVisitor&lt;Result&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>This class provides an empty implementation of <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.html">IVtlVisitor&lt;Result&gt;</a>,
+which can be extended to create a visitor which only needs to handle a subset
+of the available methods.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">VtlBaseVisitor&lt;Result&gt;</span></div>
+      <div class="level2"><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.html">VisitorTransformer</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.html">IVtlVisitor</a>&lt;Result&gt;</div>
+    <div><span class="xref">IParseTreeVisitor</span>&lt;Result&gt;</div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.html">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr</a></h6>
+  <h6><strong>Assembly</strong>: StatisticsPoland.VtlProcessing.Core.dll</h6>
+  <h5 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class VtlBaseVisitor&lt;Result&gt; : AbstractParseTreeVisitor&lt;Result&gt;, IVtlVisitor&lt;Result&gt;, IParseTreeVisitor&lt;Result&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">Result</span></td>
+        <td><p>The return type of the visit operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext)">VisitAggrClause(VtlParser.AggrClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_aggrClause">aggrClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAggrClause(VtlParser.AggrClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext.html">VtlParser.AggrClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext)">VisitAggrExpr(VtlParser.AggrExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_aggrExpr">aggrExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAggrExpr(VtlParser.AggrExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext.html">VtlParser.AggrExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrFunction_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrFunction*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrFunction_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrFunctionContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrFunction(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext)">VisitAggrFunction(VtlParser.AggrFunctionContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_aggrFunction">aggrFunction()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAggrFunction(VtlParser.AggrFunctionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext.html">VtlParser.AggrFunctionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrFunctionName_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrFunctionName*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrFunctionName_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrFunctionNameContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrFunctionName(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionNameContext)">VisitAggrFunctionName(VtlParser.AggrFunctionNameContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_aggrFunctionName">aggrFunctionName()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAggrFunctionName(VtlParser.AggrFunctionNameContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionNameContext.html">VtlParser.AggrFunctionNameContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrInvocation_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrInvocation*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrInvocation_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrInvocationContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAggrInvocation(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext)">VisitAggrInvocation(VtlParser.AggrInvocationContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_aggrInvocation">aggrInvocation()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAggrInvocation(VtlParser.AggrInvocationContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext.html">VtlParser.AggrInvocationContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext)">VisitAnalyticClause(VtlParser.AnalyticClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_analyticClause">analyticClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAnalyticClause(VtlParser.AnalyticClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext.html">VtlParser.AnalyticClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticFunction_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticFunction*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticFunction_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticFunctionContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticFunction(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext)">VisitAnalyticFunction(VtlParser.AnalyticFunctionContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_analyticFunction">analyticFunction()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAnalyticFunction(VtlParser.AnalyticFunctionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext.html">VtlParser.AnalyticFunctionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticFunctionName_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticFunctionName*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticFunctionName_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticFunctionNameContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticFunctionName(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionNameContext)">VisitAnalyticFunctionName(VtlParser.AnalyticFunctionNameContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_analyticFunctionName">analyticFunctionName()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAnalyticFunctionName(VtlParser.AnalyticFunctionNameContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionNameContext.html">VtlParser.AnalyticFunctionNameContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticInvocation_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticInvocation*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticInvocation_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticInvocationContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitAnalyticInvocation(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext)">VisitAnalyticInvocation(VtlParser.AnalyticInvocationContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_analyticInvocation">analyticInvocation()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitAnalyticInvocation(VtlParser.AnalyticInvocationContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext.html">VtlParser.AnalyticInvocationContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitCalcClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitCalcClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitCalcClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_CalcClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitCalcClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext)">VisitCalcClause(VtlParser.CalcClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_calcClause">calcClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitCalcClause(VtlParser.CalcClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext.html">VtlParser.CalcClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitCalcExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitCalcExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitCalcExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_CalcExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitCalcExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext)">VisitCalcExpr(VtlParser.CalcExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_calcExpr">calcExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitCalcExpr(VtlParser.CalcExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext.html">VtlParser.CalcExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitCheckDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitCheckDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitCheckDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_CheckDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitCheckDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext)">VisitCheckDatapoint(VtlParser.CheckDatapointContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_checkDatapoint">checkDatapoint()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitCheckDatapoint(VtlParser.CheckDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext.html">VtlParser.CheckDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitClosedDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitClosedDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitClosedDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ClosedDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitClosedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext)">VisitClosedDataset(VtlParser.ClosedDatasetContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_closedDataset">closedDataset()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitClosedDataset(VtlParser.ClosedDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext.html">VtlParser.ClosedDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponent_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitComponent*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponent_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ComponentContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitComponent(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext)">VisitComponent(VtlParser.ComponentContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_component">component()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitComponent(VtlParser.ComponentContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext.html">VtlParser.ComponentContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponentID_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitComponentID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponentID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ComponentIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitComponentID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext)">VisitComponentID(VtlParser.ComponentIDContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_componentID">componentID()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitComponentID(VtlParser.ComponentIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext.html">VtlParser.ComponentIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponentRole_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitComponentRole*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponentRole_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ComponentRoleContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitComponentRole(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentRoleContext)">VisitComponentRole(VtlParser.ComponentRoleContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_componentRole">componentRole()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitComponentRole(VtlParser.ComponentRoleContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentRoleContext.html">VtlParser.ComponentRoleContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitConstant_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitConstant*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitConstant_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ConstantContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitConstant(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext)">VisitConstant(VtlParser.ConstantContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_constant">constant()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitConstant(VtlParser.ConstantContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext.html">VtlParser.ConstantContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetContext)">VisitDataset(VtlParser.DatasetContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_dataset">dataset()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDataset(VtlParser.DatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetContext.html">VtlParser.DatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDatasetClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDatasetClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext)">VisitDatasetClause(VtlParser.DatasetClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_datasetClause">datasetClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDatasetClause(VtlParser.DatasetClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext.html">VtlParser.DatasetClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetComplex_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDatasetComplex*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetComplex_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetComplexContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDatasetComplex(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetComplexContext)">VisitDatasetComplex(VtlParser.DatasetComplexContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_datasetComplex">datasetComplex()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDatasetComplex(VtlParser.DatasetComplexContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetComplexContext.html">VtlParser.DatasetComplexContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetID_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDatasetID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDatasetID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext)">VisitDatasetID(VtlParser.DatasetIDContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_datasetID">datasetID()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDatasetID(VtlParser.DatasetIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext.html">VtlParser.DatasetIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDefDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDefDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDefDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DefDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDefDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext)">VisitDefDatapoint(VtlParser.DefDatapointContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_defDatapoint">defDatapoint()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDefDatapoint(VtlParser.DefDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext.html">VtlParser.DefDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDefExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDefExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDefExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DefExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDefExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefExprContext)">VisitDefExpr(VtlParser.DefExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_defExpr">defExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDefExpr(VtlParser.DefExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefExprContext.html">VtlParser.DefExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDropClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDropClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDropClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DropClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitDropClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext)">VisitDropClause(VtlParser.DropClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_dropClause">dropClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitDropClause(VtlParser.DropClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext.html">VtlParser.DropClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitErrorCode_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitErrorCode*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitErrorCode_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ErrorCodeContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitErrorCode(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorCodeContext)">VisitErrorCode(VtlParser.ErrorCodeContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_errorCode">errorCode()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitErrorCode(VtlParser.ErrorCodeContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorCodeContext.html">VtlParser.ErrorCodeContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitErrorLevel_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitErrorLevel*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitErrorLevel_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ErrorLevelContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitErrorLevel(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorLevelContext)">VisitErrorLevel(VtlParser.ErrorLevelContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_errorLevel">errorLevel()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitErrorLevel(VtlParser.ErrorLevelContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ErrorLevelContext.html">VtlParser.ErrorLevelContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitFilterClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitFilterClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitFilterClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_FilterClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitFilterClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext)">VisitFilterClause(VtlParser.FilterClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_filterClause">filterClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitFilterClause(VtlParser.FilterClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext.html">VtlParser.FilterClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitFirstWindowLimit_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitFirstWindowLimit*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitFirstWindowLimit_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_FirstWindowLimitContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitFirstWindowLimit(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext)">VisitFirstWindowLimit(VtlParser.FirstWindowLimitContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_firstWindowLimit">firstWindowLimit()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitFirstWindowLimit(VtlParser.FirstWindowLimitContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext.html">VtlParser.FirstWindowLimitContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitGroupingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitGroupingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitGroupingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_GroupingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitGroupingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext)">VisitGroupingClause(VtlParser.GroupingClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_groupingClause">groupingClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitGroupingClause(VtlParser.GroupingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext.html">VtlParser.GroupingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitGroupKeyword_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitGroupKeyword*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitGroupKeyword_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_GroupKeywordContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitGroupKeyword(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupKeywordContext)">VisitGroupKeyword(VtlParser.GroupKeywordContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_groupKeyword">groupKeyword()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitGroupKeyword(VtlParser.GroupKeywordContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupKeywordContext.html">VtlParser.GroupKeywordContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitHavingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitHavingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitHavingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_HavingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitHavingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext)">VisitHavingClause(VtlParser.HavingClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_havingClause">havingClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitHavingClause(VtlParser.HavingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext.html">VtlParser.HavingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitHavingExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitHavingExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitHavingExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_HavingExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitHavingExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext)">VisitHavingExpr(VtlParser.HavingExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_havingExpr">havingExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitHavingExpr(VtlParser.HavingExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext.html">VtlParser.HavingExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitIfThenElseDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitIfThenElseDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitIfThenElseDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_IfThenElseDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitIfThenElseDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext)">VisitIfThenElseDataset(VtlParser.IfThenElseDatasetContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ifThenElseDataset">ifThenElseDataset()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitIfThenElseDataset(VtlParser.IfThenElseDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext.html">VtlParser.IfThenElseDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitIfThenElseScalar_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitIfThenElseScalar*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitIfThenElseScalar_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_IfThenElseScalarContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitIfThenElseScalar(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext)">VisitIfThenElseScalar(VtlParser.IfThenElseScalarContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ifThenElseScalar">ifThenElseScalar()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitIfThenElseScalar(VtlParser.IfThenElseScalarContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext.html">VtlParser.IfThenElseScalarContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinAggrClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinAggrClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinAggrClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinAggrClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinAggrClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext)">VisitJoinAggrClause(VtlParser.JoinAggrClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinAggrClause">joinAggrClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinAggrClause(VtlParser.JoinAggrClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext.html">VtlParser.JoinAggrClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinAliasesClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinAliasesClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinAliasesClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinAliasesClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinAliasesClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext)">VisitJoinAliasesClause(VtlParser.JoinAliasesClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinAliasesClause">joinAliasesClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinAliasesClause(VtlParser.JoinAliasesClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext.html">VtlParser.JoinAliasesClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinAliasExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinAliasExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinAliasExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinAliasExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinAliasExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext)">VisitJoinAliasExpr(VtlParser.JoinAliasExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinAliasExpr">joinAliasExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinAliasExpr(VtlParser.JoinAliasExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext.html">VtlParser.JoinAliasExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinApplyClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinApplyClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinApplyClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinApplyClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinApplyClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext)">VisitJoinApplyClause(VtlParser.JoinApplyClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinApplyClause">joinApplyClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinApplyClause(VtlParser.JoinApplyClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext.html">VtlParser.JoinApplyClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinBody_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinBody*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinBody_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinBodyContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinBody(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinBodyContext)">VisitJoinBody(VtlParser.JoinBodyContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinBody">joinBody()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinBody(VtlParser.JoinBodyContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinBodyContext.html">VtlParser.JoinBodyContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinCalcClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinCalcClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinCalcClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinCalcClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinCalcClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext)">VisitJoinCalcClause(VtlParser.JoinCalcClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinCalcClause">joinCalcClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinCalcClause(VtlParser.JoinCalcClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext.html">VtlParser.JoinCalcClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinClauseContext)">VisitJoinClause(VtlParser.JoinClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinClause">joinClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinClause(VtlParser.JoinClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinClauseContext.html">VtlParser.JoinClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinDropClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinDropClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinDropClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinDropClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinDropClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext)">VisitJoinDropClause(VtlParser.JoinDropClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinDropClause">joinDropClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinDropClause(VtlParser.JoinDropClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext.html">VtlParser.JoinDropClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext)">VisitJoinExpr(VtlParser.JoinExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinExpr">joinExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinExpr(VtlParser.JoinExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext.html">VtlParser.JoinExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinFilterClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinFilterClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinFilterClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinFilterClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinFilterClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext)">VisitJoinFilterClause(VtlParser.JoinFilterClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinFilterClause">joinFilterClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinFilterClause(VtlParser.JoinFilterClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext.html">VtlParser.JoinFilterClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinKeepClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinKeepClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinKeepClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinKeepClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinKeepClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext)">VisitJoinKeepClause(VtlParser.JoinKeepClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinKeepClause">joinKeepClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinKeepClause(VtlParser.JoinKeepClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext.html">VtlParser.JoinKeepClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinKeyword_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinKeyword*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinKeyword_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinKeywordContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinKeyword(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeywordContext)">VisitJoinKeyword(VtlParser.JoinKeywordContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinKeyword">joinKeyword()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinKeyword(VtlParser.JoinKeywordContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeywordContext.html">VtlParser.JoinKeywordContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinRenameClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinRenameClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinRenameClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinRenameClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinRenameClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext)">VisitJoinRenameClause(VtlParser.JoinRenameClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinRenameClause">joinRenameClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinRenameClause(VtlParser.JoinRenameClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext.html">VtlParser.JoinRenameClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinUsingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinUsingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinUsingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinUsingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitJoinUsingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext)">VisitJoinUsingClause(VtlParser.JoinUsingClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_joinUsingClause">joinUsingClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitJoinUsingClause(VtlParser.JoinUsingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext.html">VtlParser.JoinUsingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitKeepClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitKeepClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitKeepClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_KeepClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitKeepClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext)">VisitKeepClause(VtlParser.KeepClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_keepClause">keepClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitKeepClause(VtlParser.KeepClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext.html">VtlParser.KeepClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitLimitsMethod_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitLimitsMethod*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitLimitsMethod_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_LimitsMethodContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitLimitsMethod(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.LimitsMethodContext)">VisitLimitsMethod(VtlParser.LimitsMethodContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_limitsMethod">limitsMethod()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitLimitsMethod(VtlParser.LimitsMethodContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.LimitsMethodContext.html">VtlParser.LimitsMethodContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitList_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitList*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitList_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ListContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitList(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext)">VisitList(VtlParser.ListContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_list">list()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitList(VtlParser.ListContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext.html">VtlParser.ListContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitMembershipDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitMembershipDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitMembershipDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_MembershipDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitMembershipDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext)">VisitMembershipDataset(VtlParser.MembershipDatasetContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_membershipDataset">membershipDataset()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitMembershipDataset(VtlParser.MembershipDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext.html">VtlParser.MembershipDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOpenedDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOpenedDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOpenedDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OpenedDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOpenedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext)">VisitOpenedDataset(VtlParser.OpenedDatasetContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_openedDataset">openedDataset()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitOpenedDataset(VtlParser.OpenedDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext.html">VtlParser.OpenedDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOptionalExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOptionalExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOptionalExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OptionalExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOptionalExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext)">VisitOptionalExpr(VtlParser.OptionalExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_optionalExpr">optionalExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitOptionalExpr(VtlParser.OptionalExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext.html">VtlParser.OptionalExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOrderClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOrderClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOrderClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OrderClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOrderClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext)">VisitOrderClause(VtlParser.OrderClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_orderClause">orderClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitOrderClause(VtlParser.OrderClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext.html">VtlParser.OrderClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOrderExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOrderExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitOrderExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OrderExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitOrderExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext)">VisitOrderExpr(VtlParser.OrderExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_orderExpr">orderExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitOrderExpr(VtlParser.OrderExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext.html">VtlParser.OrderExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitPartitionClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitPartitionClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitPartitionClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_PartitionClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitPartitionClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext)">VisitPartitionClause(VtlParser.PartitionClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_partitionClause">partitionClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitPartitionClause(VtlParser.PartitionClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext.html">VtlParser.PartitionClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitPivotClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitPivotClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitPivotClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_PivotClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitPivotClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext)">VisitPivotClause(VtlParser.PivotClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_pivotClause">pivotClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitPivotClause(VtlParser.PivotClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext.html">VtlParser.PivotClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRenameClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRenameClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRenameClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RenameClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRenameClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext)">VisitRenameClause(VtlParser.RenameClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_renameClause">renameClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRenameClause(VtlParser.RenameClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext.html">VtlParser.RenameClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRenameExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRenameExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRenameExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RenameExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRenameExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext)">VisitRenameExpr(VtlParser.RenameExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_renameExpr">renameExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRenameExpr(VtlParser.RenameExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext.html">VtlParser.RenameExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRetainType_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRetainType*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRetainType_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RetainTypeContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRetainType(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RetainTypeContext)">VisitRetainType(VtlParser.RetainTypeContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_retainType">retainType()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRetainType(VtlParser.RetainTypeContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RetainTypeContext.html">VtlParser.RetainTypeContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleClauseDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRuleClauseDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleClauseDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RuleClauseDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRuleClauseDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleClauseDatapointContext)">VisitRuleClauseDatapoint(VtlParser.RuleClauseDatapointContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ruleClauseDatapoint">ruleClauseDatapoint()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRuleClauseDatapoint(VtlParser.RuleClauseDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleClauseDatapointContext.html">VtlParser.RuleClauseDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleID_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRuleID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RuleIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRuleID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleIDContext)">VisitRuleID(VtlParser.RuleIDContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ruleID">ruleID()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRuleID(VtlParser.RuleIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleIDContext.html">VtlParser.RuleIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleItemDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRuleItemDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleItemDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RuleItemDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRuleItemDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext)">VisitRuleItemDatapoint(VtlParser.RuleItemDatapointContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ruleItemDatapoint">ruleItemDatapoint()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRuleItemDatapoint(VtlParser.RuleItemDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext.html">VtlParser.RuleItemDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRulesetID_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRulesetID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRulesetID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RulesetIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRulesetID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext)">VisitRulesetID(VtlParser.RulesetIDContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_rulesetID">rulesetID()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRulesetID(VtlParser.RulesetIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext.html">VtlParser.RulesetIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRulesetSignature_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRulesetSignature*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRulesetSignature_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RulesetSignatureContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitRulesetSignature(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext)">VisitRulesetSignature(VtlParser.RulesetSignatureContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_rulesetSignature">rulesetSignature()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitRulesetSignature(VtlParser.RulesetSignatureContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext.html">VtlParser.RulesetSignatureContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitScalar_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitScalar*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitScalar_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ScalarContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitScalar(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext)">VisitScalar(VtlParser.ScalarContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_scalar">scalar()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitScalar(VtlParser.ScalarContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext.html">VtlParser.ScalarContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSecondWindowLimit_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSecondWindowLimit*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSecondWindowLimit_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SecondWindowLimitContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSecondWindowLimit(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext)">VisitSecondWindowLimit(VtlParser.SecondWindowLimitContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_secondWindowLimit">secondWindowLimit()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitSecondWindowLimit(VtlParser.SecondWindowLimitContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext.html">VtlParser.SecondWindowLimitContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSetExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSetExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSetExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SetExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSetExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext)">VisitSetExpr(VtlParser.SetExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_setExpr">setExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitSetExpr(VtlParser.SetExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext.html">VtlParser.SetExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitStart_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitStart*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitStart_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_StartContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitStart(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext)">VisitStart(VtlParser.StartContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_start">start()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitStart(VtlParser.StartContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext.html">VtlParser.StartContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitStatement_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitStatement*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitStatement_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_StatementContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitStatement(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext)">VisitStatement(VtlParser.StatementContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_statement">statement()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitStatement(VtlParser.StatementContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext.html">VtlParser.StatementContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSubspaceClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSubspaceClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSubspaceClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SubspaceClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSubspaceClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext)">VisitSubspaceClause(VtlParser.SubspaceClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_subspaceClause">subspaceClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitSubspaceClause(VtlParser.SubspaceClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext.html">VtlParser.SubspaceClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSubspaceExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSubspaceExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitSubspaceExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SubspaceExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitSubspaceExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext)">VisitSubspaceExpr(VtlParser.SubspaceExprContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_subspaceExpr">subspaceExpr()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitSubspaceExpr(VtlParser.SubspaceExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext.html">VtlParser.SubspaceExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitUnopenedDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitUnopenedDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitUnopenedDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_UnopenedDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitUnopenedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnopenedDatasetContext)">VisitUnopenedDataset(VtlParser.UnopenedDatasetContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_unopenedDataset">unopenedDataset()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitUnopenedDataset(VtlParser.UnopenedDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnopenedDatasetContext.html">VtlParser.UnopenedDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitUnpivotClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitUnpivotClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitUnpivotClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_UnpivotClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitUnpivotClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext)">VisitUnpivotClause(VtlParser.UnpivotClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_unpivotClause">unpivotClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitUnpivotClause(VtlParser.UnpivotClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext.html">VtlParser.UnpivotClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitValueDomainName_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitValueDomainName*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitValueDomainName_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ValueDomainNameContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitValueDomainName(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ValueDomainNameContext)">VisitValueDomainName(VtlParser.ValueDomainNameContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_valueDomainName">valueDomainName()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitValueDomainName(VtlParser.ValueDomainNameContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ValueDomainNameContext.html">VtlParser.ValueDomainNameContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitVarID_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitVarID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitVarID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_VarIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitVarID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarIDContext)">VisitVarID(VtlParser.VarIDContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_varID">varID()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitVarID(VtlParser.VarIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarIDContext.html">VtlParser.VarIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitVarSignature_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitVarSignature*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitVarSignature_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_VarSignatureContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitVarSignature(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext)">VisitVarSignature(VtlParser.VarSignatureContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_varSignature">varSignature()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitVarSignature(VtlParser.VarSignatureContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext.html">VtlParser.VarSignatureContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitWindowingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitWindowingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitWindowingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_WindowingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor`1.VisitWindowingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext)">VisitWindowingClause(VtlParser.WindowingClauseContext)</h4>
+  <div class="markdown level1 summary"><p>Visit a parse tree produced by <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_windowingClause">windowingClause()</a>.</p>
+<p>
+The default implementation returns the result of calling <see cref="!:AbstractParseTreeVisitor&lt;Result>.VisitChildren(IRuleNode)"></see>
+on <code data-dev-comment-type="paramref" class="paramref">context</code>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Result VisitWindowingClause(VtlParser.WindowingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext.html">VtlParser.WindowingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The parse tree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.html">IVtlVisitor&lt;Result&gt;</a>
+  </div>
+  <div>
+      <span class="xref">IParseTreeVisitor&lt;&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.Utilities.html#StatisticsPoland_VtlProcessing_Core_Infrastructure_Utilities_In__1___0___0___">Utilities.In&lt;T&gt;(T, T[])</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

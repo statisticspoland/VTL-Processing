@@ -1,0 +1,2834 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class VisitorTransformer
+   | VTL Processing API documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class VisitorTransformer
+   | VTL Processing API documentation ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer">
+  
+  
+  <h1 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer" class="text-break">Class VisitorTransformer
+  </h1>
+  <div class="markdown level0 summary"><p>Transforms a CST tree into a transformation schema structure by using an ANTRL4 visitor.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html">VtlBaseVisitor</a>&lt;<a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>&gt;</div>
+    <div class="level2"><span class="xref">VisitorTransformer</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.html">IVtlVisitor</a>&lt;<a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>&gt;</div>
+    <div><span class="xref">IParseTreeVisitor</span>&lt;<a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a>&gt;</div>
+    <div><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces.ITreeTransformer.html">ITreeTransformer</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitDataset(VtlParser.DatasetContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDatasetComplex_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetComplexContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitDatasetComplex(VtlParser.DatasetComplexContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitUnopenedDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_UnopenedDatasetContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitUnopenedDataset(VtlParser.UnopenedDatasetContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinClauseContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitJoinClause(VtlParser.JoinClauseContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinBody_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinBodyContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitJoinBody(VtlParser.JoinBodyContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAggrFunctionName_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrFunctionNameContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitAggrFunctionName(VtlParser.AggrFunctionNameContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitAnalyticFunctionName_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticFunctionNameContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitAnalyticFunctionName(VtlParser.AnalyticFunctionNameContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitVarID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_VarIDContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitVarID(VtlParser.VarIDContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitJoinKeyword_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinKeywordContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitJoinKeyword(VtlParser.JoinKeywordContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitGroupKeyword_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_GroupKeywordContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitGroupKeyword(VtlParser.GroupKeywordContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitComponentRole_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ComponentRoleContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitComponentRole(VtlParser.ComponentRoleContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitValueDomainName_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ValueDomainNameContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitValueDomainName(VtlParser.ValueDomainNameContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRetainType_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RetainTypeContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitRetainType(VtlParser.RetainTypeContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitLimitsMethod_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_LimitsMethodContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitLimitsMethod(VtlParser.LimitsMethodContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitDefExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DefExprContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitDefExpr(VtlParser.DefExprContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleClauseDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RuleClauseDatapointContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitRuleClauseDatapoint(VtlParser.RuleClauseDatapointContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitErrorCode_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ErrorCodeContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitErrorCode(VtlParser.ErrorCodeContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitErrorLevel_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ErrorLevelContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitErrorLevel(VtlParser.ErrorLevelContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor-1.html#StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlBaseVisitor_1_VisitRuleID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RuleIDContext_">VtlBaseVisitor&lt;IExpression&gt;.VisitRuleID(VtlParser.RuleIDContext)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Transformations.html">StatisticsPoland.VtlProcessing.Core.Transformations</a></h6>
+  <h6><strong>Assembly</strong>: StatisticsPoland.VtlProcessing.Core.dll</h6>
+  <h5 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class VisitorTransformer : VtlBaseVisitor&lt;IExpression&gt;, IVtlVisitor&lt;IExpression&gt;, IParseTreeVisitor&lt;IExpression&gt;, ITreeTransformer</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer__ctor_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.#ctor*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer__ctor_StatisticsPoland_VtlProcessing_Core_Infrastructure_DependencyInjection_TransformationSchemaResolver_StatisticsPoland_VtlProcessing_Core_Infrastructure_DependencyInjection_DatapointRulesetResolver_StatisticsPoland_VtlProcessing_Core_Infrastructure_Interfaces_IExpressionFactory_StatisticsPoland_VtlProcessing_Core_Infrastructure_JoinBuilder_Interfaces_IJoinBuilder_ILogger_StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer__" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.#ctor(StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.TransformationSchemaResolver,StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.DatapointRulesetResolver,StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IExpressionFactory,StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IJoinBuilder,ILogger{StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer})">VisitorTransformer(TransformationSchemaResolver, DatapointRulesetResolver, IExpressionFactory, IJoinBuilder, ILogger&lt;VisitorTransformer&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.html">VisitorTransformer</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisitorTransformer(TransformationSchemaResolver schemaResolver, DatapointRulesetResolver dprReslover, IExpressionFactory exprFactory, IJoinBuilder joinBuilder, ILogger&lt;VisitorTransformer&gt; logger = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.TransformationSchemaResolver.html">TransformationSchemaResolver</a></td>
+        <td><span class="parametername">schemaResolver</span></td>
+        <td><p>The transformation schema resolver.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.DatapointRulesetResolver.html">DatapointRulesetResolver</a></td>
+        <td><span class="parametername">dprReslover</span></td>
+        <td><p>The datapoint ruleset resolver.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IExpressionFactory.html">IExpressionFactory</a></td>
+        <td><span class="parametername">exprFactory</span></td>
+        <td><p>The expressions factory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IJoinBuilder.html">IJoinBuilder</a></td>
+        <td><span class="parametername">joinBuilder</span></td>
+        <td><p>The &quot;join&quot; operator expressions builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ILogger</span>&lt;<a class="xref" href="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.html">VisitorTransformer</a>&gt;</td>
+        <td><span class="parametername">logger</span></td>
+        <td><p>The errors logger.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_TransformToSchema_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.TransformToSchema*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_TransformToSchema_IParseTree_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.TransformToSchema(IParseTree)">TransformToSchema(IParseTree)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITransformationSchema TransformToSchema(IParseTree tree)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IParseTree</span></td>
+        <td><span class="parametername">tree</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.ITransformationSchema.html">ITransformationSchema</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext)">VisitAggrClause(VtlParser.AggrClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAggrClause(VtlParser.AggrClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext.html">VtlParser.AggrClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAggrClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext)">VisitAggrExpr(VtlParser.AggrExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAggrExpr(VtlParser.AggrExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext.html">VtlParser.AggrExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAggrExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrFunction_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrFunction*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrFunction_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrFunctionContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrFunction(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext)">VisitAggrFunction(VtlParser.AggrFunctionContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAggrFunction(VtlParser.AggrFunctionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext.html">VtlParser.AggrFunctionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAggrFunction(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrFunctionContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrInvocation_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrInvocation*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAggrInvocation_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AggrInvocationContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAggrInvocation(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext)">VisitAggrInvocation(VtlParser.AggrInvocationContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAggrInvocation(VtlParser.AggrInvocationContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext.html">VtlParser.AggrInvocationContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAggrInvocation(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AggrInvocationContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAnalyticClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAnalyticClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAnalyticClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAnalyticClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext)">VisitAnalyticClause(VtlParser.AnalyticClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAnalyticClause(VtlParser.AnalyticClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext.html">VtlParser.AnalyticClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAnalyticClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAnalyticFunction_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAnalyticFunction*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAnalyticFunction_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticFunctionContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAnalyticFunction(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext)">VisitAnalyticFunction(VtlParser.AnalyticFunctionContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAnalyticFunction(VtlParser.AnalyticFunctionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext.html">VtlParser.AnalyticFunctionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAnalyticFunction(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticFunctionContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAnalyticInvocation_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAnalyticInvocation*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitAnalyticInvocation_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_AnalyticInvocationContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitAnalyticInvocation(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext)">VisitAnalyticInvocation(VtlParser.AnalyticInvocationContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitAnalyticInvocation(VtlParser.AnalyticInvocationContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext.html">VtlParser.AnalyticInvocationContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitAnalyticInvocation(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.AnalyticInvocationContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitCalcClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitCalcClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitCalcClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_CalcClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitCalcClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext)">VisitCalcClause(VtlParser.CalcClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitCalcClause(VtlParser.CalcClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext.html">VtlParser.CalcClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitCalcClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitCalcExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitCalcExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitCalcExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_CalcExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitCalcExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext)">VisitCalcExpr(VtlParser.CalcExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitCalcExpr(VtlParser.CalcExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext.html">VtlParser.CalcExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitCalcExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CalcExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitCheckDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitCheckDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitCheckDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_CheckDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitCheckDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext)">VisitCheckDatapoint(VtlParser.CheckDatapointContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitCheckDatapoint(VtlParser.CheckDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext.html">VtlParser.CheckDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitCheckDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.CheckDatapointContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitClosedDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitClosedDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitClosedDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ClosedDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitClosedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext)">VisitClosedDataset(VtlParser.ClosedDatasetContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitClosedDataset(VtlParser.ClosedDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext.html">VtlParser.ClosedDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitClosedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ClosedDatasetContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitComponent_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitComponent*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitComponent_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ComponentContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitComponent(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext)">VisitComponent(VtlParser.ComponentContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitComponent(VtlParser.ComponentContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext.html">VtlParser.ComponentContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitComponent(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitComponentID_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitComponentID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitComponentID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ComponentIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitComponentID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext)">VisitComponentID(VtlParser.ComponentIDContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitComponentID(VtlParser.ComponentIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext.html">VtlParser.ComponentIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitComponentID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ComponentIDContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitConstant_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitConstant*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitConstant_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ConstantContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitConstant(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext)">VisitConstant(VtlParser.ConstantContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitConstant(VtlParser.ConstantContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext.html">VtlParser.ConstantContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitConstant(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ConstantContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDatasetClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDatasetClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDatasetClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDatasetClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext)">VisitDatasetClause(VtlParser.DatasetClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitDatasetClause(VtlParser.DatasetClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext.html">VtlParser.DatasetClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitDatasetClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDatasetID_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDatasetID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDatasetID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DatasetIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDatasetID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext)">VisitDatasetID(VtlParser.DatasetIDContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitDatasetID(VtlParser.DatasetIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext.html">VtlParser.DatasetIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitDatasetID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DatasetIDContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDefDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDefDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDefDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DefDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDefDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext)">VisitDefDatapoint(VtlParser.DefDatapointContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitDefDatapoint(VtlParser.DefDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext.html">VtlParser.DefDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitDefDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DefDatapointContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDropClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDropClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitDropClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_DropClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitDropClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext)">VisitDropClause(VtlParser.DropClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitDropClause(VtlParser.DropClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext.html">VtlParser.DropClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitDropClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.DropClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitFilterClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitFilterClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitFilterClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_FilterClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitFilterClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext)">VisitFilterClause(VtlParser.FilterClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitFilterClause(VtlParser.FilterClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext.html">VtlParser.FilterClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitFilterClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FilterClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitFirstWindowLimit_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitFirstWindowLimit*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitFirstWindowLimit_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_FirstWindowLimitContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitFirstWindowLimit(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext)">VisitFirstWindowLimit(VtlParser.FirstWindowLimitContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitFirstWindowLimit(VtlParser.FirstWindowLimitContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext.html">VtlParser.FirstWindowLimitContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitFirstWindowLimit(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.FirstWindowLimitContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitGroupingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitGroupingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitGroupingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_GroupingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitGroupingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext)">VisitGroupingClause(VtlParser.GroupingClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitGroupingClause(VtlParser.GroupingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext.html">VtlParser.GroupingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitGroupingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.GroupingClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitHavingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitHavingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitHavingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_HavingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitHavingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext)">VisitHavingClause(VtlParser.HavingClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitHavingClause(VtlParser.HavingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext.html">VtlParser.HavingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitHavingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitHavingExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitHavingExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitHavingExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_HavingExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitHavingExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext)">VisitHavingExpr(VtlParser.HavingExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitHavingExpr(VtlParser.HavingExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext.html">VtlParser.HavingExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitHavingExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.HavingExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitIfThenElseDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitIfThenElseDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitIfThenElseDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_IfThenElseDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitIfThenElseDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext)">VisitIfThenElseDataset(VtlParser.IfThenElseDatasetContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitIfThenElseDataset(VtlParser.IfThenElseDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext.html">VtlParser.IfThenElseDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitIfThenElseDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseDatasetContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitIfThenElseScalar_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitIfThenElseScalar*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitIfThenElseScalar_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_IfThenElseScalarContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitIfThenElseScalar(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext)">VisitIfThenElseScalar(VtlParser.IfThenElseScalarContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitIfThenElseScalar(VtlParser.IfThenElseScalarContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext.html">VtlParser.IfThenElseScalarContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitIfThenElseScalar(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.IfThenElseScalarContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinAggrClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinAggrClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinAggrClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinAggrClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinAggrClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext)">VisitJoinAggrClause(VtlParser.JoinAggrClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinAggrClause(VtlParser.JoinAggrClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext.html">VtlParser.JoinAggrClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinAggrClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAggrClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinAliasesClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinAliasesClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinAliasesClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinAliasesClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinAliasesClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext)">VisitJoinAliasesClause(VtlParser.JoinAliasesClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinAliasesClause(VtlParser.JoinAliasesClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext.html">VtlParser.JoinAliasesClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinAliasesClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasesClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinAliasExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinAliasExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinAliasExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinAliasExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinAliasExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext)">VisitJoinAliasExpr(VtlParser.JoinAliasExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinAliasExpr(VtlParser.JoinAliasExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext.html">VtlParser.JoinAliasExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinAliasExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinAliasExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinApplyClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinApplyClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinApplyClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinApplyClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinApplyClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext)">VisitJoinApplyClause(VtlParser.JoinApplyClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinApplyClause(VtlParser.JoinApplyClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext.html">VtlParser.JoinApplyClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinApplyClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinApplyClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinCalcClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinCalcClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinCalcClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinCalcClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinCalcClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext)">VisitJoinCalcClause(VtlParser.JoinCalcClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinCalcClause(VtlParser.JoinCalcClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext.html">VtlParser.JoinCalcClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinCalcClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinCalcClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinDropClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinDropClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinDropClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinDropClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinDropClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext)">VisitJoinDropClause(VtlParser.JoinDropClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinDropClause(VtlParser.JoinDropClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext.html">VtlParser.JoinDropClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinDropClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinDropClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext)">VisitJoinExpr(VtlParser.JoinExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinExpr(VtlParser.JoinExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext.html">VtlParser.JoinExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinFilterClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinFilterClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinFilterClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinFilterClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinFilterClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext)">VisitJoinFilterClause(VtlParser.JoinFilterClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinFilterClause(VtlParser.JoinFilterClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext.html">VtlParser.JoinFilterClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinFilterClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinFilterClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinKeepClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinKeepClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinKeepClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinKeepClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinKeepClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext)">VisitJoinKeepClause(VtlParser.JoinKeepClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinKeepClause(VtlParser.JoinKeepClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext.html">VtlParser.JoinKeepClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinKeepClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinKeepClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinRenameClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinRenameClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinRenameClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinRenameClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinRenameClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext)">VisitJoinRenameClause(VtlParser.JoinRenameClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinRenameClause(VtlParser.JoinRenameClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext.html">VtlParser.JoinRenameClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinRenameClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinRenameClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinUsingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinUsingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitJoinUsingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_JoinUsingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitJoinUsingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext)">VisitJoinUsingClause(VtlParser.JoinUsingClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitJoinUsingClause(VtlParser.JoinUsingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext.html">VtlParser.JoinUsingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitJoinUsingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.JoinUsingClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitKeepClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitKeepClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitKeepClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_KeepClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitKeepClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext)">VisitKeepClause(VtlParser.KeepClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitKeepClause(VtlParser.KeepClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext.html">VtlParser.KeepClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitKeepClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.KeepClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitList_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitList*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitList_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ListContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitList(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext)">VisitList(VtlParser.ListContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitList(VtlParser.ListContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext.html">VtlParser.ListContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitList(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ListContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitMembershipDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitMembershipDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitMembershipDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_MembershipDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitMembershipDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext)">VisitMembershipDataset(VtlParser.MembershipDatasetContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitMembershipDataset(VtlParser.MembershipDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext.html">VtlParser.MembershipDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitMembershipDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.MembershipDatasetContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOpenedDataset_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOpenedDataset*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOpenedDataset_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OpenedDatasetContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOpenedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext)">VisitOpenedDataset(VtlParser.OpenedDatasetContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitOpenedDataset(VtlParser.OpenedDatasetContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext.html">VtlParser.OpenedDatasetContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitOpenedDataset(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OpenedDatasetContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOptionalExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOptionalExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOptionalExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OptionalExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOptionalExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext)">VisitOptionalExpr(VtlParser.OptionalExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitOptionalExpr(VtlParser.OptionalExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext.html">VtlParser.OptionalExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitOptionalExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OptionalExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOrderClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOrderClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOrderClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OrderClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOrderClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext)">VisitOrderClause(VtlParser.OrderClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitOrderClause(VtlParser.OrderClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext.html">VtlParser.OrderClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitOrderClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOrderExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOrderExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitOrderExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_OrderExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitOrderExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext)">VisitOrderExpr(VtlParser.OrderExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitOrderExpr(VtlParser.OrderExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext.html">VtlParser.OrderExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitOrderExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.OrderExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitPartitionClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitPartitionClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitPartitionClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_PartitionClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitPartitionClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext)">VisitPartitionClause(VtlParser.PartitionClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitPartitionClause(VtlParser.PartitionClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext.html">VtlParser.PartitionClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitPartitionClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PartitionClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitPivotClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitPivotClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitPivotClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_PivotClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitPivotClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext)">VisitPivotClause(VtlParser.PivotClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitPivotClause(VtlParser.PivotClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext.html">VtlParser.PivotClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitPivotClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.PivotClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRenameClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRenameClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRenameClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RenameClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRenameClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext)">VisitRenameClause(VtlParser.RenameClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitRenameClause(VtlParser.RenameClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext.html">VtlParser.RenameClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitRenameClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRenameExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRenameExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRenameExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RenameExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRenameExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext)">VisitRenameExpr(VtlParser.RenameExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitRenameExpr(VtlParser.RenameExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext.html">VtlParser.RenameExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitRenameExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RenameExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRuleItemDatapoint_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRuleItemDatapoint*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRuleItemDatapoint_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RuleItemDatapointContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRuleItemDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext)">VisitRuleItemDatapoint(VtlParser.RuleItemDatapointContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitRuleItemDatapoint(VtlParser.RuleItemDatapointContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext.html">VtlParser.RuleItemDatapointContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitRuleItemDatapoint(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RuleItemDatapointContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRulesetID_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRulesetID*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRulesetID_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RulesetIDContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRulesetID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext)">VisitRulesetID(VtlParser.RulesetIDContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitRulesetID(VtlParser.RulesetIDContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext.html">VtlParser.RulesetIDContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitRulesetID(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetIDContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRulesetSignature_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRulesetSignature*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitRulesetSignature_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_RulesetSignatureContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitRulesetSignature(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext)">VisitRulesetSignature(VtlParser.RulesetSignatureContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitRulesetSignature(VtlParser.RulesetSignatureContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext.html">VtlParser.RulesetSignatureContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitRulesetSignature(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.RulesetSignatureContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitScalar_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitScalar*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitScalar_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_ScalarContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitScalar(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext)">VisitScalar(VtlParser.ScalarContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitScalar(VtlParser.ScalarContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext.html">VtlParser.ScalarContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitScalar(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.ScalarContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSecondWindowLimit_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSecondWindowLimit*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSecondWindowLimit_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SecondWindowLimitContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSecondWindowLimit(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext)">VisitSecondWindowLimit(VtlParser.SecondWindowLimitContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitSecondWindowLimit(VtlParser.SecondWindowLimitContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext.html">VtlParser.SecondWindowLimitContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitSecondWindowLimit(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SecondWindowLimitContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSetExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSetExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSetExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SetExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSetExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext)">VisitSetExpr(VtlParser.SetExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitSetExpr(VtlParser.SetExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext.html">VtlParser.SetExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitSetExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SetExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitStart_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitStart*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitStart_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_StartContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitStart(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext)">VisitStart(VtlParser.StartContext)</h4>
+  <div class="markdown level1 summary"><p>Node to walk to a tree.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitStart(VtlParser.StartContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext.html">VtlParser.StartContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td><p>Null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitStart(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StartContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitStatement_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitStatement*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitStatement_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_StatementContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitStatement(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext)">VisitStatement(VtlParser.StatementContext)</h4>
+  <div class="markdown level1 summary"><p>Represents a single VTL 2.0 expression. Returns an expression of the assignment. The variable name is the name of the result of the expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitStatement(VtlParser.StatementContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext.html">VtlParser.StatementContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td><p>The VTL 2.0 expression.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitStatement(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.StatementContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSubspaceClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSubspaceClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSubspaceClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SubspaceClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSubspaceClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext)">VisitSubspaceClause(VtlParser.SubspaceClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitSubspaceClause(VtlParser.SubspaceClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext.html">VtlParser.SubspaceClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitSubspaceClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSubspaceExpr_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSubspaceExpr*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitSubspaceExpr_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_SubspaceExprContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitSubspaceExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext)">VisitSubspaceExpr(VtlParser.SubspaceExprContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitSubspaceExpr(VtlParser.SubspaceExprContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext.html">VtlParser.SubspaceExprContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitSubspaceExpr(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.SubspaceExprContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitUnpivotClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitUnpivotClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitUnpivotClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_UnpivotClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitUnpivotClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext)">VisitUnpivotClause(VtlParser.UnpivotClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitUnpivotClause(VtlParser.UnpivotClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext.html">VtlParser.UnpivotClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitUnpivotClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.UnpivotClauseContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitVarSignature_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitVarSignature*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitVarSignature_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_VarSignatureContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitVarSignature(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext)">VisitVarSignature(VtlParser.VarSignatureContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitVarSignature(VtlParser.VarSignatureContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext.html">VtlParser.VarSignatureContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitVarSignature(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.VarSignatureContext)</span></div>
+  <a id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitWindowingClause_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitWindowingClause*"></a>
+  <h4 id="StatisticsPoland_VtlProcessing_Core_Transformations_VisitorTransformer_VisitWindowingClause_StatisticsPoland_VtlProcessing_Core_FrontEnd_Antlr_VtlParser_WindowingClauseContext_" data-uid="StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.VisitWindowingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext)">VisitWindowingClause(VtlParser.WindowingClauseContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IExpression VisitWindowingClause(VtlParser.WindowingClauseContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext.html">VtlParser.WindowingClauseContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html">IExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlBaseVisitor&lt;StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression&gt;.VisitWindowingClause(StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.VtlParser.WindowingClauseContext)</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.FrontEnd.Antlr.IVtlVisitor-1.html">IVtlVisitor&lt;Result&gt;</a>
+  </div>
+  <div>
+      <span class="xref">IParseTreeVisitor&lt;&gt;</span>
+  </div>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces.ITreeTransformer.html">ITreeTransformer</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="StatisticsPoland.VtlProcessing.Core.Infrastructure.Utilities.html#StatisticsPoland_VtlProcessing_Core_Infrastructure_Utilities_In__1___0___0___">Utilities.In&lt;T&gt;(T, T[])</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
