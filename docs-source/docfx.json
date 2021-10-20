@@ -1,0 +1,35 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "Core/Core.csproj",
+            "Target.PlantUML/Target.PlantUML.csproj",
+            "Target.TSQL/Target.TSQL.csproj"
+          ],
+          "src": ".."
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md"
+        ]
+      }
+    ],
+    "dest": "build/site",
+    "globalMetadata": {
+      "_appTitle": "VTL Processing API documentation",
+      "_disableContribution": true,
+      "_enableSearch": true
+    },
+    "markdownEngineName": "markdig"
+  }
+}

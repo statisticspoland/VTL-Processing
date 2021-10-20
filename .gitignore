@@ -13,6 +13,13 @@ obj/
 .vscode/
 .vs
 /docs-source/build/
+/docs-source/**/DROP/
+/docs-source/**/TEMP/
+/docs-source/**/packages/
+/docs-source/**/bin/
+/docs-source/**/obj/
+/docs-source/api/
+
 /Core.Tests/TestResults
 /results
 /coverage.xml
