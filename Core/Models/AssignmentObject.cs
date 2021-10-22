@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    ///  Contains informations of a VTL 2.0 expression assignment object.
+    /// Contains informations of a VTL 2.0 expression assignment object.
     /// </summary>
     public class AssignmentObject
     {

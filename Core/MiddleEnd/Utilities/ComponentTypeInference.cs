@@ -130,7 +130,7 @@
         }
 
         /// <summary>
-        /// Infers a basic data type of a component by a check operator expression.
+        /// Infers a basic data type of a component by a "check" operator expression.
         /// </summary>
         /// <param name="expr">The component expression.</param>
         /// <param name="componentType">The type of a component.</param>
@@ -147,7 +147,7 @@
                 checkExpr = expr.GetFirstAncestorExpr(name);
             }
                 
-            if (checkExpr == null) // operator check może mieć ResultName o nazwie zmiennej, jeżeli jest w korzeniu
+            if (checkExpr == null) // "check" operator could have ResultName as variable name if its in a root
                 checkExpr = expr.GetFirstAncestorExpr(); // root
 
             if (checkExpr.OperatorSymbol.In(checkSymbols))

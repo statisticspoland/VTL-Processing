@@ -14,6 +14,7 @@
         /// <summary>
         /// Initializes a new instance of nthe <see cref="DataModelAggregator"/> class.
         /// </summary>
+        /// <param name="mapper">The environment names mapper.</param>
         public DataModelAggregator(IEnvironmentMapper mapper)
         {
             this.EnvironmentMapper = mapper;

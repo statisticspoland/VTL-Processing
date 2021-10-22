@@ -3,16 +3,15 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
 
     /// <summary>
-    /// The VTL 2.0 regular model configuration interface.
+    /// The VTL 2.0 dictionary model configuration interface.
     /// </summary>
     public interface IDictionaryModelConfiguration
     {
         /// <summary>
         /// Adds a dataset to the model.
         /// </summary>
-        /// <param name="namespace">The name of namespace.</param>
         /// <param name="name">The name of dataset.</param>
-        /// <param name="componentSetting">The tuple defining an element of structure of the dataset.</param>
+        /// <param name="componentSettings">The tuple defining an element of structure of the dataset.</param>
         IDictionaryModelConfiguration AddDataSet(string name, params (ComponentType, BasicDataType, string)[] componentSettings);
     }
 }

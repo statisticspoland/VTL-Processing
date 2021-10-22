@@ -5,6 +5,9 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using System;
 
+    /// <summary>
+    /// Interface of a VTL 2.0 translator representation configuration.
+    /// </summary>
     public interface ITranslatorConfig
     {
         /// <summary>
@@ -15,7 +18,7 @@
         /// <summary>
         /// Adds logging services.
         /// </summary>
-        /// <param name="config">The ILoggingBuilder configuration delegate.</param>
+        /// <param name="config">The <see cref="ILoggingBuilder"/> configuration delegate.</param>
         void AddLogging(Action<ILoggingBuilder> config);
 
         /// <summary>

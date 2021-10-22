@@ -11,8 +11,8 @@
     [Serializable]
     public class VtlOperatorError : ApplicationException, IVtlError
     {
-        private readonly string msg;
-        private readonly string opName;
+        private readonly string _msg;
+        private readonly string _opName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VtlOperatorError"/> class.
@@ -23,8 +23,8 @@
         public VtlOperatorError(IExpression expression, string @operator, string message) : base(message)
         {
             this.Line = expression.LineNumber;
-            this.msg = message;
-            this.opName = @operator;
+            this._msg = message;
+            this._opName = @operator;
         }
 
         /// <summary>
@@ -37,8 +37,8 @@
         public VtlOperatorError(IExpression expression, string @operator, string message, Exception innerException) : base(message, innerException)
         {
             this.Line = expression.LineNumber;
-            this.msg = message;
-            this.opName = @operator;
+            this._msg = message;
+            this._opName = @operator;
         }
 
         public int Line { get; private set; }
@@ -49,7 +49,7 @@
 
         public override string ToString()
         {
-            string result = $"{this.opName} operator error at line {this.Line} | {this.msg}";
+            string result = $"{this._opName} operator error at line {this.Line} | {this._msg}";
 
             #if DEBUG
                 result = $"{this.StackTrace}\n{result}";

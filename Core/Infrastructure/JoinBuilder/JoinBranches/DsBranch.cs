@@ -52,10 +52,10 @@
         }
 
         /// <summary>
-        /// Moves expression with "get", "ref", "#" or "join" operator and replaces it with alias expression.
+        /// Moves expression with "get", "ref", "#" or "join" operator and replaces it with an alias expression.
         /// </summary>
-        /// <param name="expr">Expression to move.</param>
-        /// <param name="ds">Ds branch.</param>
+        /// <param name="expr">The expression to move.</param>
+        /// <param name="ds">The "ds" branch.</param>
         private void MoveNamesToAliases(IExpression expr, IExpression ds)
         {
             if (!expr.IsScalar)
@@ -77,7 +77,7 @@
 
                     if (dsExpr == null)
                     {
-                        // Jeżeli gałąź ds nie zawiera danego operandu
+                        // if "ds" branch doesn't contain the operand
                         signature = $"ds{ds.Operands.Count + 1}";
                         if (expr is IJoinExpression) dsExpr = this._exprFactory.JoinExprResolver(expr);
                         else
@@ -92,10 +92,10 @@
                             dsExpr.ReferenceExpression = expr.ReferenceExpression;
                         }
 
-                        ds.AddOperand(signature, dsExpr); // dodanie operandu do gałęzi ds
+                        ds.AddOperand(signature, dsExpr); // addition of operand to "ds" branch
                     }
 
-                    // Podmiana operandu na sygnaturę:
+                    // replacement of operand to signature
                     expr.ResultName = "Alias";
                     expr.ExpressionText = signature;
                     expr.ParamSignature = signature;

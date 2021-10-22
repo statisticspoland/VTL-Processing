@@ -9,24 +9,24 @@
     /// </summary>
     public class VtlSyntaxErrorListener : IAntlrErrorListener<IToken>
     {
-        private readonly List<VtlSyntaxError> errors;
+        private readonly List<VtlSyntaxError> _errors;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VtlSyntaxErrorListener"/> class.
         /// </summary>
         public VtlSyntaxErrorListener()
         {
-            this.errors = new List<VtlSyntaxError>();
+            this._errors = new List<VtlSyntaxError>();
         }
 
         /// <summary>
         /// Gets the errors enumerator.
         /// </summary>
-        public IEnumerable<VtlSyntaxError> Errors => this.errors;
+        public IEnumerable<VtlSyntaxError> Errors => this._errors;
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            this.errors.Add(new VtlSyntaxError(msg, line));
+            this._errors.Add(new VtlSyntaxError(msg, line));
         }
     }
 }

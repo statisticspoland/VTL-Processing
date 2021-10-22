@@ -3,16 +3,21 @@
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
 
+    /// <summary>
+    /// The configuration of a VTL 2.0 translator.
+    /// </summary>
     internal class VtlProcessingConfig : IVtlProcessingConfig
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VtlProcessingConfig"/> class.
+        /// </summary>
         public VtlProcessingConfig()
         {
-            this.EnvironmentMapper = new EnvironmentMapper();
-            this.DataModels = new DataModelAggregator(this.EnvironmentMapper);
+            this.DataModels = new DataModelAggregator(new EnvironmentMapper(this.DataModels));
         }
 
         public IDataModelAggregator DataModels { get; }
 
-        public IEnvironmentMapper EnvironmentMapper { get; }
+        public IEnvironmentMapper EnvironmentMapper => this.DataModels.EnvironmentMapper;
     }
 }

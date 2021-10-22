@@ -19,7 +19,7 @@
         ICollection<IDataModelProvider> DataModelsCollection { get; set; }
 
         /// <summary>
-        /// Gets the environmentm names mapper.
+        /// Gets the environment names mapper.
         /// </summary>
         IEnvironmentMapper EnvironmentMapper { get; }
     }

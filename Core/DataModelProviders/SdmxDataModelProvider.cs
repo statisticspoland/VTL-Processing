@@ -22,12 +22,20 @@
     using System.Net;
     using System.Net.Http;
 
+    /// <summary>
+    /// The SDMX VTL 2.0 data model representation.
+    /// </summary>
     public class SdmxDataModelProvider : DataModelProviderBase
     {
         private readonly IStructureParsingManager _structureParsingManager;
         private readonly IReadableDataLocationFactory _dataLocationFactory;
         private readonly IReadableDataLocation _readableDataLocation;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
         private SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName)
             : base(rootModel)
         {

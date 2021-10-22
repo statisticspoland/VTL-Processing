@@ -56,7 +56,7 @@
         }
 
         /// <summary>
-        /// Gets a fused structure from agiven super dataset and a sub dataset.
+        /// Gets a fused structure from a given super dataset and a sub dataset.
         /// </summary>
         /// <param name="superset">The super dataset.</param>
         /// <param name="subset">The subset.</param>

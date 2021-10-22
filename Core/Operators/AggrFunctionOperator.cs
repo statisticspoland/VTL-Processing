@@ -23,7 +23,6 @@
         /// </summary>
         /// <param name="joinApplyMeasuresOp">The join apply measure operator.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
-        /// <param name="symbol">The symbol of the operator.</param>
         public AggrFunctionOperator(IJoinApplyMeasuresOperator joinApplyMeasuresOp, DataStructureResolver dsResolver)
         {
             this._joinApplyMeasuresOp = joinApplyMeasuresOp;

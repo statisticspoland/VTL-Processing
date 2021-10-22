@@ -33,12 +33,12 @@
 
             foreach (StructureComponent identifier in (datasetExpr as IJoinExpression).GetSubsetAliasStructure().Identifiers)
             {
-                usingBranch.AddOperand(identifier.ComponentName, this.exprFactory.GetExpression("Identifier", ExpressionFactoryNameTarget.ResultName)); // przypisanie wszystkich wspólnych id do gałęzi using
+                usingBranch.AddOperand(identifier.ComponentName, this.exprFactory.GetExpression("Identifier", ExpressionFactoryNameTarget.ResultName)); // assignment of all common identifiers to "using" branch
                 usingBranch.OperandsCollection.Last().ExpressionText = identifier.ComponentName;
                 usingBranch.ExpressionText += $"{identifier.ComponentName}, ";
             }
 
-            usingBranch.ExpressionText = usingBranch.ExpressionText.Remove(usingBranch.ExpressionText.Length - 2); // usunięcie ", "
+            usingBranch.ExpressionText = usingBranch.ExpressionText.Remove(usingBranch.ExpressionText.Length - 2); // removement of ", "
 
             return usingBranch;
         }

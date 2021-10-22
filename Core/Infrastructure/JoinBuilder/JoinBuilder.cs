@@ -22,7 +22,7 @@
         /// Initializes a new instance of the <see cref="JoinBuilder"/> class.
         /// </summary>
         /// <param name="joinExprResolver">The join expression resolver.</param>
-        /// <param name="joinBranches">The join branches preparers.</param>
+        /// <param name="joinBranches">The join branches collection.</param>
         public JoinBuilder(JoinExpressionResolver joinExprResolver, IEnumerable<IJoinBranch> joinBranches)
         {
             this._joinExprResolver = joinExprResolver;
@@ -162,7 +162,7 @@
         }
 
         /// <summary>
-        /// Validates possible pivot/unpivot/subspace clause.
+        /// Validates a possible pivot/unpivot/subspace clause.
         /// </summary>
         private void ValidateClause()
         {

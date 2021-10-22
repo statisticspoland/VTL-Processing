@@ -31,7 +31,7 @@
         {
             /*
             This method is using mainly for dataset "comparison" operators. Example: DS_r := X = Y;
-            The method can be used to generate "rename" operator expression renaming given dataset expression's single measure name to "bool_var".
+            The method can be used to generate a "rename" operator expression renaming a given dataset expression's single measure name to "bool_var".
             */
 
             IExpression renameBranch = this._exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);

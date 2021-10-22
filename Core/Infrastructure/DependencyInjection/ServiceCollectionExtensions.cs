@@ -3,7 +3,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd;
     using StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Attributes;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder;
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces;
@@ -14,7 +13,6 @@
     using StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities;
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Modifiers.Utilities.Interfaces;
-    using StatisticsPoland.VtlProcessing.Core.Operators;
     using StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement;
     using StatisticsPoland.VtlProcessing.Core.Operators.Interfaces;
     using StatisticsPoland.VtlProcessing.Core.Transformations;
@@ -66,7 +64,7 @@
             services.AddScoped<ISchemaModifiersApplier, SchemaModifiersApplier>();
 
             // middle end schema modifier chain
-            //services.AddScoped<ISchemaModifier, DeadCodeModifier>(); // Wyłączone do testów wyrażeń nietrwałego przypisania
+            services.AddScoped<ISchemaModifier, DeadCodeModifier>();
             services.AddScoped<ISchemaModifier, TypeInferenceModifier>();
             services.AddScoped<ISchemaModifier, JoinUsingFillingModifier>();
             services.AddScoped<ISchemaModifier, DsOperatorsToJoinsModifier>();
@@ -78,6 +76,7 @@
         /// Adds the VtlProcessing services collection.
         /// </summary>
         /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
+        /// <param name="config">The configuration of a VtlProcessing VTL 2.0 translator.</param>
         /// <returns>The service collection.</returns>
         public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
         {

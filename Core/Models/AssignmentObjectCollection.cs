@@ -10,37 +10,37 @@
     /// </summary>
     public sealed class AssignmentObjectCollection : ICollection<AssignmentObject>
     {
-        private readonly ICollection<AssignmentObject> items;
+        private readonly ICollection<AssignmentObject> _items;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="AssignmentObjectCollection"/> class.
         /// </summary>
         public AssignmentObjectCollection()
         {
-            this.items = new List<AssignmentObject>();
+            this._items = new List<AssignmentObject>();
         }
 
-        public AssignmentObject this[int index] => this.items.ToArray()[index];
+        public AssignmentObject this[int index] => this._items.ToArray()[index];
 
-        public AssignmentObject this[string name] => this.items.FirstOrDefault(item => item.Name == name);
+        public AssignmentObject this[string name] => this._items.FirstOrDefault(item => item.Name == name);
 
-        public int Count => this.items.Count;
+        public int Count => this._items.Count;
 
         public bool IsReadOnly => false;
 
         public void Add(AssignmentObject item)
         {
-            this.items.Add(item);
+            this._items.Add(item);
         }
 
         public void Clear()
         {
-            this.items.Clear();
+            this._items.Clear();
         }
 
         public bool Contains(AssignmentObject item)
         {
-            return this.items.Contains(item);
+            return this._items.Contains(item);
         }
 
         public void CopyTo(AssignmentObject[] array, int arrayIndex)
@@ -50,12 +50,12 @@
 
         public IEnumerator<AssignmentObject> GetEnumerator()
         {
-            return this.items.GetEnumerator();
+            return this._items.GetEnumerator();
         }
 
         public bool Remove(AssignmentObject item)
         {
-            return this.items.Remove(item);
+            return this._items.Remove(item);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@
         /// <param name="match"></param>
         public void RemoveAll(Predicate<AssignmentObject> match)
         {
-            (this.items as List<AssignmentObject>).RemoveAll(match);
+            (this._items as List<AssignmentObject>).RemoveAll(match);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@
         /// <returns>The array of assignment objects.</returns>
         public AssignmentObject[] ToArray()
         {
-            return this.items.ToArray();
+            return this._items.ToArray();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@
         /// <returns>The list of assignment objects.</returns>
         public List<AssignmentObject> ToList()
         {
-            return this.items.ToList();
+            return this._items.ToList();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

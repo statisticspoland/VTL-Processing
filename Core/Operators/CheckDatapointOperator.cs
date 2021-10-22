@@ -68,6 +68,10 @@
             return structure;
         }
 
+        /// <summary>
+        /// Validates expression.
+        /// </summary>
+        /// <param name="expr">The expression to validate.</param>
         private void Validate(IExpression expr)
         {
             IRuleset ruleset = expr.ContainingSchema.Rulesets.FirstOrDefault(ruleset => ruleset.Name == expr.Operands["ruleset"].ExpressionText);

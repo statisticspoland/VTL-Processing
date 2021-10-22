@@ -26,6 +26,9 @@
             this._name = name;
         }
 
+        /// <summary>
+        /// Gets or sets the operator keyword.
+        /// </summary>
         public string Keyword { get; set; }
 
         /// <summary>

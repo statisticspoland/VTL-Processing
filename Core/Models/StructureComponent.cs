@@ -18,8 +18,8 @@
         /// Initialises a new instance of the <see cref="StructureComponent"/> class.
         /// </summary>
         /// <param name="valueDomain">The value domain.</param>
-        /// <param name="compType">The component type.</param>
         /// <param name="name">The component name.</param>
+        /// <param name="compType">The component type.</param>
         public StructureComponent(ValueDomain valueDomain, string name = "VALUE", ComponentType compType = ComponentType.Measure)
         {
             this.ValueDomain = valueDomain;
@@ -32,8 +32,8 @@
         /// Initialises a new instance of the <see cref="StructureComponent"/> class.
         /// </summary>
         /// <param name="dataType">The data type.</param>
-        /// <param name="compType">The component type.</param>
         /// <param name="name">The component name.</param>
+        /// <param name="compType">The component type.</param>
         public StructureComponent(BasicDataType dataType, string name = "VALUE", ComponentType compType = ComponentType.Measure)
             : this(new ValueDomain(dataType), name, compType)
         {
