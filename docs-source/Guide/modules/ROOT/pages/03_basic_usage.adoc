@@ -85,7 +85,7 @@ It is registered by using:
 configure.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\your_file_name.json");
 ----
 
-===== Dictionary Data Model Provider
+==== Dictionary Data Model Provider
 
 It allows to programmatically fill data model metadata.
 The default namespace name should be passed as a parameter.
@@ -115,7 +115,7 @@ configure.DataModels.AddDictionaryModel((config) =>
   , "def_ns");
 ----
 
-===== Sql Server Data Model Provider
+==== Sql Server Data Model Provider
 
 It loads data model from the provided Sql Server database.
 
