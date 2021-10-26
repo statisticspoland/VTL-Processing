@@ -88,7 +88,7 @@
         /// Checks if expression or its operands could have null values.
         /// </summary>
         /// <param name="expression">Expression to check.</param>
-        /// <returns>Value specyfing if expression or its operands could have null values</returns>
+        /// <returns>Value indicating if expression or its operands could have null values</returns>
         private bool AreNullValues(IExpression expression)
         {
             foreach (IExpression expr in expression.OperandsCollection)

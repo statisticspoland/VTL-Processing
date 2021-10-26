@@ -19,7 +19,7 @@
         DatasetType DatasetType { get; set; }
 
         /// <summary>
-        /// Gets the value specyfing if the data structure is a single component.
+        /// Gets the value indicating if the data structure is a single component.
         /// </summary>
         bool IsSingleComponent { get; }
 
@@ -69,7 +69,7 @@
         /// <param name="checkMeasures">Specifies if measures should be checked.</param>
         /// <param name="checkAttributes">Specifies if viral attributes should be checked.</param>
         /// <param name="allowNulls">Specifies if null values are equal to every type. <br />It doesn't apply to identifiers.</param>
-        /// <returns>The value specyfing if it's a superset.</returns>
+        /// <returns>The value indicating if it's a superset.</returns>
         bool IsSupersetOf(IDataStructure structure, bool checkMeasures = false, bool checkAttributes = false, bool allowNulls = false);
 
         /// <summary>

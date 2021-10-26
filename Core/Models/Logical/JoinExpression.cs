@@ -169,7 +169,7 @@
         /// </summary>
         /// <param name="child">The first expression.</param>
         /// <param name="parent">The second expression.</param>
-        /// <returns>Value specyfing if a given first expression is child of a given second expression.</returns>
+        /// <returns>Value indicating if a given first expression is child of a given second expression.</returns>
         private bool ExprIsChildOf(IExpression child, IExpression parent)
         {
             foreach (IExpression expr in parent.OperandsCollection)
