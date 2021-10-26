@@ -18,48 +18,53 @@
             }
         }
 
-        private void MapName(IExpression operand, bool isRoot)
+        /// <summary>
+        /// Maps name of an expression object.
+        /// </summary>
+        /// <param name="expr">The expression object.</param>
+        /// <param name="isRoot">The value specifying if the expression is a root expression.</param>
+        private void MapName(IExpression expr, bool isRoot)
         {
-            foreach (IExpression op in operand.OperandsCollection)
+            foreach (IExpression op in expr.OperandsCollection)
             {
                 this.MapName(op, false);
             }
 
             if (isRoot)
             {
-                if (operand.IsScalar)
+                if (expr.IsScalar)
                 {
-                    operand.ResultMappedName = $"@{operand.ResultName}";
+                    expr.ResultMappedName = $"@{expr.ResultName}";
                 }
                 else
                 {
                     string symbol = string.Empty;
-                    if (operand.ContainingSchema.AssignmentObjects.FirstOrDefault(ao => ao.Name == operand.ResultName && !ao.IsPersistentAssignment) != null)
+                    if (expr.ContainingSchema.AssignmentObjects.FirstOrDefault(ao => ao.Name == expr.ResultName && !ao.IsPersistentAssignment) != null)
                     {
                         symbol = "#";
                     }
 
-                    operand.ResultMappedName = $"{symbol}{operand.ResultName}";
+                    expr.ResultMappedName = $"{symbol}{expr.ResultName}";
                 }
             }
-            else if (operand.OperatorSymbol == "ref" && operand.ResultName != "Alias")
+            else if (expr.OperatorSymbol == "ref" && expr.ResultName != "Alias")
             {
-                if (operand.IsScalar)
+                if (expr.IsScalar)
                 {
-                    operand.ResultMappedName = $"@{operand.ExpressionText}";
+                    expr.ResultMappedName = $"@{expr.ExpressionText}";
                 }
                 else
                 {
                     string symbol = string.Empty;
-                    if (operand.ContainingSchema.AssignmentObjects.FirstOrDefault(ao => ao.Name == operand.ExpressionText && !ao.IsPersistentAssignment) != null)
+                    if (expr.ContainingSchema.AssignmentObjects.FirstOrDefault(ao => ao.Name == expr.ExpressionText && !ao.IsPersistentAssignment) != null)
                     {
                         symbol = "#";
                     }
 
-                    operand.ResultMappedName = $"{symbol}{operand.ExpressionText}";
+                    expr.ResultMappedName = $"{symbol}{expr.ExpressionText}";
                 }
             }
-            else operand.ResultMappedName = operand.ExpressionText;
+            else expr.ResultMappedName = expr.ExpressionText;
         }
     }
 }

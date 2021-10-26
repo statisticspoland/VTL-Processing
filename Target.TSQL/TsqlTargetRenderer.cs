@@ -109,7 +109,7 @@
         public string Render(IExpression expression)
         {
             this._mapper.MapNames(expression.ContainingSchema);
-            this._refs.TakeNonPersistentExprs(this._schemaResolver()); // wyczyszczenie referencji
+            this._refs.TakeNonPersistentExprs(this._schemaResolver()); // clear of references
 
             return this._opRendererResolver(expression.OperatorSymbol).Render(expression);
         }

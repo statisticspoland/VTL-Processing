@@ -35,7 +35,7 @@
             string name = expr1.ExpressionText;
 
             if (expr.CurrentJoinExpr.Structure.Components.FirstOrDefault(comp => comp.BaseComponentName == name) == null)
-                return string.Empty; // Brak komponentu w strukturze wynikowej
+                return string.Empty; // no component in a result structure
 
             if (expr.CurrentJoinExpr.Operands.ContainsKey("rename"))
             {

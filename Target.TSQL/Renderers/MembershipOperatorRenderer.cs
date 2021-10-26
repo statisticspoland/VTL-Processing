@@ -58,7 +58,7 @@
                 }
             }
 
-            sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n"
+            sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n"
             sb.AppendLine();
 
             string[] closingKeywords = new string[] { "(", ")", " AS t" };

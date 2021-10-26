@@ -48,7 +48,7 @@
                 result.AppendLine($"{identifier.ComponentName} {symbol} ds.{identifier.ComponentName} AND");
             }
 
-            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // usunięcie " AND\n"
+            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // removement of " AND\n"
             result.Append(") AS t)");
 
             return result.ToString();

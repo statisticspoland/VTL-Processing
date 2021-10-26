@@ -50,7 +50,7 @@
 
             if (expr.Structure.Measures.Count == 0)
             {
-                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n" 
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n" 
                 sb.AppendLine();
             }
 
@@ -63,7 +63,7 @@
 
             if (expr.Structure.ViralAttributes.Count == 0)
             {
-                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n" 
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n" 
                 sb.AppendLine();
             }
 
@@ -74,7 +74,7 @@
 
             if (expr.Structure.ViralAttributes.Count > 0)
             {
-                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n" 
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n" 
                 sb.AppendLine();
             }
             

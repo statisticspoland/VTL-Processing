@@ -18,8 +18,17 @@
     /// <param name="key">The operator key.</param>
     public delegate IOperatorRenderer OperatorRendererResolver(string key);
 
+    /// <summary>
+    /// The <see cref="IServiceCollection"/> extension methods whose add the TSQL target renderer to it.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds the TSQL target renderer to a service collection.
+        /// </summary>
+        /// <param name="services">The instance of the service collection.</param>
+        /// <param name="config">The builder of the TSQL target renderer.</param>
+        /// <returns>The service collection.</returns>
         public static IServiceCollection AddTsqlTarget(this IServiceCollection services, Action<ITargetBuilder> config = null)
         {
             services.AddScoped<ITargetRenderer, TsqlTargetRenderer>();

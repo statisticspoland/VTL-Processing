@@ -61,7 +61,7 @@
             }
             else
             {
-                result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 3)); // usunięcie ",\n"
+                result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 3)); // removement of ",\n"
                 result.AppendLine();
             }
             result.AppendLine("FROM (");
@@ -85,13 +85,13 @@
                     }
                     else
                     {
-                        result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 3)); // usunięcie ",\n"
+                        result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 3)); // removement of ",\n"
                         result.AppendLine();
                     }
 
                     result.AppendLine($"FROM {datasetName} GROUP BY");
                 }
-                else result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 2)); // usunięcie ", "
+                else result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 2)); // removement of ", "
             }
 
             result.AppendLine(") AS ds1");
@@ -152,7 +152,7 @@
 
                 if (i == 1)
                 {
-                    result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 5)); // usunięcie "AND\n"
+                    result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 5)); // removement of "AND\n"
                     result.AppendLine();
                     result.AppendLine($"ORDER BY");
                 }
@@ -221,14 +221,14 @@
 
                         if (!removed)
                         {
-                            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // usunięcie " AND\n"
+                            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // removement of " AND\n"
                             result.AppendLine();
                             result.AppendLine("GROUP BY ");
                             removed = true;
                         }
                     }
 
-                    result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 3)); // usunięcie ",\n"
+                    result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 3)); // removement of ",\n"
                     result.AppendLine();
                     result.Append(")");
                     break;

@@ -3,12 +3,12 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
 
     /// <summary>
-    /// The TSQL join select query builder interface.
+    /// The TSQL "join select" query builder interface.
     /// </summary>
     internal interface IJoinSelectBuilder
     {
         /// <summary>
-        /// Builds a TSQL join select query.
+        /// Builds a TSQL "join select" query.
         /// </summary>
         /// <returns>The TSQL Select query.</returns>
         string Build();

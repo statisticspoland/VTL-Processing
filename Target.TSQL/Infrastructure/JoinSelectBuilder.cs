@@ -13,7 +13,7 @@
     using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
 
     /// <summary>
-    /// Visits an "apply" branch of a "join" operator expression and renders measures for the TSQL join select query.
+    /// Visits an "apply" branch of a "join" operator expression and renders measures for the TSQL "join select" query.
     /// </summary>
     /// <param name="applyBranch">The "apply" branch of a "join" operator which parameters shall be used to render.</param>
     /// <param name="measure">The selected measure with the old name to assign in the translated code.</param>
@@ -22,7 +22,7 @@
     public delegate string JoinMeasuresRenderer(IExpression applyBranch, StructureComponent measure, StructureComponent renamedMeasure);
 
     /// <summary>
-    /// The TSQL join select query builder.
+    /// The TSQL "join select" query builder.
     /// </summary>
     internal sealed class JoinSelectBuilder : IJoinSelectBuilder
     {
@@ -265,7 +265,7 @@
                         if (propagate) sb.AppendLine($"{this._propagationAlgorithm.Propagate(attributes[i], aliases)} AS {attributes[i].ComponentName.GetNameWithoutAlias()},");
                         if (this.joinExpr.Operands.ContainsKey("group"))
                         {
-                            // TODO: Obsługa agregacji z propagacją atrybutów
+                            // TODO: Support for aggregation with attributes propagation
                             string attributesText = sb.ToString();
                             string[] split = attributesText.Split(",\r\n");
                             string lastAttribute = split[split.Length - 2];
@@ -292,14 +292,14 @@
 
                 if (sb.ToString() != string.Empty)
                 {
-                    sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n" 
+                    sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n" 
                     sb.AppendLine();
                 }
             }
             else if (this.parts["measures"] != string.Empty)
             {
-                // Jeżeli nie ma atrybutów wirusowych i istnieją miary
-                this.parts["measures"] = this.parts["measures"].ToString().Remove(this.parts["measures"].Length - 3); // usunięcie ",\n" z measures"
+                // If there are not viral attributes and measures exist
+                this.parts["measures"] = this.parts["measures"].ToString().Remove(this.parts["measures"].Length - 3); // removement of ",\n" from measures"
                 sb.AppendLine();
             }
             
@@ -392,7 +392,7 @@
                     }
                 }
 
-                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n"
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n"
                 sb.AppendLine();
             }
 
@@ -425,19 +425,19 @@
             StringBuilder sb = new StringBuilder();
             if (alias.OperatorSymbol == "ref")
             {
-                // Jeżeli operator ref
+                // if "ref" operator
                 sb.AppendLine($"{this._envMapper.Map(alias.ResultMappedName)} AS {alias.ParamSignature} ");
             }
             else if (alias.OperatorSymbol.In("join", "#"))
             {
-                // Jeżeli operator join
+                // if "join" operator
                 sb.AppendLine($"(");
                 sb.Append(this._opRendererResolver(alias.OperatorSymbol).Render(alias));
                 sb.AppendLine($") AS {alias.ParamSignature} ");
             }
             else
             {
-                // Jeżeli inny operator
+                // other operators
                 sb.AppendLine($"{this._envMapper.Map(this.GetExprSource(alias).ExpressionText)} AS {alias.ParamSignature} ");
             }
 
@@ -455,7 +455,7 @@
 
             if (this.joinExpr.Operands.ContainsKey("using") && alias.ParamSignature != this.joinExpr.Operands["ds"].OperandsCollection.First().ParamSignature)
             {
-                // Jeżeli nie pierwszy alias
+                // if not the first alias
                 sb.AppendLine("ON");
                 foreach (IExpression usingExpr in this.joinExpr.Operands["using"].OperandsCollection)
                 {
@@ -464,20 +464,20 @@
                     {
                         if (alias.ParamSignature == match.ParamSignature)
                         {
-                            // Jeżeli operator, do którego odwołuje się alias
+                            // if the expression which alias references to
                             break;
                         }
 
                         if (alias.Structure.Identifiers.FirstOrDefault(id => id.BaseComponentName == usingExpr.ParamSignature) != null)
                         {
-                            // Jeżeli operator do którego odwołuje się alias posiada dany idetyfikator
-                            sb.AppendLine($"{match.ParamSignature}.{usingExpr.ParamSignature} = {alias.ParamSignature}.{usingExpr.ParamSignature} AND"); // Skojarzenie aliasów po id
+                            // if the common using identifier of all alias expressions
+                            sb.AppendLine($"{match.ParamSignature}.{usingExpr.ParamSignature} = {alias.ParamSignature}.{usingExpr.ParamSignature} AND"); // matching aliases by id
                             break;
                         }
                     }
                 }
 
-                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 5)); // usunięcie "AND\n"
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 5)); // removement of "AND\n"
                 sb.AppendLine();
             }
 
@@ -491,7 +491,7 @@
         /// <returns>The TSQL translated code.</returns>
         private string RenderIfThenElseIdentifier(StructureComponent identifier)
         {
-            // Get aliases of every if-then-else branch:
+            // Get aliases of every "if-then-else" branch:
             IExpression[] ifExprAliases = this.joinExpr.Operands["ds"].OperandsCollection
                 .Where(alias => alias.ParamSignature.In(this.joinExpr.Operands["apply"].Operands["if"].GetDescendantExprs("Alias").Select(a => a.ExpressionText).ToArray())).ToArray();
             IExpression[] thenExprAliases = this.joinExpr.Operands["ds"].OperandsCollection
@@ -499,7 +499,7 @@
             IExpression[] elseExprAliases = this.joinExpr.Operands["ds"].OperandsCollection
                 .Where(alias => alias.ParamSignature.In(this.joinExpr.Operands["apply"].Operands["else"].GetDescendantExprs("Alias").Select(a => a.ExpressionText).ToArray())).ToArray();
 
-            // Get subset alias of every if-then-else branch:
+            // Get subset alias of every "if-then-else" branch:
             IExpression ifExprAlias = JoinExpression.GetSubsetAlias(ifExprAliases);
             IExpression thenExprAlias = JoinExpression.GetSubsetAlias(thenExprAliases);
             IExpression elseExprAlias = JoinExpression.GetSubsetAlias(elseExprAliases);

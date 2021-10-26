@@ -1,14 +1,14 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces
 {
     /// <summary>
-    /// The target builder interface.
+    /// The builder interface for the TSQL target renderer.
     /// </summary>
     public interface ITargetBuilder
     {
         /// <summary>
-        /// Adds comments to the target translated TSQL code.
+        /// Adds comments to the translated TSQL code.
         /// </summary>
-        /// <returns>Instance of the builder.</returns>
+        /// <returns>Instance of the builder.</returns>A
         ITargetBuilder AddComments();
 
         /// <summary>

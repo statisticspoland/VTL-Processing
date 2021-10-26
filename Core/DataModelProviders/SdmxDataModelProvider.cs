@@ -74,7 +74,7 @@
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
         /// <param name="namespaceName">The namespace name.</param>
-		/// <param name="strUrl">The URL path to SMDX file.</param>
+		/// <param name="strUrl">The URL path to a SMDX file.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, string strUrl)
             : this(rootModel, namespaceName)
         {
@@ -92,7 +92,7 @@
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
         /// <param name="namespaceName">The namespace name.</param>
-		/// <param name="bytes">The SDMX loaded file as byte array.</param>
+		/// <param name="bytes">The SDMX loaded file as a byte array.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, byte[] bytes)
             : this(rootModel, namespaceName)
         {
@@ -112,9 +112,9 @@
         }
 
         /// <summary>
-        /// Gets Maintainable SDMXObjects from workspace.
+        /// Gets Maintainable SDMX objects from workspace.
         /// </summary>
-        /// <returns>Maintainable SDMX Object</returns>
+        /// <returns>Maintainable SDMX objects.</returns>
         private ISet<IMaintainableObject> GetMaintainableObjects()
         {
             IStructureWorkspace workspace;
@@ -169,7 +169,7 @@
         /// Maps a SDMX text data type to a VTL 2.0 data type.
         /// </summary>
         /// <param name="type">The type of the SDMX text data.</param>
-        /// <returns>The basic data type of VTL 2.0.</returns>
+        /// <returns>The basic VTL 2.0 data type.</returns>
         private BasicDataType mappingSDMX(TextEnumType type)
         {
             BasicDataType basicDataType = type switch
