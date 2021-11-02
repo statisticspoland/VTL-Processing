@@ -185,6 +185,11 @@ W tabelach reprezentujących struktury danych nie w każdym przypadku wartości 
 
 Wartości komponentów typu `bool_var` oraz nulle są pisane raz dużymi, a raz małymi literami. Powinno się przyjąć jeden styl.
 
+=== Nowa gramatyka języka VTL 2.0
+
+Pierwsza wersja gramatyki języka VTL 2.0, z którą odbywała się praca przy projekcie była pełna niejasności oraz błędów. Dla potrzeb projektu została napisana od zera całkiem nowa, autorska gramatyka języka VTL 2.0. W lipcu 2020 roku została opublikowana druga oficjalna wersja gramatyki VTL 2.0, jednak w projekcie nadal używana jest autorska wersja.
+
+https://sdmx.org/?sdmx_news=new-version-of-the-vtl-2-0-extended-backus-naur-form-july-2020
 
 
 
