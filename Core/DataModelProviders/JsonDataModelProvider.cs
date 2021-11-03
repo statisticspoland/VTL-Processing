@@ -35,6 +35,9 @@
             this.LoadData(jsonFilePath);
         }
 
+        /// <summary>
+        /// The collection of data structures.
+        /// </summary>
         public ICollection<DataStructure> DataStructuresCollection { get; set; }
 
         public override IDataStructure GetDatasetStructure(string datasetName)
@@ -80,6 +83,10 @@
             }
         }
 
+        /// <summary>
+        /// Loads a data from a url address.
+        /// </summary>
+        /// <param name="url">The url address</param>
         private JsonDataModelProvider GetFromUrl(string url)
         {
             try

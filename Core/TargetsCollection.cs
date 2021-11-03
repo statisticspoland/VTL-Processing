@@ -5,11 +5,18 @@
     using System;
     using System.Linq;
 
+    /// <summary>
+    /// Collection of translation targets.
+    /// </summary>
     public class TargetsCollection
     {
         private readonly IServiceCollection _targets;
         private readonly IServiceCollection _services;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TargetsCollection"/> class.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
         public TargetsCollection(IServiceCollection services)
         {
             this._targets = new ServiceCollection();
@@ -43,9 +50,9 @@
         }
 
         /// <summary>
-        /// Removes a target from the collection but not removes its dependent sevices.
+        /// Removes a target from the collection but doesn't remove its dependent sevices.
         /// </summary>
-        ///<param name="target">The target to remove.</param>
+        /// <param name="target">The target to remove.</param>
         internal void RemoveTarget(ITargetRenderer target)
         {
             this._targets.Remove(this._targets.FirstOrDefault(s => s.ImplementationInstance == target));
@@ -53,7 +60,7 @@
         }
 
         /// <summary>
-        /// Clears the target collection but not removes dependent sevices of these targets.
+        /// Clears the target collection but doesn't remove dependent sevices of these targets.
         /// </summary>
         internal void Clear()
         {

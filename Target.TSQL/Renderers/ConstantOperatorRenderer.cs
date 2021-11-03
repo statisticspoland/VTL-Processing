@@ -29,7 +29,7 @@
                     str = str.Remove(str.Length - 1).Remove(0,1);
                     str = str.Replace("'", "''");
 
-                    //TODO: zamiana '"'
+                    //TODO: replacement of '"'
 
                     return $"'{str}'";
                 }
@@ -44,7 +44,7 @@
                     str = str.Remove(str.Length - 1).Remove(0, 2);
                     str = str.Replace("'", "''");
 
-                    //TODO: zamiana '"'
+                    //TODO: replacement of '"'
 
                     return $"'{str}'";
                 }

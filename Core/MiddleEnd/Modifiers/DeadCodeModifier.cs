@@ -57,7 +57,7 @@
 
             if (expression.OperatorSymbol == "ref" && this.schema.AssignmentObjects.FirstOrDefault(ao => !ao.IsPersistentAssignment && ao.Name == expression.ExpressionText) != null)
             {
-                // If a reference object and it calls a persistent assignment object
+                // if a reference object and it calls a persistent assignment object
                 usedObjects.Add(expression.ExpressionText); // non persistent assignment object (ref) addition
                 usedObjects.AddRange(this.SearchRefs(this.schema.AssignmentObjects[expression.ExpressionText].Expression)); // addition of used object by the current non persistent assignment object (ref)
             }

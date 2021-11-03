@@ -12,7 +12,7 @@
         /// Checks if an instance is equal to any of params objects.
         /// </summary>
         /// <param name="instance">The checking instance.</param>
-        /// <param name="args">Objects to compare with the instance</param>
+        /// <param name="args">Objects to compare with the instance.</param>
         /// <returns>Result of comparing.</returns>
         public static bool In<T>(this T instance, params T[] args)
         {
@@ -52,7 +52,7 @@
         /// Gets the name of an <see cref="Enum"/> field.
         /// </summary>
         /// <param name="instance">The enum field to get the name from.</param>
-        /// <returns>Name of enum field.</returns>
+        /// <returns>The name of an enum field.</returns>
         public static string GetName(this Enum instance)
         {
             return Enum.GetName(instance.GetType(), instance);
@@ -61,7 +61,7 @@
         /// <summary>
         /// Gets the variable name of a basic data type.
         /// </summary>
-        /// <param name="instance">The basic data type to get variable name from.</param>
+        /// <param name="instance">The basic data type to get a variable name from.</param>
         /// <returns>The variable name of a basic data type.</returns>
         public static string GetVariableName(this BasicDataType instance)
         {

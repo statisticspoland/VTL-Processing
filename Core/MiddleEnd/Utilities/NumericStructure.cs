@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="structure">The structure to check.</param>
         /// <param name="allowNulls">Specifies if nulls are equal to numerics.</param>
-        /// <returns>Value specyfing if a given structure is a numeric structure.</returns>
+        /// <returns>Value indicating if a given structure is a numeric structure.</returns>
         public static bool IsNumericStructure(this IDataStructure structure, bool allowNulls = false)
         {
             if (structure.IsSingleComponent)
@@ -56,7 +56,7 @@
         }
 
         /// <summary>
-        /// Gets a fused structure from agiven super dataset and a sub dataset.
+        /// Gets a fused structure from a given super dataset and a sub dataset.
         /// </summary>
         /// <param name="superset">The super dataset.</param>
         /// <param name="subset">The subset.</param>

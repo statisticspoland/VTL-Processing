@@ -17,7 +17,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="JoinUsingFillingModifier"/> class.
         /// </summary>
-        /// <param name="builder">Builder for modifier.</param>
+        /// <param name="builder">The builder for modifier.</param>
         public JoinUsingFillingModifier(IJoinBuilder builder)
         {
             this._builder = builder;

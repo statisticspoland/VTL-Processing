@@ -1,21 +1,23 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.Tests.InfrastructureTests
 {
+    using Moq;
     using StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure;
+    using StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces;
     using System;
     using System.Collections.Generic;
     using Xunit;
 
     public class EnvironmentMapperTests
     {
-        private EnvironmentMapper mapper;
+        private readonly Dictionary<string, string> _mapping;
 
         public EnvironmentMapperTests()
         {
-            this.mapper = new EnvironmentMapper(new Dictionary<string, string>()
+            this._mapping = new Dictionary<string, string>()
             {
                 { "A" , "a." },
                 { "B" , "b." }
-            });
+            };
         }
 
         [Theory]
@@ -35,9 +37,14 @@
         [InlineData("A", "c.", "A\\X", "a.X")]
         public void Map_WithDefaults_ReturnMapped(string defNamespace, string defPrefix, string dsName, string tgtName)
         {
-            this.mapper.DefaultNamespace = defNamespace;
-            this.mapper.DefaultTargetPrefix = defPrefix;
-            Assert.Equal(tgtName, this.mapper.Map(dsName));
+            Mock<IDataModelAggregator> aggregator = new Mock<IDataModelAggregator>();
+            aggregator.SetupGet(agg => agg.DefaultNamespace).Returns(defNamespace);
+
+            EnvironmentMapper mapper = new EnvironmentMapper(aggregator.Object);
+            mapper.Mapping = this._mapping;
+            mapper.DefaultTargetPrefix = defPrefix;
+
+            Assert.Equal(tgtName, mapper.Map(dsName));
         }
 
         [Theory]
@@ -46,9 +53,14 @@
         [InlineData("A", null, "D\\X")]
         public void Map_NotFound_RaiseError(string defNamespace, string defPrefix, string dsName)
         {
-            this.mapper.DefaultNamespace = defNamespace;
-            this.mapper.DefaultTargetPrefix = defPrefix;
-            Assert.Throws<ArgumentOutOfRangeException>(() => this.mapper.Map(dsName));
+            Mock<IDataModelAggregator> aggregator = new Mock<IDataModelAggregator>();
+            aggregator.SetupGet(agg => agg.DefaultNamespace).Returns(defNamespace);
+
+            EnvironmentMapper mapper = new EnvironmentMapper(aggregator.Object);
+            mapper.Mapping = this._mapping;
+            mapper.DefaultTargetPrefix = defPrefix;
+
+            Assert.Throws<KeyNotFoundException>(() => mapper.Map(dsName));
         }
     }
 }

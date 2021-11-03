@@ -37,7 +37,7 @@
                     sb.Append($"{this._opRendererResolver(compExpr.OperatorSymbol).Render(compExpr)}, ");
                 }
 
-                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 2)); // usunięcie ", " 
+                sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 2)); // removement of ", " 
                 sb.AppendLine();
             }
 
@@ -50,7 +50,7 @@
                 }
             }
 
-            sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 2)); // usunięcie ", " 
+            sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 2)); // removement of ", " 
             sb.AppendLine();
 
             if (expr.Operands.ContainsKey("window"))

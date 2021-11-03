@@ -66,7 +66,7 @@
             {
                 DataMappers = new Dictionary<string, string>(),
                 DefaultNamespace = string.Empty,
-                DataSources = new List<DataSource>() { new DataSource() { Localazation = "test", Namespace = "", Type = "type" } },
+                DataSources = new List<DataSource>() { new DataSource() { Localization = "test", Namespace = "", Type = "type" } },
                 Experession = string.Empty,
                 Target = string.Empty
             };

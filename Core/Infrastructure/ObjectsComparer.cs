@@ -71,7 +71,7 @@
         /// <summary>
         /// Checks if the value domain is equal to another. <b>Method skips a names comparison.</b>
         /// </summary>
-        /// <param name="instance">The cmpared value domain.</param>
+        /// <param name="instance">The compared value domain.</param>
         /// <param name="valueDomain">The value domain to compare.</param>
         /// <param name="allNumsEqual">Specifies if an integer data type is equal to a number data type.</param>
         /// <param name="allEqualsToNull">Specifies if a none data type is equal to other.</param>

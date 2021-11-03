@@ -3,6 +3,9 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
     using System;
 
+    /// <summary>
+    /// The base for data model representations.
+    /// </summary>
     public abstract class DataModelProviderBase : IDataModelProvider
     {
         private readonly IDataModelProvider _rootModel;
@@ -28,6 +31,12 @@
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Splits a full dataset name to a namespace name and a dataset name.
+        /// </summary>
+        /// <param name="fullDatasetName">The full dataset name.</param>
+        /// <param name="namespaceName">The namespace name.</param>
+        /// <param name="datasetName">The dataset name.</param>
         protected void SplitDatasetName(string fullDatasetName, out string namespaceName, out string datasetName)
         {
             string[] split = fullDatasetName.Split(@"\");

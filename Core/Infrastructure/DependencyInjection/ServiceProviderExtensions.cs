@@ -25,10 +25,10 @@
         }
 
         /// <summary>
-        /// Gets the middle-end transformation schema generator from the service provider.
+        /// Gets the middle-end transformation schema modifier from the service provider.
         /// </summary>
         /// <param name="provider">The service provider.</param>
-        /// <returns>The middle-end VTL 2.0 transformation schema generator.</returns>
+        /// <returns>The middle-end VTL 2.0 transformation schema modifier.</returns>
         public static ISchemaModifiersApplier GetMiddleEnd(this IServiceProvider provider)
         {
             return provider.GetService<ISchemaModifiersApplier>();

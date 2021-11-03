@@ -48,7 +48,7 @@
                     result.AppendLine($"ds1.{identifier.ComponentName} = ds2.{identifier.ComponentName} AND");
                 }
 
-                result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 5)); // usunięcie "AND"
+                result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 5)); // removement of "AND"
                 result.AppendLine();
                 result.AppendLine($"WHERE ds1.{expr1.Structure.Identifiers[0].ComponentName} IS NULL");
             }

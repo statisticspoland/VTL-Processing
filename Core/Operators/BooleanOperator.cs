@@ -108,7 +108,8 @@
         /// <summary>
         /// Validates if a given component is boolean data type.
         /// </summary>
-        /// <param name="exp">The expression source to throw exception.</param>
+        /// <param name="exp">The expression source to throw an exception.</param>
+        /// <param name="exp">The expression source to throw an exception.</param>
         /// <param name="component">The component to validate.</param>
         private void ValdiateComponent(IExpression exp, StructureComponent component)
         {

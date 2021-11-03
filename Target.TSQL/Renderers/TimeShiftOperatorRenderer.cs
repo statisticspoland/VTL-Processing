@@ -80,14 +80,14 @@
                 result.AppendLine($"{id.ComponentName} = ds.{id.ComponentName} AND");
             }
 
-            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // usunięcie " AND\n"
+            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // removement of " AND\n"
             result.Append(") AS t)");
 
             return result.ToString();
         }
 
         /// <summary>
-        /// Renders a when clause of the time period TSQL translated code.
+        /// Renders a "when" clause of the time period TSQL translated code.
         /// </summary>
         /// <param name="symbol">The symbol of a duration.</param>
         /// <param name="identifierName">The identifier name.</param>

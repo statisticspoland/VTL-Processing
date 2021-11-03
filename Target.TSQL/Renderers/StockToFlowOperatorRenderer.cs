@@ -58,14 +58,14 @@
 
                 if (!removed)
                 {
-                    result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // usunięcie " AND\n"
+                    result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 6)); // removement of " AND\n"
                     result.AppendLine();
                     result.AppendLine("ORDER BY ");
                     removed = true;
                 }
             }
 
-            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 2)); // usunięcie ", "
+            result = new StringBuilder(result.ToString().Remove(result.ToString().Length - 2)); // removement of ", "
             result.AppendLine(" DESC");
             result.Append($") AS t), 0)");
 

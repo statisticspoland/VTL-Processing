@@ -14,5 +14,10 @@
         /// Gets the environment names mapper.
         /// </summary>
         IEnvironmentMapper EnvironmentMapper { get; }
+
+        /// <summary>
+        /// Gets or sets the value indicating whether a dead code has to be removed.
+        /// </summary>
+        bool RemoveDeadCode { get; set; }
     }
 }

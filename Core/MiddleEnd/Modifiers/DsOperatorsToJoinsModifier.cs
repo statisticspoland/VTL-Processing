@@ -177,7 +177,7 @@
         /// Checks if an expression is an "if-then-else" operator expression convertaile to a "join" operator expression.
         /// </summary>
         /// <param name="expression">The expression to check.</param>
-        /// <returns>The value specyfing if an expression is an "if-then-else" operator expression convertible to a "join" operator expression.</returns>
+        /// <returns>The value indicating if an expression is an "if-then-else" operator expression convertible to a "join" operator expression.</returns>
         private bool IsJoinIfThenElse(IExpression expression)
         {
             if (expression.OperatorSymbol == "if" && 
@@ -190,7 +190,7 @@
         /// Checks if an expression is a dataset expression convertible to a "join" operator expression.
         /// </summary>
         /// <param name="expression">The expression to check.</param>
-        /// <returns>The value specyfing if an expression is a dataset expression convertible to a "join" operator expression.</returns>
+        /// <returns>The value indicating if an expression is a dataset expression convertible to a "join" operator expression.</returns>
         private bool IsJoinDatasetOperator(IExpression expression)
         {
             if (!expression.OperatorSymbol.In("join", "#", "if") && (expression.Operands.ContainsKey("group") || expression.Operands.ContainsKey("over") || (!expression.Operands["ds_1"].IsScalar && !expression.Operands["ds_2"].IsScalar)))

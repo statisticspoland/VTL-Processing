@@ -79,7 +79,7 @@
             {
                 if (!expr.Key.IsScalar)
                 {
-                    // Sprawdzanie, czy istnieją i usuwanie tabel tymczasowych
+                    // checking if temporary table exists and dropping it if it does
                     sb.AppendLine($"IF OBJECT_ID (N'tempdb..{expr.Key.ResultMappedName}', N'U') IS NOT NULL");
                     sb.AppendLine($"DROP TABLE {expr.Key.ResultMappedName}\n");
                 }
@@ -113,7 +113,7 @@
                 case BasicDataType.TimePeriod: 
                 case BasicDataType.Duration: 
                     return "VARCHAR(MAX)";
-                default: throw new NotImplementedException(); // TODO: Reszta typów bazowych   
+                default: throw new NotImplementedException();
             }
         }
     }

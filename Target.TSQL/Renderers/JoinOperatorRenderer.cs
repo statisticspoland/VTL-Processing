@@ -65,7 +65,7 @@
             result = $"{leftParenthesis}{result}{rightParenthesis},";
             if (result.Split(',')[0].Length != 2 || result.Split(',')[0].Split('.')[1] != renamedMeasure.ComponentName)
             {
-                result = result.Remove(result.Length - 1); // usunięcie ","
+                result = result.Remove(result.Length - 1); // removement of ","
                 if (applyBranch.CurrentJoinExpr.Operands.ContainsKey("over")) result += this._opRendererResolver("over").Render(applyBranch.CurrentJoinExpr.Operands["over"]);
                 result += $" AS {renamedMeasure.ComponentName},";
             }

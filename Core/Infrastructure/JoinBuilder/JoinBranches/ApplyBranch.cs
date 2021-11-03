@@ -17,7 +17,7 @@
         /// <summary>
         /// Inittializes a new instance of the <see cref="ApplyBranch"/> class.
         /// </summary>
-        /// <param name="exprResolver">Expression resolver.</param>
+        /// <param name="exprResolver">The expression resolver.</param>
         /// <param name="exprTextGen">The epression text generator.</param>
         public ApplyBranch(ExpressionResolver exprResolver, IExpressionTextGenerator exprTextGen)
         {

@@ -1,11 +1,10 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders
 {
     using StatisticsPoland.VtlProcessing.Core.Models.Interfaces;
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
-    /// The regular VTL 2.0 data model.
+    /// The dictionary VTL 2.0 data model.
     /// </summary>
     public class DictionaryDataModelProvider : DataModelProviderBase
     {

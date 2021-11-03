@@ -50,12 +50,12 @@
                 switch (step)
                 {
                     case 1:
-                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n"
+                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n"
                         sb.AppendLine();
                         sb.Append("IIF(");
                         break;
                     case 2:
-                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 6)); // usunięcie " AND\n"
+                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 6)); // removement of " AND\n"
                         sb.AppendLine($", 1, 0) AS {expr.Structure.Measures[0].ComponentName},");
 
                         foreach (StructureComponent attribute in expr.Structure.ViralAttributes)
@@ -65,7 +65,7 @@
                                     sb.AppendLine($"{this._propagationAlgorithm.Propagate(attribute, new string[] { "ds1", "ds2" })} AS {attribute.ComponentName.GetNameWithoutAlias()},");
                         }
 
-                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // usunięcie ",\n"
+                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 3)); // removement of ",\n"
                         sb.AppendLine();
 
                         sb.AppendLine($"FROM {this._opRendererResolver(expr1.OperatorSymbol).Render(expr1)} AS ds1");
@@ -77,7 +77,7 @@
                         sb.AppendLine("ON");
                         break;
                     case 3:
-                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 6)); // usunięcie " AND\n"
+                        sb = new StringBuilder(sb.ToString().Remove(sb.ToString().Length - 6)); // removement of " AND\n"
                         sb.AppendLine();
                         break;
                 }           

@@ -10,21 +10,22 @@
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
+
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
-            _next = next;
-            _logger = logger;
+            this._next = next;
+            this._logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                await _next(httpContext);
+                await this._next(httpContext);
             }
             catch (Exception ex)
             {
-                _logger.LogCritical("{ex}", ex);
+                this._logger.LogCritical("{ex}", ex);
                 await HandleExceptionAsync(httpContext);
             }
         }

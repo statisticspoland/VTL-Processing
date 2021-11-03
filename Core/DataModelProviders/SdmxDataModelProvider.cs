@@ -22,12 +22,20 @@
     using System.Net;
     using System.Net.Http;
 
+    /// <summary>
+    /// The SDMX VTL 2.0 data model representation.
+    /// </summary>
     public class SdmxDataModelProvider : DataModelProviderBase
     {
         private readonly IStructureParsingManager _structureParsingManager;
         private readonly IReadableDataLocationFactory _dataLocationFactory;
         private readonly IReadableDataLocation _readableDataLocation;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
         private SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName)
             : base(rootModel)
         {
@@ -37,18 +45,36 @@
             this._dataLocationFactory = new ReadableDataLocationFactory();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
+		/// <param name="structureFile">The SDMX FileInfo.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, FileInfo structureFile)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureFile);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
+		/// <param name="structureUri">The SDMX Uri object.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, Uri structureUri)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(structureUri);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
+		/// <param name="strUrl">The URL path to a SMDX file.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, string strUrl)
             : this(rootModel, namespaceName)
         {
@@ -61,18 +87,34 @@
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(response.GetResponseStream());
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
+		/// <param name="bytes">The SDMX loaded file as a byte array.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, byte[] bytes)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(bytes);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SdmxDataModelProvider"/> class.
+        /// </summary>
+        /// <param name="rootModel">The root data model.</param>
+        /// <param name="namespaceName">The namespace name.</param>
+		/// <param name="stream">The SDMX stream.</param>
         public SdmxDataModelProvider(IDataModelProvider rootModel, string namespaceName, Stream stream)
             : this(rootModel, namespaceName)
         {
             this._readableDataLocation = this._dataLocationFactory.GetReadableDataLocation(stream);
         }
 
+        /// <summary>
+        /// Gets Maintainable SDMX objects from workspace.
+        /// </summary>
+        /// <returns>Maintainable SDMX objects.</returns>
         private ISet<IMaintainableObject> GetMaintainableObjects()
         {
             IStructureWorkspace workspace;
@@ -123,6 +165,11 @@
             return dataStructure;
         }
 
+        /// <summary>
+        /// Maps a SDMX text data type to a VTL 2.0 data type.
+        /// </summary>
+        /// <param name="type">The type of the SDMX text data.</param>
+        /// <returns>The basic VTL 2.0 data type.</returns>
         private BasicDataType mappingSDMX(TextEnumType type)
         {
             BasicDataType basicDataType = type switch

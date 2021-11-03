@@ -102,11 +102,11 @@
         }
 
         /// <summary>
-        /// Specifies if given lists of expressions are equal.
+        /// Specifies if a given lists of expressions are equal.
         /// </summary>
         /// <param name="expr1">The first expression list.</param>
         /// <param name="expr2">The second expression list.</param>
-        /// <returns>A value specyfing if given lists of expressions are equal.</returns>
+        /// <returns>A value indicating if a given lists of expressions are equal.</returns>
         private bool AreExprListsEqual(List<IExpression> expr1, List<IExpression> expr2)
         {
             if (expr1.Count != expr2.Count) return false;
