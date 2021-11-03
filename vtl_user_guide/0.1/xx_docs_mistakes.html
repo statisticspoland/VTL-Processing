@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: VTL Processing Documentation</title>
+    <link rel="canonical" href="https://statisticspoland.github.io/VTL-Processing/vtl_user_guide/0.1/xx_docs_mistakes.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/search.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://statisticspoland.github.io/VTL-Processing">VTL Processing Documentation</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vtl_user_guide" data-version="0.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">User guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="01_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02_getting_started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="08_service.html">Translation Service</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../api">API Documentation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">User guide</span>
+    <span class="version">0.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">User guide</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/master/docs-source/Guide/modules/ROOT/pages/xx_docs_mistakes.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_vtl_2_0_language_documentation_mistakes"><a class="anchor" href="#_vtl_2_0_language_documentation_mistakes"></a>VTL 2.0 language documentation mistakes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Przy tworzeniu translatora posiłkowano się dwoma dokumentami:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>SMDX Technical Working Group<br>
+VTL Task Force<br>
+VTL – version 2.0<br>
+(Validation &amp; Transformation Language)<br>
+Part 1 – User Manual</p>
+</div>
+</blockquote>
+</div>
+</blockquote>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>SMDX Technical Working Group<br>
+VTL Task Force<br>
+VTL – version 2.0<br>
+(Validation &amp; Transformation Language)<br>
+Part 2 – Reference Manual</p>
+</div>
+</blockquote>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Po przejrzeniu dokumentacji zostało znalezionych wiele niejasności oraz błędów, które zostały wymienione w tabelach poniżej. Tabele tyczą się drugiego dokumentu.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Numer(y) linii</th>
+<th class="tableblock halign-left valign-top">Opis problemu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1103</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nie istnieje <code>componentRole</code> typu <code>component</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1803</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Liczba całkowita powinna być traktowana jako komponent typu <code>int_var</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2470, 2475, 2479</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Przed klauzulą <code>keep</code> nie stawia się przecinków.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2484</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W strukturze <code>d2</code> nie ma <code>Id1</code> i <code>Id2</code>, tylko <code>Id_1</code> i <code>Id_2</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2489</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>Id11</code> zamiast <code>Id_11</code>, <code>Id12</code> zamiast <code>Id_12</code>, <code>Id21</code> zamiast <code>Id_21</code> oraz <code>Id22</code> zamiast <code>Id_22</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2492</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Przed klauzulami <code>filter</code>, <code>calc</code> i <code>drop</code> nie daje się przecinków.<br>
+W klauzuli <code>calc</code> stosuje się <code>:=</code> zamiast <code>=</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2503</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Klauzula <code>calc</code> nie może zostać użyta przed klauzulą <code>filter</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2772</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W pierwszym wierszu wartością komponentu <code>Me_2</code> powinno być <code>" hi world"</code> zamiast <code>"hi world"</code>.<br>
+W drugim wierszu wartością komponentu <code>Me_2</code> powinno być <code>" say hi"</code> zamiast <code>"say hi"</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2836, 4023</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>DS_1</code> zamiast <code>ds_1</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3170</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Liczba całkowita powinna być traktowana jako komponent typu <code>int_var</code>.<br>
+Aby otrzymać w wyniku działania operatora komponent typu <code>num_var</code>, conajmniej jeden komponent wejściowy powinien być typu <code>num_var</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3198</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Błędny wynik ostatniego wiersza. Wartością komponentu <code>Me_1</code> powinno być <code>5</code> zamiast <code>10</code>, natomiast komponentu <code>Me_2</code> powinno być <code>12.3</code> zamiast <code>25.0</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Błędny wynik ostatniego wiersza. Wartością komponentu <code>Me_1</code> powinno być <code>1</code> zamiast <code>0.2</code>, natomiast komponentu <code>Me_2</code> powinno być <code>1.23</code> zamiast <code>2.0</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3260, 3617</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nieprawidłowe użycie operatora <code>#</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3261</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ostatnia kolumna powinna być nazwana <code>Me_3</code> zamiast <code>ME_3</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3432, 3478, 3523, 3570, 3617, 3866, 3915, 4193, 4304, 4352, 4403</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brakuje klauzuli <code>calc</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3479</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W pierwszym wierszu wartością komponentu <code>Me_1</code> powinno być <code>7.0</code> zamiast <code>7.5</code>.<br>
+W drugim wierszu wartością komponentu <code>Me_2</code> powinno być <code>-5.0</code> zamiast <code>-5.5</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3867</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W pierwszym wierszu wartością komponentu <code>Me_1</code> powinno być <code>7.1</code> zamiast <code>7.5</code>.<br>
+W drugim wierszu wartością komponentu <code>Me_1</code> powinno być <code>null</code> zamiast <code>3</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3922</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kolor nagłówka kolumny <code>Me_1</code> powinien być koloru niebieskiego zamiast szarego.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4024, 5056</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wynikowa struktura danych powinna nazywać się <code>DS_r</code> zamiast <code>DS_1</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4083</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operator <code>in</code> działa nie działa na identyfikatorach, tylko na miarach.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4089</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W ostatniej kolumnie wartość komponentu w każdym wierszu powinna być <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4148</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brakuje nazwy operatora <code>match_characters</code> przed otwarciem nawiasu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4193</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>isnull</code> zamiast <code>is_null</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4396</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>true</code> zamiast <code>trTRUEue</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4518, 5572</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Struktura danych powinna nazywać się <code>DS_1</code> zamiast <code>DS_r</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4690, 4837</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>DS_4</code> zamiast <code>DS_3</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4813, 4821, 4829, 4837</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>timeshift</code> zamiast <code>time_shift</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4921</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Błędne umieszczenie komponentu typu <code>duration</code> o wartości <code>"A"</code> w zapytaniu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4928</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nie powinno być nawiasów.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5193</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>identifier</code> zamiast <code>dentifier</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5442</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Klauzula <code>groupingClause</code> jest wymagana przy użyciu operatora <code>avg</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5624</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>Example2</code> zamiast <code>Example1</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5622, 5627</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Druga kolumna powinna mieć nazwę <code>int_var</code> zamiast <code>Int_var</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5626</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Użycie operatora <code>sum</code> na nienumerycznych miarach.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5755</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W pierwszym wierszu wartością komponentu <code>Me_1</code> powinno być <code>7.5</code> zamiast <code>5</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6059</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W trzecim wierszu wartością komponentu <code>Me_2</code> powinno być <code>9</code> zamiast <code>5</code>.<br>
+W czwartym wierszu wartością komponentu <code>Me_1</code> powinno być <code>7</code> zamiast <code>6</code>.<br>
+W piątym wierszu wartością komponentu <code>Me_1</code> powinno być <code>9</code> zamiast <code>5</code>.<br>
+W szóstym wierszu wartością komponentu <code>Me_1</code> powinno być <code>9</code> zamiast <code>5</code>, natomiast komponentu <code>Me_2</code> powinno być <code>3</code> zamiast <code>2</code>.<br>
+W siódmym wierszu wartością komponentu <code>Me_1</code> powinno być <code>5</code> zamiast <code>2</code>, natomiast komponentu <code>Me_2</code> powinno być <code>4</code> zamiast <code>2</code>.<br>
+W ostatnim wierszu wartością komponentu <code>Me_1</code> powinno być <code>10</code> zamiast <code>2</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6108</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W drugim wierszu wartością komponentu <code>Me_2</code> powinno być <code>5</code> zamiast <code>9</code>.<br>
+W trzecim wierszu wartością komponentu <code>Me_1</code> powinno być <code>6</code> zamiast <code>7</code>, natomiast komponentu <code>Me_2</code> powinno być <code>8</code> zamiast <code>9</code>.<br>
+W czwartym wierszu wartością komponentu <code>Me_1</code> powinno być <code>6</code> zamiast <code>7</code>.<br>
+W piątym wierszu wartością komponentu <code>Me_1</code> powinno być <code>5</code> zamiast <code>9</code>.<br>
+W szóstym wierszu wartością komponentu <code>Me_2</code> powinno być <code>2</code> zamiast <code>4</code>.<br>
+W siódmym wierszu wartością komponentu <code>Me_1</code> powinno być <code>2</code> zamiast <code>10</code>.<br>
+W ostatnim wierszu wartością komponentu <code>Me_1</code> powinno być <code>2</code> zamiast <code>10</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6252</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brak domknięcia <code>]</code>. Wnioskując po strukturze wynikowej z linii 6253, nazwą komponentu kreowanego przy pomocy klauzuli <code>calc</code> powinno być <code>Me_2</code> zamiast <code>Me2</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6370</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Piąta kolumna powinna mieć nazwę <code>Me_1</code>, zamiast <code>obs_value</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6826</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kolumna <code>At_1</code> nie powinna znajdować się w strukturze wynikowej. Aby to uzyskać, w zapytaniu z linii 6825 powinno być <code>calc viral attribute</code> zamiast <code>calc attribute</code>.<br>
+W pierwszym wierszu wartością komponentu <code>Me_1</code> powinno być <code>20</code> zamiast <code>40</code>.<br>
+W drugim wierszu wartością komponentu <code>Me_1</code> powinno być <code>2</code> zamiast <code>4</code>.<br>
+W trzecim wierszu wartością komponentu <code>Me_1</code> powinno być <code>2</code> zamiast <code>4</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7132</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powinno być <code>DS_1</code> zamiast <code>Ds_1</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Numer strony</th>
+<th class="tableblock halign-left valign-top">Opis problemu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operator <code>instr</code>: Powinno być <code>dataset { measure&lt;string&gt; _ }</code> zamiast <code>dataset { measure&lt;string&gt; _+ }</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operator <code>power</code>: Dlaczego drugi parametr operatora nie może być strukturą danych?<br>
+Operator <code>sqrt</code>: Dlaczego dostępne jest tylko pierwiastkowanie drugiego stopnia?</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_dodatkowe_uwagi"><a class="anchor" href="#_dodatkowe_uwagi"></a>Dodatkowe uwagi</h3>
+<div class="paragraph">
+<p>W tabelach reprezentujących struktury danych nie w każdym przypadku wartości komponentów typu <code>string_var</code> są pisane w cudzysłowiu.</p>
+</div>
+<div class="paragraph">
+<p>Wartości komponentów typu <code>bool_var</code> oraz nulle są pisane raz dużymi, a raz małymi literami. Powinno się przyjąć jeden styl.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nowa_gramatyka_języka_vtl_2_0"><a class="anchor" href="#_nowa_gramatyka_języka_vtl_2_0"></a>Nowa gramatyka języka VTL 2.0</h3>
+<div class="paragraph">
+<p>Pierwsza wersja gramatyki języka VTL 2.0, z którą odbywała się praca przy projekcie była pełna niejasności oraz błędów. Dla potrzeb projektu została napisana od zera całkiem nowa, autorska gramatyka języka VTL 2.0. W lipcu 2020 roku została opublikowana druga oficjalna wersja gramatyki VTL 2.0, jednak w projekcie nadal używana jest autorska wersja.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://sdmx.org/?sdmx_news=new-version-of-the-vtl-2-0-extended-backus-naur-form-july-2020" class="bare">https://sdmx.org/?sdmx_news=new-version-of-the-vtl-2-0-extended-backus-naur-form-july-2020</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>The UI for this site is based on the default Antora UI and is licensed under the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vtl_user_guide/0.1/xx_docs_mistakes.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
