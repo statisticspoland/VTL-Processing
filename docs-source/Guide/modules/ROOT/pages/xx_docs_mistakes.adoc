@@ -1,0 +1,197 @@
+== VTL 2.0 language documentation mistakes
+
+Przy tworzeniu translatora posiłkowano się dwoma dokumentami:
+
+> > SMDX Technical Working Group +
+VTL Task Force +
+VTL – version 2.0 +
+(Validation & Transformation Language) +
+Part 1 – User Manual
+
+> > SMDX Technical Working Group +
+VTL Task Force +
+VTL – version 2.0 +
+(Validation & Transformation Language) +
+Part 2 – Reference Manual
+
+Po przejrzeniu dokumentacji zostało znalezionych wiele niejasności oraz błędów, które zostały wymienione w tabelach poniżej. Tabele tyczą się drugiego dokumentu.
+
+[cols=2*, options="header"]
+|===
+|Numer(y) linii
+|Opis problemu
+
+|1103 
+|Nie istnieje `componentRole` typu `component`.
+
+|1803
+|Liczba całkowita powinna być traktowana jako komponent typu `int_var`.
+
+|2470, 2475, 2479
+|Przed klauzulą `keep` nie stawia się przecinków.
+
+|2484
+|W strukturze `d2` nie ma `Id1` i `Id2`, tylko `Id_1` i `Id_2`.
+
+|2489
+|Powinno być `Id11` zamiast `Id_11`, `Id12` zamiast `Id_12`, `Id21` zamiast `Id_21` oraz `Id22` zamiast `Id_22`.
+
+|2492
+|Przed klauzulami `filter`, `calc` i `drop` nie daje się przecinków. +
+W klauzuli `calc` stosuje się `:=` zamiast `=`.
+
+|2503
+|Klauzula `calc` nie może zostać użyta przed klauzulą `filter`.
+
+|2772
+|W pierwszym wierszu wartością komponentu `Me_2` powinno być `" hi world"` zamiast `"hi world"`. +
+W drugim wierszu wartością komponentu `Me_2` powinno być `" say hi"` zamiast `"say hi"`.
+
+|2836, 4023
+|Powinno być `DS_1` zamiast `ds_1`.
+
+|3170
+|Liczba całkowita powinna być traktowana jako komponent typu `int_var`. +
+Aby otrzymać w wyniku działania operatora komponent typu `num_var`, conajmniej jeden komponent wejściowy powinien być typu `num_var`.
+
+|3198
+|Błędny wynik ostatniego wiersza. Wartością komponentu `Me_1` powinno być `5` zamiast `10`, natomiast komponentu `Me_2` powinno być `12.3` zamiast `25.0`.
+
+|3201
+|Błędny wynik ostatniego wiersza. Wartością komponentu `Me_1` powinno być `1` zamiast `0.2`, natomiast komponentu `Me_2` powinno być `1.23` zamiast `2.0`.
+
+|3260, 3617
+|Nieprawidłowe użycie operatora `#`.
+
+|3261
+|Ostatnia kolumna powinna być nazwana `Me_3` zamiast `ME_3`.
+
+|3432, 3478, 3523, 3570, 3617, 3866, 3915, 4193, 4304, 4352, 4403
+|Brakuje klauzuli `calc`.
+
+|3479
+|W pierwszym wierszu wartością komponentu `Me_1` powinno być `7.0` zamiast `7.5`. +
+W drugim wierszu wartością komponentu `Me_2` powinno być `-5.0` zamiast `-5.5`. 
+
+|3867
+|W pierwszym wierszu wartością komponentu `Me_1` powinno być `7.1` zamiast `7.5`. +
+W drugim wierszu wartością komponentu `Me_1` powinno być `null` zamiast `3`.
+
+|3922
+|Kolor nagłówka kolumny `Me_1` powinien być koloru niebieskiego zamiast szarego.
+
+|4024, 5056
+|Wynikowa struktura danych powinna nazywać się `DS_r` zamiast `DS_1`.
+
+|4083
+|Operator `in` działa nie działa na identyfikatorach, tylko na miarach.
+
+|4089
+|W ostatniej kolumnie wartość komponentu w każdym wierszu powinna być `false`.
+
+|4148
+|Brakuje nazwy operatora `match_characters` przed otwarciem nawiasu.
+
+|4193
+|Powinno być `isnull` zamiast `is_null`.
+
+|4396
+|Powinno być `true` zamiast `trTRUEue`.
+
+|4518, 5572
+|Struktura danych powinna nazywać się `DS_1` zamiast `DS_r`.
+
+|4690, 4837
+|Powinno być `DS_4` zamiast `DS_3`.
+
+|4813, 4821, 4829, 4837
+|Powinno być `timeshift` zamiast `time_shift`.
+
+|4921
+|Błędne umieszczenie komponentu typu `duration` o wartości `"A"` w zapytaniu.
+
+|4928
+|Nie powinno być nawiasów.
+
+|5193
+|Powinno być `identifier` zamiast `dentifier`.
+
+|5442
+|Klauzula `groupingClause` jest wymagana przy użyciu operatora `avg`.
+
+|5624
+|Powinno być `Example2` zamiast `Example1`.
+
+|5622, 5627
+|Druga kolumna powinna mieć nazwę `int_var` zamiast `Int_var`.
+
+|5626
+|Użycie operatora `sum` na nienumerycznych miarach.
+
+|5755
+|W pierwszym wierszu wartością komponentu `Me_1` powinno być `7.5` zamiast `5`.
+
+|6059
+|W trzecim wierszu wartością komponentu `Me_2` powinno być `9` zamiast `5`. +
+W czwartym wierszu wartością komponentu `Me_1` powinno być `7` zamiast `6`. +
+W piątym wierszu wartością komponentu `Me_1` powinno być `9` zamiast `5`. +
+W szóstym wierszu wartością komponentu `Me_1` powinno być `9` zamiast `5`, natomiast komponentu `Me_2` powinno być `3` zamiast `2`. +
+W siódmym wierszu wartością komponentu `Me_1` powinno być `5` zamiast `2`, natomiast komponentu `Me_2` powinno być `4` zamiast `2`. +
+W ostatnim wierszu wartością komponentu `Me_1` powinno być `10` zamiast `2`.
+
+|6108
+|W drugim wierszu wartością komponentu `Me_2` powinno być `5` zamiast `9`. +
+W trzecim wierszu wartością komponentu `Me_1` powinno być `6` zamiast `7`, natomiast komponentu `Me_2` powinno być `8` zamiast `9`. +
+W czwartym wierszu wartością komponentu `Me_1` powinno być `6` zamiast `7`. +
+W piątym wierszu wartością komponentu `Me_1` powinno być `5` zamiast `9`. +
+W szóstym wierszu wartością komponentu `Me_2` powinno być `2` zamiast `4`. +
+W siódmym wierszu wartością komponentu `Me_1` powinno być `2` zamiast `10`. +
+W ostatnim wierszu wartością komponentu `Me_1` powinno być `2` zamiast `10`.
+
+|6252
+|Brak domknięcia `]`. Wnioskując po strukturze wynikowej z linii 6253, nazwą komponentu kreowanego przy pomocy klauzuli `calc` powinno być `Me_2` zamiast `Me2`.
+
+|6370
+|Piąta kolumna powinna mieć nazwę `Me_1`, zamiast `obs_value`.
+
+|6826
+|Kolumna `At_1` nie powinna znajdować się w strukturze wynikowej. Aby to uzyskać, w zapytaniu z linii 6825 powinno być `calc viral attribute` zamiast `calc attribute`. +
+W pierwszym wierszu wartością komponentu `Me_1` powinno być `20` zamiast `40`. +
+W drugim wierszu wartością komponentu `Me_1` powinno być `2` zamiast `4`. +
+W trzecim wierszu wartością komponentu `Me_1` powinno być `2` zamiast `4`.
+
+|7132
+|Powinno być `DS_1` zamiast `Ds_1`.
+
+|===
+
+[cols=2*, options="header"]
+|===
+|Numer strony
+|Opis problemu
+
+|18
+|Operator `instr`: Powinno być `dataset { measure<string> _ }` zamiast `dataset { measure<string> _+ }`.
+
+|20
+|Operator `power`: Dlaczego drugi parametr operatora nie może być strukturą danych? +
+Operator `sqrt`: Dlaczego dostępne jest tylko pierwiastkowanie drugiego stopnia?
+
+|===
+
+=== Dodatkowe uwagi
+
+W tabelach reprezentujących struktury danych nie w każdym przypadku wartości komponentów typu `string_var` są pisane w cudzysłowiu.
+
+Wartości komponentów typu `bool_var` oraz nulle są pisane raz dużymi, a raz małymi literami. Powinno się przyjąć jeden styl.
+
+=== Nowa gramatyka języka VTL 2.0
+
+Pierwsza wersja gramatyki języka VTL 2.0, z którą odbywała się praca przy projekcie była pełna niejasności oraz błędów. Dla potrzeb projektu została napisana od zera całkiem nowa, autorska gramatyka języka VTL 2.0. W lipcu 2020 roku została opublikowana druga oficjalna wersja gramatyki VTL 2.0, jednak w projekcie nadal używana jest autorska wersja.
+
+https://sdmx.org/?sdmx_news=new-version-of-the-vtl-2-0-extended-backus-naur-form-july-2020
+
+
+
+
+
