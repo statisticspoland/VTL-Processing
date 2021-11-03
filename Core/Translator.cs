@@ -27,13 +27,15 @@
         {
             this.DataModels = new DataModelAggregator(new EnvironmentMapper(this.DataModels));
 
-            var services = new ServiceCollection().AddVtlProcessing();
-            services.AddScoped(typeof(IDataModelProvider), p => this.DataModels);
-            services.AddScoped(p => this.DataModels);
-            services.AddScoped(p => this.EnvironmentMapper);
+            IServiceCollection services = new ServiceCollection();
 
             ITranslatorConfig translatorConfig = new TranslatorConfig(services);
             configuration(translatorConfig);
+
+            services.AddVtlProcessing(translatorConfig.RemoveDeadCode);
+            services.AddScoped(typeof(IDataModelProvider), p => this.DataModels);
+            services.AddScoped(p => this.DataModels);
+            services.AddScoped(p => this.EnvironmentMapper);
 
             this.Targets = translatorConfig.Targets;
 

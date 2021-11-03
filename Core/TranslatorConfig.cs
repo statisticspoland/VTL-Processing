@@ -21,7 +21,10 @@
         {
             this._services = services;
             this.Targets = new TargetsCollection(services);
+            this.RemoveDeadCode = false;
         }
+
+        public bool RemoveDeadCode { get; set; }
 
         public TargetsCollection Targets { get; }
 

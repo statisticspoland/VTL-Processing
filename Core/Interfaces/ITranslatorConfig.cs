@@ -16,6 +16,11 @@
         TargetsCollection Targets { get; }
 
         /// <summary>
+        /// Gets or sets the value indicating whether a dead code has to be removed.
+        /// </summary>
+        bool RemoveDeadCode { get; set; }
+
+        /// <summary>
         /// Adds logging services.
         /// </summary>
         /// <param name="config">The <see cref="ILoggingBuilder"/> configuration delegate.</param>

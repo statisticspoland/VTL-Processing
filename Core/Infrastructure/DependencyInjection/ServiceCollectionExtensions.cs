@@ -31,8 +31,9 @@
         /// Adds the VtlProcessing services collection.
         /// </summary>
         /// <param name="services">The service collection to add the VtlProcessing services collection to.</param>
+        /// <param name="removeDeadCode">The value indicating whether a dead code has to be removed.</param>
         /// <returns>The service collection.</returns>
-        internal static IServiceCollection AddVtlProcessing(this IServiceCollection services)
+        internal static IServiceCollection AddVtlProcessing(this IServiceCollection services, bool removeDeadCode = true)
         {
             services.AddScoped<ITreeGenerator, TreeGenerator>();
             services.AddScoped<IExpressionTextGenerator, ExpressionTextGenerator>();
@@ -64,10 +65,11 @@
             services.AddScoped<ISchemaModifiersApplier, SchemaModifiersApplier>();
 
             // middle end schema modifier chain
-            services.AddScoped<ISchemaModifier, DeadCodeModifier>();
             services.AddScoped<ISchemaModifier, TypeInferenceModifier>();
             services.AddScoped<ISchemaModifier, JoinUsingFillingModifier>();
             services.AddScoped<ISchemaModifier, DsOperatorsToJoinsModifier>();
+            if (removeDeadCode)
+                services.AddScoped<ISchemaModifier, DeadCodeModifier>();
 
             return services;
         }
@@ -80,13 +82,12 @@
         /// <returns>The service collection.</returns>
         public static IServiceCollection AddVtlProcessing(this IServiceCollection services, Action<IVtlProcessingConfig> config)
         {
-            services.AddVtlProcessing();
-
             IVtlProcessingConfig configuration = new VtlProcessingConfig();
             if (config != null) config(configuration);
 
             IDataModelAggregator dataModelAggregator = configuration.DataModels;
-            
+
+            services.AddVtlProcessing(configuration.RemoveDeadCode);
             services.AddScoped(p => dataModelAggregator);
             services.AddScoped<IDataModelProvider>(p => dataModelAggregator);
             services.AddScoped(p => configuration.EnvironmentMapper);

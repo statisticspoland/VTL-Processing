@@ -14,10 +14,14 @@
         public VtlProcessingConfig()
         {
             this.DataModels = new DataModelAggregator(new EnvironmentMapper(this.DataModels));
+            this.RemoveDeadCode = false;
         }
+
+        public bool RemoveDeadCode { get; set; }
 
         public IDataModelAggregator DataModels { get; }
 
         public IEnvironmentMapper EnvironmentMapper => this.DataModels.EnvironmentMapper;
+
     }
 }
