@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: VTL Processing Documentation</title>
+    <link rel="canonical" href="https://statisticspoland.github.io/VTL-Processing/vtl_user_guide/0.1/08_service.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/search.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://statisticspoland.github.io/VTL-Processing">VTL Processing Documentation</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vtl_user_guide" data-version="0.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">User guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="01_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02_getting_started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="03_basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06_supported_operators.html">Supported Operators</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="08_service.html">Translation Service</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../api">API Documentation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">User guide</span>
+    <span class="version">0.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">User guide</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">User guide</a></li>
+    <li><a href="08_service.html">Translation Service</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/statisticspoland/VTL-Processing/edit/master/docs-source/Guide/modules/ROOT/pages/08_service.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_service"><a class="anchor" href="#_service"></a>Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h3>
+<div class="paragraph">
+<p>The VtlProcessing&#8217;s translation API allows to specify and perform translations between VTL and selected target languages.
+In that document We are going to discuss step-by-step how to use this API correctly.
+This API requires no authentication.</p>
+</div>
+<div class="paragraph">
+<p>The API is available for testing at the link below.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://vtl-processing-demo.herokuapp.com/translator" class="bare">https://vtl-processing-demo.herokuapp.com/translator</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quickstart_guide"><a class="anchor" href="#_quickstart_guide"></a>Quickstart guide</h3>
+<div class="paragraph">
+<p>The API needs information about data structures it will work with.
+This needs to be configured.
+Below We explain required translation parameters.</p>
+</div>
+<div class="sect3">
+<h4 id="_required_parameters"><a class="anchor" href="#_required_parameters"></a>Required parameters</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataSources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of dataSource, each dataSouce contans type of data, localisation and namespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataMappers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of mapping between data and VTL expression</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target of translation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Experession</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The VTL expression</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DefaultNamespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The dafault namespace</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_example_parameters"><a class="anchor" href="#_example_parameters"></a>Example parameters</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">{
+    "DataSources":
+    [{
+        "Type": "sdmx",
+        "Localisation": "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/datastructure/ESTAT/DSD_cens_01rdhh",
+        "Namespace": "sdmx"
+    }],
+    "DataMappers": { "sdmx": ""},
+    "Target": "TSQL",
+    "Experession": "a := DSD_cens_01rdhh",
+    "DefaultNamespace": "sdmx"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_response"><a class="anchor" href="#_example_response"></a>Example response</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-TSQL hljs" data-lang="TSQL">-- Script generated: 10/25/2021 08:25:14
+BEGIN TRANSACTION
+
+IF OBJECT_ID (N'tempdb..#a', N'U') IS NOT NULL
+DROP TABLE #a
+
+
+-- Raw: a := sdmx\DSD_cens_01rdhh
+SELECT * INTO #a FROM (
+SELECT * FROM DSD_cens_01rdhh) AS t
+
+
+COMMIT TRANSACTION
+GO</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>The UI for this site is based on the default Antora UI and is licensed under the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vtl_user_guide/0.1/08_service.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

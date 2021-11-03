@@ -296,21 +296,12 @@ references:
   commentId: T:StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper
   fullName: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper
   nameWithType: EnvironmentMapper
-- uid: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor
-  name: EnvironmentMapper()
-  href: api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.html#StatisticsPoland_VtlProcessing_Core_DataModelProviders_Infrastructure_EnvironmentMapper__ctor
-  commentId: M:StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor
-  fullName: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.EnvironmentMapper()
-  nameWithType: EnvironmentMapper.EnvironmentMapper()
-- uid: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor(Dictionary{System.String,System.String})
-  name: EnvironmentMapper(Dictionary<String, String>)
-  href: api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.html#StatisticsPoland_VtlProcessing_Core_DataModelProviders_Infrastructure_EnvironmentMapper__ctor_Dictionary_System_String_System_String__
-  commentId: M:StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor(Dictionary{System.String,System.String})
-  name.vb: EnvironmentMapper(Dictionary(Of String, String))
-  fullName: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.EnvironmentMapper(Dictionary<System.String, System.String>)
-  fullName.vb: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.EnvironmentMapper(Dictionary(Of System.String, System.String))
-  nameWithType: EnvironmentMapper.EnvironmentMapper(Dictionary<String, String>)
-  nameWithType.vb: EnvironmentMapper.EnvironmentMapper(Dictionary(Of String, String))
+- uid: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor(StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator)
+  name: EnvironmentMapper(IDataModelAggregator)
+  href: api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.html#StatisticsPoland_VtlProcessing_Core_DataModelProviders_Infrastructure_EnvironmentMapper__ctor_StatisticsPoland_VtlProcessing_Core_Infrastructure_Interfaces_IDataModelAggregator_
+  commentId: M:StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor(StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator)
+  fullName: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.EnvironmentMapper(StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator)
+  nameWithType: EnvironmentMapper.EnvironmentMapper(IDataModelAggregator)
 - uid: StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.#ctor*
   name: EnvironmentMapper
   href: api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.html#StatisticsPoland_VtlProcessing_Core_DataModelProviders_Infrastructure_EnvironmentMapper__ctor_
@@ -24903,6 +24894,19 @@ references:
   isSpec: "True"
   fullName: StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.EnvironmentMapper
   nameWithType: IVtlProcessingConfig.EnvironmentMapper
+- uid: StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.RemoveDeadCode
+  name: RemoveDeadCode
+  href: api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.html#StatisticsPoland_VtlProcessing_Core_Infrastructure_Interfaces_IVtlProcessingConfig_RemoveDeadCode
+  commentId: P:StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.RemoveDeadCode
+  fullName: StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.RemoveDeadCode
+  nameWithType: IVtlProcessingConfig.RemoveDeadCode
+- uid: StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.RemoveDeadCode*
+  name: RemoveDeadCode
+  href: api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.html#StatisticsPoland_VtlProcessing_Core_Infrastructure_Interfaces_IVtlProcessingConfig_RemoveDeadCode_
+  commentId: Overload:StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.RemoveDeadCode
+  isSpec: "True"
+  fullName: StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.RemoveDeadCode
+  nameWithType: IVtlProcessingConfig.RemoveDeadCode
 - uid: StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder
   name: StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder
   href: api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.html
@@ -25651,6 +25655,19 @@ references:
   isSpec: "True"
   fullName: StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.ClearTargets
   nameWithType: ITranslatorConfig.ClearTargets
+- uid: StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveDeadCode
+  name: RemoveDeadCode
+  href: api/StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.html#StatisticsPoland_VtlProcessing_Core_Interfaces_ITranslatorConfig_RemoveDeadCode
+  commentId: P:StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveDeadCode
+  fullName: StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveDeadCode
+  nameWithType: ITranslatorConfig.RemoveDeadCode
+- uid: StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveDeadCode*
+  name: RemoveDeadCode
+  href: api/StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.html#StatisticsPoland_VtlProcessing_Core_Interfaces_ITranslatorConfig_RemoveDeadCode_
+  commentId: Overload:StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveDeadCode
+  isSpec: "True"
+  fullName: StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveDeadCode
+  nameWithType: ITranslatorConfig.RemoveDeadCode
 - uid: StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.RemoveTarget(StatisticsPoland.VtlProcessing.Core.BackEnd.ITargetRenderer)
   name: RemoveTarget(ITargetRenderer)
   href: api/StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.html#StatisticsPoland_VtlProcessing_Core_Interfaces_ITranslatorConfig_RemoveTarget_StatisticsPoland_VtlProcessing_Core_BackEnd_ITargetRenderer_
@@ -32504,19 +32521,6 @@ references:
   commentId: T:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration
   fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration
   nameWithType: ITargetConfiguration
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.Arrow
-  name: Arrow
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_Interfaces_ITargetConfiguration_Arrow
-  commentId: P:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.Arrow
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.Arrow
-  nameWithType: ITargetConfiguration.Arrow
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.Arrow*
-  name: Arrow
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_Interfaces_ITargetConfiguration_Arrow_
-  commentId: Overload:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.Arrow
-  isSpec: "True"
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.Arrow
-  nameWithType: ITargetConfiguration.Arrow
 - uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.ExprType
   name: ExprType
   href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_Interfaces_ITargetConfiguration_ExprType
@@ -32530,6 +32534,19 @@ references:
   isSpec: "True"
   fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.ExprType
   nameWithType: ITargetConfiguration.ExprType
+- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.LineConnection
+  name: LineConnection
+  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_Interfaces_ITargetConfiguration_LineConnection
+  commentId: P:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.LineConnection
+  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.LineConnection
+  nameWithType: ITargetConfiguration.LineConnection
+- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.LineConnection*
+  name: LineConnection
+  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_Interfaces_ITargetConfiguration_LineConnection_
+  commentId: Overload:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.LineConnection
+  isSpec: "True"
+  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.LineConnection
+  nameWithType: ITargetConfiguration.LineConnection
 - uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.ShowDataStructure
   name: ShowDataStructure
   href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_Interfaces_ITargetConfiguration_ShowDataStructure
@@ -32653,36 +32670,6 @@ references:
   isSpec: "True"
   fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.PlantUmlUrlConverter.TXTUrl
   nameWithType: PlantUmlUrlConverter.TXTUrl
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType
-  name: ResultType
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html
-  commentId: T:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType
-  nameWithType: ResultType
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.RawText
-  name: RawText
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_ResultType_RawText
-  commentId: F:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.RawText
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.RawText
-  nameWithType: ResultType.RawText
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlPNG
-  name: UrlPNG
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_ResultType_UrlPNG
-  commentId: F:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlPNG
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlPNG
-  nameWithType: ResultType.UrlPNG
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlSVG
-  name: UrlSVG
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_ResultType_UrlSVG
-  commentId: F:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlSVG
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlSVG
-  nameWithType: ResultType.UrlSVG
-- uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlTXT
-  name: UrlTXT
-  href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html#StatisticsPoland_VtlProcessing_Target_PlantUML_Infrastructure_ResultType_UrlTXT
-  commentId: F:StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlTXT
-  fullName: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.UrlTXT
-  nameWithType: ResultType.UrlTXT
 - uid: StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ServiceCollectionExtensions
   name: ServiceCollectionExtensions
   href: api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ServiceCollectionExtensions.html

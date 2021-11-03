@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DataModelAggregatorExtensions.html",
-          "hash": "lpgrSY93SvGSrX8MDnhFiw=="
+          "hash": "BAyqYqyFpe9BemrZof7s3Q=="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DataModelProviderBase.html",
-          "hash": "lnhnP2baUKH07BJyeccy0A=="
+          "hash": "LQfD9CyZGHEEV0S+Zrgh4Q=="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.DictionaryDataModelProvider.html",
-          "hash": "ExI2vdyyc3hR9IX/a5HDSw=="
+          "hash": "DX6s44mF0RAvurEKJblqFg=="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.DictionaryModelConfiguration.html",
-          "hash": "tOBXuwDee21dFhJiAR87Jg=="
+          "hash": "NfBgI2qyuEFd3mwhn3ZaNw=="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.EnvironmentMapper.html",
-          "hash": "GjjwlkUYktDaktGiHk/9Qw=="
+          "hash": "32MFYlKsT2+e9A4djHgH+A=="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces.IDictionaryModelConfiguration.html",
-          "hash": "ScNNxWpzoqc5Pns9YMHiNQ=="
+          "hash": "u2bgdLgpJCBSjq65p4lB2Q=="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.Interfaces.html",
-          "hash": "UfPXXwrEs5ZuiSf1UTNBRw=="
+          "hash": "YpQvgGOqmi2th3KXuL55Sw=="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.Infrastructure.html",
-          "hash": "ddBy92RAVJbcw+T2c3/TSg=="
+          "hash": "jKVPI7Oa+3Dun/r89DzBGQ=="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.JsonDataModelProvider.html",
-          "hash": "PtIVQwy/n+gfI8DIMiFBQA=="
+          "hash": "notb8S6KR7AU/8bGRJdPsg=="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.SdmxDataModelProvider.html",
-          "hash": "azuo0cAI4M3yk+7gC6Cu0w=="
+          "hash": "6ZYyT7ZcS//3E6X+K8HE4A=="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.SqlServerDataModelProvider.html",
-          "hash": "U2HBNBlZx1S/oIk21EltmA=="
+          "hash": "A6HhBkJ9NV7M8Vmf4n8zIg=="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.DataModelProviders.html",
-          "hash": "paaD0cJDHLscx+FypHFlOA=="
+          "hash": "5Mc1LOrXYhewMlxzc4/S3g=="
         }
       },
       "is_incremental": false,
@@ -330,7 +330,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.ErrorsCollection.html",
-          "hash": "nmXH9HDcC8GmRa5TAL9+lw=="
+          "hash": "7fl+rI2YyclIQc2SHRl8Jg=="
         }
       },
       "is_incremental": false,
@@ -1374,7 +1374,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.Interfaces.ITreeGenerator.html",
-          "hash": "DzgIJ1NAyr1ILGc18yWQYQ=="
+          "hash": "xzj8gMlzt32KY+9lJvnXvw=="
         }
       },
       "is_incremental": false,
@@ -1398,7 +1398,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.TreeGenerator.html",
-          "hash": "qoCIvgMV/3glKWGkXiNSwQ=="
+          "hash": "BmZoXW2F1X7AN/LbH22YBg=="
         }
       },
       "is_incremental": false,
@@ -1410,7 +1410,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.FrontEnd.html",
-          "hash": "84dxALsq5aoJScmsQee4zw=="
+          "hash": "hyLHO+NHpD3rbpcXUMkeqQ=="
         }
       },
       "is_incremental": false,
@@ -1554,7 +1554,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ServiceCollectionExtensions.html",
-          "hash": "P5dM8wutf0Muqtq9TT/nlQ=="
+          "hash": "T4asVUhbDU2k+n+WdmdbIw=="
         }
       },
       "is_incremental": false,
@@ -1566,7 +1566,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.DependencyInjection.ServiceProviderExtensions.html",
-          "hash": "XV5MU/6pYmgN5xNCflTISA=="
+          "hash": "ZouUEAYVyl0jAg8aNSStyg=="
         }
       },
       "is_incremental": false,
@@ -1614,7 +1614,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IDataModelAggregator.html",
-          "hash": "iLhbYGdG4sptM7220J1QCg=="
+          "hash": "0zZHYBdJn1944iQ+tm/ooA=="
         }
       },
       "is_incremental": false,
@@ -1626,7 +1626,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IEnvironmentMapper.html",
-          "hash": "SArvBcNCOSrLCWruNvuzKg=="
+          "hash": "2Ok+7BCpnQFWwDCbVN3INA=="
         }
       },
       "is_incremental": false,
@@ -1650,7 +1650,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Interfaces.IVtlProcessingConfig.html",
-          "hash": "cBU5Z1DMRYoQBU70LroTCw=="
+          "hash": "U/vHaeHu4T9l+18n0xY+1w=="
         }
       },
       "is_incremental": false,
@@ -1686,7 +1686,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.Interfaces.IExpressionTextGenerator.html",
-          "hash": "Lnkhyh4bB5tsYfYYWOXaJQ=="
+          "hash": "GrC/PyXMjre2lCGRxodwyQ=="
         }
       },
       "is_incremental": false,
@@ -1722,7 +1722,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBranches.ApplyBranch.html",
-          "hash": "lhFdaLeeJT8lzyGFbrgTZg=="
+          "hash": "yQqpKsTBtnrtvyqwr6o9Og=="
         }
       },
       "is_incremental": false,
@@ -1818,7 +1818,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.JoinBuilder.JoinBuilder.html",
-          "hash": "cVKAQbc3o3NIHvUcdS28Og=="
+          "hash": "c/s8mLN5Qt6eXQGaks6tXQ=="
         }
       },
       "is_incremental": false,
@@ -1842,7 +1842,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.ObjectsComparer.html",
-          "hash": "U06LbNJOYG9/PIcaeWUHdA=="
+          "hash": "ck1dtHBGlAPUr9fl186PVg=="
         }
       },
       "is_incremental": false,
@@ -1854,7 +1854,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Infrastructure.Utilities.html",
-          "hash": "uuo6/W+eoH3dkX4AytKfSA=="
+          "hash": "KH7WQt9sd2Ga9UUhMb2UbQ=="
         }
       },
       "is_incremental": false,
@@ -1878,7 +1878,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Interfaces.ITranslatorConfig.html",
-          "hash": "Ta6l0uWC82MttyiuTahPIA=="
+          "hash": "ftnsgI4//Nvv8cToltCx8A=="
         }
       },
       "is_incremental": false,
@@ -1890,7 +1890,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Interfaces.html",
-          "hash": "0bNvjwNz3huqQMvXdCmjJA=="
+          "hash": "fcMzj4XOCd0G+husEZeEQQ=="
         }
       },
       "is_incremental": false,
@@ -1962,7 +1962,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Modifiers.JoinUsingFillingModifier.html",
-          "hash": "8gSmZ2TcDKsDkVQenQCjmg=="
+          "hash": "FPeO1la0oFByXnwnEywdhA=="
         }
       },
       "is_incremental": false,
@@ -2034,7 +2034,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.MiddleEnd.Utilities.NumericStructure.html",
-          "hash": "gUJWApf7mdBD/2mpkbpcBA=="
+          "hash": "jdEcj1akMdnscojL6AJ2cQ=="
         }
       },
       "is_incremental": false,
@@ -2094,7 +2094,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IDataStructure.html",
-          "hash": "JRsfTAtFZU5FCYZ6ixrgPQ=="
+          "hash": "KRp1eGcY4xhk6RgG3OUw/A=="
         }
       },
       "is_incremental": false,
@@ -2106,7 +2106,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Models.Interfaces.IExpression.html",
-          "hash": "c0Sf5u4jVg8Lu5AwwDqMpQ=="
+          "hash": "ANa2L1tfEabLUoaTBrKgaQ=="
         }
       },
       "is_incremental": false,
@@ -2478,7 +2478,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Operators.Auxiliary.ComponentManagement.CompCreateOperator.html",
-          "hash": "1nADfzNyWcdI8xLS5yH34Q=="
+          "hash": "5imht3EitXp66FMrU2nL4A=="
         }
       },
       "is_incremental": false,
@@ -3018,7 +3018,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.TargetsCollection.html",
-          "hash": "5FwX05Z4t2M6dgr9Sutbyg=="
+          "hash": "Ta4I98TYqmwqWFaRt05qhg=="
         }
       },
       "is_incremental": false,
@@ -3054,7 +3054,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Transformations.VisitorTransformer.html",
-          "hash": "OCKG6BMKIr5LI7YUk33+qQ=="
+          "hash": "Oj/uxQQ78XLsaGdtPJVA6g=="
         }
       },
       "is_incremental": false,
@@ -3078,7 +3078,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.Translator.html",
-          "hash": "bH0V2NTzQgC1QQf6FuiKGw=="
+          "hash": "dSDfKmjG5NkfbaecLmeBCg=="
         }
       },
       "is_incremental": false,
@@ -3090,7 +3090,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Core.html",
-          "hash": "yQOJkB0RjPKTkZHn3AiFDw=="
+          "hash": "bnKwHkQU+DF3zQBuFKS1Gg=="
         }
       },
       "is_incremental": false,
@@ -3102,7 +3102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ExpressionsType.html",
-          "hash": "iSXDDyzHlNUSjqQOawUV2w=="
+          "hash": "3iqR5NaJMZfV4ykbX50V3g=="
         }
       },
       "is_incremental": false,
@@ -3114,7 +3114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetBuilder.html",
-          "hash": "MAjzlurb4SoGjThKH0A45w=="
+          "hash": "VdGHOaC7t9gXRLD1KhbMyg=="
         }
       },
       "is_incremental": false,
@@ -3126,7 +3126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.ITargetConfiguration.html",
-          "hash": "JaPxQ+c2lCCWrYgTewRwuQ=="
+          "hash": "bI0UUXWQiev0hneOfdDH/Q=="
         }
       },
       "is_incremental": false,
@@ -3138,7 +3138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.Interfaces.html",
-          "hash": "DQL3A23tj56aIVyJmyx03w=="
+          "hash": "vVajSoNAbEN4cH5k/lglvQ=="
         }
       },
       "is_incremental": false,
@@ -3150,19 +3150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.PlantUmlUrlConverter.html",
-          "hash": "wNq/nv5bnKX6WfOe1kM04g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ResultType.html",
-          "hash": "qVCto7ukm86XALmDbBC1tQ=="
+          "hash": "6AU3lmqcnl7TkEBitKM/iw=="
         }
       },
       "is_incremental": false,
@@ -3174,7 +3162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.ServiceCollectionExtensions.html",
-          "hash": "+2F/Ax4AW1SVkFT6LtgpNQ=="
+          "hash": "pr+usDwRX5R/87OVtweTUA=="
         }
       },
       "is_incremental": false,
@@ -3186,7 +3174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.TranslatorConfigExtensions.html",
-          "hash": "krrokVO9eJynL2+PQk25Nw=="
+          "hash": "4nLpIj8EsUEkyxEXef2RTA=="
         }
       },
       "is_incremental": false,
@@ -3198,7 +3186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.PlantUML.Infrastructure.html",
-          "hash": "Ar+LrhrX2uBDvWU/s3nAsg=="
+          "hash": "NP4TDBhIyQ+g9Urmjl7esQ=="
         }
       },
       "is_incremental": false,
@@ -3246,7 +3234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Attributes.OperatorRendererSymbolAttribute.html",
-          "hash": "Gy10qmJAyQUOEI36UyjS8Q=="
+          "hash": "Qs4O7PU7VyHe2CCJEFYb7A=="
         }
       },
       "is_incremental": false,
@@ -3270,7 +3258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.IAttributePropagationAlgorithm.html",
-          "hash": "xW8amVcRkOwwWUt/KdGXZQ=="
+          "hash": "+vdc8Op6rzqu1XffYn1i/A=="
         }
       },
       "is_incremental": false,
@@ -3282,7 +3270,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.ITargetBuilder.html",
-          "hash": "v4SqAdP/8txnVit3hR2glA=="
+          "hash": "B4jyzWmtdkl+Psj3qGrKkQ=="
         }
       },
       "is_incremental": false,
@@ -3294,7 +3282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.ITargetConfiguration.html",
-          "hash": "UKHim3ppnT7CNYIeYAKqMg=="
+          "hash": "h3eO4w6o0rlUZovBhZMdhA=="
         }
       },
       "is_incremental": false,
@@ -3306,7 +3294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces.html",
-          "hash": "TAsy212wIGhwcxnGJDsS1w=="
+          "hash": "E7kXa7/O65+kK14SgiN99A=="
         }
       },
       "is_incremental": false,
@@ -3330,7 +3318,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.JoinMeasuresRenderer.html",
-          "hash": "mrtN2tPkkxKW2s4NdPX/eg=="
+          "hash": "5CwP3AP8KKqbeKDoWfzgTg=="
         }
       },
       "is_incremental": false,
@@ -3354,7 +3342,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.ServiceCollectionExtensions.html",
-          "hash": "N21g2IbtABJ5MtkzyQ5S9Q=="
+          "hash": "3R12SVyk8dE2ppB+PSysfA=="
         }
       },
       "is_incremental": false,
@@ -3378,7 +3366,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.TranslatorConfigExtensions.html",
-          "hash": "WwP69DBioohxxHO6meCJ3w=="
+          "hash": "k9q6HsuYUmhEWwUoDU/L3A=="
         }
       },
       "is_incremental": false,
@@ -3390,7 +3378,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.html",
-          "hash": "7MNResHJTrZJ8QAN397nSw=="
+          "hash": "xVeEblcgomOohmSvW1xH4w=="
         }
       },
       "is_incremental": false,
@@ -3402,7 +3390,7 @@
       "output": {
         ".html": {
           "relative_path": "api/StatisticsPoland.VtlProcessing.Target.TSQL.Preparers.Interfaces.IReferencesManager.html",
-          "hash": "HMtdL8FH/HEGbKbDXutO8A=="
+          "hash": "si4ZD2KjXKKK+x9tn71UEw=="
         }
       },
       "is_incremental": false,
@@ -3522,7 +3510,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "ZTHx6YtTmgbn5HRvWuz6Zg=="
+          "hash": "mQ9s3OWi7O882FPAqnzJZQ=="
         }
       },
       "is_incremental": false,
@@ -3549,7 +3537,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 291,
+          "total_file_count": 290,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
