@@ -6,3 +6,4 @@
 * xref:06_supported_operators.adoc[Supported Operators]
 //* xref:07_cli.adoc[CLI]
 * xref:08_service.adoc[Translation Service]
+* link:../../api[API Documentation]
