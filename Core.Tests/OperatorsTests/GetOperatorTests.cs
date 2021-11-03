@@ -15,7 +15,7 @@
 
         public GetOperatorTests()
         {
-            Mock<IDataModel> dataModelMock = new Mock<IDataModel>();
+            Mock<IDataModelProvider> dataModelMock = new Mock<IDataModelProvider>();
             dataModelMock.Setup(o => o.GetDatasetStructure(It.IsAny<string>())).Returns((string dsName) => this.GetDataStructure(dsName));
 
             Mock<OperatorResolver> opResolverMock = new Mock<OperatorResolver>();

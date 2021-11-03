@@ -1,14 +1,13 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Service.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using StatisticsPoland.VtlProcessing.Service.Models;
+    using StatisticsPoland.VtlProcessing.Service.Services;
     using System.ComponentModel.DataAnnotations;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json.Linq;
-    using StatisticsPoland.VtlProcessing.Service.Models;
-    using StatisticsPoland.VtlProcessing.Service.Services;
 
     [ApiController]
     [Route("[controller]")]
@@ -19,14 +18,14 @@
 
         public TranslatorController(ILogger<TranslatorController> logger, ITranslationService translationService)
         {
-            _logger = logger;
-            _translationService = translationService;
+            this._logger = logger;
+            this._translationService = translationService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get([FromBody][Required] TranslationParameters parameters, [FromHeader][Required] string accept)
         {
-            TranslationResponse response = await Task.FromResult<TranslationResponse>(_translationService.Tanslate(parameters));
+            TranslationResponse response = await Task.FromResult<TranslationResponse>(this._translationService.Tanslate(parameters));
 
             if (response.AreErrors)
                 return BadRequest(error: response.Exceptions.Select(e => e.Message).ToArray());
@@ -49,9 +48,9 @@
             return stream;
         }
 
-        private JsonResponse GenerateJsonFromString(string s)
+        private object GenerateJsonFromString(string s)
         {
-            return new JsonResponse() { result = s };
+            return new { Result = s };
         }
     }
 }

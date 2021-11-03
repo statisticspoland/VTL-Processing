@@ -45,7 +45,7 @@
             string result = $"Target error at line {this.Line} | {base.Message}";
 
             #if DEBUG
-            result = $"{this.StackTrace}\n{result}";
+                result = $"{this.StackTrace}\n{result}";
             #endif
 
             return result;

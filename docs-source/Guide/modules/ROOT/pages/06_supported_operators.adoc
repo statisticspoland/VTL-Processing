@@ -2,475 +2,477 @@
 
 == Supported Operators
 
-W poniższej tabeli została przedstawiona lista wszystkich operatorów VTL 2.0 wraz ze statusem ich zaimplementowania w translatorze. 
+The table below contains all the VTL 2.0 operators with their VtlProcessing implementation status.
 
-Obsługa VtlProcessing.Core oznacza, że podczas użycia operatora w kodzie źródłowym zostanie on rozpoznany przez translator i obsłużony w schemacie transformacji pośredniej.
-
-Obsługa VtlProcessing.Target.TSQL oznacza, że przy użyciu operatora translator będzie w stanie wygenerować kod wynikowy TSQL. 
+Operators marked as VtlProcessing.Core are supported by this part of library.
+It means that the operator will be recognized by the front and middle-end parts of the translator and proper intermediate representation will be generated.
+If an operators is marked as VtlProcessing.Target.TSQL then it can be translated to T-SQL target code. 
 
 [cols=4*, options="header"]
 |===
-|Nazwa operatora
-|Symbol(e) operatora
+|Operator
+|Symbol
 |Obsługa VtlProcessing.Core
 |Obsługa VtlProcessing.Target.TSQL
 
 |Parentheses
 |()
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Persistent assignment
 |$$<-$$
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Non-persistent assignment
 |:=
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Membership
 |#
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |User-definied operator call
 |
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |Evaluation of an external routine
 |eval
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |Type conversion
 |cast
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |Join
 |inner_join, left_join, full_join, cross_join
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |String concatenation
 |$$\|\|$$
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Whitespace removal
 |trim, rtrim, ltrim
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Character case conversion
 |upper/lower
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Sub-string extraction
 |substr
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |String pattern replacement
 |replace
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |String pattern location
 |instr
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |String length
 |length
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Unary plus
 |+
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Unary minus
 |-
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Addition
 |+
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Substraction
 |-
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Multiplication
 |*
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Division
 |/
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Modulo
 |mod
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Rounding
 |round
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Truncation
 |trunc
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Ceiling
 |ceil
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Floor
 |floor
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Absolute value
 |abs
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Exponential
 |exp
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Natural logarithm
 |ln
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Power
 |power
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Logarithm
 |log
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Square root
 |sqrt
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Equal to
 |=
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Not equal to
 |<>
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Greater than
 |> >=
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Less than
 |< $$<=$$
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Between
 |between
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Element of
 |in/not_in
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |match_characters
 |match_characters
-|[lime]#Tak#
-|[red]#Nie#
+|[lime]#icon:check[]#
+|[red]#icon:times[]#
 
 |isnull
 |isnull
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Exists in
 |exists_in
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Logical conjunction
 |and
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Logical disjunction
 |or
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Exclusive disjunction
 |xor
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Logical negation
 |not
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Period indicator
 |period_indicator
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Fill time series
 |fill_time_series
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Flow to stock
 |flow_to_stock
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 |Stock to flow
 |stock_to_flow
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Time shift
 |timeshift
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Time aggregation
 |time_agg
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |Actual time
 |current_date
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Union
 |union
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Intersection
 |intersect
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Set difference
 |setdiff
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Simmetric difference
 |symdiff
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Hierarchical roll-up
 |hierarchy
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |Aggregate invocation
 |
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Analytic invocation
 |
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Counting the number of data points
 |count
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Minimum value
 |min
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Maximum value
 |max
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Median value
 |median
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Sum
 |sum
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Average value
 |avg
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Population standard deviation
 |stddev_pop
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Sample standard deviation
 |stddev_samp
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Population variance
 |var_pop
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Sample variance
 |var_samp
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |First value
 |first_value
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Last value
 |last_value
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Lag
 |lag
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Lead
 |lead
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Rank
 |rank
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Ratio to report
 |ratio_to_report
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |check_datapoint
 |check_datapoint
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |check_hierarchy
 |check_hierarchy
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |check
 |check
-|[red]#Nie#
-|[red]#Nie#
+|[red]#icon:times[]#
+|[red]#icon:times[]#
 
 |if-then-else
 |if
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Nvl
 |nvl
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Filtering Data Points
 |filter
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Calculation of a Component
 |calc
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Aggregation
 |aggr
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Maintaining Components
 |keep
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Removal of Components
 |drop
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Change of Component name
 |rename
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |Pivoting
 |pivot
-|[lime]#Tak#
-|[red]#Nie#
+|[lime]#icon:check[]#
+|[red]#icon:times[]#
 
 |Unpivoting
 |unpivot
-|[lime]#Tak#
-|[red]#Nie#
+|[lime]#icon:check[]#
+|[red]#icon:times[]#
 
 |Subspace
 |sub
-|[lime]#Tak#
-|[lime]#Tak#
+|[lime]#icon:check[]#
+|[lime]#icon:check[]#
 
 |===
 
-=== Obsługa czasowych domen wartości VTL
+=== Time Value Domains Support
 
-==== Obsługiwane maski czasowych domen wartości VTL
+==== Time Data Type Masks
 
-Poprawna obsługa czasowych domen wartości VTL przez translator VTL jest ograniczona do masek podanych w tabeli poniżej. Wprowadzając czasową wartość w kodzie VTL oraz przechowując dane o czasowej domenie wartości należy przestrzegać danych masek, w przeciwnym razie wynik działania translatora na danych wartościach będzie nieprawidłowy.
+Proper support for VTL time data types is limited to masks described in the table below.
+When using a time data type in VTL code or storing data on time value domain field, you need to respect these masks.
+Otherwise, translation will not be correct.
 
 [%header,cols=2*] 
 |===
-|Czasowa domena wartości
-|Obsługiwane maski
+|Time data type
+|Supported masks
 
 |Date
 |"yyyy-mm-dd", +
@@ -493,34 +495,26 @@ Poprawna obsługa czasowych domen wartości VTL przez translator VTL jest ograni
 |"A", "S", "Q", "M", "W", "D"
 |===
 
-==== Uproszczone użycie typów czasowych
+==== Simplified Usage of Time Data Types
 
-Zagłębiając się w przykłady z dokumentu
+Originally, scalar time data type literal required a usage of the type conversion operator (`cast`).
+String literal can be converted to a time value, respecting proper mask.
 
-> > SMDX Technical Working Group +
-VTL Task Force +
-VTL – version 2.0 +
-(Validation & Transformation Language) +
-Part 2 – Reference Manual
-
-można dojść do wniosku, że do użycia skalarnego wyrażenia czasowego, należy przy użyciu operatora konwersji typów (CAST) przekonwertować skalarne wyrażenie typu string na oczekiwany typ czasowy.
-
-.Przykład użycia operatora CAST do uzyskania skalarnych wyrażeń czasowych
+.Example of using the CAST operator to acquire scalar time value
 [source]
 ----
 cast("2000Q1", time_period, "YYYY\QQ")
 cast("20120213", date, "YYYYMMDD")
 ----
 
-W celu uproszczenia zapytań VTL translator posiada funkcjonalność rozpoznawania czasowych wyrażeń skalarnych. Należy je podawać w postaci wyrażenia reprezentującego ciąg znaków poprzedzonego literą "t".
+In order to simplify this task, VTL Processing provides functionality to automatically recognize time literals without using `cast` operator.
+The masked string need to be preceded by letter `t`.
 
-.Przykład uproszczonego uzyskania skalarnych wyrażeń czasowych za pomocą przedrostka "t"
+.Example of simplified literals for time data types
 [source]
 ----
 t"2000Q1"
 t"2012-02-13"
 ----
 
-WARNING: Funkcjonalność działa poprawnie tylko dla masek z powyższej tabeli.
-
-NOTE: Documentation under construction
+WARNING: Functionality works properly only for masks from the table above.

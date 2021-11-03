@@ -8,8 +8,7 @@
     public interface IReferencesManager
     {
         /// <summary>
-        /// Assigns non-persistent assignment expressions from a schema to its dictionary. <br />
-        /// Gives out a collection of persistent assignemnt expressions.
+        /// Assigns non-persistent assignment expressions from a schema to its dictionary.
         /// </summary>
         /// <param name="schema">The transformation schema.</param>
         public void TakeNonPersistentExprs(ITransformationSchema schema);

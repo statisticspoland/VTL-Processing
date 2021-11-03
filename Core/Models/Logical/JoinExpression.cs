@@ -18,7 +18,7 @@
         /// <param name="expression">The base expression with a "join" operator.</param>
         public JoinExpression(IExpression expression) : base(expression.ParentExpression)
         {
-            if (expression.OperatorSymbol != "join") throw new ArgumentException("Expected \"join\" operator symbol when creating \"join\" expression.", "expression");
+            if (expression.OperatorSymbol != "join") throw new ArgumentException("Expected \"join\" operator symbol when creating a \"join\" expression.", "expression");
 
             this.ContainingSchema = expression.ContainingSchema;
             this.ExpressionText = expression.ExpressionText;
@@ -169,7 +169,7 @@
         /// </summary>
         /// <param name="child">The first expression.</param>
         /// <param name="parent">The second expression.</param>
-        /// <returns>Value specyfing if a given first expression is child of a given second expression.</returns>
+        /// <returns>Value indicating if a given first expression is child of a given second expression.</returns>
         private bool ExprIsChildOf(IExpression child, IExpression parent)
         {
             foreach (IExpression expr in parent.OperandsCollection)

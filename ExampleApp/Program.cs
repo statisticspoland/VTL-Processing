@@ -44,7 +44,7 @@
                 };
 
             translator.DataModels.AddJsonModel($"{Directory.GetCurrentDirectory()}\\DataModel.json");
-            translator.DataModels.AddRegularModel(RegularModel.ModelConfiguration, "Regular");
+            translator.DataModels.AddDictionaryModel(RegularModel.ModelConfiguration, "Regular");
             translator.DataModels.DefaultNamespace = "Json";
 
             ITransformationSchema schema = translator.CreateSchema(Example.Source);

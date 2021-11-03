@@ -92,7 +92,7 @@
         /// <summary>
         /// Adds a new expression to this instance's operands dictionary.
         /// </summary>
-        /// <param name="signature">The signature of expression in the dictionary.</param>
+        /// <param name="signature">The signature of an expression in the dictionary.</param>
         /// <param name="expression">The expression.</param>
         void AddOperand(string signature, IExpression expression);
 

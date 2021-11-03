@@ -117,7 +117,7 @@
                     else if (key == "const") op = new ConstantOperator(ModelResolvers.DsResolver);
                     else if (key == "current_date") op = new CurrentDateOperator(ModelResolvers.DsResolver);
                     else if (key == "exists_in") op = new ExistsInOperator(ModelResolvers.DsResolver);
-                    else if (key == "get") op = new GetOperator(new Mock<IDataModel>().Object); // operator tests should mock IDataModel implementation
+                    else if (key == "get") op = new GetOperator(new Mock<IDataModelProvider>().Object); // operator tests should mock IDataModel implementation
                     else if (key == "if") op = new IfThenElseOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key.In("in", "not_in")) op = new InOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);
                     else if (key == "isnull") op = new IsNullOperator(joinApplyMeasuresOp, ModelResolvers.DsResolver);

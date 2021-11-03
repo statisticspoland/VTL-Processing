@@ -29,51 +29,49 @@
             IEnumerable<ITargetRenderer> targetRenderers,
             IDataModelAggregator dataModelAggregator)
         {
-            _logger = logger;
-            _treeGenerator = treeGenerator;
-            _schemaModifiersApplier = schemaModifiersApplier;
-            _errorCollectorProvider = (ErrorCollectorProvider)loggerProviders.SingleOrDefault(l => l.GetType() == typeof(ErrorCollectorProvider));
-            _dataModelAggregator = dataModelAggregator;
-            _targetRenderers = targetRenderers;
+            this._logger = logger;
+            this._treeGenerator = treeGenerator;
+            this._schemaModifiersApplier = schemaModifiersApplier;
+            this._errorCollectorProvider = (ErrorCollectorProvider)loggerProviders.SingleOrDefault(l => l.GetType() == typeof(ErrorCollectorProvider));
+            this._dataModelAggregator = dataModelAggregator;
+            this._targetRenderers = targetRenderers;
         }
         public TranslationResponse Tanslate(TranslationParameters parameters)
         {
-            _dataModelAggregator.EnvironmentMapper.Mapping = parameters.DataMappers;
-
-            _dataModelAggregator.DefaultNamespace = parameters.DefaultNamespace;
-
-            _dataModelAggregator.DataModelsCollection.Clear();
+            this._dataModelAggregator.EnvironmentMapper.Mapping = parameters.DataMappers;
+            this._dataModelAggregator.DefaultNamespace = parameters.DefaultNamespace;
+            this._dataModelAggregator.DataModelsCollection.Clear();
 
             foreach (var dataSource in parameters.DataSources)
             {
                 switch (dataSource.Type.ToLower())
                 {
                     case "json":
-                        _dataModelAggregator.AddJsonModel(dataSource.Localazation);
+                        this._dataModelAggregator.AddJsonModel(dataSource.Localization);
                         break;
                     case "sdmx":
-                        _dataModelAggregator.AddSdmxModel(dataSource.Localazation, dataSource.Namespace);
+                        this._dataModelAggregator.AddSdmxModel(dataSource.Localization, dataSource.Namespace);
                         break;
                     case "tsql":
-                        _dataModelAggregator.AddSqlServerModel(dataSource.Localazation);
+                        this._dataModelAggregator.AddSqlServerModel(dataSource.Localization);
                         break;
                     default:
                         return new TranslationResponse(new ArgumentException("Unexpected model type."));
                 }
             }
 
-            ITransformationSchema schema = _treeGenerator.BuildTransformationSchema(parameters.Experession);
+            ITransformationSchema schema = this._treeGenerator.BuildTransformationSchema(parameters.Experession);
 
-            _schemaModifiersApplier.Process(schema);
+            this._schemaModifiersApplier.Process(schema);
 
-            bool areErrors = _errorCollectorProvider.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
+            bool areErrors = this._errorCollectorProvider.ErrorCollectors.Sum(counter => counter.Errors.Count) > 0;
 
             if(areErrors)
             {
-                return new TranslationResponse(_errorCollectorProvider.ErrorCollectors.SelectMany(ec => ec.Errors).ToList());
+                return new TranslationResponse(this._errorCollectorProvider.ErrorCollectors.SelectMany(ec => ec.Errors).ToList());
             }
 
-            ITargetRenderer target = _targetRenderers.FirstOrDefault(tr => tr.Name == parameters.Target);
+            ITargetRenderer target = this._targetRenderers.FirstOrDefault(tr => tr.Name == parameters.Target);
 
             if (target == null)
                 return new TranslationResponse(new ArgumentException("Unexpected target type."));

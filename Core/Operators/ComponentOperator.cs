@@ -57,7 +57,7 @@
                 }
                 else
                 {
-                    //unpivot > datasetClause > dataset
+                    // unpivot > datasetClause > dataset
                     if (parentExpr.ParentExpression?.Operands["ds_1"]?.Structure?.Measures.First() != null)
                     {
                         BasicDataType type = parentExpr.ParentExpression.Operands["ds_1"].Structure.Measures.First().ValueDomain.DataType;

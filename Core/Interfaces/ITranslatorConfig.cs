@@ -5,6 +5,9 @@
     using StatisticsPoland.VtlProcessing.Core.BackEnd;
     using System;
 
+    /// <summary>
+    /// Interface of a VTL 2.0 translator representation configuration.
+    /// </summary>
     public interface ITranslatorConfig
     {
         /// <summary>
@@ -13,9 +16,14 @@
         TargetsCollection Targets { get; }
 
         /// <summary>
+        /// Gets or sets the value indicating whether a dead code has to be removed.
+        /// </summary>
+        bool RemoveDeadCode { get; set; }
+
+        /// <summary>
         /// Adds logging services.
         /// </summary>
-        /// <param name="config">The ILoggingBuilder configuration delegate.</param>
+        /// <param name="config">The <see cref="ILoggingBuilder"/> configuration delegate.</param>
         void AddLogging(Action<ILoggingBuilder> config);
 
         /// <summary>

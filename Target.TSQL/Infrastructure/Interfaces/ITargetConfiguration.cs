@@ -1,7 +1,7 @@
 ﻿namespace StatisticsPoland.VtlProcessing.Target.TSQL.Infrastructure.Interfaces
 {
     /// <summary>
-    /// The target configuration interface.
+    /// The interface of the TSQL target renderer configuration.
     /// </summary>
     public interface ITargetConfiguration
     {
@@ -10,6 +10,9 @@
         /// </summary>
         bool UseComments { get; set; }
 
+        /// <summary>
+        /// The attribute propagation algorithm.
+        /// </summary>
         IAttributePropagationAlgorithm AttributePropagationAlgorithm { get; set; }
     }
 }

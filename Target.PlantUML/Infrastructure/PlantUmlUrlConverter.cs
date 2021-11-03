@@ -6,6 +6,9 @@
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// The converter of a PlantUML code to an URL of a diagram.
+    /// </summary>
     public class PlantUmlUrlConverter
     {
         private string source;
@@ -61,7 +64,7 @@
         public string TXTUrl { get; private set; }
 
         /// <summary>
-        /// Compresses a PlantUML source using PlantUML Text Encoding algorithm.
+        /// Compresses a PlantUML source using a PlantUML Text Encoding algorithm.
         /// </summary>
         /// <returns>The compressed text.</returns>
         private string CompressSourceToPlantUmlUrl()

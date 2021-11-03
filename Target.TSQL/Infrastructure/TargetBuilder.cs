@@ -4,7 +4,7 @@
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
-    /// The target builder.
+    /// The builder for the TSQL target renderer.
     /// </summary>
     internal sealed class TargetBuilder : ITargetBuilder
     {
@@ -32,6 +32,10 @@
             return this;
         }
 
+        /// <summary>
+        /// Updates a service collection by adding the target configuration set by the builder.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
         public void UpdateServices(IServiceCollection services)
         {
             services.AddScoped(p => this._configuration);

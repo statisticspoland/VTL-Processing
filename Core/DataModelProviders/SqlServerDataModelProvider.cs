@@ -1,4 +1,4 @@
-﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders.Models
+﻿namespace StatisticsPoland.VtlProcessing.Core.DataModelProviders
 {
     using Microsoft.Data.SqlClient;
     using Microsoft.SqlServer.Management.Common;
@@ -14,22 +14,22 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// The SQL server VTL 2.0 data model.
+    /// The TSQL server VTL 2.0 data model.
     /// </summary>
-    public class DataModelSqlServer : DataModel
+    public class SqlServerDataModelProvider : DataModelProviderBase
     {
         private readonly DataStructureResolver _dsResolver;
         private readonly string _connStr;
         private readonly IEnvironmentMapper _mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataModelSqlServer"/> class.
+        /// Initializes a new instance of the <see cref="SqlServerDataModelProvider"/> class.
         /// </summary>
         /// <param name="rootModel">The root data model.</param>
         /// <param name="dsResolver">The data structure resolver.</param>
-        /// <param name="connectionString">The SQL Server connection string.</param>
+        /// <param name="connectionString">The TSQL Server connection string.</param>
         /// <param name="mapper">The environment names mapper.</param>
-        public DataModelSqlServer(IDataModel rootModel, DataStructureResolver dsResolver, string connectionString, IEnvironmentMapper mapper)
+        public SqlServerDataModelProvider(IDataModelProvider rootModel, DataStructureResolver dsResolver, string connectionString, IEnvironmentMapper mapper)
             : base(rootModel)
         {
             this._dsResolver = dsResolver;
@@ -149,7 +149,7 @@
         }
 
         /// <summary>
-        /// Maps a SQL data type to a VTL 2.0 data type.
+        /// Maps a TSQL data type to a VTL 2.0 data type.
         /// </summary>
         /// <param name="sqlDataType">The type of the SQL data.</param>
         /// <returns>The basic data type of VTL 2.0.</returns>

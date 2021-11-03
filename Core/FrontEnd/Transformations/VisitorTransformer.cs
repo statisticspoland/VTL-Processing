@@ -70,9 +70,9 @@
         }
 
         /// <summary>
-        /// Node to walk to a tree.
+        /// Node to walk through a CST tree. Starts walking.
         /// </summary>
-        /// <param name="context">The context.</param>
+        /// <param name="context">The start context.</param>
         /// <returns>Null.</returns>
         public override IExpression VisitStart(VtlParser.StartContext context)
         {
@@ -85,10 +85,10 @@
         }
 
         /// <summary>
-        /// Represents a single VTL 2.0 expression. Returns an expression of the assignment. The variable name is the name of the result of the expression.
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an assignment or a definition.
         /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns>The VTL 2.0 expression.</returns>
+        /// <param name="context">The statement context.</param>
+        /// <returns>The VTL 2.0 expression of an assignment or a definition with the assignment or defiition variable name as a result name.</returns>
         public override IExpression VisitStatement([NotNull] VtlParser.StatementContext context)
         {
             this.currentRefs = new List<string>();
@@ -116,6 +116,11 @@
             return statementExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an "opened" dataset.
+        /// </summary>
+        /// <param name="context">The "opened" dataset context.</param>
+        /// <returns>The VTL 2.0 expression of an "opened" dataset.</returns>
         public override IExpression VisitOpenedDataset([NotNull] VtlParser.OpenedDatasetContext context)
         {
             IExpression datasetExpr;
@@ -149,6 +154,11 @@
             return datasetExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "closed" dataset.
+        /// </summary>
+        /// <param name="context">The "closed" dataset context.</param>
+        /// <returns>The VTL 2.0 expression of a "closed" dataset.</returns>
         public override IExpression VisitClosedDataset([NotNull] VtlParser.ClosedDatasetContext context)
         {
             IExpression datasetExpr;
@@ -201,6 +211,11 @@
             return datasetExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "membership" dataset.
+        /// </summary>
+        /// <param name="context">The "membership" dataset context.</param>
+        /// <returns>The VTL 2.0 expression of a "membership" dataset.</returns>
         public override IExpression VisitMembershipDataset([NotNull] VtlParser.MembershipDatasetContext context)
         {
             IExpression membershipExpr = this._exprFactory.GetExpression("#", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -212,6 +227,11 @@
             return membershipExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an "if then else" dataset.
+        /// </summary>
+        /// <param name="context">The "if then else" dataset context.</param>
+        /// <returns>The VTL 2.0 expression of an "if then else" dataset.</returns>
         public override IExpression VisitIfThenElseDataset([NotNull] VtlParser.IfThenElseDatasetContext context)
         {
             IExpression ifThenElseExpr = this._exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -248,6 +268,11 @@
             return ifThenElseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a component.
+        /// </summary>
+        /// <param name="context">The component context.</param>
+        /// <returns>The VTL 2.0 expression of a component.</returns>
         public override IExpression VisitComponent([NotNull] VtlParser.ComponentContext context)
         {
             IExpression componentExpr;
@@ -265,6 +290,11 @@
             return componentExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a scalar.
+        /// </summary>
+        /// <param name="context">The scalar context.</param>
+        /// <returns>The VTL 2.0 expression of a scalar.</returns>
         public override IExpression VisitScalar([NotNull] VtlParser.ScalarContext context)
         {
             IExpression scalarExpr;
@@ -304,6 +334,11 @@
             return scalarExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an "if then else" scalar.
+        /// </summary>
+        /// <param name="context">The "if then else" scalar context.</param>
+        /// <returns>The VTL 2.0 expression of an "if then else" scalar.</returns>
         public override IExpression VisitIfThenElseScalar([NotNull] VtlParser.IfThenElseScalarContext context)
         {
             IExpression ifThenElseExpr = this._exprFactory.GetExpression("if", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -335,6 +370,11 @@
             return ifThenElseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 optional expression.
+        /// </summary>
+        /// <param name="context">The optional expression context.</param>
+        /// <returns>The VTL 2.0 optional expression.</returns>
         public override IExpression VisitOptionalExpr([NotNull] VtlParser.OptionalExprContext context)
         {
             IExpression optionalExpr;
@@ -346,6 +386,11 @@
             return optionalExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "set" expression.
+        /// </summary>
+        /// <param name="context">The "set" expression context.</param>
+        /// <returns>The VTL 2.0 "set" expression.</returns>
         public override IExpression VisitSetExpr([NotNull] VtlParser.SetExprContext context)
         {
             IExpression setExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
@@ -356,7 +401,12 @@
 
             return setExpr;
         }
-        
+
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "dataset" clause.
+        /// </summary>
+        /// <param name="context">The "dataset" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "dataset" clause.</returns>
         public override IExpression VisitDatasetClause([NotNull] VtlParser.DatasetClauseContext context)
         {
             if (context.calcClause() != null) return this.Visit(context.calcClause());
@@ -370,6 +420,11 @@
             return this.Visit(context.subspaceClause());
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an "aggr" clause.
+        /// </summary>
+        /// <param name="context">The "aggr" clause context.</param>
+        /// <returns>The VTL 2.0 expression of an "aggr" clause.</returns>
         public override IExpression VisitAggrClause([NotNull] VtlParser.AggrClauseContext context)
         {
             IExpression aggrClauseExpr = this._exprFactory.GetExpression("aggr", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -391,6 +446,11 @@
             return aggrClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "aggr" expression.
+        /// </summary>
+        /// <param name="context">The "aggr" expression context.</param>
+        /// <returns>The VTL 2.0 "aggr" expression.</returns>
         public override IExpression VisitAggrExpr([NotNull] VtlParser.AggrExprContext context)
         {
             IExpression aggrExpr = this._exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -406,6 +466,11 @@
             return aggrExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "filter" clause.
+        /// </summary>
+        /// <param name="context">The "filter" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "filter" clause.</returns>
         public override IExpression VisitFilterClause([NotNull] VtlParser.FilterClauseContext context)
         {
             IExpression filterExpr = this.Visit(context.scalar());
@@ -416,6 +481,11 @@
             return filterExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "rename" clause.
+        /// </summary>
+        /// <param name="context">The "rename" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "rename" clause.</returns>
         public override IExpression VisitRenameClause([NotNull] VtlParser.RenameClauseContext context)
         {
             IExpression renameClauseExpr = this._exprFactory.GetExpression("rename", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -430,6 +500,11 @@
             return renameClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "rename" expression.
+        /// </summary>
+        /// <param name="context">The "rename" expression context.</param>
+        /// <returns>The VTL 2.0 "rename" expression.</returns>
         public override IExpression VisitRenameExpr([NotNull] VtlParser.RenameExprContext context)
         {
             IExpression renameExpr = this._exprFactory.GetExpression("renameExpr", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -441,6 +516,11 @@
             return renameExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "calc" clause.
+        /// </summary>
+        /// <param name="context">The "calc" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "calc" clause.</returns>
         public override IExpression VisitCalcClause([NotNull] VtlParser.CalcClauseContext context)
         {
             IExpression calcClauseExpr = this._exprFactory.GetExpression("calc", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -455,6 +535,11 @@
             return calcClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "calc" expression.
+        /// </summary>
+        /// <param name="context">The "calc" expression context.</param>
+        /// <returns>The VTL 2.0 "calc" expression.</returns>
         public override IExpression VisitCalcExpr([NotNull] VtlParser.CalcExprContext context)
         {
             IExpression calcExpr = this._exprFactory.GetExpression("calcExpr", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -470,6 +555,11 @@
             return calcExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "keep" clause.
+        /// </summary>
+        /// <param name="context">The "keep" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "keep" clause.</returns>
         public override IExpression VisitKeepClause([NotNull] VtlParser.KeepClauseContext context)
         {
             IExpression keepClauseExpr = this._exprFactory.GetExpression("keep", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -485,6 +575,11 @@
             return keepClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "drop" clause.
+        /// </summary>
+        /// <param name="context">The "drop" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "drop" clause.</returns>
         public override IExpression VisitDropClause([NotNull] VtlParser.DropClauseContext context)
         {
             IExpression dropClauseExpr = this._exprFactory.GetExpression("drop", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -500,6 +595,11 @@
             return dropClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "pivot" clause.
+        /// </summary>
+        /// <param name="context">The "pivot" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "pivot" clause.</returns>
         public override IExpression VisitPivotClause([NotNull] VtlParser.PivotClauseContext context)
         {
             IExpression pivotClauseExpr = this._exprFactory.GetExpression("pivot", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -514,6 +614,11 @@
             return pivotClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an "unpivot" clause.
+        /// </summary>
+        /// <param name="context">The "unpivot" clause context.</param>
+        /// <returns>The VTL 2.0 expression of an "unpivot" clause.</returns>
         public override IExpression VisitUnpivotClause([NotNull] VtlParser.UnpivotClauseContext context)
         {
             IExpression unpivotClauseExpr = this._exprFactory.GetExpression("unpivot", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -528,6 +633,11 @@
             return unpivotClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "subspace" clause.
+        /// </summary>
+        /// <param name="context">The "subspace" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "subspace" clause.</returns>
         public override IExpression VisitSubspaceClause([NotNull] VtlParser.SubspaceClauseContext context)
         {
             IExpression subspaceClauseExpr = this._exprFactory.GetExpression("sub", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -542,6 +652,11 @@
             return subspaceClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "subspace" expression.
+        /// </summary>
+        /// <param name="context">The "subspace" expression context.</param>
+        /// <returns>The VTL 2.0 "subspace" expression.</returns>
         public override IExpression VisitSubspaceExpr([NotNull] VtlParser.SubspaceExprContext context)
         {
             IExpression subspaceExpr = this._exprFactory.GetExpression("subExpr", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -553,6 +668,11 @@
             return subspaceExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "join" expression.
+        /// </summary>
+        /// <param name="context">The "join" expression context.</param>
+        /// <returns>The VTL 2.0 "join" expression.</returns>
         public override IExpression VisitJoinExpr([NotNull] VtlParser.JoinExprContext context)
         {
             IExpression joinExpr = this._exprFactory.GetExpression("join", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -576,6 +696,11 @@
             return joinExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join aliases" clause.
+        /// </summary>
+        /// <param name="context">The "join aliases" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join aliases" clause.</returns>
         public override IExpression VisitJoinAliasesClause([NotNull] VtlParser.JoinAliasesClauseContext context)
         {
             IExpression dsBranch = this._exprFactory.GetExpression("Alias", ExpressionFactoryNameTarget.ResultName);
@@ -595,6 +720,11 @@
             return dsBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "join alias" expression.
+        /// </summary>
+        /// <param name="context">The "join alias" expression context.</param>
+        /// <returns>The VTL 2.0 "join alias" expression.</returns>
         public override IExpression VisitJoinAliasExpr([NotNull] VtlParser.JoinAliasExprContext context)
         {
             IExpression aliasExpr = this.Visit(context.dataset());
@@ -607,6 +737,11 @@
             return aliasExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join using" clause.
+        /// </summary>
+        /// <param name="context">The "join using" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join using" clause.</returns>
         public override IExpression VisitJoinUsingClause([NotNull] VtlParser.JoinUsingClauseContext context)
         {
             IExpression usingBranch = this._exprFactory.GetExpression("Using", ExpressionFactoryNameTarget.ResultName);
@@ -622,6 +757,11 @@
             return usingBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join calc" clause.
+        /// </summary>
+        /// <param name="context">The "join calc" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join calc" clause.</returns>
         public override IExpression VisitJoinCalcClause([NotNull] VtlParser.JoinCalcClauseContext context)
         {
             IExpression calcBranch = this.Visit(context.calcClause());
@@ -630,6 +770,11 @@
             return calcBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join aggr" clause.
+        /// </summary>
+        /// <param name="context">The "join aggr" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join aggr" clause.</returns>
         public override IExpression VisitJoinAggrClause([NotNull] VtlParser.JoinAggrClauseContext context)
         {
             IExpression aggrBranch = this.Visit(context.aggrClause());
@@ -638,6 +783,11 @@
             return aggrBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join keep" clause.
+        /// </summary>
+        /// <param name="context">The "join keep" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join keep" clause.</returns>
         public override IExpression VisitJoinKeepClause([NotNull] VtlParser.JoinKeepClauseContext context)
         {
             IExpression keepBranch = this.Visit(context.keepClause());
@@ -646,6 +796,11 @@
             return keepBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join drop" clause.
+        /// </summary>
+        /// <param name="context">The "join drop" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join drop" clause.</returns>
         public override IExpression VisitJoinDropClause([NotNull] VtlParser.JoinDropClauseContext context)
         {
             IExpression dropBranch = this.Visit(context.dropClause());
@@ -654,6 +809,11 @@
             return dropBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join filter" clause.
+        /// </summary>
+        /// <param name="context">The "join filter" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join filter" clause.</returns>
         public override IExpression VisitJoinFilterClause([NotNull] VtlParser.JoinFilterClauseContext context)
         {
             IExpression filterBranch = this.Visit(context.filterClause());
@@ -662,6 +822,11 @@
             return filterBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join rename" clause.
+        /// </summary>
+        /// <param name="context">The "join rename" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join rename" clause.</returns>
         public override IExpression VisitJoinRenameClause([NotNull] VtlParser.JoinRenameClauseContext context)
         {
             IExpression renameBranch = this.Visit(context.renameClause());
@@ -670,6 +835,11 @@
             return renameBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "join apply" clause.
+        /// </summary>
+        /// <param name="context">The "join apply" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "join apply" clause.</returns>
         public override IExpression VisitJoinApplyClause([NotNull] VtlParser.JoinApplyClauseContext context)
         {
             IExpression applyBranch = this.Visit(context.scalar());
@@ -705,6 +875,11 @@
             return applyBranch;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an aggregate invocation.
+        /// </summary>
+        /// <param name="context">The aggregate invocation context.</param>
+        /// <returns>The VTL 2.0 expression of an aggregate invocation.</returns>
         public override IExpression VisitAggrInvocation([NotNull] VtlParser.AggrInvocationContext context)
         {
             IExpression aggrInvocationExpr = this._exprFactory.GetExpression(context.aggrFunctionName().GetText(), ExpressionFactoryNameTarget.OperatorSymbol);
@@ -718,6 +893,11 @@
             return aggrInvocationExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an aggregate function.
+        /// </summary>
+        /// <param name="context">The aggregate function context.</param>
+        /// <returns>The VTL 2.0 expression of an aggregate function.</returns>
         public override IExpression VisitAggrFunction([NotNull] VtlParser.AggrFunctionContext context)
         {
             IExpression aggrFunctionExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
@@ -728,6 +908,11 @@
             return aggrFunctionExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "grouping" clause.
+        /// </summary>
+        /// <param name="context">The "grouping" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "grouping" clause.</returns>
         public override IExpression VisitGroupingClause([NotNull] VtlParser.GroupingClauseContext context)
         {
             IExpression groupingClauseExpr = this._exprFactory.GetExpression("group", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -747,6 +932,11 @@
             return groupingClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "having" clause.
+        /// </summary>
+        /// <param name="context">The "having" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "having" clause.</returns>
         public override IExpression VisitHavingClause([NotNull] VtlParser.HavingClauseContext context)
         {
             IExpression havingClauseExpr = this.Visit(context.havingExpr());
@@ -757,6 +947,11 @@
             return havingClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "having" expression.
+        /// </summary>
+        /// <param name="context">The "having" expression context.</param>
+        /// <returns>The VTL 2.0 "having" expression.</returns>
         public override IExpression VisitHavingExpr([NotNull] VtlParser.HavingExprContext context)
         {
             IExpression havingExpr = this._exprFactory.GetExpression(context.opSymbol.Text, ExpressionFactoryNameTarget.OperatorSymbol);
@@ -782,6 +977,11 @@
             return havingExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an analytic invocation.
+        /// </summary>
+        /// <param name="context">The analytic invocation context.</param>
+        /// <returns>The VTL 2.0 expression of an analytic invocation.</returns>
         public override IExpression VisitAnalyticInvocation([NotNull] VtlParser.AnalyticInvocationContext context)
         {
             string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
@@ -823,6 +1023,11 @@
             return analyticInvocationExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of an analytic function.
+        /// </summary>
+        /// <param name="context">The analytic function context.</param>
+        /// <returns>The VTL 2.0 expression of an analytic function.</returns>
         public override IExpression VisitAnalyticFunction([NotNull] VtlParser.AnalyticFunctionContext context)
         {
             string opSymbol = context.opSymbol?.Text ?? this.GetOriginalText(context.aggrFunctionName());
@@ -864,6 +1069,11 @@
             return analyticFunctionExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "analytic" clause.
+        /// </summary>
+        /// <param name="context">The "analytic" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "analytic" clause.</returns>
         public override IExpression VisitAnalyticClause([NotNull] VtlParser.AnalyticClauseContext context)
         {
             IExpression analyticClauseExpr = this._exprFactory.GetExpression("Over", ExpressionFactoryNameTarget.ResultName);
@@ -877,6 +1087,11 @@
             return analyticClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "partition" clause.
+        /// </summary>
+        /// <param name="context">The "partition" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "partition" clause.</returns>
         public override IExpression VisitPartitionClause([NotNull] VtlParser.PartitionClauseContext context)
         {
             IExpression partitionClauseExpr = this._exprFactory.GetExpression("partition", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -891,6 +1106,11 @@
             return partitionClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "order" clause.
+        /// </summary>
+        /// <param name="context">The "order" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "order" clause.</returns>
         public override IExpression VisitOrderClause([NotNull] VtlParser.OrderClauseContext context)
         {
             IExpression orderClauseExpr = this._exprFactory.GetExpression("order", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -905,6 +1125,11 @@
             return orderClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 "order" expression.
+        /// </summary>
+        /// <param name="context">The "order" expression context.</param>
+        /// <returns>The VTL 2.0 "order" expression.</returns>
         public override IExpression VisitOrderExpr([NotNull] VtlParser.OrderExprContext context)
         {
             IExpression orderExpr = this.Visit(context.component());
@@ -913,6 +1138,11 @@
             return orderExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "windowing" clause.
+        /// </summary>
+        /// <param name="context">The "windowing" clause context.</param>
+        /// <returns>The VTL 2.0 expression of a "windowing" clause.</returns>
         public override IExpression VisitWindowingClause([NotNull] VtlParser.WindowingClauseContext context)
         {
             IExpression windowingClauseExpr = this._exprFactory.GetExpression("Window", ExpressionFactoryNameTarget.ResultName);
@@ -925,6 +1155,11 @@
             return windowingClauseExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "first window limit".
+        /// </summary>
+        /// <param name="context">The "first window limit" context.</param>
+        /// <returns>The VTL 2.0 expression of a "first window limit".</returns>
         public override IExpression VisitFirstWindowLimit([NotNull] VtlParser.FirstWindowLimitContext context)
         {
             IExpression windowLimitExpr = this._exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
@@ -934,6 +1169,11 @@
             return windowLimitExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a "second window limit".
+        /// </summary>
+        /// <param name="context">The "second window limit" context.</param>
+        /// <returns>The VTL 2.0 expression of a "second window limit".</returns>
         public override IExpression VisitSecondWindowLimit([NotNull] VtlParser.SecondWindowLimitContext context)
         {
             IExpression windowLimitExpr = this._exprFactory.GetExpression("WindowLimit", ExpressionFactoryNameTarget.ResultName);
@@ -943,6 +1183,11 @@
             return windowLimitExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a list.
+        /// </summary>
+        /// <param name="context">The list context.</param>
+        /// <returns>The VTL 2.0 expression of a list.</returns>
         public override IExpression VisitList([NotNull] VtlParser.ListContext context)
         {
             IExpression listExpr = this._exprFactory.GetExpression("collection", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -957,6 +1202,11 @@
             return listExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a dataset identifier.
+        /// </summary>
+        /// <param name="context">The dataset identifier context.</param>
+        /// <returns>The VTL 2.0 expression of a dataset identifier.</returns>
         public override IExpression VisitDatasetID([NotNull] VtlParser.DatasetIDContext context)
         {
             IExpression datasetExpr;
@@ -974,6 +1224,11 @@
             return datasetExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a component identifier.
+        /// </summary>
+        /// <param name="context">The component identifier context.</param>
+        /// <returns>The VTL 2.0 expression of a component identifier.</returns>
         public override IExpression VisitComponentID([NotNull] VtlParser.ComponentIDContext context)
         {
             IExpression componentExpr = this._exprFactory.GetExpression("comp", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -983,6 +1238,11 @@
             return componentExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a constant.
+        /// </summary>
+        /// <param name="context">The constant context.</param>
+        /// <returns>The VTL 2.0 expression of a constant.</returns>
         public override IExpression VisitConstant([NotNull] VtlParser.ConstantContext context)
         {
             IExpression constantExpr = this._exprFactory.GetExpression("const", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -1002,6 +1262,11 @@
             return constantExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a checking datapoint.
+        /// </summary>
+        /// <param name="context">The checking datapoint context.</param>
+        /// <returns>The VTL 2.0 expression of a checking datapoint.</returns>
         public override IExpression VisitCheckDatapoint([NotNull] VtlParser.CheckDatapointContext context)
         {
             IExpression checkExpr = this._exprFactory.GetExpression("check_datapoint", ExpressionFactoryNameTarget.OperatorSymbol);
@@ -1027,6 +1292,11 @@
             return checkExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a datapoint definition.
+        /// </summary>
+        /// <param name="context">The datapoint definition context.</param>
+        /// <returns>The VTL 2.0 expression of a datapoint definition.</returns>
         public override IExpression VisitDefDatapoint([NotNull] VtlParser.DefDatapointContext context)
         {
             this.schema.Rulesets.Add(this._dprReslover(this.GetOriginalText(context.rulesetID()), this.GetOriginalText(context)));
@@ -1040,6 +1310,11 @@
             return null;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a ruleset signature.
+        /// </summary>
+        /// <param name="context">The ruleset signature context.</param>
+        /// <returns>The VTL 2.0 expression of a ruleset signature.</returns>
         public override IExpression VisitRulesetSignature([NotNull] VtlParser.RulesetSignatureContext context)
         {
             IRuleset ruleset = this.schema.Rulesets.Last();
@@ -1049,6 +1324,11 @@
             return base.VisitRulesetSignature(context);
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a ruleset variable.
+        /// </summary>
+        /// <param name="context">The ruleset variable context.</param>
+        /// <returns>The VTL 2.0 expression of a ruleset variable.</returns>
         public override IExpression VisitVarSignature([NotNull] VtlParser.VarSignatureContext context)
         {
             IRuleset ruleset = this.schema.Rulesets.Last();
@@ -1067,6 +1347,11 @@
             return base.VisitVarSignature(context);
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a ruleset rule item.
+        /// </summary>
+        /// <param name="context">The ruleset rule item context.</param>
+        /// <returns>The VTL 2.0 expression of a ruleset rule item.</returns>
         public override IExpression VisitRuleItemDatapoint([NotNull] VtlParser.RuleItemDatapointContext context)
         {
             IRuleset ruleset = this.schema.Rulesets.Last();
@@ -1110,6 +1395,11 @@
             return ruleExpr;
         }
 
+        /// <summary>
+        /// Node to walk through a CST tree. Represents a single VTL 2.0 expression of a ruleset identifier.
+        /// </summary>
+        /// <param name="context">The ruleset identifier context.</param>
+        /// <returns>The VTL 2.0 expression of a ruleset identifier.</returns>
         public override IExpression VisitRulesetID([NotNull] VtlParser.RulesetIDContext context)
         {
             IExpression rulesetExpr = this._exprFactory.GetExpression("Ruleset", ExpressionFactoryNameTarget.ResultName);
@@ -1119,6 +1409,11 @@
             return rulesetExpr;
         }
 
+        /// <summary>
+        /// Gets the original text of a context.
+        /// </summary>
+        /// <param name="ctx">The context.</param>
+        /// <returns>The original text of a context.</returns>
         private string GetOriginalText(ParserRuleContext ctx)
         {
             int a = ctx.Start.StartIndex;

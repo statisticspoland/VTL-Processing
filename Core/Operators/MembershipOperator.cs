@@ -61,7 +61,6 @@
         /// <summary>
         /// Transforms a given structure into a standard membership structure.
         /// </summary>
-        /// <param name="expr">The membership operator expression.</param>
         /// <param name="structure">The data structure./param>
         /// <param name="component">The membership component.</param>
         private void TransformStructrure(IDataStructure structure, StructureComponent component)

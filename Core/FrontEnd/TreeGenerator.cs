@@ -9,7 +9,7 @@
     using StatisticsPoland.VtlProcessing.Core.Transformations.Interfaces;
 
     /// <summary>
-    /// The VTL 2.0 syntax tree generator
+    /// The VTL 2.0 syntax tree generator.
     /// </summary>
     public sealed class TreeGenerator : ITreeGenerator
     {
@@ -19,7 +19,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="TreeGenerator"/> class.
         /// </summary>
-        /// <param name="transformer">The transformer of CST tree to a transformation schema.</param>
+        /// <param name="transformer">The transformer of a CST tree to a transformation schema.</param>
         /// <param name="logger">The syntax errors logger.</param>
         public TreeGenerator(ITreeTransformer transformer, ILogger<ITreeGenerator> logger = null)
         {

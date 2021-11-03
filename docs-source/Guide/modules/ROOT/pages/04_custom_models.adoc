@@ -1,4 +1,4 @@
-== Custom models
+== Custom data model providers
 
 === Niestandardowe modele danych
 
@@ -53,16 +53,6 @@ W celu dodania niestandardowego modelu danych do agregatora modeli danych należ
 ----
 aggregator.DataModelsCollection.Add(new CustomDataModel(aggregator, ...));
 ----
-
-=== Niestandardowe renderery języków docelowych
-
-==== Implementacja i użycie
-
-Użytkownik ma możliwość tworzenia niestandardowych rendererów językó docelowych i używania ich przy pomocy biblioteki. W tym celu należy zaimplementować reprezentację interfejsu ``StatisticsPoland.VtlProcessing.Core.BackEnd.ITargetRenderer``, dodać go i jego wszystkie zależności do kolekcji serwisów ``Microsoft.Extensions.DependencyInjection.IServiceCollection`` projektu. Jeżeli używana jest instancja klasy ``StatisticsPoland.VtlProcessing.Core.Translator``, w tym celu należy dodać renderer do pola ``Targets`` odpowiadającego za kolekcję ``StatisticsPoland.VtlProcessing.Core.TargetsCollection`` przy pomocy metody ``AddTarget``.
-
-==== Wskażówki implementacyjne
-
-Reprezentacja interfejsu ``ITargetRenderer`` powinna zawierać unikalną nazwę przypisaną polu ``Name``. Metoda ``Render`` przyjmująca schemat transformacji pośredniej powinna zwracać kod wynikowy w języku docelowym dla tłumaczenia wszystkich wyrażeń ze schematu. Metoda ``Render`` przyjmująca pojedyncze wyrażenie powinna zwracać kod wynikow w języku docelowym dla tłumaczenia podanego wyrażenia, które zawiera przypisany do pola ``ContainingSchema`` schemat transformacji pośredniej.
 
 === Niestandardowe algorytmy propagacji atrybutów
 

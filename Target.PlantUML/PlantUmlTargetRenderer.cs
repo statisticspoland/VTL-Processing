@@ -79,7 +79,7 @@
 
             for (int i = 0; i < exprs.Count(); i++)
             {
-                sb.AppendLine($"shema {this._conf.Arrow} {objectName}{i + 1}");
+                sb.AppendLine($"shema {this._conf.LineConnection} {objectName}{i + 1}");
             }
 
             return sb.ToString();
@@ -104,7 +104,7 @@
 
             for (int i = 0; i < rulesets.Count(); i++)
             {
-                sb.AppendLine($"shema {this._conf.Arrow} {objectName}{i + 1}");
+                sb.AppendLine($"shema {this._conf.LineConnection} {objectName}{i + 1}");
             }
 
             return sb.ToString();
@@ -138,7 +138,7 @@
 
             for (int i = 0; i < exprs.Count(); i++)
             {
-                sb.AppendLine($"{name} {this._conf.Arrow} {name}_{ruleName}{i + 1}");
+                sb.AppendLine($"{name} {this._conf.LineConnection} {name}_{ruleName}{i + 1}");
             }
 
             if (ruleset.Structure != null && this._conf.ShowDataStructure)
@@ -175,7 +175,7 @@
                 {
                     string childName = $"{name}{deep + 1}_{i}";
                     sb.AppendLine(this.RenderExpression(expr.OperandsCollection.ToArray()[i], childName, deep + 1));
-                    sb.AppendLine($"{space}{name} {this._conf.Arrow} {childName}");
+                    sb.AppendLine($"{space}{name} {this._conf.LineConnection} {childName}");
                 }
             }
 
@@ -297,7 +297,7 @@
             sb.AppendLine($"{space}{"}"}");
 
             sb.AppendLine();
-            sb.AppendLine($"{space}{parentName} {this._conf.Arrow} {name}");
+            sb.AppendLine($"{space}{parentName} {this._conf.LineConnection} {name}");
 
             return sb.ToString();
         }
@@ -325,7 +325,7 @@
         }
 
         /// <summary>
-        /// Renders the PlantUML code with the skinparam configuration.
+        /// Renders the PlantUML code with a skinparam configuration.
         /// </summary>
         /// <returns>The PlantUML code.</returns>
         private string RenderSkinparam()

@@ -10,7 +10,7 @@
     public sealed class OperatorRendererSymbolAttribute : Attribute
     {
         /// <summary>
-        /// Initialises a new instance of the <see cref="OperatorRendererSymbol"/> class.
+        /// Initialises a new instance of the <see cref="OperatorRendererSymbolAttribute"/> class.
         /// </summary>
         /// <param name="symbols">The symbol of the operator renderer used by a "join" operator.</param>
         public OperatorRendererSymbolAttribute(params string[] symbols)
@@ -19,7 +19,7 @@
         }
 
         /// <summary>
-        /// Gets symbols array.
+        /// Gets operator symbols array.
         /// </summary>
         public string[] Symbols { get; private set; }
     }
