@@ -1,0 +1,80 @@
+== Service
+
+=== Overview
+
+The VtlProcessing's translation API allows to specify and perform translations between VTL and selected target languages.
+In that document We are going to discuss step-by-step how to use this API correctly.
+This API requires no authentication.
+
+The API is available for testing at the link below.
+
+https://vtl-processing-demo.herokuapp.com/translator
+
+=== Quickstart guide
+
+The API needs information about data structures it will work with. 
+This needs to be configured.
+Below We explain required translation parameters.
+
+==== Required parameters
+
+[cols="1,1"]
+|===
+|Property |Description
+
+|DataSources
+|The list of dataSource, each dataSouce contans type of data, localisation and namespace
+
+|DataMappers
+|The list of mapping between data and VTL expression
+
+|Target
+|The target of translation
+
+|Experession
+|The VTL expression
+
+|DefaultNamespace
+|The dafault namespace
+
+|===
+
+==== Example parameters
+
+[source,JSON]
+----
+{
+    "DataSources": 
+    [{
+        "Type": "sdmx",
+        "Localisation": "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/datastructure/ESTAT/DSD_cens_01rdhh",
+        "Namespace": "sdmx"
+    }],
+    "DataMappers": { "sdmx": ""},
+    "Target": "TSQL",
+    "Experession": "a := DSD_cens_01rdhh",
+    "DefaultNamespace": "sdmx"
+}
+----
+
+==== Example response
+
+[source,TSQL]
+----
+
+-- Script generated: 10/25/2021 08:25:14
+BEGIN TRANSACTION
+
+IF OBJECT_ID (N'tempdb..#a', N'U') IS NOT NULL
+DROP TABLE #a
+
+
+-- Raw: a := sdmx\DSD_cens_01rdhh
+SELECT * INTO #a FROM (
+SELECT * FROM DSD_cens_01rdhh) AS t
+
+
+COMMIT TRANSACTION
+GO
+
+----
