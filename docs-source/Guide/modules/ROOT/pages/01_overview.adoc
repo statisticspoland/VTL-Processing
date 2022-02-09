@@ -1,5 +1,9 @@
 == Overview
 
+This software was funded by the European Union.
+
+image::https://ec.europa.eu/regional_policy/images/information/logos/eu_flag.jpg[eu,300,200]
+
 === What is VTL Processing
 
 VTL Processing is a .NET Core library for translating VTL expressions into various target languages. The generated code can be then executed in a data processing environment to perform data validation or transformation. The library is DI-friendly and comes with built in support for .NET IOC container. 
