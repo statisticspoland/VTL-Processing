@@ -1,6 +1,7 @@
 == Overview
 
-image:https://ec.europa.eu/regional_policy/images/information/logos/eu_flag.jpg[eu,90,60,float=left]
+image::https://ec.europa.eu/regional_policy/images/information/logos/eu_flag.jpg[eu,90,60]
+
 This software was funded by the European Union.
 
 === What is VTL Processing
