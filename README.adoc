@@ -6,6 +6,10 @@ image:https://github.com/statisticspoland/VTL-Processing/workflows/Build/badge.s
 image:https://sonarcloud.io/api/project_badges/measure?project=StatisticsPoland.VtlProcessing.Core&metric=alert_status[link=https://sonarcloud.io/dashboard?id=StatisticsPoland.VtlProcessing.Core]
 image:https://sonarcloud.io/api/project_badges/measure?project=StatisticsPoland.VtlProcessing.Core&metric=coverage[link=https://sonarcloud.io/dashboard?id=StatisticsPoland.VtlProcessing.Core]
 
+This software was funded by the European Union.
+
+image::https://ec.europa.eu/regional_policy/images/information/logos/eu_flag.jpg[eu,300,200]
+
 *VTL Processing* is a .NET Core library for translating VTL (see https://sdmx.org/?page_id=5096) expressions into various target languages. 
 The generated code can be then executed in a data processing environment to perform data validation or transformation. 
 The library is DI-friendly and comes with built in support for .NET IOC container.
