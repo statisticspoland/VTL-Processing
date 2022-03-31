@@ -1,0 +1,183 @@
+﻿{
+  "DataModel": {
+    "Namespace": "Json",
+    "DataStructuresCollection": [
+      {
+        "DatasetName": "table1",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "ViralAttributes": [
+          {
+            "BaseComponentName": "At_bool",
+            "ComponentName": "At_bool",
+            "ValueDomain": {
+              "Signature": "boolean_default"
+            }
+          }
+        ]
+      },
+      {
+        "DatasetName": "table2",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Id2",
+            "ComponentName": "Id2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "number_default"
+            }
+          }
+        ],
+        "ViralAttributes": [
+          {
+            "BaseComponentName": "At_string",
+            "ComponentName": "At_string",
+            "ValueDomain": {
+              "Signature": "string_default"
+            }
+          }
+        ],
+        "NonViralAttributes": [
+          {
+            "BaseComponentName": "At5",
+            "ComponentName": "At5",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ]
+      },
+      {
+        "DatasetName": "Z",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "Id3",
+            "ComponentName": "Id3",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me2",
+            "ComponentName": "Me2",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          },
+          {
+            "BaseComponentName": "MeStr",
+            "ComponentName": "MeStr",
+            "ValueDomain": {
+              "Signature": "string_default"
+            }
+          }
+        ],
+        "NonViralAttributes": [
+          {
+            "BaseComponentName": "At1",
+            "ComponentName": "At1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ]
+      },
+      {
+        "DatasetName": "X_Bool",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "boolean_default"
+            }
+          }
+        ]
+      },
+      {
+        "DatasetName": "Y_Bool",
+        "Identifiers": [
+          {
+            "BaseComponentName": "Id1",
+            "ComponentName": "Id1",
+            "ValueDomain": {
+              "Signature": "integer_default"
+            }
+          }
+        ],
+        "Measures": [
+          {
+            "BaseComponentName": "Me1",
+            "ComponentName": "Me1",
+            "ValueDomain": {
+              "Signature": "boolean_default"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

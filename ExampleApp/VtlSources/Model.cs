@@ -4,7 +4,7 @@
     using StatisticsPoland.VtlProcessing.Core.Models.Types;
     using System;
 
-    public static class RegularModel
+    public static class Model
     {
         public static Action<IDictionaryModelConfiguration> ModelConfiguration => (modelConfigure) =>
         {
